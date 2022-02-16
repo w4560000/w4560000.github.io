@@ -2,9 +2,9 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <title>Windows環境 以hexo + github page 搭建部落格 | Hexo</title>
-  <meta name="keywords" content=" hexo ">
-  <meta name="description" content="Windows環境 以hexo + github page 搭建部落格 | Hexo">
+  <title>Hexo</title>
+  <meta name="keywords" content="">
+  <meta name="description" content="Hexo">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <meta name="description" content="開發環境 Windows 10 (home 20H2) Git (git version 2.31.1.windows.1)  修改Author &amp; Email &amp; Committer假設目前在版控中的專案的Author 有異常(e.g. Author忘記設定導致吃到global設定 or 忘記切換git user 等等 哩哩摳摳的事情)且已經有Commit紀錄了 此時可由以下步驟">
 <meta property="og:type" content="article">
@@ -71,7 +71,7 @@
 
 
 <body>
-<aside class="nav">
+<aside class="nav mobile">
     <div class="nav-left">
         <a href="/"
    class="avatar_target">
@@ -298,73 +298,12 @@
         </div>
     </div>
 </aside>
-<div id="post">
+<div id="post" class="index">
     <div class="pjax">
-        <article id="post-hexo-init" class="article article-type-post" itemscope itemprop="blogPost">
+        <article class="index">
+            <div class="toc-ref">
     
-        <h1 class="article-title">Windows環境 以hexo + github page 搭建部落格</h1>
-    
-    <div class="article-meta">
-        
-        
-        
-        <span class="book">
-            <i class="iconfont icon-category"></i>
-            
-            
-            <a  data-rel="Tool">Tool</a> > 
-            
-            <a  data-rel="Tool&lt;---&gt;hexo">hexo</a>
-            
-        </span>
-        
-        
-        <span class="tag">
-            <i class="iconfont icon-tag"></i>
-            
-            <a class="color5">hexo</a>
-            
-        </span>
-        
-    </div>
-    <div class="article-meta">
-        
-            發布時間 : <time class="date" title='更新時間: 2022-02-02 18:06:52'>2022-02-01 19:08</time>
-        
-    </div>
-    <div class="article-meta">
-        
-        <span>字數:239</span>
-        
-        
-        <span id="busuanzi_container_page_pv">
-            觀看數 :<span id="busuanzi_value_page_pv">
-                <span class="count-comment">
-                    <span class="spinner">
-                      <div class="cube1"></div>
-                      <div class="cube2"></div>
-                    </span>
-                </span>
-            </span>
-        </span>
-        
-        
-        <span class="top-comment" title="跳转至评论区">
-            <a href="#comments">
-                評論:<span class="count-comment">
-                    <span class="spinner">
-                      <div class="cube1"></div>
-                      <div class="cube2"></div>
-                    </span>
-                </span>
-            </a>
-        </span>
-        
-    </div>
-    
-    <div class="toc-ref">
-    
-        <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%96%8B%E7%99%BC%E7%92%B0%E5%A2%83"><span class="toc-text">開發環境</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%89%E8%A3%9D%E7%92%B0%E5%A2%83"><span class="toc-text">安裝環境</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%BB%BA%E7%AB%8B%E9%83%A8%E8%90%BD%E6%A0%BC"><span class="toc-text">建立部落格</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BF%AE%E6%94%B9-%E9%83%A8%E8%90%BD%E6%A0%BC%E6%A8%A3%E5%BC%8F-%E4%BB%A5-3-hexo-%E7%82%BA%E4%BE%8B"><span class="toc-text">修改 部落格樣式 (以 3-hexo 為例)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%8A%E5%82%B3%E8%87%B3-GitHub-Page"><span class="toc-text">上傳至 GitHub Page</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%93%B4%E5%85%85%E6%8F%92%E4%BB%B6"><span class="toc-text">擴充插件</span></a></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E9%97%9C%E6%96%BC%E6%88%91%E8%88%87%E8%A9%B2%E9%83%A8%E8%90%BD%E6%A0%BC"><span class="toc-text">關於我與該部落格</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%B0%A1%E4%BB%8B"><span class="toc-text">簡介</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%83%A8%E8%90%BD%E6%A0%BC"><span class="toc-text">部落格</span></a></li></ol></li></ol>
     
 <style>
     .left-col .switch-btn,
@@ -377,83 +316,16 @@
     }
 </style>
 </div>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h3 id="開發環境"><a href="#開發環境" class="headerlink" title="開發環境"></a>開發環境</h3><ul>
-<li>Windows 10 (home 20H2)</li>
-</ul>
-<h3 id="安裝環境"><a href="#安裝環境" class="headerlink" title="安裝環境"></a>安裝環境</h3><ol>
-<li>擁有 Github 帳戶 <a target="_blank" rel="noopener" href="https://github.com/">https://github.com/</a></li>
-<li>安裝 Node.js (需使用到 npm ) <a target="_blank" rel="noopener" href="https://nodejs.org/zh-tw/download/">https://nodejs.org/zh-tw/download/</a></li>
-<li>安裝 Git <a target="_blank" rel="noopener" href="https://git-scm.com/downloads">https://git-scm.com/downloads</a></li>
-<li>安裝 hexo<pre><code class="PowerShell">npm install hexo-cli -g
-</code></pre>
-</li>
-</ol>
-<h3 id="建立部落格"><a href="#建立部落格" class="headerlink" title="建立部落格"></a>建立部落格</h3><pre><code class="PowerShell">hexo init test
-cd test
-hexo s
-</code></pre>
-<p><img src="/img/2022-02-01-20-20-07.png"></p>
-<p>確認部落格是否建立成功 <a target="_blank" rel="noopener" href="http://localhost:4000/">http://localhost:4000/</a><br><img src="/img/2022-02-01-20-20-59.png"></p>
-<h3 id="修改-部落格樣式-以-3-hexo-為例"><a href="#修改-部落格樣式-以-3-hexo-為例" class="headerlink" title="修改 部落格樣式 (以 3-hexo 為例)"></a>修改 部落格樣式 (以 3-hexo 為例)</h3><ol>
-<li><p>Clone SourceCode</p>
-<pre><code class="PowerShell">git clone https://github.com/yelog/hexo-theme-3-hexo.git themes/3-hexo
-</code></pre>
-</li>
-<li><p>修改 /_config.yml</p>
-<p> 3-hexo 自帶highlight 故關掉預設highlight</p>
-<pre><code class="diff">- highlight:
--   enable: true
-+ highlight:
-+   enable: false
-</code></pre>
-<p> 修改 theme</p>
-<pre><code class="diff">- theme: landscape
-+ theme: 3-hexo
-</code></pre>
-<p> 確認是否成功<br> <img src="/img/2022-02-01-20-25-18.png"></p>
-</li>
-</ol>
-<h3 id="上傳至-GitHub-Page"><a href="#上傳至-GitHub-Page" class="headerlink" title="上傳至 GitHub Page"></a>上傳至 GitHub Page</h3><ol>
-<li>建立Github 儲存庫 <a target="_blank" rel="noopener" href="https://github.com/new">https://github.com/new</a><br> <strong>儲存庫名稱為 {githubAccountName}/.github.io</strong><br> <strong>設為Public</strong></li>
-</ol>
-<blockquote>
-<p>githubAccountName 請用個人github帳戶代替</p>
-</blockquote>
-<ol start="2">
-<li><p>安裝 hexo-deployer-git<br> <strong>hexo deploy時 自動推送靜態檔案至GitHub儲存庫</strong></p>
-<pre><code class="PowerShell">npm install hexo-deployer-git --save
-</code></pre>
-</li>
-<li><p>修改 /_config.yml</p>
-</li>
-</ol>
-<pre><code class="diff">- deploy:
--  type: &#39;&#39;
+            <h1 id="關於我與該部落格"><a href="#關於我與該部落格" class="headerlink" title="關於我與該部落格"></a>關於我與該部落格</h1><h2 id="簡介"><a href="#簡介" class="headerlink" title="簡介"></a>簡介</h2><p>我是一名.Net 開發工程師</p>
+<p>此部落格為軟體開發的學習筆記</p>
+<p>若文章內容有誤，歡迎留言指正，或來信告知 <a href="mailto:&#x6c;&#101;&#111;&#122;&#104;&#x65;&#x6e;&#x67;&#x30;&#x36;&#50;&#49;&#64;&#103;&#x6d;&#x61;&#x69;&#x6c;&#46;&#99;&#111;&#x6d;">&#x6c;&#101;&#111;&#122;&#104;&#x65;&#x6e;&#x67;&#x30;&#x36;&#50;&#49;&#64;&#103;&#x6d;&#x61;&#x69;&#x6c;&#46;&#99;&#111;&#x6d;</a></p>
+<h2 id="部落格"><a href="#部落格" class="headerlink" title="部落格"></a>部落格</h2><p>共發布：<code class="article_number"></code>篇文章， 共<code class="site_word_count"></code>字。</p>
+<p>部落格總訪問人數：<code class="site_uv"></code> 人次， 訪問量：<code class="site_pv"></code>次</p>
+<p>此部落格通過 <a target="_blank" rel="noopener" href="https://hexo.io/">Hexo</a> 建立，部屬在 <a target="_blank" rel="noopener" href="https://pages.github.com/">GitHub Pages</a>主題 <a target="_blank" rel="noopener" href="https://github.com/yelog/hexo-theme-3-hexo">3-hexo</a></p>
 
-+ deploy:
-+   type: git
-+   repo: https://github.com/&#123;githubAccountName&#125;&#125;/&#123;githubAccountName&#125;.github.io.git
-+   branch: master
-</code></pre>
-<ol start="4">
-<li>佈署<pre><code class="PowerShell">hexo deploy
-</code></pre>
-</li>
-</ol>
-<h3 id="擴充插件"><a href="#擴充插件" class="headerlink" title="擴充插件"></a>擴充插件</h3><p>todo</p>
-
-      
-       <hr><span style="font-style: italic;color: gray;"> 轉載請註明來源，若有任何錯誤或表達不清楚的地方，歡迎在下方評論區留言，也可以來信至 leozheng0621@gmail.com </span>
-    </div>
-</article>
-
-
-
-
-
+        </article>
+        
+        
     <div id="comments"></div>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css">
 
@@ -475,13 +347,6 @@ hexo s
 </script>
 
 
-
-
-    
-
-
-
-
     </div>
     <div class="copyright">
         <p class="footer-entry">
@@ -490,11 +355,11 @@ hexo s
 <p class="footer-entry">Built with <a href="https://hexo.io/" target="_blank">Hexo</a> and <a href="https://github.com/yelog/hexo-theme-3-hexo" target="_blank">3-hexo</a> theme</p>
 
     </div>
-    <div class="full-toc">
-        <button class="full" data-title="切换全屏 快捷键 s"><span class="min "></span></button>
+</div>
+<div class="full-toc">
+    <button class="full" data-title="切换全屏 快捷键 s"><span class="min "></span></button>
 <a class="" id="rocket" ></a>
 
-    </div>
 </div>
 
 </body>

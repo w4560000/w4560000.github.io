@@ -2,9 +2,9 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <title>Windows環境 以hexo + github page 搭建部落格 | Hexo</title>
-  <meta name="keywords" content=" hexo ">
-  <meta name="description" content="Windows環境 以hexo + github page 搭建部落格 | Hexo">
+  <title>Git 修改Message &amp; Author &amp; Email &amp; Committer | Hexo</title>
+  <meta name="keywords" content=" Git ">
+  <meta name="description" content="Git 修改Message &amp; Author &amp; Email &amp; Committer | Hexo">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <meta name="description" content="開發環境 Windows 10 (home 20H2) Git (git version 2.31.1.windows.1)  修改Author &amp; Email &amp; Committer假設目前在版控中的專案的Author 有異常(e.g. Author忘記設定導致吃到global設定 or 忘記切換git user 等等 哩哩摳摳的事情)且已經有Commit紀錄了 此時可由以下步驟">
 <meta property="og:type" content="article">
@@ -300,9 +300,9 @@
 </aside>
 <div id="post">
     <div class="pjax">
-        <article id="post-hexo-init" class="article article-type-post" itemscope itemprop="blogPost">
+        <article id="post-git" class="article article-type-post" itemscope itemprop="blogPost">
     
-        <h1 class="article-title">Windows環境 以hexo + github page 搭建部落格</h1>
+        <h1 class="article-title">Git 修改Message &amp; Author &amp; Email &amp; Committer</h1>
     
     <div class="article-meta">
         
@@ -314,7 +314,7 @@
             
             <a  data-rel="Tool">Tool</a> > 
             
-            <a  data-rel="Tool&lt;---&gt;hexo">hexo</a>
+            <a  data-rel="Tool&lt;---&gt;Git">Git</a>
             
         </span>
         
@@ -322,19 +322,19 @@
         <span class="tag">
             <i class="iconfont icon-tag"></i>
             
-            <a class="color5">hexo</a>
+            <a class="color4">Git</a>
             
         </span>
         
     </div>
     <div class="article-meta">
         
-            發布時間 : <time class="date" title='更新時間: 2022-02-02 18:06:52'>2022-02-01 19:08</time>
+            發布時間 : <time class="date" title='更新時間: 2022-02-17 01:08:52'>2022-02-07 16:29</time>
         
     </div>
     <div class="article-meta">
         
-        <span>字數:239</span>
+        <span>字數:683</span>
         
         
         <span id="busuanzi_container_page_pv">
@@ -364,7 +364,7 @@
     
     <div class="toc-ref">
     
-        <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%96%8B%E7%99%BC%E7%92%B0%E5%A2%83"><span class="toc-text">開發環境</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%89%E8%A3%9D%E7%92%B0%E5%A2%83"><span class="toc-text">安裝環境</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%BB%BA%E7%AB%8B%E9%83%A8%E8%90%BD%E6%A0%BC"><span class="toc-text">建立部落格</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BF%AE%E6%94%B9-%E9%83%A8%E8%90%BD%E6%A0%BC%E6%A8%A3%E5%BC%8F-%E4%BB%A5-3-hexo-%E7%82%BA%E4%BE%8B"><span class="toc-text">修改 部落格樣式 (以 3-hexo 為例)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%8A%E5%82%B3%E8%87%B3-GitHub-Page"><span class="toc-text">上傳至 GitHub Page</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%93%B4%E5%85%85%E6%8F%92%E4%BB%B6"><span class="toc-text">擴充插件</span></a></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E9%96%8B%E7%99%BC%E7%92%B0%E5%A2%83"><span class="toc-text">開發環境</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%BF%AE%E6%94%B9Author-amp-Email-amp-Committer"><span class="toc-text">修改Author &amp; Email &amp; Committer</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BF%AE%E6%94%B9%E7%AC%AC%E4%BA%8C%E7%AD%86Commit%E7%B4%80%E9%8C%84%E7%9A%84-Author-amp-Email"><span class="toc-text">修改第二筆Commit紀錄的 Author &amp; Email</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BF%AE%E6%94%B9%E7%AC%AC%E4%BA%8C%E7%AD%86Commit%E7%B4%80%E9%8C%84%E7%9A%84-Author-amp-Email-amp-Committer-By-user"><span class="toc-text">修改第二筆Commit紀錄的 Author &amp; Email &amp; Committer By user</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%A3%9C%E5%85%85"><span class="toc-text">補充</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BF%AE%E6%94%B9%E7%AC%AC%E4%B8%80%E7%AD%86Commit%E7%B4%80%E9%8C%84%E7%9A%84-Author-amp-Email"><span class="toc-text">修改第一筆Commit紀錄的 Author &amp; Email</span></a></li></ol></li></ol></li></ol>
     
 <style>
     .left-col .switch-btn,
@@ -380,70 +380,99 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h3 id="開發環境"><a href="#開發環境" class="headerlink" title="開發環境"></a>開發環境</h3><ul>
+        <h1 id="開發環境"><a href="#開發環境" class="headerlink" title="開發環境"></a>開發環境</h1><ul>
 <li>Windows 10 (home 20H2)</li>
+<li>Git (git version 2.31.1.windows.1)</li>
 </ul>
-<h3 id="安裝環境"><a href="#安裝環境" class="headerlink" title="安裝環境"></a>安裝環境</h3><ol>
-<li>擁有 Github 帳戶 <a target="_blank" rel="noopener" href="https://github.com/">https://github.com/</a></li>
-<li>安裝 Node.js (需使用到 npm ) <a target="_blank" rel="noopener" href="https://nodejs.org/zh-tw/download/">https://nodejs.org/zh-tw/download/</a></li>
-<li>安裝 Git <a target="_blank" rel="noopener" href="https://git-scm.com/downloads">https://git-scm.com/downloads</a></li>
-<li>安裝 hexo<pre><code class="PowerShell">npm install hexo-cli -g
+<h1 id="修改Author-amp-Email-amp-Committer"><a href="#修改Author-amp-Email-amp-Committer" class="headerlink" title="修改Author &amp; Email &amp; Committer"></a>修改Author &amp; Email &amp; Committer</h1><p>假設目前在版控中的專案的Author 有異常<br>(e.g. Author忘記設定導致吃到global設定 or 忘記切換git user 等等 哩哩摳摳的事情)<br>且已經有Commit紀錄了 此時可由以下步驟來做修改</p>
+<blockquote>
+<p>目前git紀錄<br><img src="/img/2022-02-17-00-55-46.png"></p>
+</blockquote>
+<h2 id="修改第二筆Commit紀錄的-Author-amp-Email"><a href="#修改第二筆Commit紀錄的-Author-amp-Email" class="headerlink" title="修改第二筆Commit紀錄的 Author &amp; Email"></a>修改第二筆Commit紀錄的 Author &amp; Email</h2><ol>
+<li>rebase 要修改Commit紀錄的前一筆Commit ID 進入VI互動模式<pre><code class="PowerShell">git rebase -i ff37
 </code></pre>
-</li>
-</ol>
-<h3 id="建立部落格"><a href="#建立部落格" class="headerlink" title="建立部落格"></a>建立部落格</h3><pre><code class="PowerShell">hexo init test
-cd test
-hexo s
-</code></pre>
-<p><img src="/img/2022-02-01-20-20-07.png"></p>
-<p>確認部落格是否建立成功 <a target="_blank" rel="noopener" href="http://localhost:4000/">http://localhost:4000/</a><br><img src="/img/2022-02-01-20-20-59.png"></p>
-<h3 id="修改-部落格樣式-以-3-hexo-為例"><a href="#修改-部落格樣式-以-3-hexo-為例" class="headerlink" title="修改 部落格樣式 (以 3-hexo 為例)"></a>修改 部落格樣式 (以 3-hexo 為例)</h3><ol>
-<li><p>Clone SourceCode</p>
-<pre><code class="PowerShell">git clone https://github.com/yelog/hexo-theme-3-hexo.git themes/3-hexo
-</code></pre>
-</li>
-<li><p>修改 /_config.yml</p>
-<p> 3-hexo 自帶highlight 故關掉預設highlight</p>
-<pre><code class="diff">- highlight:
--   enable: true
-+ highlight:
-+   enable: false
-</code></pre>
-<p> 修改 theme</p>
-<pre><code class="diff">- theme: landscape
-+ theme: 3-hexo
-</code></pre>
-<p> 確認是否成功<br> <img src="/img/2022-02-01-20-25-18.png"></p>
-</li>
-</ol>
-<h3 id="上傳至-GitHub-Page"><a href="#上傳至-GitHub-Page" class="headerlink" title="上傳至 GitHub Page"></a>上傳至 GitHub Page</h3><ol>
-<li>建立Github 儲存庫 <a target="_blank" rel="noopener" href="https://github.com/new">https://github.com/new</a><br> <strong>儲存庫名稱為 {githubAccountName}/.github.io</strong><br> <strong>設為Public</strong></li>
+<img src="/img/2022-02-16-23-47-16.png"></li>
 </ol>
 <blockquote>
-<p>githubAccountName 請用個人github帳戶代替</p>
+<p>進入VI互動模式時<br>按下 a 進入編輯模式 進行修改<br>修改完成後, 按下 Esc 離開 輸入 :wq! (強制儲存離開)</p>
 </blockquote>
 <ol start="2">
-<li><p>安裝 hexo-deployer-git<br> <strong>hexo deploy時 自動推送靜態檔案至GitHub儲存庫</strong></p>
-<pre><code class="PowerShell">npm install hexo-deployer-git --save
+<li>修改第二筆Commit紀錄<br>在第二筆CommitID 下一行 修改Author &amp; Email</li>
+</ol>
+<pre><code class="PowerShell">exec git commit --amend --author=&quot;Author Name &lt;email@address.com&gt;&quot; --no-edit
 </code></pre>
+<p><img src="/img/2022-02-16-23-48-11.png"></p>
+<blockquote>
+<p>此時查看目前log異動狀況<br>發現 第二筆Commit紀錄的 Author &amp; Email 已被修改<br>但進一步查看時 發現 Committer 還是舊的，因Committer需要另行修改</p>
+</blockquote>
+<pre><code class="PowerShell">git log
+git show --pretty=fuller ff37
+git show --pretty=fuller 3cd2
+git show --pretty=fuller f30d
+</code></pre>
+<p><img src="/img/2022-02-16-23-59-13.png"></p>
+<h2 id="修改第二筆Commit紀錄的-Author-amp-Email-amp-Committer-By-user"><a href="#修改第二筆Commit紀錄的-Author-amp-Email-amp-Committer-By-user" class="headerlink" title="修改第二筆Commit紀錄的 Author &amp; Email &amp; Committer By user"></a>修改第二筆Commit紀錄的 Author &amp; Email &amp; Committer By user</h2><blockquote>
+<p>先列出目前 Git user</p>
+</blockquote>
+<pre><code class="PowerShell">git config user.name
+git config user.email 
+</code></pre>
+<p><img src="/img/2022-02-17-00-02-20.png"></p>
+<blockquote>
+<p>修正目前Git版控資料夾內的user.name &amp; user.email</p>
+</blockquote>
+<pre><code class="PowerShell">git config user.name &quot;New Author Name&quot;
+git config user.email &quot;new_email@address.com&quot;
+</code></pre>
+<ol>
+<li><p>rebase 要修改Commit紀錄的前一筆Commit ID</p>
+<pre><code class="PowerShell">git rebase -i ff37
+</code></pre>
+<p><img src="/img/2022-02-17-00-05-19.png"></p>
 </li>
-<li><p>修改 /_config.yml</p>
+<li><p>修改第二筆Commit紀錄<br>在第二筆CommitID 下一行 修改Author &amp; Email</p>
+<pre><code class="PowerShell">exec git commit --amend --reset-author --no-edit
+</code></pre>
+<p><img src="/img/2022-02-17-00-06-44.png"></p>
 </li>
 </ol>
-<pre><code class="diff">- deploy:
--  type: &#39;&#39;
-
-+ deploy:
-+   type: git
-+   repo: https://github.com/&#123;githubAccountName&#125;&#125;/&#123;githubAccountName&#125;.github.io.git
-+   branch: master
+<blockquote>
+<p>再查看一次 目前異動狀況<br>發現 第二筆Commit紀錄的 Author &amp; Email &amp; Committer 已被 user.name &amp; user.email 覆蓋<br>有另一點需要特別注意 第三筆Commit紀錄 雖然Author &amp; Email 未被覆蓋<br>但Committer與CommitDate已被刷新，因rebase是重新建立新的Commit紀錄 不是修改<br>所以可以發現第二筆和第三筆CommitID(SHA)被異動了，因為它們是新的Commit紀錄<br>這也導致第三筆的Committer和CommitDate被更改 需要特別注意</p>
+</blockquote>
+<pre><code class="PowerShell">git log
+git show --pretty=fuller ff37
+git show --pretty=fuller f5da
+git show --pretty=fuller 6dcb
 </code></pre>
-<ol start="4">
-<li>佈署<pre><code class="PowerShell">hexo deploy
+<p><img src="/img/2022-02-17-00-11-52.png"></p>
+<h2 id="補充"><a href="#補充" class="headerlink" title="補充"></a>補充</h2><h3 id="修改第一筆Commit紀錄的-Author-amp-Email"><a href="#修改第一筆Commit紀錄的-Author-amp-Email" class="headerlink" title="修改第一筆Commit紀錄的 Author &amp; Email"></a>修改第一筆Commit紀錄的 Author &amp; Email</h3><blockquote>
+<p>先列一下 目前Git log 情況<br>w4560000 是錯誤的Author 已經Commit兩筆紀錄了</p>
+</blockquote>
+<pre><code class="PowerShell">git log
+git show --pretty=fuller e51d
+git show --pretty=fuller 6ac4
 </code></pre>
+<p><img src="/img/2022-02-17-00-26-49.png"></p>
+<ol>
+<li><p>修改第一筆Commit紀錄比較特別 因它是第一筆，rebase時不能找前一個CommitID來rebase，需rebase root</p>
+<pre><code class="PowerShell">git rebase -i --root
+</code></pre>
+<p><img src="/img/2022-02-17-00-27-11.png"></p>
+</li>
+<li><p>修改第一筆Commit紀錄<br>在第一筆CommitID 下一行 修改Author &amp; Email</p>
+<pre><code class="PowerShell">exec git commit --amend --author=&quot;First Author Name &lt;firstemail@address.com&gt;&quot; --no-edit
+</code></pre>
+<p><img src="/img/2022-02-17-00-27-59.png"></p>
 </li>
 </ol>
-<h3 id="擴充插件"><a href="#擴充插件" class="headerlink" title="擴充插件"></a>擴充插件</h3><p>todo</p>
+<blockquote>
+<p>此時查看目前log異動狀況 確認第一筆是否已被修改且第二筆正常</p>
+</blockquote>
+<pre><code class="PowerShell">git log
+git show --pretty=fuller a318
+git show --pretty=fuller a9a1
+</code></pre>
+<p><img src="/img/2022-02-17-00-30-41.png"></p>
 
       
        <hr><span style="font-style: italic;color: gray;"> 轉載請註明來源，若有任何錯誤或表達不清楚的地方，歡迎在下方評論區留言，也可以來信至 leozheng0621@gmail.com </span>
