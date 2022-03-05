@@ -2,9 +2,9 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <title>Hexo</title>
-  <meta name="keywords" content="">
-  <meta name="description" content="Hexo">
+  <title>hexo-插入圖片 Part2 (以 VS Code 編輯 Markdown) | Hexo</title>
+  <meta name="keywords" content=" hexo ">
+  <meta name="description" content="hexo-插入圖片 Part2 (以 VS Code 編輯 Markdown) | Hexo">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <meta name="description" content="繼上一篇hexo-插入圖片 Part1 (以 VS Code 編輯 Markdown)分享在VS Code 快速插入圖片後，因考量到圖檔是存在本地Server並隨著版本異動上傳到GitHub，避免日後圖檔數量過多造成儲存庫肥大，故改以上傳到Azure Storage Blob 充當第三方圖庫 開發環境 Windows 10 (home 20H2) VSCode (1.64.2)  上傳圖檔至Azu">
 <meta property="og:type" content="article">
@@ -62,7 +62,7 @@
 
 
 <body>
-<aside class="nav mobile">
+<aside class="nav">
     <div class="nav-left">
         <a href="/"
    class="avatar_target">
@@ -297,12 +297,73 @@
         </div>
     </div>
 </aside>
-<div id="post" class="index">
+<div id="post">
     <div class="pjax">
-        <article class="index">
-            <div class="toc-ref">
+        <article id="post-hexo-uploadImg-AzureStorage" class="article article-type-post" itemscope itemprop="blogPost">
     
-        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E9%97%9C%E6%96%BC%E6%88%91%E8%88%87%E8%A9%B2%E9%83%A8%E8%90%BD%E6%A0%BC"><span class="toc-text">關於我與該部落格</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%B0%A1%E4%BB%8B"><span class="toc-text">簡介</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%83%A8%E8%90%BD%E6%A0%BC"><span class="toc-text">部落格</span></a></li></ol></li></ol>
+        <h1 class="article-title">hexo-插入圖片 Part2 (以 VS Code 編輯 Markdown)</h1>
+    
+    <div class="article-meta">
+        
+        
+        
+        <span class="book">
+            <i class="iconfont icon-category"></i>
+            
+            
+            <a  data-rel="Tool">Tool</a> > 
+            
+            <a  data-rel="Tool&lt;---&gt;hexo">hexo</a>
+            
+        </span>
+        
+        
+        <span class="tag">
+            <i class="iconfont icon-tag"></i>
+            
+            <a class="color5">hexo</a>
+            
+        </span>
+        
+    </div>
+    <div class="article-meta">
+        
+            發布時間 : <time class="date" title='更新時間: 2022-03-05 16:43:51'>2022-03-05 14:43</time>
+        
+    </div>
+    <div class="article-meta">
+        
+        <span>字數:533</span>
+        
+        
+        <span id="busuanzi_container_page_pv">
+            觀看數 :<span id="busuanzi_value_page_pv">
+                <span class="count-comment">
+                    <span class="spinner">
+                      <div class="cube1"></div>
+                      <div class="cube2"></div>
+                    </span>
+                </span>
+            </span>
+        </span>
+        
+        
+        <span class="top-comment" title="跳转至评论区">
+            <a href="#comments">
+                評論:<span class="count-comment">
+                    <span class="spinner">
+                      <div class="cube1"></div>
+                      <div class="cube2"></div>
+                    </span>
+                </span>
+            </a>
+        </span>
+        
+    </div>
+    
+    <div class="toc-ref">
+    
+        <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%96%8B%E7%99%BC%E7%92%B0%E5%A2%83"><span class="toc-text">開發環境</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%8A%E5%82%B3%E5%9C%96%E6%AA%94%E8%87%B3Azure-Storage-Blob"><span class="toc-text">上傳圖檔至Azure Storage Blob</span></a>
     
 <style>
     .left-col .switch-btn,
@@ -315,16 +376,74 @@
     }
 </style>
 </div>
-            <h1 id="關於我與該部落格"><a href="#關於我與該部落格" class="headerlink" title="關於我與該部落格"></a>關於我與該部落格</h1><h2 id="簡介"><a href="#簡介" class="headerlink" title="簡介"></a>簡介</h2><p>我是一名.Net 開發工程師</p>
-<p>此部落格為軟體開發的學習筆記</p>
-<p>若文章內容有誤，歡迎留言指正，或來信告知 <a href="mailto:&#x6c;&#101;&#x6f;&#122;&#x68;&#x65;&#110;&#103;&#x30;&#x36;&#50;&#x31;&#64;&#103;&#109;&#x61;&#x69;&#108;&#46;&#x63;&#111;&#109;">&#x6c;&#101;&#x6f;&#122;&#x68;&#x65;&#110;&#103;&#x30;&#x36;&#50;&#x31;&#64;&#103;&#109;&#x61;&#x69;&#108;&#46;&#x63;&#111;&#109;</a></p>
-<h2 id="部落格"><a href="#部落格" class="headerlink" title="部落格"></a>部落格</h2><p>共發布：<code class="article_number"></code>篇文章， 共<code class="site_word_count"></code>字。</p>
-<p>部落格總訪問人數：<code class="site_uv"></code> 人次， 訪問量：<code class="site_pv"></code>次</p>
-<p>此部落格通過 <a target="_blank" rel="noopener" href="https://hexo.io/">Hexo</a> 建立，部屬在 <a target="_blank" rel="noopener" href="https://pages.github.com/">GitHub Pages</a>主題 <a target="_blank" rel="noopener" href="https://github.com/yelog/hexo-theme-3-hexo">3-hexo</a></p>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>繼上一篇<a href="/2022/02/02/hexo-uploadImg/">hexo-插入圖片 Part1 (以 VS Code 編輯 Markdown)</a><br>分享在VS Code 快速插入圖片後，因考量到圖檔是存在本地Server並隨著版本異動上傳到GitHub，避免日後圖檔數量過多造成儲存庫肥大，故改以上傳到Azure Storage Blob 充當第三方圖庫</p>
+<h3 id="開發環境"><a href="#開發環境" class="headerlink" title="開發環境"></a>開發環境</h3><ul>
+<li>Windows 10 (home 20H2)</li>
+<li>VSCode (1.64.2)</li>
+</ul>
+<h2 id="上傳圖檔至Azure-Storage-Blob"><a href="#上傳圖檔至Azure-Storage-Blob" class="headerlink" title="上傳圖檔至Azure Storage Blob"></a>上傳圖檔至Azure Storage Blob</h2><p>因原先的插入圖片方法是透過 該 <a target="_blank" rel="noopener" href="https://marketplace.visualstudio.com/items?itemName=mushan.vscode-paste-image">VScode擴充套件</a> 達成，Clone其 <a target="_blank" rel="noopener" href="https://github.com/mushanshitiancai/vscode-paste-image">開源專案</a> 後查看SourceCode發現並沒有上傳到第三方圖庫功能，於是趁著228連假空檔改寫了一下，新增儲存到Azure Storage Blob的功能也順便發了PR，但因只有支援Windows<br>會不會被Merge進版本就不知道了</p>
+<p>而因尚未被Merge進版本，可以先利用我fork出來的 <a target="_blank" rel="noopener" href="https://github.com/w4560000/vscode-paste-image">修改版本</a> 自己產生 .vsix檔 來安裝到自己的VSCode上</p>
+<ol>
+<li><p>建立 VSCode擴充檔 .vsix </p>
+<pre><code class="PowerShell"># Clone專案
+clone https://github.com/w4560000/vscode-paste-image.git
 
-        </article>
-        
-        
+# 切至資料夾
+cd vscode-paste-image
+
+# install 專案所需套件
+npm install
+
+# 建立 .vsix檔
+npm i vsce -g
+vsce package
+</code></pre>
+</li>
+<li><p>安裝 VSCode擴充</p>
+<p> <img src="https://bingxiangstorage.blob.core.windows.net/blog/hexo-uploadImg-AzureStorage/2022-03-05-15-24-57.png"></p>
+<p> 安裝 vscode-paste-image-1.0.4.vsix &amp; 重啟 VSCode</p>
+</li>
+<li><p>設定 擴充套件</p>
+<p> 在VSCode setting.json 新增</p>
+<pre><code class="json">&#123;
+    &quot;pasteImage.path&quot;: &quot;$&#123;currentFileNameWithoutExt&#125;&quot;,
+    &quot;pasteImage.basePath&quot;: &quot;&quot;,
+    &quot;pasteImage.filePathConfirmInputBoxMode&quot;: &quot;onlyName&quot;,
+    &quot;pasteImage.azureIsUploadStorage&quot;: true,
+    &quot;pasteImage.azureStorageConnectionString&quot;: &quot;&#123;Your azureStorageConnectionString&#125;&quot;,
+    &quot;pasteImage.azureStorageContainerName&quot;: &quot;blog&quot;
+&#125;
+</code></pre>
+<p> 我修改的功能 新增三個參數<br> azureIsUploadStorage = 是否要上傳到AzureStorage (若為false，則跟原先套件功能一樣 圖檔儲存到本地)<br> azureStorageConnectionString = 你的AzureStorage儲存庫連線字串<br> azureStorageContainerName = 你的AzureStorage容器名稱 (若沒有容器 會建立新的)</p>
+</li>
+<li><p>操作說明</p>
+<ol>
+<li><p>個人常使用的截圖方式為 Windows + Shift + S，此時會複製擷取的圖片到暫存的剪貼簿中</p>
+</li>
+<li><p>在VS Code 開啟 .md檔案，輸入 Ctrl + Alt + V 會自動上傳圖檔到AzureStorageBlob上，並生成Markdown語法</p>
+<pre><code>ex: ![](https://bingxiangstorage.blob.core.windows.net/blog/hexo-uploadImg-AzureStorage/2022-03-05-16-35-28.png)
+</code></pre>
+<p> 可以到Azure上 查看圖檔<br> <img src="https://bingxiangstorage.blob.core.windows.net/blog/hexo-uploadImg-AzureStorage/2022-03-05-16-35-28.png"></p>
+</li>
+<li><p>若檔名相同 會提示是否要覆蓋</p>
+<p> <img src="https://bingxiangstorage.blob.core.windows.net/blog/hexo-uploadImg-AzureStorage/2022-03-05-16-30-24.png"></p>
+</li>
+</ol>
+</li>
+</ol>
+
+      
+       <hr><span style="font-style: italic;color: gray;"> 轉載請註明來源，若有任何錯誤或表達不清楚的地方，歡迎在下方評論區留言，也可以來信至 leozheng0621@gmail.com </span>
+    </div>
+</article>
+
+
+
+
+
     <div id="comments"></div>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css">
 
@@ -346,6 +465,13 @@
 </script>
 
 
+
+
+    
+
+
+
+
     </div>
     <div class="copyright">
         <p class="footer-entry">
@@ -354,11 +480,11 @@
 <p class="footer-entry">Built with <a href="https://hexo.io/" target="_blank">Hexo</a> and <a href="https://github.com/yelog/hexo-theme-3-hexo" target="_blank">3-hexo</a> theme</p>
 
     </div>
-</div>
-<div class="full-toc">
-    <button class="full" data-title="切换全屏 快捷键 s"><span class="min "></span></button>
+    <div class="full-toc">
+        <button class="full" data-title="切换全屏 快捷键 s"><span class="min "></span></button>
 <a class="" id="rocket" ></a>
 
+    </div>
 </div>
 
 </body>
