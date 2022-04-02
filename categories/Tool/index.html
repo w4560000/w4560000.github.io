@@ -6,23 +6,25 @@
   <meta name="keywords" content="">
   <meta name="description" content="Hexo">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-<meta name="description" content="繼上一篇hexo-插入圖片 Part1 (以 VS Code 編輯 Markdown)分享在VS Code 快速插入圖片後，因考量到圖檔是存在本地Server並隨著版本異動上傳到GitHub，避免日後圖檔數量過多造成儲存庫肥大，故改以上傳到Azure Storage Blob 充當第三方圖庫 開發環境 Windows 10 (home 20H2) VSCode (1.64.2)  上傳圖檔至Azu">
+<meta name="description" content="上傳專案 至 GCP 的 Cloud Source Repositories先建立 存放區 點擊 Source Repositories  新增 存放區   在本機設定憑證 選擇任一方式 Push code (以手動方式產生作範例)   產生憑證 https:&#x2F;&#x2F;source.developers.google.com&#x2F;auth&#x2F;start?scopes&#x3D;https:&#x2F;&#x2F;www.googleapi">
 <meta property="og:type" content="article">
-<meta property="og:title" content="hexo-插入圖片 Part2 (以 VS Code 編輯 Markdown)">
-<meta property="og:url" content="http://example.com/2022/03/05/hexo-uploadImg-AzureStorage/index.html">
+<meta property="og:title" content="gcp-init-cloud-source-repositories">
+<meta property="og:url" content="http://example.com/2022/04/02/gcp-init-cloud-source-repositories/index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="繼上一篇hexo-插入圖片 Part1 (以 VS Code 編輯 Markdown)分享在VS Code 快速插入圖片後，因考量到圖檔是存在本地Server並隨著版本異動上傳到GitHub，避免日後圖檔數量過多造成儲存庫肥大，故改以上傳到Azure Storage Blob 充當第三方圖庫 開發環境 Windows 10 (home 20H2) VSCode (1.64.2)  上傳圖檔至Azu">
+<meta property="og:description" content="上傳專案 至 GCP 的 Cloud Source Repositories先建立 存放區 點擊 Source Repositories  新增 存放區   在本機設定憑證 選擇任一方式 Push code (以手動方式產生作範例)   產生憑證 https:&#x2F;&#x2F;source.developers.google.com&#x2F;auth&#x2F;start?scopes&#x3D;https:&#x2F;&#x2F;www.googleapi">
 <meta property="og:locale" content="zh_TW">
-<meta property="og:image" content="https://bingxiangstorage.blob.core.windows.net/blog/hexo-uploadImg-AzureStorage/2022-03-05-15-24-57.png">
-<meta property="og:image" content="https://bingxiangstorage.blob.core.windows.net/blog/hexo-uploadImg-AzureStorage/2022-03-05-17-22-35.png">
-<meta property="og:image" content="https://bingxiangstorage.blob.core.windows.net/blog/hexo-uploadImg-AzureStorage/2022-03-05-17-18-45.png">
-<meta property="og:image" content="https://bingxiangstorage.blob.core.windows.net/blog/hexo-uploadImg-AzureStorage/2022-03-05-17-19-18.png">
-<meta property="article:published_time" content="2022-03-05T06:43:46.000Z">
-<meta property="article:modified_time" content="2022-03-05T09:23:23.482Z">
+<meta property="og:image" content="https://bingxiangstorage.blob.core.windows.net/blog/gcp-init-cloud-source-repositories/2022-04-02-21-55-41.png">
+<meta property="og:image" content="https://bingxiangstorage.blob.core.windows.net/blog/gcp-init-cloud-source-repositories/2022-04-02-21-56-47.png">
+<meta property="og:image" content="https://bingxiangstorage.blob.core.windows.net/blog/gcp-init-cloud-source-repositories/2022-04-02-21-56-53.png">
+<meta property="og:image" content="https://bingxiangstorage.blob.core.windows.net/blog/gcp-init-cloud-source-repositories/2022-04-02-21-57-11.png">
+<meta property="og:image" content="https://bingxiangstorage.blob.core.windows.net/blog/gcp-init-cloud-source-repositories/2022-04-02-21-57-57.png">
+<meta property="og:image" content="https://bingxiangstorage.blob.core.windows.net/blog/gcp-init-cloud-source-repositories/2022-04-02-21-58-52.png">
+<meta property="article:published_time" content="2022-04-02T13:35:08.000Z">
+<meta property="article:modified_time" content="2022-04-02T14:06:55.065Z">
 <meta property="article:author" content="Leo Zheng">
-<meta property="article:tag" content="hexo">
+<meta property="article:tag" content="GCP">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://bingxiangstorage.blob.core.windows.net/blog/hexo-uploadImg-AzureStorage/2022-03-05-15-24-57.png">
+<meta name="twitter:image" content="https://bingxiangstorage.blob.core.windows.net/blog/gcp-init-cloud-source-repositories/2022-04-02-21-55-41.png">
 
 
 <link rel="icon" href="/img/avatar.jpg">
@@ -111,7 +113,7 @@
     <li>
         <div class="all active" data-rel="全部文章">全部文章
             
-                <small>(4)</small>
+                <small>(5)</small>
             
         </div>
     </li>
@@ -165,6 +167,20 @@
     
         
             
+                <li>
+                    <div data-rel="GCP">
+                        
+                        GCP
+                        <small>(1)</small>
+                        
+                    </div>
+                    
+                </li>
+            
+        
+    
+        
+            
         
     
 </ul>
@@ -189,8 +205,8 @@
         
     </div>
 </div>
-<input type="hidden" id="yelog_site_posts_number" value="4">
-<input type="hidden" id="yelog_site_word_count" value="2k">
+<input type="hidden" id="yelog_site_posts_number" value="5">
+<input type="hidden" id="yelog_site_word_count" value="2.2k">
 <div style="display: none">
     <span id="busuanzi_value_site_uv"></span>
     <span id="busuanzi_value_site_pv"></span>
@@ -236,6 +252,10 @@
     <div class="tag-wrapper">
         
             <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>GCP</a>
+            </li>
+        
+            <li class="article-tag-list-item">
                 <i class="iconfont icon-tag"></i><a>Git</a>
             </li>
         
@@ -249,6 +269,14 @@
 
     
     <nav id="title-list-nav">
+        
+        <a  class="全部文章 GCP "
+           href="/2022/04/02/gcp-init-cloud-source-repositories/"
+           data-tag="GCP"
+           data-author="" >
+            <span class="post-title" title="gcp-init-cloud-source-repositories">gcp-init-cloud-source-repositories</span>
+            <span class="post-date" title="2022-04-02 21:35:08">2022/04/02</span>
+        </a>
         
         <a  class="全部文章 Tool hexo "
            href="/2022/03/05/hexo-uploadImg-AzureStorage/"
@@ -318,7 +346,7 @@
 </div>
             <h1 id="關於我與該部落格"><a href="#關於我與該部落格" class="headerlink" title="關於我與該部落格"></a>關於我與該部落格</h1><h2 id="簡介"><a href="#簡介" class="headerlink" title="簡介"></a>簡介</h2><p>我是一名.Net 開發工程師</p>
 <p>此部落格為軟體開發的學習筆記</p>
-<p>若文章內容有誤，歡迎留言指正，或來信告知 <a href="mailto:&#108;&#x65;&#111;&#x7a;&#104;&#x65;&#x6e;&#103;&#x30;&#54;&#50;&#49;&#64;&#103;&#109;&#x61;&#105;&#x6c;&#x2e;&#x63;&#x6f;&#109;">&#108;&#x65;&#111;&#x7a;&#104;&#x65;&#x6e;&#103;&#x30;&#54;&#50;&#49;&#64;&#103;&#109;&#x61;&#105;&#x6c;&#x2e;&#x63;&#x6f;&#109;</a></p>
+<p>若文章內容有誤，歡迎留言指正，或來信告知 <a href="mailto:&#108;&#x65;&#111;&#x7a;&#104;&#101;&#110;&#x67;&#48;&#x36;&#x32;&#49;&#x40;&#103;&#x6d;&#x61;&#105;&#x6c;&#x2e;&#x63;&#x6f;&#x6d;">&#108;&#x65;&#111;&#x7a;&#104;&#101;&#110;&#x67;&#48;&#x36;&#x32;&#49;&#x40;&#103;&#x6d;&#x61;&#105;&#x6c;&#x2e;&#x63;&#x6f;&#x6d;</a></p>
 <h2 id="部落格"><a href="#部落格" class="headerlink" title="部落格"></a>部落格</h2><p>共發布：<code class="article_number"></code>篇文章， 共<code class="site_word_count"></code>字。</p>
 <p>部落格總訪問人數：<code class="site_uv"></code> 人次， 訪問量：<code class="site_pv"></code>次</p>
 <p>此部落格通過 <a target="_blank" rel="noopener" href="https://hexo.io/">Hexo</a> 建立，部屬在 <a target="_blank" rel="noopener" href="https://pages.github.com/">GitHub Pages</a>主題 <a target="_blank" rel="noopener" href="https://github.com/yelog/hexo-theme-3-hexo">3-hexo</a></p>
