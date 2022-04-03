@@ -2,9 +2,9 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <title>Hexo</title>
-  <meta name="keywords" content="">
-  <meta name="description" content="Hexo">
+  <title>dotnet-remote-debugger | Hexo</title>
+  <meta name="keywords" content=" Dotnet ">
+  <meta name="description" content="dotnet-remote-debugger | Hexo">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <meta name="description" content="cloud-build 部屬 至 GKE服務中繼上一篇gcp-init-cloud-build介紹了將專案build dockerfile 至 GCR後本文接續 將dockerfile 部屬至 GKE服務 前置作業 需預先創建好 GKE相關服務(deployment &amp; service or ingress)  修改專案cloudbuild.yaml原流程為   build dockerf">
 <meta property="og:type" content="article">
@@ -17,7 +17,7 @@
 <meta property="og:image" content="https://bingxiangstorage.blob.core.windows.net/blog/gcp-cloud-build-deploy-gke/2022-04-02-22-57-58.png">
 <meta property="og:image" content="https://bingxiangstorage.blob.core.windows.net/blog/gcp-cloud-build-deploy-gke/2022-04-02-22-58-36.png">
 <meta property="article:published_time" content="2022-04-02T14:40:55.000Z">
-<meta property="article:modified_time" content="2022-04-02T14:59:41.244Z">
+<meta property="article:modified_time" content="2022-04-03T14:31:12.964Z">
 <meta property="article:author" content="Leo Zheng">
 <meta property="article:tag" content="GCP">
 <meta name="twitter:card" content="summary">
@@ -62,7 +62,7 @@
 
 
 <body>
-<aside class="nav mobile">
+<aside class="nav">
     <div class="nav-left">
         <a href="/"
    class="avatar_target">
@@ -110,10 +110,72 @@
     <li>
         <div class="all active" data-rel="全部文章">全部文章
             
-                <small>(7)</small>
+                <small>(8)</small>
             
         </div>
     </li>
+    
+        
+            
+                <li>
+                    <div data-rel="Backend">
+                        <i class="fold iconfont icon-right"></i>
+                        
+                        Backend
+                        <small>(1)</small>
+                        
+                    </div>
+                    
+                        <ul class="sub hide">
+                            
+                                <li>
+                                    <div data-rel="Backend<--->Dotnet">
+                                        
+                                        Dotnet
+                                        
+                                            <small>(1
+                                                )</small>
+                                        
+                                    </div>
+                                    
+                                </li>
+                            
+                        </ul>
+                    
+                </li>
+            
+        
+    
+        
+            
+                <li>
+                    <div data-rel="Devops">
+                        <i class="fold iconfont icon-right"></i>
+                        
+                        Devops
+                        <small>(3)</small>
+                        
+                    </div>
+                    
+                        <ul class="sub hide">
+                            
+                                <li>
+                                    <div data-rel="Devops<--->GCP">
+                                        
+                                        GCP
+                                        
+                                            <small>(3
+                                                )</small>
+                                        
+                                    </div>
+                                    
+                                </li>
+                            
+                        </ul>
+                    
+                </li>
+            
+        
     
         
             
@@ -164,15 +226,9 @@
     
         
             
-                <li>
-                    <div data-rel="GCP">
-                        
-                        GCP
-                        <small>(3)</small>
-                        
-                    </div>
-                    
-                </li>
+        
+    
+        
             
         
     
@@ -202,8 +258,8 @@
         
     </div>
 </div>
-<input type="hidden" id="yelog_site_posts_number" value="7">
-<input type="hidden" id="yelog_site_word_count" value="2.8k">
+<input type="hidden" id="yelog_site_posts_number" value="8">
+<input type="hidden" id="yelog_site_word_count" value="3.2k">
 <div style="display: none">
     <span id="busuanzi_value_site_uv"></span>
     <span id="busuanzi_value_site_pv"></span>
@@ -249,6 +305,10 @@
     <div class="tag-wrapper">
         
             <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>Dotnet</a>
+            </li>
+        
+            <li class="article-tag-list-item">
                 <i class="iconfont icon-tag"></i><a>GCP</a>
             </li>
         
@@ -267,7 +327,15 @@
     
     <nav id="title-list-nav">
         
-        <a  class="全部文章 GCP "
+        <a  class="全部文章 Backend Dotnet "
+           href="/2022/04/03/dotnet-remote-debugger/"
+           data-tag="Dotnet"
+           data-author="" >
+            <span class="post-title" title="dotnet-remote-debugger">dotnet-remote-debugger</span>
+            <span class="post-date" title="2022-04-03 22:33:05">2022/04/03</span>
+        </a>
+        
+        <a  class="全部文章 Devops GCP "
            href="/2022/04/02/gcp-cloud-build-deploy-gke/"
            data-tag="GCP"
            data-author="" >
@@ -275,7 +343,7 @@
             <span class="post-date" title="2022-04-02 22:40:55">2022/04/02</span>
         </a>
         
-        <a  class="全部文章 GCP "
+        <a  class="全部文章 Devops GCP "
            href="/2022/04/02/gcp-init-cloud-build/"
            data-tag="GCP"
            data-author="" >
@@ -283,7 +351,7 @@
             <span class="post-date" title="2022-04-02 22:19:52">2022/04/02</span>
         </a>
         
-        <a  class="全部文章 GCP "
+        <a  class="全部文章 Devops GCP "
            href="/2022/04/02/gcp-init-cloud-source-repositories/"
            data-tag="GCP"
            data-author="" >
@@ -339,12 +407,73 @@
         </div>
     </div>
 </aside>
-<div id="post" class="index">
+<div id="post">
     <div class="pjax">
-        <article class="index">
-            <div class="toc-ref">
+        <article id="post-dotnet-remote-debugger" class="article article-type-post" itemscope itemprop="blogPost">
     
-        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E9%97%9C%E6%96%BC%E6%88%91%E8%88%87%E8%A9%B2%E9%83%A8%E8%90%BD%E6%A0%BC"><span class="toc-text">關於我與該部落格</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%B0%A1%E4%BB%8B"><span class="toc-text">簡介</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%83%A8%E8%90%BD%E6%A0%BC"><span class="toc-text">部落格</span></a></li></ol></li></ol>
+        <h1 class="article-title">dotnet-remote-debugger</h1>
+    
+    <div class="article-meta">
+        
+        
+        
+        <span class="book">
+            <i class="iconfont icon-category"></i>
+            
+            
+            <a  data-rel="Backend">Backend</a> > 
+            
+            <a  data-rel="Backend&lt;---&gt;Dotnet">Dotnet</a>
+            
+        </span>
+        
+        
+        <span class="tag">
+            <i class="iconfont icon-tag"></i>
+            
+            <a class="color2">Dotnet</a>
+            
+        </span>
+        
+    </div>
+    <div class="article-meta">
+        
+            發布時間 : <time class="date" title='更新時間: 2022-04-03 22:44:10'>2022-04-03 22:33</time>
+        
+    </div>
+    <div class="article-meta">
+        
+        <span>字數:365</span>
+        
+        
+        <span id="busuanzi_container_page_pv">
+            觀看數 :<span id="busuanzi_value_page_pv">
+                <span class="count-comment">
+                    <span class="spinner">
+                      <div class="cube1"></div>
+                      <div class="cube2"></div>
+                    </span>
+                </span>
+            </span>
+        </span>
+        
+        
+        <span class="top-comment" title="跳转至评论区">
+            <a href="#comments">
+                評論:<span class="count-comment">
+                    <span class="spinner">
+                      <div class="cube1"></div>
+                      <div class="cube2"></div>
+                    </span>
+                </span>
+            </a>
+        </span>
+        
+    </div>
+    
+    <div class="toc-ref">
+    
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E9%81%A0%E7%AB%AFdebug-%E6%8E%9B%E8%BC%89%E5%9C%A8IIS%E7%9A%84%E6%9C%8D%E5%8B%99%E7%AB%99%E5%8F%B0"><span class="toc-text">遠端debug 掛載在IIS的服務站台</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9C%A8%E9%81%A0%E7%AB%AF%E4%BC%BA%E6%9C%8D%E5%99%A8%E5%AE%89%E8%A3%9D%E5%B7%A5%E5%85%B7%E4%B8%A6%E5%9F%B7%E8%A1%8C"><span class="toc-text">在遠端伺服器安裝工具並執行</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9B%9E%E5%88%B0%E6%9C%AC%E6%A9%9F-%E4%BB%A5VS2017-%E9%96%8B%E5%95%9F%E5%B0%88%E6%A1%88"><span class="toc-text">回到本機 以VS2017 開啟專案</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%A3%9C%E5%85%85"><span class="toc-text">補充</span></a></li></ol></li></ol>
     
 <style>
     .left-col .switch-btn,
@@ -357,16 +486,46 @@
     }
 </style>
 </div>
-            <h1 id="關於我與該部落格"><a href="#關於我與該部落格" class="headerlink" title="關於我與該部落格"></a>關於我與該部落格</h1><h2 id="簡介"><a href="#簡介" class="headerlink" title="簡介"></a>簡介</h2><p>我是一名.Net 開發工程師</p>
-<p>此部落格為軟體開發的學習筆記</p>
-<p>若文章內容有誤，歡迎留言指正，或來信告知 <a href="mailto:&#108;&#101;&#111;&#122;&#x68;&#101;&#110;&#x67;&#48;&#x36;&#x32;&#49;&#64;&#103;&#109;&#x61;&#105;&#x6c;&#46;&#99;&#x6f;&#x6d;">&#108;&#101;&#111;&#122;&#x68;&#101;&#110;&#x67;&#48;&#x36;&#x32;&#49;&#64;&#103;&#109;&#x61;&#105;&#x6c;&#46;&#99;&#x6f;&#x6d;</a></p>
-<h2 id="部落格"><a href="#部落格" class="headerlink" title="部落格"></a>部落格</h2><p>共發布：<code class="article_number"></code>篇文章， 共<code class="site_word_count"></code>字。</p>
-<p>部落格總訪問人數：<code class="site_uv"></code> 人次， 訪問量：<code class="site_pv"></code>次</p>
-<p>此部落格通過 <a target="_blank" rel="noopener" href="https://hexo.io/">Hexo</a> 建立，部屬在 <a target="_blank" rel="noopener" href="https://pages.github.com/">GitHub Pages</a>主題 <a target="_blank" rel="noopener" href="https://github.com/yelog/hexo-theme-3-hexo">3-hexo</a></p>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="遠端debug-掛載在IIS的服務站台"><a href="#遠端debug-掛載在IIS的服務站台" class="headerlink" title="遠端debug 掛載在IIS的服務站台"></a>遠端debug 掛載在IIS的服務站台</h1><p>紀錄如何 Debugger 遠端Server流程，以Visual Studio 2017做範例</p>
+<blockquote>
+<p>說明:</p>
+</blockquote>
+<ul>
+<li>要先確保本地端程式碼與遠端伺服器的程式碼 版本一致</li>
+<li>建議用來Debugger測試機就好，不適合用在正式機，會造成執行序堵塞</li>
+</ul>
+<h2 id="在遠端伺服器安裝工具並執行"><a href="#在遠端伺服器安裝工具並執行" class="headerlink" title="在遠端伺服器安裝工具並執行"></a>在遠端伺服器安裝工具並執行</h2><p>本地端使用工具 : Visual Studio 2017<br>遠端使用工具:  至微軟visualstudio官網下載相對應版本遠端![Debugger工具](<a target="_blank" rel="noopener" href="https://my.visualstudio.com/Downloads?q=remote">https://my.visualstudio.com/Downloads?q=remote</a> tools visual studio)</p>
+<ul>
+<li><p>安裝 剛下載好的 VS_RemoteTools.exe ， 安裝好後 執行 Remote Debugger 程式<br><img src="https://bingxiangstorage.blob.core.windows.net/blog/dotnet-remote-debugger/2022-04-03-22-39-55.png"></p>
+</li>
+<li><p>若port被占用，會要求你輸入遠端Server其餘空閒的Port，正常啟動後畫面如下<br><img src="https://bingxiangstorage.blob.core.windows.net/blog/dotnet-remote-debugger/2022-04-03-22-40-18.png"></p>
+</li>
+</ul>
+<h2 id="回到本機-以VS2017-開啟專案"><a href="#回到本機-以VS2017-開啟專案" class="headerlink" title="回到本機 以VS2017 開啟專案"></a>回到本機 以VS2017 開啟專案</h2><ul>
+<li><p>按下 Ctrl + Alt + p 開啟 附加至處理序 功能<br>在連線目標上輸入遠端IP + 剛剛設定好的remote debugger的連線port號<br>會出現要windows authentication驗證<br><img src="https://bingxiangstorage.blob.core.windows.net/blog/dotnet-remote-debugger/2022-04-03-22-42-07.png"></p>
+</li>
+<li><p>驗證完畢後，即可連線至遠端Server，並找到w3wp.exe 附加要debugger的站台，即可debugger遠端站台<br><img src="https://bingxiangstorage.blob.core.windows.net/blog/dotnet-remote-debugger/2022-04-03-22-42-31.png"></p>
+</li>
+<li><p>連線成功後，遠端的debugger tool會出現連線資訊<br><img src="https://bingxiangstorage.blob.core.windows.net/blog/dotnet-remote-debugger/2022-04-03-22-43-11.png"></p>
+</li>
+</ul>
+<h2 id="補充"><a href="#補充" class="headerlink" title="補充"></a>補充</h2><blockquote>
+<p>remote tool 也可以設定連線不驗證<br>在remote tool視窗 點擊 Tools -&gt; Options  設定 No Authentication 並勾起 Allow any user to debug 即可<br><img src="https://bingxiangstorage.blob.core.windows.net/blog/dotnet-remote-debugger/2022-04-03-22-43-44.png"></p>
+</blockquote>
+<p>設定完後，在local端連線時就不需要第四步的輸入Auth驗證了，但連線類型需要設定為 遠端 (無驗證)<br><img src="https://bingxiangstorage.blob.core.windows.net/blog/dotnet-remote-debugger/2022-04-03-22-44-07.png"></p>
 
-        </article>
-        
-        
+      
+       <hr><span style="font-style: italic;color: gray;"> 轉載請註明來源，若有任何錯誤或表達不清楚的地方，歡迎在下方評論區留言，也可以來信至 leozheng0621@gmail.com </span>
+    </div>
+</article>
+
+
+
+
+
     <div id="comments"></div>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css">
 
@@ -388,6 +547,13 @@
 </script>
 
 
+
+
+    
+
+
+
+
     </div>
     <div class="copyright">
         <p class="footer-entry">
@@ -396,11 +562,11 @@
 <p class="footer-entry">Built with <a href="https://hexo.io/" target="_blank">Hexo</a> and <a href="https://github.com/yelog/hexo-theme-3-hexo" target="_blank">3-hexo</a> theme</p>
 
     </div>
-</div>
-<div class="full-toc">
-    <button class="full" data-title="切换全屏 快捷键 s"><span class="min "></span></button>
+    <div class="full-toc">
+        <button class="full" data-title="切换全屏 快捷键 s"><span class="min "></span></button>
 <a class="" id="rocket" ></a>
 
+    </div>
 </div>
 
 </body>
