@@ -2,19 +2,19 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <title>azure-push-acr | Hexo</title>
+  <title>上傳Docker Image至 Azure Container Registry | Hexo</title>
   <meta name="keywords" content=" Azure ">
-  <meta name="description" content="azure-push-acr | Hexo">
+  <meta name="description" content="上傳Docker Image至 Azure Container Registry | Hexo">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-<meta name="description" content="紀錄一下 上傳Docker Image至 Azure Container Registry#  azure 登入 1. azure login  #  建立acr #  n &#x3D; name(acr名稱), g &#x3D; resurece-group(azure帳號的資源群組), l &#x3D; 地區(location), sku &#x3D; 等級 2. az acr create -n bxacrtest -g BX -">
+<meta name="description" content="紀錄一下 上傳Docker Image至 Azure Container Registry#  1. Azure 登入 azure login  #  2. 建立ACR #  n &#x3D; name(ACR名稱), g &#x3D; resurece-group(azure帳號的資源群組), l &#x3D; 地區(location), sku &#x3D; 等級 az acr create -n bxacrtest -g BX -">
 <meta property="og:type" content="article">
-<meta property="og:title" content="azure-push-acr">
+<meta property="og:title" content="上傳Docker Image至 Azure Container Registry">
 <meta property="og:url" content="http://example.com/2022/04/03/azure-push-acr/index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="紀錄一下 上傳Docker Image至 Azure Container Registry#  azure 登入 1. azure login  #  建立acr #  n &#x3D; name(acr名稱), g &#x3D; resurece-group(azure帳號的資源群組), l &#x3D; 地區(location), sku &#x3D; 等級 2. az acr create -n bxacrtest -g BX -">
+<meta property="og:description" content="紀錄一下 上傳Docker Image至 Azure Container Registry#  1. Azure 登入 azure login  #  2. 建立ACR #  n &#x3D; name(ACR名稱), g &#x3D; resurece-group(azure帳號的資源群組), l &#x3D; 地區(location), sku &#x3D; 等級 az acr create -n bxacrtest -g BX -">
 <meta property="og:locale" content="zh_TW">
 <meta property="article:published_time" content="2022-04-03T14:51:38.000Z">
-<meta property="article:modified_time" content="2022-04-03T14:53:12.517Z">
+<meta property="article:modified_time" content="2022-04-03T14:55:57.729Z">
 <meta property="article:author" content="Leo Zheng">
 <meta property="article:tag" content="Azure">
 <meta name="twitter:card" content="summary">
@@ -347,7 +347,7 @@
            href="/2022/04/03/azure-push-acr/"
            data-tag="Azure"
            data-author="" >
-            <span class="post-title" title="azure-push-acr">azure-push-acr</span>
+            <span class="post-title" title="上傳Docker Image至 Azure Container Registry">上傳Docker Image至 Azure Container Registry</span>
             <span class="post-date" title="2022-04-03 22:51:38">2022/04/03</span>
         </a>
         
@@ -355,7 +355,7 @@
            href="/2022/04/03/dotnet-remote-debugger/"
            data-tag="Dotnet"
            data-author="" >
-            <span class="post-title" title="dotnet-remote-debugger">dotnet-remote-debugger</span>
+            <span class="post-title" title="遠端debug 掛載在IIS的服務站台">遠端debug 掛載在IIS的服務站台</span>
             <span class="post-date" title="2022-04-03 22:33:05">2022/04/03</span>
         </a>
         
@@ -363,7 +363,7 @@
            href="/2022/04/02/gcp-cloud-build-deploy-gke/"
            data-tag="GCP"
            data-author="" >
-            <span class="post-title" title="gcp-cloud-build-deploy-gke">gcp-cloud-build-deploy-gke</span>
+            <span class="post-title" title="GCP Cloud Build 部署至 K8S中">GCP Cloud Build 部署至 K8S中</span>
             <span class="post-date" title="2022-04-02 22:40:55">2022/04/02</span>
         </a>
         
@@ -371,7 +371,7 @@
            href="/2022/04/02/gcp-init-cloud-build/"
            data-tag="GCP"
            data-author="" >
-            <span class="post-title" title="gcp-init-cloud-build">gcp-init-cloud-build</span>
+            <span class="post-title" title="GCP Cloud Build 範例">GCP Cloud Build 範例</span>
             <span class="post-date" title="2022-04-02 22:19:52">2022/04/02</span>
         </a>
         
@@ -379,7 +379,7 @@
            href="/2022/04/02/gcp-init-cloud-source-repositories/"
            data-tag="GCP"
            data-author="" >
-            <span class="post-title" title="gcp-init-cloud-source-repositories">gcp-init-cloud-source-repositories</span>
+            <span class="post-title" title="上傳專案 至 GCP 的 Cloud Source Repositories">上傳專案 至 GCP 的 Cloud Source Repositories</span>
             <span class="post-date" title="2022-04-02 21:35:08">2022/04/02</span>
         </a>
         
@@ -435,7 +435,7 @@
     <div class="pjax">
         <article id="post-azure-push-acr" class="article article-type-post" itemscope itemprop="blogPost">
     
-        <h1 class="article-title">azure-push-acr</h1>
+        <h1 class="article-title">上傳Docker Image至 Azure Container Registry</h1>
     
     <div class="article-meta">
         
@@ -462,12 +462,12 @@
     </div>
     <div class="article-meta">
         
-            發布時間 : <time class="date" title='更新時間: 2022-04-03 22:53:12'>2022-04-03 22:51</time>
+            發布時間 : <time class="date" title='更新時間: 2022-04-03 22:55:57'>2022-04-03 22:51</time>
         
     </div>
     <div class="article-meta">
         
-        <span>字數:120</span>
+        <span>字數:123</span>
         
         
         <span id="busuanzi_container_page_pv">
@@ -513,27 +513,27 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="紀錄一下-上傳Docker-Image至-Azure-Container-Registry"><a href="#紀錄一下-上傳Docker-Image至-Azure-Container-Registry" class="headerlink" title="紀錄一下 上傳Docker Image至 Azure Container Registry"></a>紀錄一下 上傳Docker Image至 Azure Container Registry</h1><pre><code class="PowerShell">#  azure 登入
-1. azure login
+        <h1 id="紀錄一下-上傳Docker-Image至-Azure-Container-Registry"><a href="#紀錄一下-上傳Docker-Image至-Azure-Container-Registry" class="headerlink" title="紀錄一下 上傳Docker Image至 Azure Container Registry"></a>紀錄一下 上傳Docker Image至 Azure Container Registry</h1><pre><code class="PowerShell">#  1. Azure 登入
+azure login
 
-#  建立acr
-#  n = name(acr名稱), g = resurece-group(azure帳號的資源群組), l = 地區(location), sku = 等級
-2. az acr create -n bxacrtest -g BX -l southeastasia --sku basic
+#  2. 建立ACR
+#  n = name(ACR名稱), g = resurece-group(azure帳號的資源群組), l = 地區(location), sku = 等級
+az acr create -n bxacrtest -g BX -l southeastasia --sku basic
 
-#  查看acr資訊列表
-3. Az acr list -o table
+#  3. 查看ACR資訊列表
+Az acr list -o table
 
-#  登入acr
-4. az acr login -n BX
+#  4. 登入ACR
+az acr login -n BX
 
-#  上傳前要設定image tag的前綴
-5. docker tag k8ssample  bxacrtest.azurecr.io/k8ssample
+#  5. 上傳前要設定Docker Image tag的前綴
+docker tag k8ssample  bxacrtest.azurecr.io/k8ssample
 
-#  上傳image至acr
-6. docker push bxacrtest.azurecr.io/k8ssample
+#  6. 上傳Docker Image至ACR
+docker push bxacrtest.azurecr.io/k8ssample
 
-#  查看acr裡的image
-7. az acr repository list -n bxacrtest
+#  7. 查看ACR裡的Docker Image
+az acr repository list -n bxacrtest
 </code></pre>
 
       

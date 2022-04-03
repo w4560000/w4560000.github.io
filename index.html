@@ -6,15 +6,15 @@
   <meta name="keywords" content="">
   <meta name="description" content="Hexo">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-<meta name="description" content="紀錄一下 上傳Docker Image至 Azure Container Registry#  azure 登入 1. azure login  #  建立acr #  n &#x3D; name(acr名稱), g &#x3D; resurece-group(azure帳號的資源群組), l &#x3D; 地區(location), sku &#x3D; 等級 2. az acr create -n bxacrtest -g BX -">
+<meta name="description" content="紀錄一下 上傳Docker Image至 Azure Container Registry#  1. Azure 登入 azure login  #  2. 建立ACR #  n &#x3D; name(ACR名稱), g &#x3D; resurece-group(azure帳號的資源群組), l &#x3D; 地區(location), sku &#x3D; 等級 az acr create -n bxacrtest -g BX -">
 <meta property="og:type" content="article">
-<meta property="og:title" content="azure-push-acr">
+<meta property="og:title" content="上傳Docker Image至 Azure Container Registry">
 <meta property="og:url" content="http://example.com/2022/04/03/azure-push-acr/index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="紀錄一下 上傳Docker Image至 Azure Container Registry#  azure 登入 1. azure login  #  建立acr #  n &#x3D; name(acr名稱), g &#x3D; resurece-group(azure帳號的資源群組), l &#x3D; 地區(location), sku &#x3D; 等級 2. az acr create -n bxacrtest -g BX -">
+<meta property="og:description" content="紀錄一下 上傳Docker Image至 Azure Container Registry#  1. Azure 登入 azure login  #  2. 建立ACR #  n &#x3D; name(ACR名稱), g &#x3D; resurece-group(azure帳號的資源群組), l &#x3D; 地區(location), sku &#x3D; 等級 az acr create -n bxacrtest -g BX -">
 <meta property="og:locale" content="zh_TW">
 <meta property="article:published_time" content="2022-04-03T14:51:38.000Z">
-<meta property="article:modified_time" content="2022-04-03T14:53:12.517Z">
+<meta property="article:modified_time" content="2022-04-03T14:55:57.729Z">
 <meta property="article:author" content="Leo Zheng">
 <meta property="article:tag" content="Azure">
 <meta name="twitter:card" content="summary">
@@ -347,7 +347,7 @@
            href="/2022/04/03/azure-push-acr/"
            data-tag="Azure"
            data-author="" >
-            <span class="post-title" title="azure-push-acr">azure-push-acr</span>
+            <span class="post-title" title="上傳Docker Image至 Azure Container Registry">上傳Docker Image至 Azure Container Registry</span>
             <span class="post-date" title="2022-04-03 22:51:38">2022/04/03</span>
         </a>
         
@@ -355,7 +355,7 @@
            href="/2022/04/03/dotnet-remote-debugger/"
            data-tag="Dotnet"
            data-author="" >
-            <span class="post-title" title="dotnet-remote-debugger">dotnet-remote-debugger</span>
+            <span class="post-title" title="遠端debug 掛載在IIS的服務站台">遠端debug 掛載在IIS的服務站台</span>
             <span class="post-date" title="2022-04-03 22:33:05">2022/04/03</span>
         </a>
         
@@ -363,7 +363,7 @@
            href="/2022/04/02/gcp-cloud-build-deploy-gke/"
            data-tag="GCP"
            data-author="" >
-            <span class="post-title" title="gcp-cloud-build-deploy-gke">gcp-cloud-build-deploy-gke</span>
+            <span class="post-title" title="GCP Cloud Build 部署至 K8S中">GCP Cloud Build 部署至 K8S中</span>
             <span class="post-date" title="2022-04-02 22:40:55">2022/04/02</span>
         </a>
         
@@ -371,7 +371,7 @@
            href="/2022/04/02/gcp-init-cloud-build/"
            data-tag="GCP"
            data-author="" >
-            <span class="post-title" title="gcp-init-cloud-build">gcp-init-cloud-build</span>
+            <span class="post-title" title="GCP Cloud Build 範例">GCP Cloud Build 範例</span>
             <span class="post-date" title="2022-04-02 22:19:52">2022/04/02</span>
         </a>
         
@@ -379,7 +379,7 @@
            href="/2022/04/02/gcp-init-cloud-source-repositories/"
            data-tag="GCP"
            data-author="" >
-            <span class="post-title" title="gcp-init-cloud-source-repositories">gcp-init-cloud-source-repositories</span>
+            <span class="post-title" title="上傳專案 至 GCP 的 Cloud Source Repositories">上傳專案 至 GCP 的 Cloud Source Repositories</span>
             <span class="post-date" title="2022-04-02 21:35:08">2022/04/02</span>
         </a>
         
@@ -451,7 +451,7 @@
 </div>
             <h1 id="關於我與該部落格"><a href="#關於我與該部落格" class="headerlink" title="關於我與該部落格"></a>關於我與該部落格</h1><h2 id="簡介"><a href="#簡介" class="headerlink" title="簡介"></a>簡介</h2><p>我是一名.Net 開發工程師</p>
 <p>此部落格為軟體開發的學習筆記</p>
-<p>若文章內容有誤，歡迎留言指正，或來信告知 <a href="mailto:&#x6c;&#x65;&#111;&#x7a;&#104;&#x65;&#x6e;&#103;&#x30;&#x36;&#50;&#x31;&#64;&#103;&#x6d;&#97;&#105;&#108;&#46;&#x63;&#111;&#x6d;">&#x6c;&#x65;&#111;&#x7a;&#104;&#x65;&#x6e;&#103;&#x30;&#x36;&#50;&#x31;&#64;&#103;&#x6d;&#97;&#105;&#108;&#46;&#x63;&#111;&#x6d;</a></p>
+<p>若文章內容有誤，歡迎留言指正，或來信告知 <a href="mailto:&#x6c;&#x65;&#111;&#122;&#104;&#x65;&#x6e;&#103;&#48;&#54;&#50;&#x31;&#x40;&#103;&#x6d;&#97;&#x69;&#x6c;&#46;&#x63;&#111;&#x6d;">&#x6c;&#x65;&#111;&#122;&#104;&#x65;&#x6e;&#103;&#48;&#54;&#50;&#x31;&#x40;&#103;&#x6d;&#97;&#x69;&#x6c;&#46;&#x63;&#111;&#x6d;</a></p>
 <h2 id="部落格"><a href="#部落格" class="headerlink" title="部落格"></a>部落格</h2><p>共發布：<code class="article_number"></code>篇文章， 共<code class="site_word_count"></code>字。</p>
 <p>部落格總訪問人數：<code class="site_uv"></code> 人次， 訪問量：<code class="site_pv"></code>次</p>
 <p>此部落格通過 <a target="_blank" rel="noopener" href="https://hexo.io/">Hexo</a> 建立，部屬在 <a target="_blank" rel="noopener" href="https://pages.github.com/">GitHub Pages</a>主題 <a target="_blank" rel="noopener" href="https://github.com/yelog/hexo-theme-3-hexo">3-hexo</a></p>
