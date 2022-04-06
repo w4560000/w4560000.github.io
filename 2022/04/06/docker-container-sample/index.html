@@ -2,9 +2,9 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <title>hexo-插入圖片 Part2 (以 VS Code 編輯 Markdown) | Hexo</title>
-  <meta name="keywords" content=" hexo ">
-  <meta name="description" content="hexo-插入圖片 Part2 (以 VS Code 編輯 Markdown) | Hexo">
+  <title>docker-container-sample | Hexo</title>
+  <meta name="keywords" content=" Docker ">
+  <meta name="description" content="docker-container-sample | Hexo">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <meta name="description" content="紀錄 docker container 常用指令查詢運作中的container docker ps  https:&#x2F;&#x2F;docs.docker.com&#x2F;engine&#x2F;reference&#x2F;commandline&#x2F;ps&#x2F;  # 列出container資訊 (運作中) docker ps  # 列出container資訊 (所有狀態) docker ps -a  # 列出最後三個建立的container資">
 <meta property="og:type" content="article">
@@ -469,9 +469,9 @@
 </aside>
 <div id="post">
     <div class="pjax">
-        <article id="post-hexo-uploadImg-AzureStorage" class="article article-type-post" itemscope itemprop="blogPost">
+        <article id="post-docker-container-sample" class="article article-type-post" itemscope itemprop="blogPost">
     
-        <h1 class="article-title">hexo-插入圖片 Part2 (以 VS Code 編輯 Markdown)</h1>
+        <h1 class="article-title">docker-container-sample</h1>
     
     <div class="article-meta">
         
@@ -481,9 +481,9 @@
             <i class="iconfont icon-category"></i>
             
             
-            <a  data-rel="Tool">Tool</a> > 
+            <a  data-rel="Devops">Devops</a> > 
             
-            <a  data-rel="Tool&lt;---&gt;hexo">hexo</a>
+            <a  data-rel="Devops&lt;---&gt;Docker">Docker</a>
             
         </span>
         
@@ -491,19 +491,19 @@
         <span class="tag">
             <i class="iconfont icon-tag"></i>
             
-            <a class="color5">hexo</a>
+            <a class="color2">Docker</a>
             
         </span>
         
     </div>
     <div class="article-meta">
         
-            發布時間 : <time class="date" title='更新時間: 2022-04-03 23:27:06'>2022-03-05 14:43</time>
+            發布時間 : <time class="date" title='更新時間: 2022-04-06 22:16:43'>2022-04-06 22:04</time>
         
     </div>
     <div class="article-meta">
         
-        <span>字數:583</span>
+        <span>字數:608</span>
         
         
         <span id="busuanzi_container_page_pv">
@@ -533,7 +533,7 @@
     
     <div class="toc-ref">
     
-        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#hexo-%E6%8F%92%E5%85%A5%E5%9C%96%E7%89%87-Part2-%E4%BB%A5-VS-Code-%E7%B7%A8%E8%BC%AF-Markdown"><span class="toc-text">hexo-插入圖片 Part2 (以 VS Code 編輯 Markdown)</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%96%8B%E7%99%BC%E7%92%B0%E5%A2%83"><span class="toc-text">開發環境</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%89%E8%A3%9D-VSCode%E6%93%B4%E5%85%85%E6%AA%94-vsix"><span class="toc-text">安裝 VSCode擴充檔 .vsix</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%93%8D%E4%BD%9C%E8%AA%AA%E6%98%8E"><span class="toc-text">操作說明</span></a></li></ol></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%B4%80%E9%8C%84-docker-container-%E5%B8%B8%E7%94%A8%E6%8C%87%E4%BB%A4"><span class="toc-text">紀錄 docker container 常用指令</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%9F%A5%E8%A9%A2%E9%81%8B%E4%BD%9C%E4%B8%AD%E7%9A%84container"><span class="toc-text">查詢運作中的container</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%93%8D%E4%BD%9C%E9%81%8B%E4%BD%9C%E4%B8%AD%E7%9A%84container"><span class="toc-text">操作運作中的container</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%9F%A5%E7%9C%8Bcontainer-log"><span class="toc-text">查看container log</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%9F%A5%E7%9C%8Bcontainer%E9%81%8B%E8%A1%8C%E7%A8%8B%E5%BA%8F"><span class="toc-text">查看container運行程序</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%9F%A5%E7%9C%8Bcontainer%E5%85%A7%E9%83%A8%E7%B4%B0%E7%AF%80"><span class="toc-text">查看container內部細節</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%80%B2%E5%85%A5%E9%81%8B%E8%A1%8C%E4%B8%ADcontainer"><span class="toc-text">進入運行中container</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%80%B2%E5%85%A5%E9%81%8B%E8%A1%8C%E4%B8%ADcontainer%E5%9F%B7%E8%A1%8C%E6%93%8D%E4%BD%9C"><span class="toc-text">進入運行中container執行操作</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%A4%87%E8%A3%BDcontainer%E4%B8%AD%E7%9A%84%E6%AA%94%E6%A1%88%E8%87%B3%E5%AF%A6%E9%AB%94%E6%9C%AC%E6%A9%9F"><span class="toc-text">複製container中的檔案至實體本機</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BB%A5%E7%95%B6%E5%89%8D%E9%81%8B%E8%A1%8C%E7%9A%84container%E5%BB%BA%E7%AB%8B%E5%87%BA%E5%85%B6image"><span class="toc-text">以當前運行的container建立出其image</span></a></li></ol></li></ol>
     
 <style>
     .left-col .switch-btn,
@@ -549,61 +549,104 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="hexo-插入圖片-Part2-以-VS-Code-編輯-Markdown"><a href="#hexo-插入圖片-Part2-以-VS-Code-編輯-Markdown" class="headerlink" title="hexo-插入圖片 Part2 (以 VS Code 編輯 Markdown)"></a>hexo-插入圖片 Part2 (以 VS Code 編輯 Markdown)</h1><p>繼上一篇<a href="/2022/02/02/hexo-uploadImg/">hexo-插入圖片 Part1 (以 VS Code 編輯 Markdown)</a><br>分享在VS Code 快速插入圖片後，因考量到圖檔是存在本地Server並隨著版本異動上傳到GitHub，避免日後圖檔數量過多造成儲存庫肥大，故改以上傳到Azure Storage Blob 充當第三方圖庫</p>
-<h2 id="開發環境"><a href="#開發環境" class="headerlink" title="開發環境"></a>開發環境</h2><ul>
-<li>Windows 10 (home 20H2)</li>
-<li>VSCode (1.64.2)</li>
-</ul>
-<h2 id="安裝-VSCode擴充檔-vsix"><a href="#安裝-VSCode擴充檔-vsix" class="headerlink" title="安裝 VSCode擴充檔 .vsix"></a>安裝 VSCode擴充檔 .vsix</h2><p>因原先的插入圖片方法是透過 該 <a target="_blank" rel="noopener" href="https://marketplace.visualstudio.com/items?itemName=mushan.vscode-paste-image">VScode擴充套件</a> 達成，Clone其 <a target="_blank" rel="noopener" href="https://github.com/mushanshitiancai/vscode-paste-image">開源專案</a> 後查看SourceCode發現並沒有上傳到第三方圖庫功能，於是趁著228連假空檔改寫了一下，新增儲存到Azure Storage Blob的功能也順便發了PR<br>但因只有支援Windows會不會被Merge進版本就不知道了</p>
-<p>而因尚未被Merge進版本，可以先利用我fork出來的 <a target="_blank" rel="noopener" href="https://github.com/w4560000/vscode-paste-image">修改版本</a> 自己產生 .vsix檔 來安裝到自己的VSCode上</p>
-<ol>
-<li><p>建立 VSCode擴充檔 .vsix </p>
-<pre><code class="PowerShell"># Clone專案
-clone https://github.com/w4560000/vscode-paste-image.git
+        <h1 id="紀錄-docker-container-常用指令"><a href="#紀錄-docker-container-常用指令" class="headerlink" title="紀錄 docker container 常用指令"></a>紀錄 docker container 常用指令</h1><h2 id="查詢運作中的container"><a href="#查詢運作中的container" class="headerlink" title="查詢運作中的container"></a>查詢運作中的container</h2><blockquote>
+<p>docker ps  <a target="_blank" rel="noopener" href="https://docs.docker.com/engine/reference/commandline/ps/">https://docs.docker.com/engine/reference/commandline/ps/</a></p>
+</blockquote>
+<pre><code class="CMD"># 列出container資訊 (運作中)
+docker ps
 
-# 切至資料夾
-cd vscode-paste-image
+# 列出container資訊 (所有狀態)
+docker ps -a
 
-# install 專案所需套件
-npm install
+# 列出最後三個建立的container資訊 (所有狀態)
+docker ps -n 3
 
-# 建立 .vsix檔
-npm i vsce -g
-vsce package
+# 列出最後一個建立的container資訊 (所有狀態)
+docker ps -l
+
+# 列出最後一個建立的container Id (所有狀態)
+docker ps -lq
 </code></pre>
-</li>
-<li><p>安裝 VSCode擴充</p>
-<p> <img src="https://bingxiangstorage.blob.core.windows.net/blog/hexo-uploadImg-AzureStorage/2022-03-05-15-24-57.png"></p>
-<p> 安裝 vscode-paste-image-1.0.4.vsix &amp; 重啟 VSCode</p>
-</li>
-<li><p>設定 擴充套件</p>
-<p> 在VSCode setting.json 新增</p>
-<pre><code class="json">&#123;
-    &quot;pasteImage.path&quot;: &quot;$&#123;currentFileNameWithoutExt&#125;&quot;,
-    &quot;pasteImage.basePath&quot;: &quot;&quot;,
-    &quot;pasteImage.filePathConfirmInputBoxMode&quot;: &quot;onlyName&quot;,
-    &quot;pasteImage.azureIsUploadStorage&quot;: true,
-    &quot;pasteImage.azureStorageConnectionString&quot;: &quot;&#123;Your azureStorageConnectionString&#125;&quot;,
-    &quot;pasteImage.azureStorageContainerName&quot;: &quot;blog&quot;
-&#125;
+<h2 id="操作運作中的container"><a href="#操作運作中的container" class="headerlink" title="操作運作中的container"></a>操作運作中的container</h2><blockquote>
+<p>docker start　　  啟動container       <a target="_blank" rel="noopener" href="https://docs.docker.com/engine/reference/commandline/start/">https://docs.docker.com/engine/reference/commandline/start/</a><br>docker restart    重啟container       <a target="_blank" rel="noopener" href="https://docs.docker.com/engine/reference/commandline/restart/">https://docs.docker.com/engine/reference/commandline/restart/</a><br>docker stop       停止container       <a target="_blank" rel="noopener" href="https://docs.docker.com/engine/reference/commandline/stop/">https://docs.docker.com/engine/reference/commandline/stop/</a><br>docker kill       強制停止container   <a target="_blank" rel="noopener" href="https://docs.docker.com/engine/reference/commandline/kill/">https://docs.docker.com/engine/reference/commandline/kill/</a><br>docker rm         刪除container       <a target="_blank" rel="noopener" href="https://docs.docker.com/engine/reference/commandline/rm/">https://docs.docker.com/engine/reference/commandline/rm/</a></p>
+</blockquote>
+<pre><code class="CMD"># 啟動container (container name or container Id)
+docker start myrabbitmq
+
+# 重啟container
+docker restart myrabbitmq
+
+# 停止container
+docker stop myrabbitmq
+
+# 強制停止container
+docker kill myrabbitmq
+
+# 刪除container (只能刪除停止狀態)
+docker rm mytabbitmq
+
+# 刪除container (可以刪除所有狀態)
+docker rm -f mytabbitmq
+
+# 刪除所有container 
+docker rm -f $(docker ps -aq)
+docker ps -ap | xargs docker rm
 </code></pre>
-<p> 我修改的功能 新增三個參數<br> azureIsUploadStorage = 是否要上傳到AzureStorage (若為false，則跟原先套件功能一樣 圖檔儲存到本地)<br> azureStorageConnectionString = 你的AzureStorage儲存庫連線字串<br> azureStorageContainerName = 你的AzureStorage容器名稱 (若沒有容器 會建立新的)</p>
-<p> AzureStorageConnectionString位置<br> <img src="https://bingxiangstorage.blob.core.windows.net/blog/hexo-uploadImg-AzureStorage/2022-03-05-17-22-35.png"></p>
-</li>
-</ol>
-<h2 id="操作說明"><a href="#操作說明" class="headerlink" title="操作說明"></a>操作說明</h2><pre><code>1. 個人常使用的截圖方式為 Windows + Shift + S，此時會複製擷取的圖片到暫存的剪貼簿中
-2. 在VS Code 開啟 .md檔案，輸入 Ctrl + Alt + V 會自動上傳圖檔到AzureStorageBlob上，並生成Markdown語法
+<h2 id="查看container-log"><a href="#查看container-log" class="headerlink" title="查看container log"></a>查看container log</h2><blockquote>
+<p>docker log <a target="_blank" rel="noopener" href="https://docs.docker.com/engine/reference/commandline/logs/">https://docs.docker.com/engine/reference/commandline/logs/</a></p>
+</blockquote>
+<pre><code class="CMD"># 查看container log (container name or container Id)
+docker logs myrabbitmq
 
-    ```
-    ex: ![](https://bingxiangstorage.blob.core.windows.net/blog/hexo-uploadImg-AzureStorage/2022-03-05-17-18-45.png)
-    ```
+# 查看container log (加上時間)
+docker logs -t myrabbitmq
 
-    可以到Azure上 查看圖檔
-    ![](https://bingxiangstorage.blob.core.windows.net/blog/hexo-uploadImg-AzureStorage/2022-03-05-17-18-45.png)
+# 查看container log (持續追蹤，若容器內有新log會持續顯示)
+docker logs -f myrabbitmq
 
-3. 若檔名相同 會提示是否要覆蓋
+# 查看container log (顯示最後三筆)
+docker logs -tail 3 myrabbitmq
+</code></pre>
+<h2 id="查看container運行程序"><a href="#查看container運行程序" class="headerlink" title="查看container運行程序"></a>查看container運行程序</h2><blockquote>
+<p>docker top <a target="_blank" rel="noopener" href="https://docs.docker.com/engine/reference/commandline/top/">https://docs.docker.com/engine/reference/commandline/top/</a></p>
+</blockquote>
+<pre><code class="CMD">docker top myrabbitmq
+</code></pre>
+<h2 id="查看container內部細節"><a href="#查看container內部細節" class="headerlink" title="查看container內部細節"></a>查看container內部細節</h2><blockquote>
+<p>docker inspect <a target="_blank" rel="noopener" href="https://docs.docker.com/engine/reference/commandline/inspect/">https://docs.docker.com/engine/reference/commandline/inspect/</a></p>
+</blockquote>
+<pre><code class="CMD">docker inspect myrabbitmq
+</code></pre>
+<h2 id="進入運行中container"><a href="#進入運行中container" class="headerlink" title="進入運行中container"></a>進入運行中container</h2><blockquote>
+<p>docker attach <a target="_blank" rel="noopener" href="https://docs.docker.com/engine/reference/commandline/attach/">https://docs.docker.com/engine/reference/commandline/attach/</a><br>若進入後 輸入exit 會中斷程序</p>
+</blockquote>
+<pre><code class="CMD">docker attach myrabbitmq
+</code></pre>
+<h2 id="進入運行中container執行操作"><a href="#進入運行中container執行操作" class="headerlink" title="進入運行中container執行操作"></a>進入運行中container執行操作</h2><blockquote>
+<p>docker exec <a target="_blank" rel="noopener" href="https://docs.docker.com/engine/reference/commandline/exec/">https://docs.docker.com/engine/reference/commandline/exec/</a><br>類似於SSH遠端container裡，輸入exit 可正常離開 不會導致程序中斷 (與attach不同)</p>
+</blockquote>
+<pre><code class="CMD"># 讓運行中container 執行 ls-l /tmp
+docker exec -it myrabbitmq ls-l /tmp
 
-    ![](https://bingxiangstorage.blob.core.windows.net/blog/hexo-uploadImg-AzureStorage/2022-03-05-17-19-18.png)
+# 以bash模式進入container進行操作
+# 功能與 docker attach mytabbitmq 一樣
+docker exec -it myrabbitmq bin/bash
+</code></pre>
+<h2 id="複製container中的檔案至實體本機"><a href="#複製container中的檔案至實體本機" class="headerlink" title="複製container中的檔案至實體本機"></a>複製container中的檔案至實體本機</h2><blockquote>
+<p>docker cp <a target="_blank" rel="noopener" href="https://docs.docker.com/engine/reference/commandline/cp/">https://docs.docker.com/engine/reference/commandline/cp/</a> </p>
+</blockquote>
+<pre><code class="CMD"># 複製容器中/tmp目錄底下的yum.log檔案 至 實體本機的/root目錄底下
+docker cp myrabbitmq:/tmp/yum.log /root
+</code></pre>
+<h2 id="以當前運行的container建立出其image"><a href="#以當前運行的container建立出其image" class="headerlink" title="以當前運行的container建立出其image"></a>以當前運行的container建立出其image</h2><blockquote>
+<p>docker commit <a target="_blank" rel="noopener" href="https://docs.docker.com/engine/reference/commandline/commit/">https://docs.docker.com/engine/reference/commandline/commit/</a></p>
+</blockquote>
+<pre><code class="CMD"># 以myrabbit這個現有運行中container
+# 建立出 author = leo, 
+#    　　message = new rabbitmq, 
+#    　　repository = leo:mynewrabbitmq,
+#    　　tag = 1.1 的新image
+docker commit -a = &#39;leo&#39; -m = &#39;new rabbitmq&#39; myrabbitmq leo/mynewrabbitmq:1.1
 </code></pre>
 
       
