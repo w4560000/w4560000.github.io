@@ -2,19 +2,19 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <title>紀錄 docker container 常用指令 | Hexo</title>
+  <title>紀錄 Docker Container 常用指令 | Hexo</title>
   <meta name="keywords" content=" Docker ">
-  <meta name="description" content="紀錄 docker container 常用指令 | Hexo">
+  <meta name="description" content="紀錄 Docker Container 常用指令 | Hexo">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-<meta name="description" content="紀錄 啟動 docker container 常用指令 docker run https:&#x2F;&#x2F;docs.docker.com&#x2F;engine&#x2F;reference&#x2F;commandline&#x2F;run&#x2F;  # 建立並啟動 rabbitmq 的 container docker run rabbitmq  # 啟動container 以背景方式啟動 docker run -d rabbitmq  # 啟動co">
+<meta name="description" content="紀錄 Docker Image 常用指令查詢本機Image資訊 docker images https:&#x2F;&#x2F;docs.docker.com&#x2F;engine&#x2F;reference&#x2F;commandline&#x2F;images&#x2F;  # 顯示本機的Image資訊 docker images  # 顯示本機的Image Id docker images -q  # 顯示本機所有的Image 資訊 docker ima">
 <meta property="og:type" content="article">
-<meta property="og:title" content="紀錄 啟動 docker container 常用指令">
-<meta property="og:url" content="http://example.com/2022/04/06/docker-container-run-sample/index.html">
+<meta property="og:title" content="紀錄 Docker Image 常用指令">
+<meta property="og:url" content="http://example.com/2022/04/06/docker-image-sample/index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="紀錄 啟動 docker container 常用指令 docker run https:&#x2F;&#x2F;docs.docker.com&#x2F;engine&#x2F;reference&#x2F;commandline&#x2F;run&#x2F;  # 建立並啟動 rabbitmq 的 container docker run rabbitmq  # 啟動container 以背景方式啟動 docker run -d rabbitmq  # 啟動co">
+<meta property="og:description" content="紀錄 Docker Image 常用指令查詢本機Image資訊 docker images https:&#x2F;&#x2F;docs.docker.com&#x2F;engine&#x2F;reference&#x2F;commandline&#x2F;images&#x2F;  # 顯示本機的Image資訊 docker images  # 顯示本機的Image Id docker images -q  # 顯示本機所有的Image 資訊 docker ima">
 <meta property="og:locale" content="zh_TW">
-<meta property="article:published_time" content="2022-04-06T14:20:45.000Z">
-<meta property="article:modified_time" content="2022-04-06T14:21:57.832Z">
+<meta property="article:published_time" content="2022-04-06T14:23:54.000Z">
+<meta property="article:modified_time" content="2022-04-06T14:33:16.267Z">
 <meta property="article:author" content="Leo Zheng">
 <meta property="article:tag" content="Docker">
 <meta name="twitter:card" content="summary">
@@ -106,7 +106,7 @@
     <li>
         <div class="all active" data-rel="全部文章">全部文章
             
-                <small>(12)</small>
+                <small>(13)</small>
             
         </div>
     </li>
@@ -149,7 +149,7 @@
                         <i class="fold iconfont icon-right"></i>
                         
                         Devops
-                        <small>(7)</small>
+                        <small>(8)</small>
                         
                     </div>
                     
@@ -172,7 +172,7 @@
                                         
                                         Docker
                                         
-                                            <small>(3
+                                            <small>(4
                                                 )</small>
                                         
                                     </div>
@@ -286,8 +286,8 @@
         
     </div>
 </div>
-<input type="hidden" id="yelog_site_posts_number" value="12">
-<input type="hidden" id="yelog_site_word_count" value="4.7k">
+<input type="hidden" id="yelog_site_posts_number" value="13">
+<input type="hidden" id="yelog_site_word_count" value="5.1k">
 <div style="display: none">
     <span id="busuanzi_value_site_uv"></span>
     <span id="busuanzi_value_site_pv"></span>
@@ -364,6 +364,14 @@
     <nav id="title-list-nav">
         
         <a  class="全部文章 Devops Docker "
+           href="/2022/04/06/docker-image-sample/"
+           data-tag="Docker"
+           data-author="" >
+            <span class="post-title" title="紀錄 Docker Image 常用指令">紀錄 Docker Image 常用指令</span>
+            <span class="post-date" title="2022-04-06 22:23:54">2022/04/06</span>
+        </a>
+        
+        <a  class="全部文章 Devops Docker "
            href="/2022/04/06/docker-container-run-sample/"
            data-tag="Docker"
            data-author="" >
@@ -375,7 +383,7 @@
            href="/2022/04/06/docker-container-sample/"
            data-tag="Docker"
            data-author="" >
-            <span class="post-title" title="紀錄 docker container 常用指令">紀錄 docker container 常用指令</span>
+            <span class="post-title" title="紀錄 Docker Container 常用指令">紀錄 Docker Container 常用指令</span>
             <span class="post-date" title="2022-04-06 22:04:54">2022/04/06</span>
         </a>
         
@@ -383,7 +391,7 @@
            href="/2022/04/06/docker-dockerfile-sample/"
            data-tag="Docker"
            data-author="" >
-            <span class="post-title" title="紀錄 dockerfile 寫法">紀錄 dockerfile 寫法</span>
+            <span class="post-title" title="紀錄 Dockerfile 寫法">紀錄 Dockerfile 寫法</span>
             <span class="post-date" title="2022-04-06 21:43:49">2022/04/06</span>
         </a>
         
@@ -479,7 +487,7 @@
     <div class="pjax">
         <article id="post-docker-container-sample" class="article article-type-post" itemscope itemprop="blogPost">
     
-        <h1 class="article-title">紀錄 docker container 常用指令</h1>
+        <h1 class="article-title">紀錄 Docker Container 常用指令</h1>
     
     <div class="article-meta">
         
@@ -506,7 +514,7 @@
     </div>
     <div class="article-meta">
         
-            發布時間 : <time class="date" title='更新時間: 2022-04-06 22:17:43'>2022-04-06 22:04</time>
+            發布時間 : <time class="date" title='更新時間: 2022-04-06 22:24:56'>2022-04-06 22:04</time>
         
     </div>
     <div class="article-meta">
@@ -541,7 +549,7 @@
     
     <div class="toc-ref">
     
-        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%B4%80%E9%8C%84-docker-container-%E5%B8%B8%E7%94%A8%E6%8C%87%E4%BB%A4"><span class="toc-text">紀錄 docker container 常用指令</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%9F%A5%E8%A9%A2%E9%81%8B%E4%BD%9C%E4%B8%AD%E7%9A%84container"><span class="toc-text">查詢運作中的container</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%93%8D%E4%BD%9C%E9%81%8B%E4%BD%9C%E4%B8%AD%E7%9A%84container"><span class="toc-text">操作運作中的container</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%9F%A5%E7%9C%8Bcontainer-log"><span class="toc-text">查看container log</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%9F%A5%E7%9C%8Bcontainer%E9%81%8B%E8%A1%8C%E7%A8%8B%E5%BA%8F"><span class="toc-text">查看container運行程序</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%9F%A5%E7%9C%8Bcontainer%E5%85%A7%E9%83%A8%E7%B4%B0%E7%AF%80"><span class="toc-text">查看container內部細節</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%80%B2%E5%85%A5%E9%81%8B%E8%A1%8C%E4%B8%ADcontainer"><span class="toc-text">進入運行中container</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%80%B2%E5%85%A5%E9%81%8B%E8%A1%8C%E4%B8%ADcontainer%E5%9F%B7%E8%A1%8C%E6%93%8D%E4%BD%9C"><span class="toc-text">進入運行中container執行操作</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%A4%87%E8%A3%BDcontainer%E4%B8%AD%E7%9A%84%E6%AA%94%E6%A1%88%E8%87%B3%E5%AF%A6%E9%AB%94%E6%9C%AC%E6%A9%9F"><span class="toc-text">複製container中的檔案至實體本機</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BB%A5%E7%95%B6%E5%89%8D%E9%81%8B%E8%A1%8C%E7%9A%84container%E5%BB%BA%E7%AB%8B%E5%87%BA%E5%85%B6image"><span class="toc-text">以當前運行的container建立出其image</span></a></li></ol></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%B4%80%E9%8C%84-Docker-Container-%E5%B8%B8%E7%94%A8%E6%8C%87%E4%BB%A4"><span class="toc-text">紀錄 Docker Container 常用指令</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%9F%A5%E8%A9%A2%E9%81%8B%E4%BD%9C%E4%B8%AD%E7%9A%84Container"><span class="toc-text">查詢運作中的Container</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%93%8D%E4%BD%9C%E9%81%8B%E4%BD%9C%E4%B8%AD%E7%9A%84Container"><span class="toc-text">操作運作中的Container</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%9F%A5%E7%9C%8BContainer-log"><span class="toc-text">查看Container log</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%9F%A5%E7%9C%8BContainer%E9%81%8B%E8%A1%8C%E7%A8%8B%E5%BA%8F"><span class="toc-text">查看Container運行程序</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%9F%A5%E7%9C%8BContainer%E5%85%A7%E9%83%A8%E7%B4%B0%E7%AF%80"><span class="toc-text">查看Container內部細節</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%80%B2%E5%85%A5%E9%81%8B%E8%A1%8C%E4%B8%ADContainer"><span class="toc-text">進入運行中Container</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%80%B2%E5%85%A5%E9%81%8B%E8%A1%8C%E4%B8%ADContainer%E5%9F%B7%E8%A1%8C%E6%93%8D%E4%BD%9C"><span class="toc-text">進入運行中Container執行操作</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%A4%87%E8%A3%BDContainer%E4%B8%AD%E7%9A%84%E6%AA%94%E6%A1%88%E8%87%B3%E5%AF%A6%E9%AB%94%E6%9C%AC%E6%A9%9F"><span class="toc-text">複製Container中的檔案至實體本機</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BB%A5%E7%95%B6%E5%89%8D%E9%81%8B%E8%A1%8C%E7%9A%84Container%E5%BB%BA%E7%AB%8B%E5%87%BA%E5%85%B6image"><span class="toc-text">以當前運行的Container建立出其image</span></a></li></ol></li></ol>
     
 <style>
     .left-col .switch-btn,
@@ -557,7 +565,7 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="紀錄-docker-container-常用指令"><a href="#紀錄-docker-container-常用指令" class="headerlink" title="紀錄 docker container 常用指令"></a>紀錄 docker container 常用指令</h1><h2 id="查詢運作中的container"><a href="#查詢運作中的container" class="headerlink" title="查詢運作中的container"></a>查詢運作中的container</h2><blockquote>
+        <h1 id="紀錄-Docker-Container-常用指令"><a href="#紀錄-Docker-Container-常用指令" class="headerlink" title="紀錄 Docker Container 常用指令"></a>紀錄 Docker Container 常用指令</h1><h2 id="查詢運作中的Container"><a href="#查詢運作中的Container" class="headerlink" title="查詢運作中的Container"></a>查詢運作中的Container</h2><blockquote>
 <p>docker ps  <a target="_blank" rel="noopener" href="https://docs.docker.com/engine/reference/commandline/ps/">https://docs.docker.com/engine/reference/commandline/ps/</a></p>
 </blockquote>
 <pre><code class="CMD"># 列出container資訊 (運作中)
@@ -575,7 +583,7 @@ docker ps -l
 # 列出最後一個建立的container Id (所有狀態)
 docker ps -lq
 </code></pre>
-<h2 id="操作運作中的container"><a href="#操作運作中的container" class="headerlink" title="操作運作中的container"></a>操作運作中的container</h2><blockquote>
+<h2 id="操作運作中的Container"><a href="#操作運作中的Container" class="headerlink" title="操作運作中的Container"></a>操作運作中的Container</h2><blockquote>
 <p>docker start  啟動container    <a target="_blank" rel="noopener" href="https://docs.docker.com/engine/reference/commandline/start/">https://docs.docker.com/engine/reference/commandline/start/</a><br>docker restart    重啟container       <a target="_blank" rel="noopener" href="https://docs.docker.com/engine/reference/commandline/restart/">https://docs.docker.com/engine/reference/commandline/restart/</a><br>docker stop       停止container       <a target="_blank" rel="noopener" href="https://docs.docker.com/engine/reference/commandline/stop/">https://docs.docker.com/engine/reference/commandline/stop/</a><br>docker kill       強制停止container   <a target="_blank" rel="noopener" href="https://docs.docker.com/engine/reference/commandline/kill/">https://docs.docker.com/engine/reference/commandline/kill/</a><br>docker rm         刪除container       <a target="_blank" rel="noopener" href="https://docs.docker.com/engine/reference/commandline/rm/">https://docs.docker.com/engine/reference/commandline/rm/</a></p>
 </blockquote>
 <pre><code class="CMD"># 啟動container (container name or container Id)
@@ -600,7 +608,7 @@ docker rm -f mytabbitmq
 docker rm -f $(docker ps -aq)
 docker ps -ap | xargs docker rm
 </code></pre>
-<h2 id="查看container-log"><a href="#查看container-log" class="headerlink" title="查看container log"></a>查看container log</h2><blockquote>
+<h2 id="查看Container-log"><a href="#查看Container-log" class="headerlink" title="查看Container log"></a>查看Container log</h2><blockquote>
 <p>docker log <a target="_blank" rel="noopener" href="https://docs.docker.com/engine/reference/commandline/logs/">https://docs.docker.com/engine/reference/commandline/logs/</a></p>
 </blockquote>
 <pre><code class="CMD"># 查看container log (container name or container Id)
@@ -615,22 +623,22 @@ docker logs -f myrabbitmq
 # 查看container log (顯示最後三筆)
 docker logs -tail 3 myrabbitmq
 </code></pre>
-<h2 id="查看container運行程序"><a href="#查看container運行程序" class="headerlink" title="查看container運行程序"></a>查看container運行程序</h2><blockquote>
+<h2 id="查看Container運行程序"><a href="#查看Container運行程序" class="headerlink" title="查看Container運行程序"></a>查看Container運行程序</h2><blockquote>
 <p>docker top <a target="_blank" rel="noopener" href="https://docs.docker.com/engine/reference/commandline/top/">https://docs.docker.com/engine/reference/commandline/top/</a></p>
 </blockquote>
 <pre><code class="CMD">docker top myrabbitmq
 </code></pre>
-<h2 id="查看container內部細節"><a href="#查看container內部細節" class="headerlink" title="查看container內部細節"></a>查看container內部細節</h2><blockquote>
+<h2 id="查看Container內部細節"><a href="#查看Container內部細節" class="headerlink" title="查看Container內部細節"></a>查看Container內部細節</h2><blockquote>
 <p>docker inspect <a target="_blank" rel="noopener" href="https://docs.docker.com/engine/reference/commandline/inspect/">https://docs.docker.com/engine/reference/commandline/inspect/</a></p>
 </blockquote>
 <pre><code class="CMD">docker inspect myrabbitmq
 </code></pre>
-<h2 id="進入運行中container"><a href="#進入運行中container" class="headerlink" title="進入運行中container"></a>進入運行中container</h2><blockquote>
+<h2 id="進入運行中Container"><a href="#進入運行中Container" class="headerlink" title="進入運行中Container"></a>進入運行中Container</h2><blockquote>
 <p>docker attach <a target="_blank" rel="noopener" href="https://docs.docker.com/engine/reference/commandline/attach/">https://docs.docker.com/engine/reference/commandline/attach/</a><br>若進入後 輸入exit 會中斷程序</p>
 </blockquote>
 <pre><code class="CMD">docker attach myrabbitmq
 </code></pre>
-<h2 id="進入運行中container執行操作"><a href="#進入運行中container執行操作" class="headerlink" title="進入運行中container執行操作"></a>進入運行中container執行操作</h2><blockquote>
+<h2 id="進入運行中Container執行操作"><a href="#進入運行中Container執行操作" class="headerlink" title="進入運行中Container執行操作"></a>進入運行中Container執行操作</h2><blockquote>
 <p>docker exec <a target="_blank" rel="noopener" href="https://docs.docker.com/engine/reference/commandline/exec/">https://docs.docker.com/engine/reference/commandline/exec/</a><br>類似於SSH遠端container裡，輸入exit 可正常離開 不會導致程序中斷 (與attach不同)</p>
 </blockquote>
 <pre><code class="CMD"># 讓運行中container 執行 ls-l /tmp
@@ -640,13 +648,13 @@ docker exec -it myrabbitmq ls-l /tmp
 # 功能與 docker attach mytabbitmq 一樣
 docker exec -it myrabbitmq bin/bash
 </code></pre>
-<h2 id="複製container中的檔案至實體本機"><a href="#複製container中的檔案至實體本機" class="headerlink" title="複製container中的檔案至實體本機"></a>複製container中的檔案至實體本機</h2><blockquote>
+<h2 id="複製Container中的檔案至實體本機"><a href="#複製Container中的檔案至實體本機" class="headerlink" title="複製Container中的檔案至實體本機"></a>複製Container中的檔案至實體本機</h2><blockquote>
 <p>docker cp <a target="_blank" rel="noopener" href="https://docs.docker.com/engine/reference/commandline/cp/">https://docs.docker.com/engine/reference/commandline/cp/</a> </p>
 </blockquote>
 <pre><code class="CMD"># 複製容器中/tmp目錄底下的yum.log檔案 至 實體本機的/root目錄底下
 docker cp myrabbitmq:/tmp/yum.log /root
 </code></pre>
-<h2 id="以當前運行的container建立出其image"><a href="#以當前運行的container建立出其image" class="headerlink" title="以當前運行的container建立出其image"></a>以當前運行的container建立出其image</h2><blockquote>
+<h2 id="以當前運行的Container建立出其image"><a href="#以當前運行的Container建立出其image" class="headerlink" title="以當前運行的Container建立出其image"></a>以當前運行的Container建立出其image</h2><blockquote>
 <p>docker commit <a target="_blank" rel="noopener" href="https://docs.docker.com/engine/reference/commandline/commit/">https://docs.docker.com/engine/reference/commandline/commit/</a></p>
 </blockquote>
 <pre><code class="CMD"># 以myrabbit這個現有運行中container
