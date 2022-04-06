@@ -2,9 +2,9 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <title>Hexo</title>
-  <meta name="keywords" content="">
-  <meta name="description" content="Hexo">
+  <title>紀錄 dockerfile 寫法 | Hexo</title>
+  <meta name="keywords" content=" Docker ">
+  <meta name="description" content="紀錄 dockerfile 寫法 | Hexo">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <meta name="description" content="紀錄一下 上傳Docker Image至 Azure Container Registry#  1. Azure 登入 azure login  #  2. 建立ACR #  n &#x3D; name(ACR名稱), g &#x3D; resurece-group(azure帳號的資源群組), l &#x3D; 地區(location), sku &#x3D; 等級 az acr create -n bxacrtest -g BX -">
 <meta property="og:type" content="article">
@@ -58,7 +58,7 @@
 
 
 <body>
-<aside class="nav mobile">
+<aside class="nav">
     <div class="nav-left">
         <a href="/"
    class="avatar_target">
@@ -459,12 +459,73 @@
         </div>
     </div>
 </aside>
-<div id="post" class="index">
+<div id="post">
     <div class="pjax">
-        <article class="index">
-            <div class="toc-ref">
+        <article id="post-docker-dockerfile-sample" class="article article-type-post" itemscope itemprop="blogPost">
     
-        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E9%97%9C%E6%96%BC%E6%88%91%E8%88%87%E8%A9%B2%E9%83%A8%E8%90%BD%E6%A0%BC"><span class="toc-text">關於我與該部落格</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%B0%A1%E4%BB%8B"><span class="toc-text">簡介</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%83%A8%E8%90%BD%E6%A0%BC"><span class="toc-text">部落格</span></a></li></ol></li></ol>
+        <h1 class="article-title">紀錄 dockerfile 寫法</h1>
+    
+    <div class="article-meta">
+        
+        
+        
+        <span class="book">
+            <i class="iconfont icon-category"></i>
+            
+            
+            <a  data-rel="Devops">Devops</a> > 
+            
+            <a  data-rel="Devops&lt;---&gt;Docker">Docker</a>
+            
+        </span>
+        
+        
+        <span class="tag">
+            <i class="iconfont icon-tag"></i>
+            
+            <a class="color2">Docker</a>
+            
+        </span>
+        
+    </div>
+    <div class="article-meta">
+        
+            發布時間 : <time class="date" title='更新時間: 2022-04-06 22:00:56'>2022-04-06 21:43</time>
+        
+    </div>
+    <div class="article-meta">
+        
+        <span>字數:245</span>
+        
+        
+        <span id="busuanzi_container_page_pv">
+            觀看數 :<span id="busuanzi_value_page_pv">
+                <span class="count-comment">
+                    <span class="spinner">
+                      <div class="cube1"></div>
+                      <div class="cube2"></div>
+                    </span>
+                </span>
+            </span>
+        </span>
+        
+        
+        <span class="top-comment" title="跳转至评论区">
+            <a href="#comments">
+                評論:<span class="count-comment">
+                    <span class="spinner">
+                      <div class="cube1"></div>
+                      <div class="cube2"></div>
+                    </span>
+                </span>
+            </a>
+        </span>
+        
+    </div>
+    
+    <div class="toc-ref">
+    
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%B4%80%E9%8C%84-dockerfile-%E5%AF%AB%E6%B3%95"><span class="toc-text">紀錄 dockerfile 寫法</span></a></li></ol>
     
 <style>
     .left-col .switch-btn,
@@ -477,16 +538,64 @@
     }
 </style>
 </div>
-            <h1 id="關於我與該部落格"><a href="#關於我與該部落格" class="headerlink" title="關於我與該部落格"></a>關於我與該部落格</h1><h2 id="簡介"><a href="#簡介" class="headerlink" title="簡介"></a>簡介</h2><p>我是一名.Net 開發工程師</p>
-<p>此部落格為軟體開發的學習筆記</p>
-<p>若文章內容有誤，歡迎留言指正，或來信告知 <a href="mailto:&#108;&#101;&#111;&#x7a;&#x68;&#101;&#110;&#103;&#48;&#x36;&#x32;&#49;&#x40;&#x67;&#x6d;&#x61;&#105;&#x6c;&#x2e;&#x63;&#111;&#x6d;">&#108;&#101;&#111;&#x7a;&#x68;&#101;&#110;&#103;&#48;&#x36;&#x32;&#49;&#x40;&#x67;&#x6d;&#x61;&#105;&#x6c;&#x2e;&#x63;&#111;&#x6d;</a></p>
-<h2 id="部落格"><a href="#部落格" class="headerlink" title="部落格"></a>部落格</h2><p>共發布：<code class="article_number"></code>篇文章， 共<code class="site_word_count"></code>字。</p>
-<p>部落格總訪問人數：<code class="site_uv"></code> 人次， 訪問量：<code class="site_pv"></code>次</p>
-<p>此部落格通過 <a target="_blank" rel="noopener" href="https://hexo.io/">Hexo</a> 建立，部屬在 <a target="_blank" rel="noopener" href="https://pages.github.com/">GitHub Pages</a>主題 <a target="_blank" rel="noopener" href="https://github.com/yelog/hexo-theme-3-hexo">3-hexo</a></p>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="紀錄-dockerfile-寫法"><a href="#紀錄-dockerfile-寫法" class="headerlink" title="紀錄 dockerfile 寫法"></a>紀錄 dockerfile 寫法</h1><blockquote>
+<p>Sample</p>
+</blockquote>
+<pre><code># volume sample
+# dockerfile無法指定主機volume的路徑,是由docker決定
+# 若要找到volume主機路徑則需等container建立後,inspect 查看主機volume路徑
+# 若進入volume目錄遇到權限問題,run images時 加上 --privileged=ture (root權限)
 
-        </article>
-        
-        
+FROM centos
+VOLUME [&quot;/containerVolume1&quot;, &quot;/containerVolume2&quot;]
+CMD echo &quot;finish&quot;
+CMD /bin/bash
+</code></pre>
+<blockquote>
+<p>Dockerfile keyword 範例</p>
+</blockquote>
+<pre><code>FROM (該image是繼承自哪個image)
+FROM centos
+
+MAINTAINER(該image的作者)
+MAINTAINER leo
+
+RUN (執行指令)
+RUN dotnet restore
+
+EXPOSE (該image對外的port號)
+EXPOSE 8080
+
+WORKDIR (設定 attach 進 container後的預設目錄) # (若沒有指定WORKDIR，則預設是根目錄)
+WORKDIR /tmp
+
+ENV (設定環境變數)
+ENV testPath /tmp/testPath
+# 使用方式 = $testPath 
+# e.g. echo $teshPath
+
+ADD (將當前目錄config底下的資料 複製到/config/)
+ADD config/ /config/
+
+COPY (與ADD 功能類似，但ADD功能較多 (ADD 可自動解壓縮檔案 &amp; 支援URL下載檔案))
+
+
+VOLUME (設定volume) # (在dockerfile中，無法指定宿主機的路徑)
+VOLUME [&quot;/testVolume1&quot;, &quot;/testVolume2&quot;]
+</code></pre>
+
+      
+       <hr><span style="font-style: italic;color: gray;"> 轉載請註明來源，若有任何錯誤或表達不清楚的地方，歡迎在下方評論區留言，也可以來信至 leozheng0621@gmail.com </span>
+    </div>
+</article>
+
+
+
+
+
     <div id="comments"></div>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css">
 
@@ -508,6 +617,13 @@
 </script>
 
 
+
+
+    
+
+
+
+
     </div>
     <div class="copyright">
         <p class="footer-entry">
@@ -516,11 +632,11 @@
 <p class="footer-entry">Built with <a href="https://hexo.io/" target="_blank">Hexo</a> and <a href="https://github.com/yelog/hexo-theme-3-hexo" target="_blank">3-hexo</a> theme</p>
 
     </div>
-</div>
-<div class="full-toc">
-    <button class="full" data-title="切换全屏 快捷键 s"><span class="min "></span></button>
+    <div class="full-toc">
+        <button class="full" data-title="切换全屏 快捷键 s"><span class="min "></span></button>
 <a class="" id="rocket" ></a>
 
+    </div>
 </div>
 
 </body>
