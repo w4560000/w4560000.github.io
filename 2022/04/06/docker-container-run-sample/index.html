@@ -2,9 +2,9 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <title>hexo-插入圖片 Part2 (以 VS Code 編輯 Markdown) | Hexo</title>
-  <meta name="keywords" content=" hexo ">
-  <meta name="description" content="hexo-插入圖片 Part2 (以 VS Code 編輯 Markdown) | Hexo">
+  <title>紀錄 啟動 docker container 常用指令 | Hexo</title>
+  <meta name="keywords" content=" Docker ">
+  <meta name="description" content="紀錄 啟動 docker container 常用指令 | Hexo">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <meta name="description" content="紀錄 啟動 docker container 常用指令 docker run https:&#x2F;&#x2F;docs.docker.com&#x2F;engine&#x2F;reference&#x2F;commandline&#x2F;run&#x2F;  # 建立並啟動 rabbitmq 的 container docker run rabbitmq  # 啟動container 以背景方式啟動 docker run -d rabbitmq  # 啟動co">
 <meta property="og:type" content="article">
@@ -477,9 +477,9 @@
 </aside>
 <div id="post">
     <div class="pjax">
-        <article id="post-hexo-uploadImg-AzureStorage" class="article article-type-post" itemscope itemprop="blogPost">
+        <article id="post-docker-container-run-sample" class="article article-type-post" itemscope itemprop="blogPost">
     
-        <h1 class="article-title">hexo-插入圖片 Part2 (以 VS Code 編輯 Markdown)</h1>
+        <h1 class="article-title">紀錄 啟動 docker container 常用指令</h1>
     
     <div class="article-meta">
         
@@ -489,9 +489,9 @@
             <i class="iconfont icon-category"></i>
             
             
-            <a  data-rel="Tool">Tool</a> > 
+            <a  data-rel="Devops">Devops</a> > 
             
-            <a  data-rel="Tool&lt;---&gt;hexo">hexo</a>
+            <a  data-rel="Devops&lt;---&gt;Docker">Docker</a>
             
         </span>
         
@@ -499,19 +499,19 @@
         <span class="tag">
             <i class="iconfont icon-tag"></i>
             
-            <a class="color5">hexo</a>
+            <a class="color2">Docker</a>
             
         </span>
         
     </div>
     <div class="article-meta">
         
-            發布時間 : <time class="date" title='更新時間: 2022-04-03 23:27:06'>2022-03-05 14:43</time>
+            發布時間 : <time class="date" title='更新時間: 2022-04-06 22:21:57'>2022-04-06 22:20</time>
         
     </div>
     <div class="article-meta">
         
-        <span>字數:583</span>
+        <span>字數:272</span>
         
         
         <span id="busuanzi_container_page_pv">
@@ -541,7 +541,7 @@
     
     <div class="toc-ref">
     
-        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#hexo-%E6%8F%92%E5%85%A5%E5%9C%96%E7%89%87-Part2-%E4%BB%A5-VS-Code-%E7%B7%A8%E8%BC%AF-Markdown"><span class="toc-text">hexo-插入圖片 Part2 (以 VS Code 編輯 Markdown)</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%96%8B%E7%99%BC%E7%92%B0%E5%A2%83"><span class="toc-text">開發環境</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%89%E8%A3%9D-VSCode%E6%93%B4%E5%85%85%E6%AA%94-vsix"><span class="toc-text">安裝 VSCode擴充檔 .vsix</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%93%8D%E4%BD%9C%E8%AA%AA%E6%98%8E"><span class="toc-text">操作說明</span></a></li></ol></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%B4%80%E9%8C%84-%E5%95%9F%E5%8B%95-docker-container-%E5%B8%B8%E7%94%A8%E6%8C%87%E4%BB%A4"><span class="toc-text">紀錄 啟動 docker container 常用指令</span></a></li></ol>
     
 <style>
     .left-col .switch-btn,
@@ -557,61 +557,45 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="hexo-插入圖片-Part2-以-VS-Code-編輯-Markdown"><a href="#hexo-插入圖片-Part2-以-VS-Code-編輯-Markdown" class="headerlink" title="hexo-插入圖片 Part2 (以 VS Code 編輯 Markdown)"></a>hexo-插入圖片 Part2 (以 VS Code 編輯 Markdown)</h1><p>繼上一篇<a href="/2022/02/02/hexo-uploadImg/">hexo-插入圖片 Part1 (以 VS Code 編輯 Markdown)</a><br>分享在VS Code 快速插入圖片後，因考量到圖檔是存在本地Server並隨著版本異動上傳到GitHub，避免日後圖檔數量過多造成儲存庫肥大，故改以上傳到Azure Storage Blob 充當第三方圖庫</p>
-<h2 id="開發環境"><a href="#開發環境" class="headerlink" title="開發環境"></a>開發環境</h2><ul>
-<li>Windows 10 (home 20H2)</li>
-<li>VSCode (1.64.2)</li>
-</ul>
-<h2 id="安裝-VSCode擴充檔-vsix"><a href="#安裝-VSCode擴充檔-vsix" class="headerlink" title="安裝 VSCode擴充檔 .vsix"></a>安裝 VSCode擴充檔 .vsix</h2><p>因原先的插入圖片方法是透過 該 <a target="_blank" rel="noopener" href="https://marketplace.visualstudio.com/items?itemName=mushan.vscode-paste-image">VScode擴充套件</a> 達成，Clone其 <a target="_blank" rel="noopener" href="https://github.com/mushanshitiancai/vscode-paste-image">開源專案</a> 後查看SourceCode發現並沒有上傳到第三方圖庫功能，於是趁著228連假空檔改寫了一下，新增儲存到Azure Storage Blob的功能也順便發了PR<br>但因只有支援Windows會不會被Merge進版本就不知道了</p>
-<p>而因尚未被Merge進版本，可以先利用我fork出來的 <a target="_blank" rel="noopener" href="https://github.com/w4560000/vscode-paste-image">修改版本</a> 自己產生 .vsix檔 來安裝到自己的VSCode上</p>
-<ol>
-<li><p>建立 VSCode擴充檔 .vsix </p>
-<pre><code class="PowerShell"># Clone專案
-clone https://github.com/w4560000/vscode-paste-image.git
+        <h1 id="紀錄-啟動-docker-container-常用指令"><a href="#紀錄-啟動-docker-container-常用指令" class="headerlink" title="紀錄 啟動 docker container 常用指令"></a>紀錄 啟動 docker container 常用指令</h1><blockquote>
+<p>docker run <a target="_blank" rel="noopener" href="https://docs.docker.com/engine/reference/commandline/run/">https://docs.docker.com/engine/reference/commandline/run/</a></p>
+</blockquote>
+<pre><code class="CMD"># 建立並啟動 rabbitmq 的 container
+docker run rabbitmq
 
-# 切至資料夾
-cd vscode-paste-image
+# 啟動container 以背景方式啟動
+docker run -d rabbitmq
 
-# install 專案所需套件
-npm install
+# 啟動container 以前台方式啟動
+docker run -it rabbitmq
 
-# 建立 .vsix檔
-npm i vsce -g
-vsce package
-</code></pre>
-</li>
-<li><p>安裝 VSCode擴充</p>
-<p> <img src="https://bingxiangstorage.blob.core.windows.net/blog/hexo-uploadImg-AzureStorage/2022-03-05-15-24-57.png"></p>
-<p> 安裝 vscode-paste-image-1.0.4.vsix &amp; 重啟 VSCode</p>
-</li>
-<li><p>設定 擴充套件</p>
-<p> 在VSCode setting.json 新增</p>
-<pre><code class="json">&#123;
-    &quot;pasteImage.path&quot;: &quot;$&#123;currentFileNameWithoutExt&#125;&quot;,
-    &quot;pasteImage.basePath&quot;: &quot;&quot;,
-    &quot;pasteImage.filePathConfirmInputBoxMode&quot;: &quot;onlyName&quot;,
-    &quot;pasteImage.azureIsUploadStorage&quot;: true,
-    &quot;pasteImage.azureStorageConnectionString&quot;: &quot;&#123;Your azureStorageConnectionString&#125;&quot;,
-    &quot;pasteImage.azureStorageContainerName&quot;: &quot;blog&quot;
-&#125;
-</code></pre>
-<p> 我修改的功能 新增三個參數<br> azureIsUploadStorage = 是否要上傳到AzureStorage (若為false，則跟原先套件功能一樣 圖檔儲存到本地)<br> azureStorageConnectionString = 你的AzureStorage儲存庫連線字串<br> azureStorageContainerName = 你的AzureStorage容器名稱 (若沒有容器 會建立新的)</p>
-<p> AzureStorageConnectionString位置<br> <img src="https://bingxiangstorage.blob.core.windows.net/blog/hexo-uploadImg-AzureStorage/2022-03-05-17-22-35.png"></p>
-</li>
-</ol>
-<h2 id="操作說明"><a href="#操作說明" class="headerlink" title="操作說明"></a>操作說明</h2><pre><code>1. 個人常使用的截圖方式為 Windows + Shift + S，此時會複製擷取的圖片到暫存的剪貼簿中
-2. 在VS Code 開啟 .md檔案，輸入 Ctrl + Alt + V 會自動上傳圖檔到AzureStorageBlob上，並生成Markdown語法
+# 啟動container 以前台方式啟動 並進入container裡的終端機
+docker run -it rabbitmq bin/bash
 
-    ```
-    ex: ![](https://bingxiangstorage.blob.core.windows.net/blog/hexo-uploadImg-AzureStorage/2022-03-05-17-18-45.png)
-    ```
+# 啟動container 隨機分配port號讓外界訪問 (大寫P)
+docker run -P rabbitmq
 
-    可以到Azure上 查看圖檔
-    ![](https://bingxiangstorage.blob.core.windows.net/blog/hexo-uploadImg-AzureStorage/2022-03-05-17-18-45.png)
+# 啟動container 讓外界以8000 port號 來訪問Container裡的8888 port號 (小寫p)
+docker run -p 8000:8888 rabbitmq
 
-3. 若檔名相同 會提示是否要覆蓋
 
-    ![](https://bingxiangstorage.blob.core.windows.net/blog/hexo-uploadImg-AzureStorage/2022-03-05-17-19-18.png)
+##### volume
+#p.s 若主機是windows環境，則格式為 //c/temp/hostvolume
+
+# 啟動container 掛載volume
+# /hostvolume = 主機絕對路徑, /containerVolume = container裡的絕對路徑
+docker run -it -v /hostvolume:/containervolume centos
+
+# 啟動container 掛載volume 並設置權限
+# ro = readOnly, container對這個volume只有讀取權限
+docker run -it -v /hostvolume:/containervolume:ro centos
+
+
+# 範例說明: 實現不同container共用相同volume
+# 1. 先建立container name = test01的 第一個測試container
+docker run -it -v /hostvolume:/containervolume --name test01 centos 
+# 2. 建立container name = test02的 第一個測試container ，並與test01 共享volume
+docker run -it --name test02 --volumes-from test01 centos 
 </code></pre>
 
       
