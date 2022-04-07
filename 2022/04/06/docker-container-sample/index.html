@@ -20,9 +20,9 @@
 <meta property="og:image" content="https://bingxiangstorage.blob.core.windows.net/blog/dotnet-core-CancellationTokenSource/2022-04-07-23-55-17.png">
 <meta property="og:image" content="https://bingxiangstorage.blob.core.windows.net/blog/dotnet-core-CancellationTokenSource/2022-04-07-23-58-06.png">
 <meta property="article:published_time" content="2022-04-07T15:25:31.000Z">
-<meta property="article:modified_time" content="2022-04-07T16:10:58.021Z">
+<meta property="article:modified_time" content="2022-04-07T16:17:14.119Z">
 <meta property="article:author" content="Leo Zheng">
-<meta property="article:tag" content="DotnetCore">
+<meta property="article:tag" content="MultiThread">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="https://bingxiangstorage.blob.core.windows.net/blog/dotnet-core-CancellationTokenSource/2022-04-07-23-31-12.png">
 
@@ -132,9 +132,9 @@
                         <ul class="sub hide">
                             
                                 <li>
-                                    <div data-rel="Backend<--->Dotnet">
+                                    <div data-rel="Backend<--->.Net">
                                         
-                                        Dotnet
+                                        .Net
                                         
                                             <small>(1
                                                 )</small>
@@ -144,9 +144,9 @@
                                 </li>
                             
                                 <li>
-                                    <div data-rel="Backend<--->DotnetCore">
+                                    <div data-rel="Backend<--->.NetCore">
                                         
-                                        DotnetCore
+                                        .NetCore
                                         
                                             <small>(1
                                                 )</small>
@@ -356,19 +356,15 @@
     <div class="tag-wrapper">
         
             <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>.Net</a>
+            </li>
+        
+            <li class="article-tag-list-item">
                 <i class="iconfont icon-tag"></i><a>Azure</a>
             </li>
         
             <li class="article-tag-list-item">
                 <i class="iconfont icon-tag"></i><a>Docker</a>
-            </li>
-        
-            <li class="article-tag-list-item">
-                <i class="iconfont icon-tag"></i><a>Dotnet</a>
-            </li>
-        
-            <li class="article-tag-list-item">
-                <i class="iconfont icon-tag"></i><a>DotnetCore</a>
             </li>
         
             <li class="article-tag-list-item">
@@ -383,6 +379,10 @@
                 <i class="iconfont icon-tag"></i><a>hexo</a>
             </li>
         
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>MultiThread</a>
+            </li>
+        
     </div>
 
 </div>
@@ -390,9 +390,9 @@
     
     <nav id="title-list-nav">
         
-        <a  class="全部文章 Backend DotnetCore "
+        <a  class="全部文章 Backend .NetCore "
            href="/2022/04/07/dotnet-core-CancellationTokenSource/"
-           data-tag="DotnetCore"
+           data-tag="MultiThread"
            data-author="" >
             <span class="post-title" title="紀錄一下 .Net Core CancellationTokenSource的應用">紀錄一下 .Net Core CancellationTokenSource的應用</span>
             <span class="post-date" title="2022-04-07 23:25:31">2022/04/07</span>
@@ -438,9 +438,9 @@
             <span class="post-date" title="2022-04-03 22:51:38">2022/04/03</span>
         </a>
         
-        <a  class="全部文章 Backend Dotnet "
+        <a  class="全部文章 Backend .Net "
            href="/2022/04/03/dotnet-remote-debugger/"
-           data-tag="Dotnet"
+           data-tag=".Net"
            data-author="" >
             <span class="post-title" title="遠端debug 掛載在IIS的服務站台">遠端debug 掛載在IIS的服務站台</span>
             <span class="post-date" title="2022-04-03 22:33:05">2022/04/03</span>
@@ -794,33 +794,33 @@ docker commit -a = &#39;leo&#39; -m = &#39;new rabbitmq&#39; myrabbitmq leo/myne
     
     
     .nav {
-        width: 542px;
+        width: 562px;
     }
     .nav.fullscreen {
-        margin-left: -542px;
+        margin-left: -562px;
     }
     .nav-left {
-        width: 120px;
+        width: 140px;
     }
     
     
     @media screen and (max-width: 1468px) {
         .nav {
-            width: 492px;
+            width: 512px;
         }
         .nav.fullscreen {
-            margin-left: -492px;
+            margin-left: -512px;
         }
         .nav-left {
-            width: 100px;
+            width: 120px;
         }
     }
     
     
     @media screen and (max-width: 1024px) {
         .nav {
-            width: 492px;
-            margin-left: -492px
+            width: 512px;
+            margin-left: -512px
         }
         .nav.fullscreen {
             margin-left: 0;
