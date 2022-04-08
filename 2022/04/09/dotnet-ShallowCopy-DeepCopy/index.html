@@ -2,9 +2,9 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <title>Hexo</title>
-  <meta name="keywords" content="">
-  <meta name="description" content="Hexo">
+  <title>.Net 淺複製與深複製 | Hexo</title>
+  <meta name="keywords" content=" .Net ">
+  <meta name="description" content=".Net 淺複製與深複製 | Hexo">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <meta name="description" content="在研究 Prototype Pattern時，碰到淺複製與深複製的差異，在此紀錄一下.Net在做物件複製時，有分為淺複製與深複製淺複製: 若原物件的Property有參考型別時，Reference會共用   若修改淺複製過後物件的參考型別Property，會影響到原物件，因是共用相同Reference深複製: 複製Value後，Reference會重新建立，不與原物件共用  實質型別MSDN參考">
 <meta property="og:type" content="article">
@@ -61,7 +61,7 @@
 
 
 <body>
-<aside class="nav mobile">
+<aside class="nav">
     <div class="nav-left">
         <a href="/"
    class="avatar_target">
@@ -550,12 +550,73 @@
         </div>
     </div>
 </aside>
-<div id="post" class="index">
+<div id="post">
     <div class="pjax">
-        <article class="index">
-            <div class="toc-ref">
+        <article id="post-dotnet-ShallowCopy-DeepCopy" class="article article-type-post" itemscope itemprop="blogPost">
     
-        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E9%97%9C%E6%96%BC%E6%88%91%E8%88%87%E8%A9%B2%E9%83%A8%E8%90%BD%E6%A0%BC"><span class="toc-text">關於我與該部落格</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%B0%A1%E4%BB%8B"><span class="toc-text">簡介</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%83%A8%E8%90%BD%E6%A0%BC"><span class="toc-text">部落格</span></a></li></ol></li></ol>
+        <h1 class="article-title">.Net 淺複製與深複製</h1>
+    
+    <div class="article-meta">
+        
+        
+        
+        <span class="book">
+            <i class="iconfont icon-category"></i>
+            
+            
+            <a  data-rel="Backend">Backend</a> > 
+            
+            <a  data-rel="Backend&lt;---&gt;.Net">.Net</a>
+            
+        </span>
+        
+        
+        <span class="tag">
+            <i class="iconfont icon-tag"></i>
+            
+            <a class="color5">.Net</a>
+            
+        </span>
+        
+    </div>
+    <div class="article-meta">
+        
+            發布時間 : <time class="date" title='更新時間: 2022-04-09 00:32:38'>2022-04-09 00:19</time>
+        
+    </div>
+    <div class="article-meta">
+        
+        <span>字數:806</span>
+        
+        
+        <span id="busuanzi_container_page_pv">
+            觀看數 :<span id="busuanzi_value_page_pv">
+                <span class="count-comment">
+                    <span class="spinner">
+                      <div class="cube1"></div>
+                      <div class="cube2"></div>
+                    </span>
+                </span>
+            </span>
+        </span>
+        
+        
+        <span class="top-comment" title="跳转至评论区">
+            <a href="#comments">
+                評論:<span class="count-comment">
+                    <span class="spinner">
+                      <div class="cube1"></div>
+                      <div class="cube2"></div>
+                    </span>
+                </span>
+            </a>
+        </span>
+        
+    </div>
+    
+    <div class="toc-ref">
+    
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AF%84%E4%BE%8BSample-LinqPad"><span class="toc-text">範例Sample LinqPad</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%A9%97%E8%AD%89"><span class="toc-text">驗證</span></a></li></ol>
     
 <style>
     .left-col .switch-btn,
@@ -568,16 +629,124 @@
     }
 </style>
 </div>
-            <h1 id="關於我與該部落格"><a href="#關於我與該部落格" class="headerlink" title="關於我與該部落格"></a>關於我與該部落格</h1><h2 id="簡介"><a href="#簡介" class="headerlink" title="簡介"></a>簡介</h2><p>我是一名.Net 開發工程師</p>
-<p>此部落格為軟體開發的學習筆記</p>
-<p>若文章內容有誤，歡迎留言指正，或來信告知 <a href="mailto:&#108;&#x65;&#x6f;&#122;&#104;&#101;&#110;&#103;&#48;&#x36;&#50;&#x31;&#x40;&#x67;&#x6d;&#97;&#105;&#108;&#46;&#x63;&#x6f;&#x6d;">&#108;&#x65;&#x6f;&#122;&#104;&#101;&#110;&#103;&#48;&#x36;&#50;&#x31;&#x40;&#x67;&#x6d;&#97;&#105;&#108;&#46;&#x63;&#x6f;&#x6d;</a></p>
-<h2 id="部落格"><a href="#部落格" class="headerlink" title="部落格"></a>部落格</h2><p>共發布：<code class="article_number"></code>篇文章， 共<code class="site_word_count"></code>字。</p>
-<p>部落格總訪問人數：<code class="site_uv"></code> 人次， 訪問量：<code class="site_pv"></code>次</p>
-<p>此部落格通過 <a target="_blank" rel="noopener" href="https://hexo.io/">Hexo</a> 建立，部屬在 <a target="_blank" rel="noopener" href="https://pages.github.com/">GitHub Pages</a>主題 <a target="_blank" rel="noopener" href="https://github.com/yelog/hexo-theme-3-hexo">3-hexo</a></p>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <blockquote>
+<p>在研究 Prototype Pattern時，碰到淺複製與深複製的差異，在此紀錄一下<br>.Net在做物件複製時，有分為淺複製與深複製<br>淺複製: 若原物件的Property有參考型別時，Reference會共用<br>   若修改淺複製過後物件的參考型別Property，會影響到原物件，因是共用相同Reference<br>深複製: 複製Value後，Reference會重新建立，不與原物件共用</p>
+</blockquote>
+<p><a target="_blank" rel="noopener" href="https://docs.microsoft.com/zh-tw/dotnet/csharp/language-reference/builtin-types/value-types">實質型別MSDN</a><br><a target="_blank" rel="noopener" href="https://docs.microsoft.com/zh-tw/dotnet/csharp/language-reference/keywords/reference-types">參考型別MSDN</a><br><img src="https://bingxiangstorage.blob.core.windows.net/blog/dotnet-ShallowCopy-DeepCopy/2022-04-09-00-27-06.png"></p>
+<h2 id="範例Sample-LinqPad"><a href="#範例Sample-LinqPad" class="headerlink" title="範例Sample LinqPad"></a>範例Sample LinqPad</h2><pre><code class="CSharp">void Main()
+&#123;
+    Console.WriteLine(&quot;驗證淺複製:&quot;);
+    ShallowCopy s1 = new ShallowCopy(&quot;a123&quot;, 123, new List&lt;int&gt; &#123; 9, 8, 7 &#125;, new ReferenceClass(1));
+    ShallowCopy s2 = s1.Clone();
+    Console.WriteLine($&quot;s1.Id: &#123;s1.Id&#125; , s1.Number: &#123;s1.Number&#125; , s1.phonesCount: &#123;s1.Phones.Count&#125; , s1.ReferenceClass: &#123;s1.ReferenceClass.a&#125;&quot;);
+    Console.WriteLine($&quot;s2.Id: &#123;s2.Id&#125; , s2.Number: &#123;s2.Number&#125; , s2.phonesCount: &#123;s2.Phones.Count&#125; , s2.ReferenceClass: &#123;s2.ReferenceClass.a&#125;&quot;);
+    s2.Id = &quot;b456&quot;;
+    s2.Number = 456;
+    s2.Phones.Clear();
+    s2.ReferenceClass.a = 3;
+    Console.WriteLine($&quot;s1.Id: &#123;s1.Id&#125; , s1.Number: &#123;s1.Number&#125; , s1.phonesCount: &#123;s1.Phones.Count&#125; , s1.ReferenceClass: &#123;s1.ReferenceClass.a&#125;&quot;);
+    Console.WriteLine($&quot;s2.Id: &#123;s2.Id&#125; , s2.Number: &#123;s2.Number&#125; , s2.phonesCount: &#123;s2.Phones.Count&#125; , s2.ReferenceClass: &#123;s2.ReferenceClass.a&#125;&quot;);
+    Console.WriteLine($&quot;s1 :&#123;s1.GetHashCode()&#125; s2 :&#123;s2.GetHashCode()&#125;&quot;);
+    
+    Console.WriteLine(&quot;------------------------------------------------------------------------------------&quot;);
+    
+    Console.WriteLine(&quot;驗證深複製:&quot;);
+    DeepCopy d1 = new DeepCopy(&quot;a123&quot;, 123, new List&lt;int&gt; &#123; 9, 8, 7 &#125;, new ReferenceClass(1));
+    DeepCopy d2 = (DeepCopy)d1.Clone();
+    Console.WriteLine($&quot;d1.Id: &#123;d1.Id&#125; , d1.Number: &#123;d1.Number&#125; , d1.phonesCount: &#123;d1.Phones.Count&#125; , d1.ReferenceClass: &#123;d1.ReferenceClass.a&#125;&quot;);
+    Console.WriteLine($&quot;d2.Id: &#123;d2.Id&#125; , d2.Number: &#123;d2.Number&#125; , d2.phonesCount: &#123;d2.Phones.Count&#125; , d2.ReferenceClass: &#123;d2.ReferenceClass.a&#125;&quot;);
+    d2.Id = &quot;b456&quot;;
+    d2.Number = 456;
+    d2.Phones.Clear();
+    d2.ReferenceClass.a = 3;
+    Console.WriteLine($&quot;d1.Id: &#123;d1.Id&#125; , d1.Number: &#123;d1.Number&#125; , d1.phonesCount: &#123;d1.Phones.Count&#125; , d1.ReferenceClass: &#123;d1.ReferenceClass.a&#125;&quot;);
+    Console.WriteLine($&quot;d2.Id: &#123;d2.Id&#125; , d2.Number: &#123;d2.Number&#125; , d2.phonesCount: &#123;d2.Phones.Count&#125; , d2.ReferenceClass: &#123;d2.ReferenceClass.a&#125;&quot;);
+    Console.WriteLine($&quot;d1 :&#123;d1.GetHashCode()&#125; d2 :&#123;d2.GetHashCode()&#125;&quot;);
+&#125;
 
-        </article>
-        
-        
+// 模擬參考型別Class
+[Serializable]
+public class ReferenceClass
+&#123;
+    public ReferenceClass(int a)
+    &#123;
+        this.a = a;
+    &#125;
+    
+    public int a &#123; get; set; &#125;
+&#125;
+
+// 淺複製
+public class ShallowCopy
+&#123;
+  // Constructors
+  public ShallowCopy(string id, int number, List&lt;int&gt; phones, ReferenceClass referenceClass)
+  &#123;
+    this.Id = id;
+    this.Number = number;
+    this.Phones = phones;
+    this.ReferenceClass = referenceClass;
+  &#125;
+
+  public string Id &#123; get;set; &#125;
+  public int Number &#123; get;set; &#125;
+  public List&lt;int&gt; Phones &#123; get; set; &#125;
+  public ReferenceClass ReferenceClass &#123; get; set; &#125;
+  
+  
+  public ShallowCopy Clone()
+  &#123;
+      return (ShallowCopy)this.MemberwiseClone();
+  &#125;
+&#125;
+//-------------------------------------------------------------------------------------------------------------------------------
+// 深複製
+[Serializable]
+public class DeepCopy
+&#123;
+  // Constructors
+  public DeepCopy(string id, int number, List&lt;int&gt; phones, ReferenceClass referenceClass)
+  &#123;
+    this.Id = id;
+    this.Number = number;
+    this.Phones = phones;
+    this.ReferenceClass = referenceClass;
+  &#125;
+
+  public string Id &#123; get;set; &#125;
+  public int Number &#123; get;set; &#125;
+  public List&lt;int&gt; Phones &#123; get; set; &#125;
+  public ReferenceClass ReferenceClass &#123; get; set; &#125;
+ 
+  public DeepCopy Clone()
+  &#123;
+      using (var memory = new System.IO.MemoryStream())
+    &#123;
+        System.Runtime.Serialization.IFormatter formatter = new System.Runtime.Serialization.Formatters.Binary.BinaryFormatter();
+        formatter.Serialize(memory, this);
+        memory.Seek(0, SeekOrigin.Begin);
+        return formatter.Deserialize(memory) as DeepCopy;
+    &#125;
+  &#125;
+&#125;
+</code></pre>
+<h2 id="驗證"><a href="#驗證" class="headerlink" title="驗證"></a>驗證</h2><p>複製過後在清空 型別為List<int> phonesCount的參考型別屬性時<br>淺複製的原物件連帶被影響，而深複製則不受影響，因Reference不同<br><img src="https://bingxiangstorage.blob.core.windows.net/blog/dotnet-ShallowCopy-DeepCopy/2022-04-09-00-28-58.png"></p>
+<blockquote>
+<p>PS 深複製不一定要用序列化方式，因為類別還要宣告[Serializable]的屬性比較麻煩<br>其他深複製方式可參考 <a target="_blank" rel="noopener" href="https://dotblogs.com.tw/yc421206/2016/12/14/c_scharp_clone_object">其他大大的文章</a></p>
+</blockquote>
+
+      
+       <hr><span style="font-style: italic;color: gray;"> 轉載請註明來源，若有任何錯誤或表達不清楚的地方，歡迎在下方評論區留言，也可以來信至 leozheng0621@gmail.com </span>
+    </div>
+</article>
+
+
+
+
+
     <div id="comments"></div>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css">
 
@@ -599,6 +768,13 @@
 </script>
 
 
+
+
+    
+
+
+
+
     </div>
     <div class="copyright">
         <p class="footer-entry">
@@ -607,11 +783,11 @@
 <p class="footer-entry">Built with <a href="https://hexo.io/" target="_blank">Hexo</a> and <a href="https://github.com/yelog/hexo-theme-3-hexo" target="_blank">3-hexo</a> theme</p>
 
     </div>
-</div>
-<div class="full-toc">
-    <button class="full" data-title="切换全屏 快捷键 s"><span class="min "></span></button>
+    <div class="full-toc">
+        <button class="full" data-title="切换全屏 快捷键 s"><span class="min "></span></button>
 <a class="" id="rocket" ></a>
 
+    </div>
 </div>
 
 </body>
