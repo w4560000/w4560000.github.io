@@ -6,25 +6,21 @@
   <meta name="keywords" content=" MultiThread ">
   <meta name="description" content="紀錄一下 .Net Core CancellationTokenSource的應用 | Hexo">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-<meta name="description" content="紀錄一下 .Net Core CancellationTokenSource的應用 可用來 控制多執行序停止和中斷和Cancel後執行的callback function  建立類別的三種多載Construct 第二種跟第三種多載的建構子參數是設定 多久後會取消Task， 單位為 millisecond(毫秒) 與 TimeSpanIsCancellationRequested 會在delay時間">
+<meta name="description" content="設計模式-原型模式 (Prototype Pattern) 類型: Creational目的: 透過原型物件來複製出新物件  類別圖 使用情境當原物件的建立過程繁瑣或是結構複雜，需要快速複製出新物件時，可使用原型模式來達到目的 以C#來說會先建立一個抽象類別，繼承ICloneable介面 &#x2F;&#x2F; &#x2F;&#x2F; 摘要: &#x2F;&#x2F;     Supports cloning, which creates a new">
 <meta property="og:type" content="article">
-<meta property="og:title" content="紀錄一下 .Net Core CancellationTokenSource的應用">
-<meta property="og:url" content="http://example.com/2022/04/07/dotnet-core-CancellationTokenSource/index.html">
+<meta property="og:title" content="設計模式-原型模式 (Prototype Pattern)">
+<meta property="og:url" content="http://example.com/2022/04/08/dotnet-designPattern-protoType/index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="紀錄一下 .Net Core CancellationTokenSource的應用 可用來 控制多執行序停止和中斷和Cancel後執行的callback function  建立類別的三種多載Construct 第二種跟第三種多載的建構子參數是設定 多久後會取消Task， 單位為 millisecond(毫秒) 與 TimeSpanIsCancellationRequested 會在delay時間">
+<meta property="og:description" content="設計模式-原型模式 (Prototype Pattern) 類型: Creational目的: 透過原型物件來複製出新物件  類別圖 使用情境當原物件的建立過程繁瑣或是結構複雜，需要快速複製出新物件時，可使用原型模式來達到目的 以C#來說會先建立一個抽象類別，繼承ICloneable介面 &#x2F;&#x2F; &#x2F;&#x2F; 摘要: &#x2F;&#x2F;     Supports cloning, which creates a new">
 <meta property="og:locale" content="zh_TW">
-<meta property="og:image" content="https://bingxiangstorage.blob.core.windows.net/blog/dotnet-core-CancellationTokenSource/2022-04-07-23-31-12.png">
-<meta property="og:image" content="https://bingxiangstorage.blob.core.windows.net/blog/dotnet-core-CancellationTokenSource/2022-04-07-23-36-42.png">
-<meta property="og:image" content="https://bingxiangstorage.blob.core.windows.net/blog/dotnet-core-CancellationTokenSource/2022-04-07-23-39-08.png">
-<meta property="og:image" content="https://bingxiangstorage.blob.core.windows.net/blog/dotnet-core-CancellationTokenSource/2022-04-07-23-52-39.png">
-<meta property="og:image" content="https://bingxiangstorage.blob.core.windows.net/blog/dotnet-core-CancellationTokenSource/2022-04-07-23-55-17.png">
-<meta property="og:image" content="https://bingxiangstorage.blob.core.windows.net/blog/dotnet-core-CancellationTokenSource/2022-04-07-23-58-06.png">
-<meta property="article:published_time" content="2022-04-07T15:25:31.000Z">
-<meta property="article:modified_time" content="2022-04-07T16:17:14.119Z">
+<meta property="og:image" content="https://bingxiangstorage.blob.core.windows.net/blog/dotnet-designPattern-protoType/2022-04-08-23-44-48.png">
+<meta property="og:image" content="https://bingxiangstorage.blob.core.windows.net/blog/dotnet-designPattern-protoType/2022-04-09-00-01-26.png">
+<meta property="article:published_time" content="2022-04-08T15:42:58.000Z">
+<meta property="article:modified_time" content="2022-04-08T16:15:06.607Z">
 <meta property="article:author" content="Leo Zheng">
-<meta property="article:tag" content="MultiThread">
+<meta property="article:tag" content="DesignPattern">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://bingxiangstorage.blob.core.windows.net/blog/dotnet-core-CancellationTokenSource/2022-04-07-23-31-12.png">
+<meta name="twitter:image" content="https://bingxiangstorage.blob.core.windows.net/blog/dotnet-designPattern-protoType/2022-04-08-23-44-48.png">
 
 
 <link rel="icon" href="/img/avatar.jpg">
@@ -113,7 +109,7 @@
     <li>
         <div class="all active" data-rel="全部文章">全部文章
             
-                <small>(14)</small>
+                <small>(15)</small>
             
         </div>
     </li>
@@ -125,7 +121,7 @@
                         <i class="fold iconfont icon-right"></i>
                         
                         Backend
-                        <small>(2)</small>
+                        <small>(3)</small>
                         
                     </div>
                     
@@ -147,6 +143,18 @@
                                     <div data-rel="Backend<--->.NetCore">
                                         
                                         .NetCore
+                                        
+                                            <small>(1
+                                                )</small>
+                                        
+                                    </div>
+                                    
+                                </li>
+                            
+                                <li>
+                                    <div data-rel="Backend<--->DesignPattern">
+                                        
+                                        DesignPattern
                                         
                                             <small>(1
                                                 )</small>
@@ -287,6 +295,10 @@
             
         
     
+        
+            
+        
+    
 </ul>
 <div class="left-bottom">
     <div class="menus">
@@ -309,8 +321,8 @@
         
     </div>
 </div>
-<input type="hidden" id="yelog_site_posts_number" value="14">
-<input type="hidden" id="yelog_site_word_count" value="6.3k">
+<input type="hidden" id="yelog_site_posts_number" value="15">
+<input type="hidden" id="yelog_site_word_count" value="7.1k">
 <div style="display: none">
     <span id="busuanzi_value_site_uv"></span>
     <span id="busuanzi_value_site_pv"></span>
@@ -364,6 +376,10 @@
             </li>
         
             <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>DesignPattern</a>
+            </li>
+        
+            <li class="article-tag-list-item">
                 <i class="iconfont icon-tag"></i><a>Docker</a>
             </li>
         
@@ -389,6 +405,14 @@
 
     
     <nav id="title-list-nav">
+        
+        <a  class="全部文章 Backend DesignPattern "
+           href="/2022/04/08/dotnet-designPattern-protoType/"
+           data-tag="DesignPattern"
+           data-author="" >
+            <span class="post-title" title="設計模式-原型模式 (Prototype Pattern)">設計模式-原型模式 (Prototype Pattern)</span>
+            <span class="post-date" title="2022-04-08 23:42:58">2022/04/08</span>
+        </a>
         
         <a  class="全部文章 Backend .NetCore "
            href="/2022/04/07/dotnet-core-CancellationTokenSource/"
