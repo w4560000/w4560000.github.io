@@ -2,9 +2,9 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <title>.Net Core CancellationTokenSource的應用 | Hexo</title>
-  <meta name="keywords" content=" MultiThread ">
-  <meta name="description" content=".Net Core CancellationTokenSource的應用 | Hexo">
+  <title>Azure Devops 設定 Service Connections | Hexo</title>
+  <meta name="keywords" content=" Azure ">
+  <meta name="description" content="Azure Devops 設定 Service Connections | Hexo">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <meta name="description" content="在研究 Prototype Pattern時，碰到淺複製與深複製的差異，在此紀錄一下.Net在做物件複製時，有分為淺複製與深複製淺複製: 若原物件的Property有參考型別時，Reference會共用   若修改淺複製過後物件的參考型別Property，會影響到原物件，因是共用相同Reference深複製: 複製Value後，Reference會重新建立，不與原物件共用  實質型別MSDN參考">
 <meta property="og:type" content="article">
@@ -560,9 +560,9 @@
 </aside>
 <div id="post">
     <div class="pjax">
-        <article id="post-dotnet-core-CancellationTokenSource" class="article article-type-post" itemscope itemprop="blogPost">
+        <article id="post-azure-devops-service-connections" class="article article-type-post" itemscope itemprop="blogPost">
     
-        <h1 class="article-title">.Net Core CancellationTokenSource的應用</h1>
+        <h1 class="article-title">Azure Devops 設定 Service Connections</h1>
     
     <div class="article-meta">
         
@@ -572,9 +572,9 @@
             <i class="iconfont icon-category"></i>
             
             
-            <a  data-rel="Backend">Backend</a> > 
+            <a  data-rel="Devops">Devops</a> > 
             
-            <a  data-rel="Backend&lt;---&gt;.NetCore">.NetCore</a>
+            <a  data-rel="Devops&lt;---&gt;Azure">Azure</a>
             
         </span>
         
@@ -582,19 +582,19 @@
         <span class="tag">
             <i class="iconfont icon-tag"></i>
             
-            <a class="color2">MultiThread</a>
+            <a class="color1">Azure</a>
             
         </span>
         
     </div>
     <div class="article-meta">
         
-            發布時間 : <time class="date" title='更新時間: 2022-04-09 00:32:15'>2022-04-07 23:25</time>
+            發布時間 : <time class="date" title='更新時間: 2022-04-09 23:07:57'>2022-04-09 23:01</time>
         
     </div>
     <div class="article-meta">
         
-        <span>字數:1.1k</span>
+        <span>字數:15</span>
         
         
         <span id="busuanzi_container_page_pv">
@@ -624,7 +624,7 @@
     
     <div class="toc-ref">
     
-        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%BB%BA%E7%AB%8B%E9%A1%9E%E5%88%A5%E7%9A%84%E4%B8%89%E7%A8%AE%E5%A4%9A%E8%BC%89Construct"><span class="toc-text">建立類別的三種多載Construct</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%88%A4%E6%96%B7%E8%A9%B2-CancellationTokenSource-%E6%98%AF%E5%90%A6%E8%A2%AB%E5%8F%96%E6%B6%88%E7%9A%84Property-IsCancellationRequested"><span class="toc-text">判斷該 CancellationTokenSource 是否被取消的Property IsCancellationRequested</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%BB%BA%E7%AB%8B%E5%85%B7%E6%9C%89%E7%9B%A3%E8%81%BD%E7%94%A8%E9%80%94%E7%9A%84CancellationTokenSource"><span class="toc-text">建立具有監聽用途的CancellationTokenSource</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Cancel-%E6%8E%89-CancellationTokenSource"><span class="toc-text">Cancel 掉 CancellationTokenSource</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%9A%E6%99%82-Cancel-%E6%8E%89-CancellationTokenSource"><span class="toc-text">定時 Cancel 掉 CancellationTokenSource</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Dispose-CancellationTokenSource"><span class="toc-text">Dispose CancellationTokenSource</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%A8%8B%E5%BC%8F%E7%A2%BC%E5%85%A8%E6%96%87-%E5%8F%AF%E5%8F%83%E8%80%83-https-github-com-w4560000-CSharp-Practice-blob-master-AsyncTask-CancellationTokenSourceAPI-Program-cs"><span class="toc-text">程式碼全文 可參考 https:&#x2F;&#x2F;github.com&#x2F;w4560000&#x2F;CSharp_Practice&#x2F;blob&#x2F;master&#x2F;AsyncTask&#x2F;CancellationTokenSourceAPI&#x2F;Program.cs</span></a></li></ol>
+        
     
 <style>
     .left-col .switch-btn,
@@ -641,221 +641,10 @@
     <div class="article-entry" itemprop="articleBody">
       
         <blockquote>
-<p>可用來 控制多執行序停止和中斷和Cancel後執行的callback function<br><img src="https://bingxiangstorage.blob.core.windows.net/blog/dotnet-core-CancellationTokenSource/2022-04-07-23-31-12.png"></p>
+<p>在Azure Devops 要deploy到 Azure時 要先設定好 Service Connections</p>
 </blockquote>
-<h2 id="建立類別的三種多載Construct"><a href="#建立類別的三種多載Construct" class="headerlink" title="建立類別的三種多載Construct"></a>建立類別的三種多載Construct</h2><blockquote>
-<p>第二種跟第三種多載的建構子參數是設定 多久後會取消Task， 單位為 millisecond(毫秒) 與 TimeSpan<br>IsCancellationRequested 會在delay時間過後為true，並執行Token中Register的Action。 (Token的Register 可以註冊 工作取消後會執行的動作)</p>
-</blockquote>
-<pre><code class="CSharp">public CancellationTokenSource();
-public CancellationTokenSource(int millisecondsDelay);
-public CancellationTokenSource(TimeSpan delay);
-</code></pre>
-<h2 id="判斷該-CancellationTokenSource-是否被取消的Property-IsCancellationRequested"><a href="#判斷該-CancellationTokenSource-是否被取消的Property-IsCancellationRequested" class="headerlink" title="判斷該 CancellationTokenSource 是否被取消的Property IsCancellationRequested"></a>判斷該 CancellationTokenSource 是否被取消的Property IsCancellationRequested</h2><blockquote>
-<p>當被Cancel掉時，該值為true</p>
-</blockquote>
-<pre><code class="CSharp">public bool IsCancellationRequested &#123; get; &#125;
-</code></pre>
-<h2 id="建立具有監聽用途的CancellationTokenSource"><a href="#建立具有監聽用途的CancellationTokenSource" class="headerlink" title="建立具有監聽用途的CancellationTokenSource"></a>建立具有監聽用途的CancellationTokenSource</h2><blockquote>
-<p>該CancellationTokenSource的狀態是否被Cancel 是由 傳入的CancellationToken的狀態來決定，當傳入的任一CancellationToken被Cancel掉時，該CancellationTokenSource也同樣被Cancel掉。</p>
-</blockquote>
-<pre><code class="CSharp">public static CancellationTokenSource CreateLinkedTokenSource(CancellationToken token1, CancellationToken token2);
-public static CancellationTokenSource CreateLinkedTokenSource(params CancellationToken[] tokens);
-</code></pre>
-<pre><code class="CSharp">/// &lt;summary&gt;
-/// 建立有連結的CancellationTokenSource
-/// 當用來建立的任一CancellationTokenSource被Cancel掉時，該LinkedTokenSource也同樣被Cancel掉
-///
-/// 測試呼叫 CreateLinkedTokenSource
-/// &lt;/summary&gt;
-public static void CreateLinkedTokenSource()
-&#123;
-    CancellationTokenSource notCancellationTokenSource = new CancellationTokenSource();
-    CancellationTokenSource cancellationTokenSource = new CancellationTokenSource();
+<p><img src="https://bingxiangstorage.blob.core.windows.net/blog/azure-devops-service-connections/2022-04-09-23-07-16.png"><br><img src="https://bingxiangstorage.blob.core.windows.net/blog/azure-devops-service-connections/2022-04-09-23-07-45.png"><br><img src="https://bingxiangstorage.blob.core.windows.net/blog/azure-devops-service-connections/2022-04-09-23-07-53.png"></p>
 
-    CancellationTokenSource test = CancellationTokenSource.CreateLinkedTokenSource(notCancellationTokenSource.Token, cancellationTokenSource.Token);
-    cancellationTokenSource.Cancel();
-
-    Console.WriteLine($&quot;notCancellationTokenSource類別是否被Cancel了 = &#123;notCancellationTokenSource.IsCancellationRequested&#125;&quot;);
-    Console.WriteLine($&quot;cancellationTokenSource類別是否被Cancel了 = &#123;cancellationTokenSource.IsCancellationRequested&#125;&quot;);
-    Console.WriteLine($&quot;該CancellationTokenSource類別是否被Cancel了 = &#123;test.IsCancellationRequested&#125;&quot;);
-&#125;
-</code></pre>
-<p><img src="https://bingxiangstorage.blob.core.windows.net/blog/dotnet-core-CancellationTokenSource/2022-04-07-23-36-42.png"></p>
-<h2 id="Cancel-掉-CancellationTokenSource"><a href="#Cancel-掉-CancellationTokenSource" class="headerlink" title="Cancel 掉 CancellationTokenSource"></a>Cancel 掉 CancellationTokenSource</h2><blockquote>
-<p>當CancellationTokenSource被Cancel掉時，已經執行中的Task並不會中斷<br>必須要自行在委派中判斷CancellationTokenSource.IsCancellationRequested or CancellationTokenSource.Token.IsCancellationRequested 是否為true<br>再處理中斷Task後的動作。</p>
-</blockquote>
-<pre><code class="CSharp">public void Cancel();
-public void Cancel(bool throwOnFirstException);
-</code></pre>
-<pre><code class="CSharp">/// &lt;summary&gt;
-/// cancel掉Task
-///
-/// 測試呼叫 Cancel()
-/// &lt;/summary&gt;
-public static void Cancel()
-&#123;
-    stopwatch.Stop();
-    stopwatch.Reset();
-    stopwatch.Start();
-
-    CancellationTokenSource cancellationTokenSource = new CancellationTokenSource();
-    CancellationToken a = new CancellationToken();
-    Task.Run(() =&gt;
-    &#123;
-        while (true)
-        &#123;
-            Thread.Sleep(500);
-
-            if (cancellationTokenSource.Token.IsCancellationRequested)
-            &#123;
-                Console.WriteLine($&quot;&#123;stopwatch.ElapsedMilliseconds&#125; ms Task have canceled!&#123;cancellationTokenSource.IsCancellationRequested&#125;&quot;);
-
-                return;
-            &#125;
-            else
-                Console.WriteLine($&quot;&#123;stopwatch.ElapsedMilliseconds&#125; ms Task Running!&#123;cancellationTokenSource.IsCancellationRequested&#125;&quot;);
-        &#125;
-    &#125;, cancellationTokenSource.Token);
-
-    Thread.Sleep(5000);
-    cancellationTokenSource.Cancel();
-&#125;
-</code></pre>
-<p><img src="https://bingxiangstorage.blob.core.windows.net/blog/dotnet-core-CancellationTokenSource/2022-04-07-23-39-08.png"></p>
-<pre><code class="CSharp">/// &lt;summary&gt;
-/// 透過cancellationTokenSource設定Task被cancel掉所要執行的delegate
-///
-/// 測試呼叫 Cancel() &amp; Cancel(bool throwOnFirstException)
-/// 呼叫 Cancel() 會執行 Cancel(false)
-/// 該boolean參數 用來判斷當有Register被Cancel掉要執行的動作噴Exception時
-/// 若為是，代表直接噴Exception，不管其餘動作是否執行完畢。
-/// 若為否，則會執行完其餘Register的動作之後才會噴Exception。
-/// &lt;/summary&gt;
-public static void Cancel_Register()
-&#123;
-    stopwatch.Stop();
-    stopwatch.Reset();
-    stopwatch.Start();
-
-    try
-    &#123;
-        CancellationTokenSource cancellationTokenSource = new CancellationTokenSource();
-
-        // 註冊的動作是LIFO，最晚註冊的開始執行
-        cancellationTokenSource.Token.Register(() =&gt; Console.WriteLine($&quot;&#123;stopwatch.ElapsedMilliseconds&#125; ms Task Canceled1&quot;));
-        cancellationTokenSource.Token.Register(() =&gt; Console.WriteLine($&quot;&#123;stopwatch.ElapsedMilliseconds&#125; ms Task Canceled2&quot;));
-        cancellationTokenSource.Token.Register(() =&gt; Console.WriteLine($&quot;&#123;stopwatch.ElapsedMilliseconds&#125; ms Task Canceled3&quot;));
-        cancellationTokenSource.Token.Register(() =&gt; Console.WriteLine($&quot;&#123;stopwatch.ElapsedMilliseconds&#125; ms Task Canceled4&quot;));
-        cancellationTokenSource.Token.Register(() =&gt; throw new Exception($&quot;&#123;stopwatch.ElapsedMilliseconds&#125; ms Task Canceled&quot;));
-        cancellationTokenSource.Token.Register(() =&gt; Console.WriteLine($&quot;&#123;stopwatch.ElapsedMilliseconds&#125; ms Task Canceled5&quot;));
-
-        Task.Run(() =&gt;
-        &#123;
-            while (true)
-            &#123;
-                Thread.Sleep(500);
-                if (!cancellationTokenSource.IsCancellationRequested)
-                    Console.WriteLine($&quot;&#123;stopwatch.ElapsedMilliseconds&#125; ms Task Running!&quot;);
-            &#125;
-        &#125;, cancellationTokenSource.Token);
-
-        Thread.Sleep(5000);
-        Console.WriteLine($&quot;&#123;stopwatch.ElapsedMilliseconds&#125; ms 執行 Task Cancel(false)&quot;);
-        cancellationTokenSource.Cancel();
-        //cancellationTokenSource.Cancel(true);
-    &#125;
-    catch (Exception ex)
-    &#123;
-        Console.WriteLine($&quot;發生異常, Error:&#123;ex.Message&#125;&quot;);
-    &#125;
-&#125;
-</code></pre>
-<blockquote>
-<p>執行 Cancel() 也等於 Cancel(false)，當Cancel後執行的Register有異常時會執行完所有Register<br><img src="https://bingxiangstorage.blob.core.windows.net/blog/dotnet-core-CancellationTokenSource/2022-04-07-23-52-39.png"></p>
-</blockquote>
-<blockquote>
-<p>執行 Cancel(true)，當Cancel後執行的Register有發生異常時，其餘的Register則不會執行<br><img src="https://bingxiangstorage.blob.core.windows.net/blog/dotnet-core-CancellationTokenSource/2022-04-07-23-55-17.png"></p>
-</blockquote>
-<h2 id="定時-Cancel-掉-CancellationTokenSource"><a href="#定時-Cancel-掉-CancellationTokenSource" class="headerlink" title="定時 Cancel 掉 CancellationTokenSource"></a>定時 Cancel 掉 CancellationTokenSource</h2><blockquote>
-<p>有定時功能的Cancel</p>
-</blockquote>
-<pre><code class="CSharp">public void CancelAfter(int millisecondsDelay);
-public void CancelAfter(TimeSpan delay);
-</code></pre>
-<pre><code class="CSharp">/// &lt;summary&gt;
-/// 透過cancellationTokenSource設定Task幾秒後會cancel掉
-///
-/// 測試呼叫 CancelAfter(int millisecondsDelay) &amp; CancelAfter(TimeSpan delay)
-/// millisecondsDelay 與 delay，代表多久要取消該Task
-/// &lt;/summary&gt;
-public static void CancelAfter()
-&#123;
-    stopwatch.Stop();
-    stopwatch.Reset();
-    stopwatch.Start();
-
-    CancellationTokenSource cancellationTokenSource = new CancellationTokenSource();
-
-    Task.Run(() =&gt;
-    &#123;
-        while (true)
-        &#123;
-            Thread.Sleep(500);
-            if (!cancellationTokenSource.IsCancellationRequested)
-                Console.WriteLine($&quot;&#123;stopwatch.ElapsedMilliseconds&#125; ms Task Running!&quot;);
-            else
-                Console.WriteLine($&quot;&#123;stopwatch.ElapsedMilliseconds&#125; ms Task have canceled!&quot;);
-        &#125;
-    &#125;, cancellationTokenSource.Token);
-
-    //cancellationTokenSource.CancelAfter(3000);
-    cancellationTokenSource.CancelAfter(TimeSpan.FromSeconds(5));
-&#125;
-</code></pre>
-<p><img src="https://bingxiangstorage.blob.core.windows.net/blog/dotnet-core-CancellationTokenSource/2022-04-07-23-58-06.png"></p>
-<h2 id="Dispose-CancellationTokenSource"><a href="#Dispose-CancellationTokenSource" class="headerlink" title="Dispose CancellationTokenSource"></a>Dispose CancellationTokenSource</h2><blockquote>
-<p>當CancellationTokenSource被Dispose掉，則設定的Register和Cancel Timer都被清除<br>且只剩IsCancellationRequested可使用，若繼續呼叫Cancel() 則會噴Exception</p>
-</blockquote>
-<pre><code class="CSharp">public void Dispose();
-</code></pre>
-<pre><code class="CSharp">/// &lt;summary&gt;
-/// 測試呼叫 Dispose
-/// 當CancellationTokenSource被Dispose掉，代表先前設定的Register和Cancel Timer都被清除
-/// &lt;/summary&gt;
-public static void Dispose()
-&#123;
-    stopwatch.Stop();
-    stopwatch.Reset();
-    stopwatch.Start();
-
-    CancellationTokenSource cancellationTokenSource = new CancellationTokenSource();
-
-    Task.Run(() =&gt;
-    &#123;
-        while (true)
-        &#123;
-            Thread.Sleep(500);
-            if (!cancellationTokenSource.IsCancellationRequested)
-                Console.WriteLine($&quot;&#123;stopwatch.ElapsedMilliseconds&#125; ms Task Running!&quot;);
-            else
-                Console.WriteLine($&quot;&#123;stopwatch.ElapsedMilliseconds&#125; ms Task have canceled!&quot;);
-        &#125;
-    &#125;, cancellationTokenSource.Token);
-
-    cancellationTokenSource.Token.Register(() =&gt; Console.WriteLine($&quot;&#123;stopwatch.ElapsedMilliseconds&#125; ms Task Register&quot;));
-
-    // 5秒後Cancel掉Task
-    cancellationTokenSource.CancelAfter(TimeSpan.FromSeconds(5));
-
-    // 3秒後dispose掉CancellationTokenSource，清除掉CancelAfter的timer和Register動作
-    Thread.Sleep(3000);
-    cancellationTokenSource.Dispose();
-
-    // 被dispose掉後除了IsCancellationRequested之外  其餘方法無法再調用，會噴Exception
-    //cancellationTokenSource.CancelAfter(TimeSpan.FromSeconds(2));
-&#125;
-</code></pre>
-<h2 id="程式碼全文-可參考-https-github-com-w4560000-CSharp-Practice-blob-master-AsyncTask-CancellationTokenSourceAPI-Program-cs"><a href="#程式碼全文-可參考-https-github-com-w4560000-CSharp-Practice-blob-master-AsyncTask-CancellationTokenSourceAPI-Program-cs" class="headerlink" title="程式碼全文 可參考 https://github.com/w4560000/CSharp_Practice/blob/master/AsyncTask/CancellationTokenSourceAPI/Program.cs"></a>程式碼全文 可參考 <a target="_blank" rel="noopener" href="https://github.com/w4560000/CSharp_Practice/blob/master/AsyncTask/CancellationTokenSourceAPI/Program.cs">https://github.com/w4560000/CSharp_Practice/blob/master/AsyncTask/CancellationTokenSourceAPI/Program.cs</a></h2>
       
        <hr><span style="font-style: italic;color: gray;"> 轉載請註明來源，若有任何錯誤或表達不清楚的地方，歡迎在下方評論區留言，也可以來信至 leozheng0621@gmail.com </span>
     </div>
