@@ -6,27 +6,27 @@
   <meta name="keywords" content=" Azure ">
   <meta name="description" content="Azure Devops 設定 Service Connections | Hexo">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-<meta name="description" content="開發環境 Windows 10 (home 20H2)  本文範例流程 以 Cerbot 建立免費 TLS 憑證 GCP 的 Cloud DNS 協助完成 DNS-01 挑戰 (可由其他 DNS 服務代替) 透過 openssl 工具轉換privkey.pem &amp; cert.pem 成 .pfx檔 (IIS憑證檔) 匯入.pfx憑證檔 至 IIS  certbot 建立TLS憑證 到 Ce">
+<meta name="description" content="Cloud Domains 是 GCP 的 網域代管服務相關文件: https:&#x2F;&#x2F;cloud.google.com&#x2F;domains相關費用: https:&#x2F;&#x2F;cloud.google.com&#x2F;domains&#x2F;pricing?hl&#x3D;zh-tw Cloud DNS 是 GCP 的 DNS 代管服務相關文件: https:&#x2F;&#x2F;cloud.google.com&#x2F;dns&#x2F;相關費用: https:&#x2F;&#x2F;clo">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Certbot 建立 TLS憑證 並匯入IIS">
-<meta property="og:url" content="http://example.com/2022/04/11/certbot-tls-certificate/index.html">
+<meta property="og:title" content="透過 GCP Cloud Domains 註冊網域 &amp; GCP Cloud DNS建立對應IP">
+<meta property="og:url" content="http://example.com/2022/04/12/gcp-init-cloud-domains-dns/index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="開發環境 Windows 10 (home 20H2)  本文範例流程 以 Cerbot 建立免費 TLS 憑證 GCP 的 Cloud DNS 協助完成 DNS-01 挑戰 (可由其他 DNS 服務代替) 透過 openssl 工具轉換privkey.pem &amp; cert.pem 成 .pfx檔 (IIS憑證檔) 匯入.pfx憑證檔 至 IIS  certbot 建立TLS憑證 到 Ce">
+<meta property="og:description" content="Cloud Domains 是 GCP 的 網域代管服務相關文件: https:&#x2F;&#x2F;cloud.google.com&#x2F;domains相關費用: https:&#x2F;&#x2F;cloud.google.com&#x2F;domains&#x2F;pricing?hl&#x3D;zh-tw Cloud DNS 是 GCP 的 DNS 代管服務相關文件: https:&#x2F;&#x2F;cloud.google.com&#x2F;dns&#x2F;相關費用: https:&#x2F;&#x2F;clo">
 <meta property="og:locale" content="zh_TW">
-<meta property="og:image" content="https://bingxiangstorage.blob.core.windows.net/blog/certbot-tls-certificate/2022-04-11-23-43-33.png">
-<meta property="og:image" content="https://bingxiangstorage.blob.core.windows.net/blog/certbot-tls-certificate/2022-04-11-23-21-28.png">
-<meta property="og:image" content="https://bingxiangstorage.blob.core.windows.net/blog/certbot-tls-certificate/2022-04-11-23-38-16.png">
-<meta property="og:image" content="https://bingxiangstorage.blob.core.windows.net/blog/certbot-tls-certificate/2022-04-11-23-28-28.png">
-<meta property="og:image" content="https://bingxiangstorage.blob.core.windows.net/blog/certbot-tls-certificate/2022-04-11-23-28-45.png">
-<meta property="og:image" content="https://bingxiangstorage.blob.core.windows.net/blog/certbot-tls-certificate/2022-04-11-23-29-03.png">
-<meta property="og:image" content="https://bingxiangstorage.blob.core.windows.net/blog/certbot-tls-certificate/2022-04-11-23-29-31.png">
-<meta property="og:image" content="https://bingxiangstorage.blob.core.windows.net/blog/certbot-tls-certificate/2022-04-11-23-29-46.png">
-<meta property="article:published_time" content="2022-04-11T15:08:05.000Z">
-<meta property="article:modified_time" content="2022-04-12T15:49:47.111Z">
+<meta property="og:image" content="https://bingxiangstorage.blob.core.windows.net/blog/gcp-init-cloud-domains-dns/2022-04-13-00-01-39.png">
+<meta property="og:image" content="https://bingxiangstorage.blob.core.windows.net/blog/gcp-init-cloud-domains-dns/2022-04-13-00-02-11.png">
+<meta property="og:image" content="https://bingxiangstorage.blob.core.windows.net/blog/gcp-init-cloud-domains-dns/2022-04-13-00-02-55.png">
+<meta property="og:image" content="https://bingxiangstorage.blob.core.windows.net/blog/gcp-init-cloud-domains-dns/2022-04-13-00-03-08.png">
+<meta property="og:image" content="https://bingxiangstorage.blob.core.windows.net/blog/gcp-init-cloud-domains-dns/2022-04-13-00-03-22.png">
+<meta property="og:image" content="https://bingxiangstorage.blob.core.windows.net/blog/gcp-init-cloud-domains-dns/2022-04-13-00-04-32.png">
+<meta property="og:image" content="https://bingxiangstorage.blob.core.windows.net/blog/gcp-init-cloud-domains-dns/2022-04-13-00-04-49.png">
+<meta property="og:image" content="https://bingxiangstorage.blob.core.windows.net/blog/gcp-init-cloud-domains-dns/2022-04-13-00-05-09.png">
+<meta property="article:published_time" content="2022-04-12T15:52:45.000Z">
+<meta property="article:modified_time" content="2022-04-12T16:05:11.323Z">
 <meta property="article:author" content="Leo Zheng">
-<meta property="article:tag" content="Certbot">
+<meta property="article:tag" content="GCP">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://bingxiangstorage.blob.core.windows.net/blog/certbot-tls-certificate/2022-04-11-23-43-33.png">
+<meta name="twitter:image" content="https://bingxiangstorage.blob.core.windows.net/blog/gcp-init-cloud-domains-dns/2022-04-13-00-01-39.png">
 
 
 <link rel="icon" href="/img/avatar.jpg">
@@ -115,7 +115,7 @@
     <li>
         <div class="all active" data-rel="全部文章">全部文章
             
-                <small>(19)</small>
+                <small>(20)</small>
             
         </div>
     </li>
@@ -182,7 +182,7 @@
                         <i class="fold iconfont icon-right"></i>
                         
                         Devops
-                        <small>(10)</small>
+                        <small>(11)</small>
                         
                     </div>
                     
@@ -217,7 +217,7 @@
                                         
                                         GCP
                                         
-                                            <small>(3
+                                            <small>(4
                                                 )</small>
                                         
                                     </div>
@@ -343,8 +343,8 @@
         
     </div>
 </div>
-<input type="hidden" id="yelog_site_posts_number" value="19">
-<input type="hidden" id="yelog_site_word_count" value="9.3k">
+<input type="hidden" id="yelog_site_posts_number" value="20">
+<input type="hidden" id="yelog_site_word_count" value="9.4k">
 <div style="display: none">
     <span id="busuanzi_value_site_uv"></span>
     <span id="busuanzi_value_site_pv"></span>
@@ -431,6 +431,14 @@
 
     
     <nav id="title-list-nav">
+        
+        <a  class="全部文章 Devops GCP "
+           href="/2022/04/12/gcp-init-cloud-domains-dns/"
+           data-tag="GCP"
+           data-author="" >
+            <span class="post-title" title="透過 GCP Cloud Domains 註冊網域 &amp; GCP Cloud DNS建立對應IP">透過 GCP Cloud Domains 註冊網域 &amp; GCP Cloud DNS建立對應IP</span>
+            <span class="post-date" title="2022-04-12 23:52:45">2022/04/12</span>
+        </a>
         
         <a  class="全部文章 Tool Certbot "
            href="/2022/04/11/certbot-tls-certificate/"
