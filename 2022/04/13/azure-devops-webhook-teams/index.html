@@ -2,9 +2,9 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <title>Azure Devops 設定 .NetCore 和 Vue CI/CD Deploy 至 Azure App Service | Hexo</title>
+  <title>Azure Devops Pipeline Webhook 通知 Teams 頻道 | Hexo</title>
   <meta name="keywords" content=" Azure ">
-  <meta name="description" content="Azure Devops 設定 .NetCore 和 Vue CI/CD Deploy 至 Azure App Service | Hexo">
+  <meta name="description" content="Azure Devops Pipeline Webhook 通知 Teams 頻道 | Hexo">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <meta name="description" content="設定 Teams 連接器 Teams 團隊 啟用 Webhook 連接器  設定名稱、圖片  建立完後 會取得 webhook 的 URL  紅框 為webhook名稱、橘框 為 剛剛設定的圖片   先用 Postman 測試 API 是否正常 Teams Webhook 微軟文件">
 <meta property="og:type" content="article">
@@ -616,9 +616,9 @@
 </aside>
 <div id="post">
     <div class="pjax">
-        <article id="post-azure-devops-cicd-sample" class="article article-type-post" itemscope itemprop="blogPost">
+        <article id="post-azure-devops-webhook-teams" class="article article-type-post" itemscope itemprop="blogPost">
     
-        <h1 class="article-title">Azure Devops 設定 .NetCore 和 Vue CI/CD Deploy 至 Azure App Service</h1>
+        <h1 class="article-title">Azure Devops Pipeline Webhook 通知 Teams 頻道</h1>
     
     <div class="article-meta">
         
@@ -645,12 +645,12 @@
     </div>
     <div class="article-meta">
         
-            發布時間 : <time class="date" title='更新時間: 2022-04-10 00:56:38'>2022-04-09 23:38</time>
+            發布時間 : <time class="date" title='更新時間: 2022-04-13 22:54:32'>2022-04-13 22:50</time>
         
     </div>
     <div class="article-meta">
         
-        <span>字數:948</span>
+        <span>字數:63</span>
         
         
         <span id="busuanzi_container_page_pv">
@@ -680,7 +680,7 @@
     
     <div class="toc-ref">
     
-        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%9C%AC%E6%96%87%E7%A4%BA%E7%AF%84-%E9%80%8F%E9%81%8E-Azure-Devops-Deploy-NetCore-%E5%92%8C-Vue-%E7%9A%84%E5%B0%88%E6%A1%88"><span class="toc-text">本文示範 透過 Azure Devops Deploy .NetCore 和 Vue 的專案</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%9B%AE%E6%A8%99"><span class="toc-text">目標</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Net-Core-%E5%B0%88%E6%A1%88-%E5%89%8D%E7%BD%AE%E4%BD%9C%E6%A5%AD"><span class="toc-text">.Net Core 專案 前置作業</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%A8%AD%E5%AE%9A-Net-Core-%E5%B0%88%E6%A1%88-azure-pipelines-yml"><span class="toc-text">設定 .Net Core 專案 azure-pipelines.yml</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Vue-%E5%B0%88%E6%A1%88-%E5%89%8D%E7%BD%AE%E4%BD%9C%E6%A5%AD"><span class="toc-text">Vue 專案 前置作業</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%A8%AD%E5%AE%9A-Vue-%E5%B0%88%E6%A1%88-azure-pipelines-yml"><span class="toc-text">設定 Vue 專案 azure-pipelines.yml</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%A8%AD%E5%AE%9A-Azure-Devops-Pipeline-CI%E6%B5%81%E7%A8%8B"><span class="toc-text">設定 Azure Devops Pipeline (CI流程)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%A8%AD%E5%AE%9A-Azure-Devops-Pipeline-Releases-CD%E6%B5%81%E7%A8%8B"><span class="toc-text">設定 Azure Devops Pipeline Releases (CD流程)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%BB%BA%E7%AB%8B%E5%AE%8C%E6%88%90%E5%BE%8C-%E7%A2%BA%E8%AA%8D-Pipelines%E3%80%81Releases-%E6%98%AF%E5%90%A6%E6%AD%A3%E5%B8%B8"><span class="toc-text">建立完成後 確認 Pipelines、Releases 是否正常</span></a></li></ol></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%A8%AD%E5%AE%9A-Teams-%E9%80%A3%E6%8E%A5%E5%99%A8"><span class="toc-text">設定 Teams 連接器</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%85%88%E7%94%A8-Postman-%E6%B8%AC%E8%A9%A6-API-%E6%98%AF%E5%90%A6%E6%AD%A3%E5%B8%B8"><span class="toc-text">先用 Postman 測試 API 是否正常</span></a></li></ol>
     
 <style>
     .left-col .switch-btn,
@@ -696,166 +696,18 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="本文示範-透過-Azure-Devops-Deploy-NetCore-和-Vue-的專案"><a href="#本文示範-透過-Azure-Devops-Deploy-NetCore-和-Vue-的專案" class="headerlink" title="本文示範 透過 Azure Devops Deploy .NetCore 和 Vue 的專案"></a>本文示範 透過 Azure Devops Deploy .NetCore 和 Vue 的專案</h1><h2 id="目標"><a href="#目標" class="headerlink" title="目標"></a>目標</h2><ol>
-<li>當專案指定的分支有異動時，透過Azure Devops Pipeline 自動 Deploy 至 Azure App Service</li>
-<li>區分不同環境的設定值</li>
+        <h2 id="設定-Teams-連接器"><a href="#設定-Teams-連接器" class="headerlink" title="設定 Teams 連接器"></a>設定 Teams 連接器</h2><ol>
+<li><p>Teams 團隊 啟用 Webhook 連接器<br><img src="https://bingxiangstorage.blob.core.windows.net/blog/azure-devops-webhook-teams/2022-04-13-22-51-02.png"></p>
+</li>
+<li><p>設定名稱、圖片<br><img src="https://bingxiangstorage.blob.core.windows.net/blog/azure-devops-webhook-teams/2022-04-13-22-51-15.png"></p>
+</li>
+<li><p>建立完後 會取得 webhook 的 URL<br><img src="https://bingxiangstorage.blob.core.windows.net/blog/azure-devops-webhook-teams/2022-04-13-22-52-32.png"></p>
+</li>
+<li><p>紅框 為webhook名稱、橘框 為 剛剛設定的圖片<br><img src="https://bingxiangstorage.blob.core.windows.net/blog/azure-devops-webhook-teams/2022-04-13-22-52-56.png"></p>
+</li>
 </ol>
-<h2 id="Net-Core-專案-前置作業"><a href="#Net-Core-專案-前置作業" class="headerlink" title=".Net Core 專案 前置作業"></a>.Net Core 專案 前置作業</h2><blockquote>
-<p>預先設定好 Azure App Service<br>預先準備好 .Net Core 專案<br>確認 *.csproj 相同路徑下 含有 appsettings.dev.json、appsettings.prod.json<br>確認 *.sln 相同路徑下 含有 azure-pipelines.yml<br>確認分支 含有 master、DEV<br>可參考 <a target="_blank" rel="noopener" href="https://github.com/w4560000/Azure_DotnetCoreAPI_CI-CD_Demo">.NetCore3.1 範例專案</a></p>
-</blockquote>
-<h2 id="設定-Net-Core-專案-azure-pipelines-yml"><a href="#設定-Net-Core-專案-azure-pipelines-yml" class="headerlink" title="設定 .Net Core 專案 azure-pipelines.yml"></a>設定 .Net Core 專案 azure-pipelines.yml</h2><blockquote>
-<p>.Net Core 區分不同環境是透過 環境變數 ASPNETCORE_ENVIRONMENT 來區分<br>master 分支 指定 ASPNETCORE_ENVIRONMENT = prod 則會吃到 appsettings.prod.json 的設定<br>DEV 分支 指定 ASPNETCORE_ENVIRONMENT = dev 則會吃到 appsettings.dev.json 的設定<br><img src="https://bingxiangstorage.blob.core.windows.net/blog/azure-devops-cicd-sample/2022-04-10-00-21-58.png"></p>
-</blockquote>
-<pre><code class="yaml"># ASP.NET Core (.NET Framework)
-# Build and test ASP.NET Core projects targeting the full .NET Framework.
-# Add steps that publish symbols, save build artifacts, and more:
-# https://docs.microsoft.com/azure/devops/pipelines/languages/dotnet-core
-
-trigger:
-- master
-- DEV
-
-pool:
-  vmImage: &#39;windows-latest&#39;
-
-variables:
-  solution: &#39;**/*.sln&#39;
-  buildPlatform: &#39;Any CPU&#39;
-  buildConfiguration: &#39;Release&#39;
-
-  $&#123;&#123;if contains(variables['Build.SourceBranchName'], 'master')&#125;&#125;:
-      EnvironmentName: &#39;prod&#39;
-  $&#123;&#123;if contains(variables['Build.SourceBranchName'], 'DEV')&#125;&#125;:
-      EnvironmentName: &#39;dev&#39;
-
-
-steps:
-- task: PowerShell@2
-  inputs:
-    targetType: &#39;inline&#39;
-    script: |
-      [Environment]::SetEnvironmentVariable(&quot;ASPNETCORE_ENVIRONMENT&quot;, &quot;$(EnvironmentName)&quot;, &quot;Machine&quot;)
-- task: DotNetCoreCLI@2
-  displayName: Restore
-  inputs:
-    command: restore
-    projects: &#39;$(solution)&#39;
-
-- task: DotNetCoreCLI@2
-  displayName: Build
-  inputs:
-    projects: &#39;$(solution)&#39;
-    arguments: &#39;--configuration $(BuildConfiguration)&#39;
-
-- task: DotNetCoreCLI@2
-  displayName: Publish
-  inputs:
-    command: publish
-    publishWebProjects: True
-    arguments: &#39;--configuration $(BuildConfiguration) --output $(build.artifactstagingdirectory) &#39;
-
-- task: PublishBuildArtifacts@1
-  displayName: &#39;Publish Artifact&#39;
-  inputs:
-    PathtoPublish: &#39;$(build.artifactstagingdirectory)&#39;
-</code></pre>
-<h2 id="Vue-專案-前置作業"><a href="#Vue-專案-前置作業" class="headerlink" title="Vue 專案 前置作業"></a>Vue 專案 前置作業</h2><blockquote>
-<p>預先設定好 Azure App Service<br>預先準備好 Vue 專案<br>確認package.json 相同路徑下 含有 .env.dev、.env.prod檔案、azure-pipelines.yml<br>package.json 設定 build-dev 、 build-prod<br>確認package.json 相同路徑下 含有 azure-pipelines.yml<br>確認分支 含有 master、DEV<br>可參考 <a target="_blank" rel="noopener" href="https://github.com/w4560000/Azure_Vue_CI-CD_Demo">Vue 2 範例專案</a></p>
-</blockquote>
-<h2 id="設定-Vue-專案-azure-pipelines-yml"><a href="#設定-Vue-專案-azure-pipelines-yml" class="headerlink" title="設定 Vue 專案 azure-pipelines.yml"></a>設定 Vue 專案 azure-pipelines.yml</h2><blockquote>
-<p>Vue 區分不同環境設定 可透過 vue-cli-service build –mode ${env}<br>master 分支 指定 env = prod 則會吃到 .env.prod 的設定<br>DEV 分支 指定 env = dev 則會吃到 .env.dev 的設定<br><img src="https://bingxiangstorage.blob.core.windows.net/blog/azure-devops-cicd-sample/2022-04-10-00-22-50.png"></p>
-</blockquote>
-<pre><code class="yaml"># Starter pipeline
-# Start with a minimal pipeline that you can customize to build and deploy your code.
-# Add steps that build, run tests, deploy, and more:
-# https://aka.ms/yaml
-
-trigger:
-- master
-- DEV
-
-pool:
-  vmImage: vs2017-win2016
-
-variables:
-  $&#123;&#123;if contains(variables['Build.SourceBranchName'], 'master')&#125;&#125;:
-      Temp_Env: &#39;prod&#39;
-  $&#123;&#123;if contains(variables['Build.SourceBranchName'], 'DEV')&#125;&#125;:
-      Temp_Env: &#39;dev&#39;
-
-steps:
-- task: Npm@1
-  displayName: &#39;npm install&#39;
-  inputs:
-    verbose: false
-
-- task: Npm@1
-  displayName: &#39;npm build&#39;
-  inputs:
-    command: custom
-    verbose: false
-    customCommand: &#39;run build-$(Temp_Env)&#39;
-
-- task: ArchiveFiles@2
-  displayName: Archive
-  inputs:
-    rootFolderOrFile: &#39;$(build.sourcesDirectory)/dist&#39;
-    includeRootFolder: false
-    archiveFile: &#39;$(Build.ArtifactStagingDirectory)/$(Build.SourceVersion)_$(Build.BuildId).zip&#39;
-
-
-- task: PublishBuildArtifacts@1
-  displayName: &#39;Publish Artifact: build&#39;
-  inputs:
-    ArtifactName: build
-</code></pre>
-<h2 id="設定-Azure-Devops-Pipeline-CI流程"><a href="#設定-Azure-Devops-Pipeline-CI流程" class="headerlink" title="設定 Azure Devops Pipeline (CI流程)"></a>設定 Azure Devops Pipeline (CI流程)</h2><blockquote>
-<p> (.Net Core 和 Vue 流程一樣，選取各自的git source &amp; azure-pipelines.yml即可)</p>
-</blockquote>
-<ul>
-<li><p>建立 Pipeline<br><img src="https://bingxiangstorage.blob.core.windows.net/blog/azure-devops-dotnetcore/2022-04-09-23-53-45.png"></p>
-</li>
-<li><p>設定 專案 Git SourceCode 來源</p>
-<blockquote>
-<p>選完後 會需要Github帳戶允許權限 照頁面引導一步一步做即可<br><img src="https://bingxiangstorage.blob.core.windows.net/blog/azure-devops-dotnetcore/2022-04-09-23-54-37.png"></p>
-</blockquote>
-</li>
-<li><p>選取使用專案內的azure-pipelines.yml<br><img src="https://bingxiangstorage.blob.core.windows.net/blog/azure-devops-cicd-sample/2022-04-10-00-23-10.png"></p>
-</li>
-</ul>
-<h2 id="設定-Azure-Devops-Pipeline-Releases-CD流程"><a href="#設定-Azure-Devops-Pipeline-Releases-CD流程" class="headerlink" title="設定 Azure Devops Pipeline Releases (CD流程)"></a>設定 Azure Devops Pipeline Releases (CD流程)</h2><blockquote>
-<p>(.Net Core 和 Vue 流程一樣，選取各自要deploy的app service即可)<br>有另外設定 trigger 不同分支 deploy至不同環境的app service 故設定流程多了一些</p>
-</blockquote>
-<ul>
-<li><p>建立 Release Pipeline<br><img src="https://bingxiangstorage.blob.core.windows.net/blog/azure-devops-cicd-sample/2022-04-10-00-26-08.png"></p>
-</li>
-<li><p>設定 Deploy 至 Azure App Service<br><img src="https://bingxiangstorage.blob.core.windows.net/blog/azure-devops-cicd-sample/2022-04-10-00-26-37.png"></p>
-</li>
-<li><p>設定 DEV Stage<br><img src="https://bingxiangstorage.blob.core.windows.net/blog/azure-devops-cicd-sample/2022-04-10-00-27-13.png"></p>
-</li>
-<li><p>設定 程式CI完的Artifact<br><img src="https://bingxiangstorage.blob.core.windows.net/blog/azure-devops-cicd-sample/2022-04-10-00-31-46.png"></p>
-</li>
-<li><p>啟用 CD trigger<br><img src="https://bingxiangstorage.blob.core.windows.net/blog/azure-devops-cicd-sample/2022-04-10-00-33-00.png"></p>
-</li>
-<li><p>設定 DEV Stage Artifact filters</p>
-<blockquote>
-<p>因要指定特定分支 deploy至 特定 app service<br><img src="https://bingxiangstorage.blob.core.windows.net/blog/azure-devops-cicd-sample/2022-04-10-00-33-42.png"></p>
-</blockquote>
-</li>
-<li><p>設定 deploy 至 app service<br><img src="https://bingxiangstorage.blob.core.windows.net/blog/azure-devops-cicd-sample/2022-04-10-00-34-29.png"></p>
-</li>
-<li><p>再來設定 PROD Stage</p>
-<blockquote>
-<p>流程跟設定DEV Stage類似<br>11點 需指定對應的branch<br>13點 需指定對應的Azure app service<br><img src="https://bingxiangstorage.blob.core.windows.net/blog/azure-devops-cicd-sample/2022-04-10-00-35-17.png"></p>
-</blockquote>
-</li>
-<li><p>設定完成後 預期會有 DEV Stage &amp; PROD Stage<br><img src="https://bingxiangstorage.blob.core.windows.net/blog/azure-devops-cicd-sample/2022-04-10-00-36-36.png"></p>
-</li>
-</ul>
-<h2 id="建立完成後-確認-Pipelines、Releases-是否正常"><a href="#建立完成後-確認-Pipelines、Releases-是否正常" class="headerlink" title="建立完成後 確認 Pipelines、Releases 是否正常"></a>建立完成後 確認 Pipelines、Releases 是否正常</h2><p>在.NetCore 專案 &amp; Vue專案 各push一版commit到指定分支，測試看看是否正常</p>
-<p>正常的話 會自動跑完CI/CD流程並deploy至Azure App Service<br><img src="https://bingxiangstorage.blob.core.windows.net/blog/azure-devops-cicd-sample/2022-04-10-00-37-29.png"></p>
-<p>且DEV分支 &amp; master分支，會各自deploy至 測試機 和 正式機<br><img src="https://bingxiangstorage.blob.core.windows.net/blog/azure-devops-cicd-sample/2022-04-10-00-40-40.png"></p>
-<p>回到 Azure App Service 的 部屬中心 也可以看到有正常部屬<br><img src="https://bingxiangstorage.blob.core.windows.net/blog/azure-devops-cicd-sample/2022-04-10-00-55-31.png"><br><img src="https://bingxiangstorage.blob.core.windows.net/blog/azure-devops-cicd-sample/2022-04-10-00-55-53.png"></p>
+<h2 id="先用-Postman-測試-API-是否正常"><a href="#先用-Postman-測試-API-是否正常" class="headerlink" title="先用 Postman 測試 API 是否正常"></a>先用 Postman 測試 API 是否正常</h2><p><img src="https://bingxiangstorage.blob.core.windows.net/blog/azure-devops-webhook-teams/2022-04-13-22-53-35.png"><br><img src="https://bingxiangstorage.blob.core.windows.net/blog/azure-devops-webhook-teams/2022-04-13-22-53-53.png"></p>
+<p><a target="_blank" rel="noopener" href="https://docs.microsoft.com/zh-tw/outlook/actionable-messages/send-via-connectors">Teams Webhook 微軟文件</a></p>
 
       
        <hr><span style="font-style: italic;color: gray;"> 轉載請註明來源，若有任何錯誤或表達不清楚的地方，歡迎在下方評論區留言，也可以來信至 leozheng0621@gmail.com </span>
