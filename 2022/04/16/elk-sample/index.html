@@ -2,9 +2,9 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <title>Hexo</title>
-  <meta name="keywords" content="">
-  <meta name="description" content="Hexo">
+  <title>ELK Stack | Hexo</title>
+  <meta name="keywords" content=" ELK ">
+  <meta name="description" content="ELK Stack | Hexo">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <meta name="description" content="軟體說明ELK 是由 Elasticsearch、Logstash、Kibana 所組成 Elasticsearch 是一套開源式的分散式搜尋引擎 官網 Logstash 可將蒐集到的Log做進一步處理，Parse成統一格式 官網 Kibana 則是可將Elasticsearch的資料 視覺化的呈現在前端 官網 擴充工具beats 是輕量級的系統監測收集器，可將收集到的 data 進行轉拋 bea">
 <meta property="og:type" content="article">
@@ -70,7 +70,7 @@
 
 
 <body>
-<aside class="nav mobile">
+<aside class="nav">
     <div class="nav-left">
         <a href="/"
    class="avatar_target">
@@ -647,12 +647,73 @@
         </div>
     </div>
 </aside>
-<div id="post" class="index">
+<div id="post">
     <div class="pjax">
-        <article class="index">
-            <div class="toc-ref">
+        <article id="post-elk-sample" class="article article-type-post" itemscope itemprop="blogPost">
     
-        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E9%97%9C%E6%96%BC%E6%88%91%E8%88%87%E8%A9%B2%E9%83%A8%E8%90%BD%E6%A0%BC"><span class="toc-text">關於我與該部落格</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%B0%A1%E4%BB%8B"><span class="toc-text">簡介</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%83%A8%E8%90%BD%E6%A0%BC"><span class="toc-text">部落格</span></a></li></ol></li></ol>
+        <h1 class="article-title">ELK Stack</h1>
+    
+    <div class="article-meta">
+        
+        
+        
+        <span class="book">
+            <i class="iconfont icon-category"></i>
+            
+            
+            <a  data-rel="Devops">Devops</a> > 
+            
+            <a  data-rel="Devops&lt;---&gt;ELK">ELK</a>
+            
+        </span>
+        
+        
+        <span class="tag">
+            <i class="iconfont icon-tag"></i>
+            
+            <a class="color4">ELK</a>
+            
+        </span>
+        
+    </div>
+    <div class="article-meta">
+        
+            發布時間 : <time class="date" title='更新時間: 2022-04-16 23:57:03'>2022-04-16 22:29</time>
+        
+    </div>
+    <div class="article-meta">
+        
+        <span>字數:1k</span>
+        
+        
+        <span id="busuanzi_container_page_pv">
+            觀看數 :<span id="busuanzi_value_page_pv">
+                <span class="count-comment">
+                    <span class="spinner">
+                      <div class="cube1"></div>
+                      <div class="cube2"></div>
+                    </span>
+                </span>
+            </span>
+        </span>
+        
+        
+        <span class="top-comment" title="跳转至评论区">
+            <a href="#comments">
+                評論:<span class="count-comment">
+                    <span class="spinner">
+                      <div class="cube1"></div>
+                      <div class="cube2"></div>
+                    </span>
+                </span>
+            </a>
+        </span>
+        
+    </div>
+    
+    <div class="toc-ref">
+    
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%BB%9F%E9%AB%94%E8%AA%AA%E6%98%8E"><span class="toc-text">軟體說明</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%A9%9F%E5%99%A8%E7%92%B0%E5%A2%83-amp-%E6%9C%8D%E5%8B%99"><span class="toc-text">機器環境&amp;服務</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AF%84%E4%BE%8B%E8%AA%AA%E6%98%8E"><span class="toc-text">範例說明</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Linux-Server%E7%AB%AF%E5%AE%89%E8%A3%9D%E6%9C%8D%E5%8B%99"><span class="toc-text">Linux Server端安裝服務</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%89%E8%A3%9DDocker"><span class="toc-text">安裝Docker</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%BB%BA%E7%AB%8B-logstash-conf"><span class="toc-text">建立 logstash.conf</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#docker-compose-%E5%BB%BA%E7%AB%8B-redis%E3%80%81logstash%E3%80%81elasticsearch%E3%80%81kibana%E6%9C%8D%E5%8B%99"><span class="toc-text">docker-compose 建立 redis、logstash、elasticsearch、kibana服務</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%B0%87%E6%9C%8D%E5%8B%99%E8%B7%91%E8%B5%B7%E4%BE%86"><span class="toc-text">將服務跑起來</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%A2%BA%E8%AA%8D%E6%9C%8D%E5%8B%99%E6%98%AF%E5%90%A6%E6%AD%A3%E5%B8%B8"><span class="toc-text">確認服務是否正常</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Windows-Client%E7%AB%AF%E5%AE%89%E8%A3%9D%E6%9C%8D%E5%8B%99"><span class="toc-text">Windows Client端安裝服務</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%89%E8%A3%9D-Filebeat"><span class="toc-text">安裝 Filebeat</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%A8%AD%E5%AE%9Afilebeat-yml"><span class="toc-text">設定filebeat.yml</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%95%9F%E5%8B%95Filebeat%E6%9C%8D%E5%8B%99"><span class="toc-text">啟動Filebeat服務</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#kibana-%E5%BB%BA%E7%AB%8B-index-pattern"><span class="toc-text">kibana 建立 index pattern</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%A2%BA%E8%AA%8DKibana-Log%E8%B3%87%E6%96%99"><span class="toc-text">確認Kibana Log資料</span></a></li></ol>
     
 <style>
     .left-col .switch-btn,
@@ -665,20 +726,194 @@
     }
 </style>
 </div>
-            <h1 id="關於我與該部落格"><a href="#關於我與該部落格" class="headerlink" title="關於我與該部落格"></a>關於我與該部落格</h1><h2 id="簡介"><a href="#簡介" class="headerlink" title="簡介"></a>簡介</h2><p>我是一名.Net 開發工程師</p>
-<p>此部落格為軟體開發的學習筆記</p>
-<p>若文章內容有誤，歡迎留言指正，或來信告知 <a href="mailto:&#x6c;&#x65;&#x6f;&#122;&#104;&#x65;&#110;&#103;&#x30;&#x36;&#x32;&#x31;&#x40;&#x67;&#109;&#x61;&#105;&#108;&#46;&#x63;&#111;&#109;">&#x6c;&#x65;&#x6f;&#122;&#104;&#x65;&#110;&#103;&#x30;&#x36;&#x32;&#x31;&#x40;&#x67;&#109;&#x61;&#105;&#108;&#46;&#x63;&#111;&#109;</a></p>
-<h2 id="部落格"><a href="#部落格" class="headerlink" title="部落格"></a>部落格</h2><p>共發布：<code class="article_number"></code>篇文章， 共<code class="site_word_count"></code>字。</p>
-<p>部落格總訪問人數：<code class="site_uv"></code> 人次， 訪問量：<code class="site_pv"></code>次</p>
-<p>此部落格通過 <a target="_blank" rel="noopener" href="https://hexo.io/">Hexo</a> 建立，部屬在 <a target="_blank" rel="noopener" href="https://pages.github.com/">GitHub Pages</a>主題 <a target="_blank" rel="noopener" href="https://github.com/yelog/hexo-theme-3-hexo">3-hexo</a></p>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="軟體說明"><a href="#軟體說明" class="headerlink" title="軟體說明"></a>軟體說明</h2><p>ELK 是由 Elasticsearch、Logstash、Kibana 所組成</p>
+<p>Elasticsearch 是一套開源式的分散式搜尋引擎 <a target="_blank" rel="noopener" href="https://www.elastic.co/elasticsearch/">官網</a></p>
+<p>Logstash 可將蒐集到的Log做進一步處理，Parse成統一格式 <a target="_blank" rel="noopener" href="https://www.elastic.co/logstash/">官網</a></p>
+<p>Kibana 則是可將Elasticsearch的資料 視覺化的呈現在前端 <a target="_blank" rel="noopener" href="https://www.elastic.co/kibana/">官網</a></p>
+<p>擴充工具<br>beats 是輕量級的系統監測收集器，可將收集到的 data 進行轉拋</p>
+<p>beat有很多種工具可參考 <a target="_blank" rel="noopener" href="https://www.elastic.co/beats/">相關工具</a></p>
+<p>本文使用到 <a target="_blank" rel="noopener" href="https://www.elastic.co/beats/filebeat">Filebeat</a> 可即時監測Log檔是否異動，進行資料轉拋</p>
+<h2 id="機器環境-amp-服務"><a href="#機器環境-amp-服務" class="headerlink" title="機器環境&amp;服務"></a>機器環境&amp;服務</h2><blockquote>
+<p>環境<br>Linux Server: Ubuntu 18.04.6 LTS<br>服務: Kibana、ElasticSeatch、LogStash、Redis</p>
+<p>Windows Clinet: Win 10<br>服務: Filebeat</p>
+</blockquote>
+<h2 id="範例說明"><a href="#範例說明" class="headerlink" title="範例說明"></a>範例說明</h2><p><img src="https://bingxiangstorage.blob.core.windows.net/blog/elk-sample/2022-04-16-22-52-53.png"><br>透過 Filebeat 監控在 Windows機器上的Log檔 及時拋送Log資料到<br>Linux機器的Redis上，而LogStash 會抓Redis上的資料 進行二次資料Parse處理，再轉拋到ElasticSeatch上，最後在Kibana呈現</p>
+<h2 id="Linux-Server端安裝服務"><a href="#Linux-Server端安裝服務" class="headerlink" title="Linux Server端安裝服務"></a>Linux Server端安裝服務</h2><h3 id="安裝Docker"><a href="#安裝Docker" class="headerlink" title="安裝Docker"></a>安裝Docker</h3><pre><code class="CMD">sudo apt-get update
+sudo apt-get install docker.io
 
-        </article>
-        
-        <p>
-            <a  class="dashang" onclick="dashangToggle()">斗內💰</a>
-        </p>
-        
-        
+# install docker-compose
+sudo curl -L &quot;https://github.com/docker/compose/releases/download/1.29.2/docker-compose-$(uname -s)-$(uname -m)&quot; -o /usr/local/bin/docker-compose
+sudo chmod +x /usr/local/bin/docker-compose
+</code></pre>
+<h3 id="建立-logstash-conf"><a href="#建立-logstash-conf" class="headerlink" title="建立 logstash.conf"></a>建立 logstash.conf</h3><pre><code class="CMD"># 建立 Logstash 資料夾
+mkdir logstash
+
+# 建立 conf.d 資料夾
+cd logstash 
+mkdir conf.d
+
+cd conf.d
+vim logstash.conf
+</code></pre>
+<p>修改 logstash.conf</p>
+<pre><code>input &#123;
+    redis &#123;
+        host =&gt; &quot;redis&quot;
+        port =&gt; 6379
+        data_type =&gt; &quot;list&quot;
+        key =&gt; &quot;log_test&quot;
+        password =&gt; &quot;xxx&quot;
+    &#125;
+&#125;
+output &#123;
+    elasticsearch &#123;
+        hosts =&gt; [&quot;elasticsearch&quot;]
+        index =&gt; &quot;%&#123;[fields][env]&#125;_%&#123;[fields][service]&#125;-%&#123;+YYYY.MM.dd&#125;&quot;
+    &#125;
+&#125;
+</code></pre>
+<h3 id="docker-compose-建立-redis、logstash、elasticsearch、kibana服務"><a href="#docker-compose-建立-redis、logstash、elasticsearch、kibana服務" class="headerlink" title="docker-compose 建立 redis、logstash、elasticsearch、kibana服務"></a>docker-compose 建立 redis、logstash、elasticsearch、kibana服務</h3><pre><code class="CMD">vim docker-compose.yml
+</code></pre>
+<pre><code>version: &#39;3&#39;
+services:
+  kibana:
+    container_name: kibana
+    image: kibana:7.8.0
+    depends_on:
+      - elasticsearch
+    ports:
+      - 5601:5601
+    environment:
+      SERVER_NAME: kibana-server
+      ELASTICSEARCH_HOSTS: http://elasticsearch:9200
+  logstash:
+    container_name: logstash
+    image: logstash:5.3.1
+    ports:
+      - 5044:5044
+    restart: always
+    environment:
+      LOG_LEVEL: error
+    command: -f /etc/logstash/conf.d/logstash.conf -w 8
+    volumes:
+      - ./logstash/conf.d/:/etc/logstash/conf.d
+    depends_on:
+      - elasticsearch
+  elasticsearch:
+    container_name: elasticsearch
+    image: elasticsearch:7.8.0
+    environment:
+      - discovery.type=single-node
+      - bootstrap.memory_lock=true
+      - &quot;ES_JAVA_OPTS=-Xms512m -Xmx512m&quot;
+    ulimits:
+      memlock:
+        soft: -1
+        hard: -1
+    ports:
+      - 9200:9200
+    volumes:
+      - /data01:/usr/share/elasticsearch/data
+  redis:
+    container_name: redis
+    image: redis:3.2.4
+    entrypoint: redis-server --maxmemory &quot;4gb&quot; --requirepass xxx
+    ports:
+      - 6379:6379
+    restart: always
+    volumes:
+      - /data/redis:/data
+    sysctls:
+      net.core.somaxconn: &#39;511&#39;
+</code></pre>
+<h3 id="將服務跑起來"><a href="#將服務跑起來" class="headerlink" title="將服務跑起來"></a>將服務跑起來</h3><pre><code>sudo docker-compose up -d
+</code></pre>
+<blockquote>
+<p>當ElasticSearch 發生錯誤 建立失敗時 出現錯誤訊息<br>ElasticsearchException[failed to bind service]; nested: AccessDeniedException[/usr/share/elasticsearch/data/nodes];<br>因為Container內/usr/share/elasticsearch/data/nodes 與 主機的data01綁定 需設定 data01的資料夾權限</p>
+</blockquote>
+<pre><code>chmod 777 /data01
+</code></pre>
+<h3 id="確認服務是否正常"><a href="#確認服務是否正常" class="headerlink" title="確認服務是否正常"></a>確認服務是否正常</h3><p>ElasticSearch<br><img src="https://bingxiangstorage.blob.core.windows.net/blog/elk-sample/2022-04-16-23-13-22.png"></p>
+<p>Kibana<br><img src="https://bingxiangstorage.blob.core.windows.net/blog/elk-sample/2022-04-16-23-13-31.png"></p>
+<blockquote>
+<p>至此 Linux Server服務已經建立完成</p>
+</blockquote>
+<h2 id="Windows-Client端安裝服務"><a href="#Windows-Client端安裝服務" class="headerlink" title="Windows Client端安裝服務"></a>Windows Client端安裝服務</h2><h3 id="安裝-Filebeat"><a href="#安裝-Filebeat" class="headerlink" title="安裝 Filebeat"></a>安裝 Filebeat</h3><p><a target="_blank" rel="noopener" href="https://www.elastic.co/downloads/past-releases/filebeat-7-7-0">filebeat-7-7-0下載連結</a></p>
+<h3 id="設定filebeat-yml"><a href="#設定filebeat-yml" class="headerlink" title="設定filebeat.yml"></a>設定filebeat.yml</h3><p>解壓縮後 開啟資料夾 修改filebeat.yml</p>
+<pre><code class="yml">...略
+- input_type: log
+  enabled: true
+  paths: D:\LogFiles\WebLog\ELK_Test\*.log
+  fields:
+      service: weblog
+  fields.webtype: ELK_Test
+  multiline.pattern: &#39;^\d&#123;4&#125;-\d&#123;2&#125;-\d&#123;2&#125; \d&#123;2&#125;:\d&#123;2&#125;:\d&#123;2&#125;&#39;
+  multiline.negate: true
+  multiline.match: after
+...略
+</code></pre>
+<p>最下面output設定輸出redis</p>
+<pre><code class="yml">output.redis:
+  # Boolean flag to enable or disable the output module.
+  enabled: true
+
+  # The list of Redis servers to connect to. If load balancing is enabled, the
+  # events are distributed to the servers in the list. If one server becomes
+  # unreachable, the events are distributed to the reachable servers only.
+  # hosts: [&quot;localhost&quot;]
+  hosts: [&quot;35.221.254.209&quot;]
+
+  # The Redis port to use if hosts does not contain a port number. The default
+  # is 6379.
+  # port: 14011
+
+  # The name of the Redis list or channel the events are published to. The
+  # default is filebeat.
+  key: log_test
+
+  # The password to authenticate with. The default is no authentication.
+  password: xxx
+</code></pre>
+<blockquote>
+<p>當有資料寫進 D:\LogFiles\WebLog\ELK_Test*.log時，filebeat會將資料存入Redis</p>
+</blockquote>
+<h3 id="啟動Filebeat服務"><a href="#啟動Filebeat服務" class="headerlink" title="啟動Filebeat服務"></a>啟動Filebeat服務</h3><p>CD 至 filebeat-7.7.0-windows-x86_64 資料夾<br>以系統管理員 開啟powershell，將filebeat 註冊至windows service</p>
+<pre><code class="CMD">./install-service-filebeat
+</code></pre>
+<p>windows service中 啟動 filebeat<br><img src="https://bingxiangstorage.blob.core.windows.net/blog/elk-sample/2022-04-16-23-54-02.png"></p>
+<blockquote>
+<p>至此 Filebeat 服務已經建立完成</p>
+</blockquote>
+<h2 id="kibana-建立-index-pattern"><a href="#kibana-建立-index-pattern" class="headerlink" title="kibana 建立 index pattern"></a>kibana 建立 index pattern</h2><p><a target="_blank" rel="noopener" href="http://ip:5601/app/kibana#/home">http://IP:5601/app/kibana#/home</a></p>
+<p>進入 Management =&gt; Stack Management<br><img src="https://bingxiangstorage.blob.core.windows.net/blog/elk-sample/2022-04-16-23-28-30.png"></p>
+<p>點擊 Index Patterns =&gt; Create index pattern<br><img src="https://bingxiangstorage.blob.core.windows.net/blog/elk-sample/2022-04-16-23-28-43.png"></p>
+<p>建立 index pattern<br><img src="https://bingxiangstorage.blob.core.windows.net/blog/elk-sample/2022-04-16-23-28-57.png"><br><img src="https://bingxiangstorage.blob.core.windows.net/blog/elk-sample/2022-04-16-23-29-04.png"></p>
+<blockquote>
+<p>需有現有的index 才能建立index pattern<br>dev_weblog-2022.01.07 為logstash 從redis取資料後, 寫入elasticsearch的</p>
+</blockquote>
+<h2 id="確認Kibana-Log資料"><a href="#確認Kibana-Log資料" class="headerlink" title="確認Kibana Log資料"></a>確認Kibana Log資料</h2><p><img src="https://bingxiangstorage.blob.core.windows.net/blog/elk-sample/2022-04-16-23-29-43.png"></p>
+<p>點擊 剛剛建立的 index pattern : dev_weblog*<br><img src="https://bingxiangstorage.blob.core.windows.net/blog/elk-sample/2022-04-16-23-29-54.png"></p>
+<p><img src="https://bingxiangstorage.blob.core.windows.net/blog/elk-sample/2022-04-16-23-30-02.png"></p>
+<blockquote>
+<p>可以發現 message中的 Log時間 跟 ElasticSeatch 的Time不同<br>因為Filebeat轉拋時 會傳轉拋資料時當下的時間，會跟Log的時間有落差<br>下一篇會說明在LogStash Parse資料時 處理時間差</p>
+</blockquote>
+
+      
+       <hr><span style="font-style: italic;color: gray;"> 轉載請註明來源，若有任何錯誤或表達不清楚的地方，歡迎在下方評論區留言，也可以來信至 leozheng0621@gmail.com </span>
+    </div>
+</article>
+
+
+<p>
+    <a  class="dashang" onclick="dashangToggle()">斗內💰</a>
+</p>
+
+
+
+
     <div id="comments"></div>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css">
 
@@ -700,6 +935,13 @@
 </script>
 
 
+
+
+    
+
+
+
+
     </div>
     <div class="copyright">
         <p class="footer-entry">
@@ -708,11 +950,11 @@
 <p class="footer-entry">Built with <a href="https://hexo.io/" target="_blank">Hexo</a> and <a href="https://github.com/yelog/hexo-theme-3-hexo" target="_blank">3-hexo</a> theme</p>
 
     </div>
-</div>
-<div class="full-toc">
-    <button class="full" data-title="切换全屏 快捷键 s"><span class="min "></span></button>
+    <div class="full-toc">
+        <button class="full" data-title="切换全屏 快捷键 s"><span class="min "></span></button>
 <a class="" id="rocket" ></a>
 
+    </div>
 </div>
 
 <div class="hide_box" onclick="dashangToggle()"></div>
