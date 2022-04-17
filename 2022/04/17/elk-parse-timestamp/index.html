@@ -2,9 +2,9 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <title>Hexo</title>
-  <meta name="keywords" content="">
-  <meta name="description" content="Hexo">
+  <title>Logstash Parse Timestamp | Hexo</title>
+  <meta name="keywords" content=" ELK ">
+  <meta name="description" content="Logstash Parse Timestamp | Hexo">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <meta name="description" content="軟體說明ELK 是由 Elasticsearch、Logstash、Kibana 所組成 Elasticsearch 是一套開源式的分散式搜尋引擎 官網 Logstash 可將蒐集到的Log做進一步處理，Parse成統一格式 官網 Kibana 則是可將Elasticsearch的資料 視覺化的呈現在前端 官網 擴充工具beats 是輕量級的系統監測收集器，可將收集到的 data 進行轉拋 bea">
 <meta property="og:type" content="article">
@@ -72,7 +72,7 @@
 
 
 <body>
-<aside class="nav mobile">
+<aside class="nav">
     <div class="nav-left">
         <a href="/"
    class="avatar_target">
@@ -657,12 +657,73 @@
         </div>
     </div>
 </aside>
-<div id="post" class="index">
+<div id="post">
     <div class="pjax">
-        <article class="index">
-            <div class="toc-ref">
+        <article id="post-elk-parse-timestamp" class="article article-type-post" itemscope itemprop="blogPost">
     
-        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E9%97%9C%E6%96%BC%E6%88%91%E8%88%87%E8%A9%B2%E9%83%A8%E8%90%BD%E6%A0%BC"><span class="toc-text">關於我與該部落格</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%B0%A1%E4%BB%8B"><span class="toc-text">簡介</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%83%A8%E8%90%BD%E6%A0%BC"><span class="toc-text">部落格</span></a></li></ol></li></ol>
+        <h1 class="article-title">Logstash Parse Timestamp</h1>
+    
+    <div class="article-meta">
+        
+        
+        
+        <span class="book">
+            <i class="iconfont icon-category"></i>
+            
+            
+            <a  data-rel="Devops">Devops</a> > 
+            
+            <a  data-rel="Devops&lt;---&gt;ELK">ELK</a>
+            
+        </span>
+        
+        
+        <span class="tag">
+            <i class="iconfont icon-tag"></i>
+            
+            <a class="color4">ELK</a>
+            
+        </span>
+        
+    </div>
+    <div class="article-meta">
+        
+            發布時間 : <time class="date" title='更新時間: 2022-04-18 01:26:25'>2022-04-17 17:10</time>
+        
+    </div>
+    <div class="article-meta">
+        
+        <span>字數:424</span>
+        
+        
+        <span id="busuanzi_container_page_pv">
+            觀看數 :<span id="busuanzi_value_page_pv">
+                <span class="count-comment">
+                    <span class="spinner">
+                      <div class="cube1"></div>
+                      <div class="cube2"></div>
+                    </span>
+                </span>
+            </span>
+        </span>
+        
+        
+        <span class="top-comment" title="跳转至评论区">
+            <a href="#comments">
+                評論:<span class="count-comment">
+                    <span class="spinner">
+                      <div class="cube1"></div>
+                      <div class="cube2"></div>
+                    </span>
+                </span>
+            </a>
+        </span>
+        
+    </div>
+    
+    <div class="toc-ref">
+    
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%89%8D%E8%A8%80"><span class="toc-text">前言</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Logstash-Parse-Timestamp"><span class="toc-text">Logstash Parse Timestamp</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Grok-debugger"><span class="toc-text">Grok debugger</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%87%8D%E5%95%9F%E6%9C%8D%E5%8B%99-%E6%9F%A5%E7%9C%8B-timestamp-%E6%98%AF%E5%90%A6%E6%9C%89%E8%A2%ABparse%E6%88%90%E5%8A%9F"><span class="toc-text">重啟服務 查看 timestamp 是否有被parse成功</span></a></li></ol>
     
 <style>
     .left-col .switch-btn,
@@ -675,20 +736,59 @@
     }
 </style>
 </div>
-            <h1 id="關於我與該部落格"><a href="#關於我與該部落格" class="headerlink" title="關於我與該部落格"></a>關於我與該部落格</h1><h2 id="簡介"><a href="#簡介" class="headerlink" title="簡介"></a>簡介</h2><p>我是一名.Net 開發工程師</p>
-<p>此部落格為軟體開發的學習筆記</p>
-<p>若文章內容有誤，歡迎留言指正，或來信告知 <a href="mailto:&#108;&#x65;&#x6f;&#x7a;&#104;&#101;&#110;&#x67;&#48;&#x36;&#50;&#x31;&#x40;&#103;&#x6d;&#x61;&#105;&#x6c;&#46;&#99;&#x6f;&#x6d;">&#108;&#x65;&#x6f;&#x7a;&#104;&#101;&#110;&#x67;&#48;&#x36;&#50;&#x31;&#x40;&#103;&#x6d;&#x61;&#105;&#x6c;&#46;&#99;&#x6f;&#x6d;</a></p>
-<h2 id="部落格"><a href="#部落格" class="headerlink" title="部落格"></a>部落格</h2><p>共發布：<code class="article_number"></code>篇文章， 共<code class="site_word_count"></code>字。</p>
-<p>部落格總訪問人數：<code class="site_uv"></code> 人次， 訪問量：<code class="site_pv"></code>次</p>
-<p>此部落格通過 <a target="_blank" rel="noopener" href="https://hexo.io/">Hexo</a> 建立，部屬在 <a target="_blank" rel="noopener" href="https://pages.github.com/">GitHub Pages</a>主題 <a target="_blank" rel="noopener" href="https://github.com/yelog/hexo-theme-3-hexo">3-hexo</a></p>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>繼上一篇<a href="/2022/04/16/elk-sample/">ELK Stack</a> 介紹建置範例後<br>最後發現 Timestamp 與 Log 紀錄 應用程式當下的Log時間 不符<br><img src="https://bingxiangstorage.blob.core.windows.net/blog/elk-parse-timestamp/2022-04-17-17-15-20.png"></p>
+<p>其原因為 Filebeat會偵測檔案異動 而進行轉拋Log資料的動作，但還是會跟程式內Log的時間 有時間差<br>本篇範例 在Logstash 轉拋資料到 Elasticsearch 進行 Timestamp 處理，改取Log紀錄裡的時間，這樣在Kibana搜尋時間時，才能知道Log發生的精準時間</p>
+<h2 id="Logstash-Parse-Timestamp"><a href="#Logstash-Parse-Timestamp" class="headerlink" title="Logstash Parse Timestamp"></a>Logstash Parse Timestamp</h2><p>上一篇<a href="/2022/04/16/elk-sample/">ELK Stack</a> 在 logstash/conf.d 建立了 logstash.conf<br>這次 要在建立另一個.conf用來Parse資料欄位</p>
+<p>在 logstash/conf.d 底下 建立 logstash-custom.conf (檔案名稱可自定義)</p>
+<pre><code class="CMD">vi logstash-custom.conf
+</code></pre>
+<pre><code>filter &#123;
+    if [fields][service] == &quot;weblog&quot; &#123;
+        grok &#123;
+            match =&gt; [&quot;message&quot;, &quot;%&#123;TIMESTAMP_ISO8601:timestamp&#125; %&#123;NUMBER:threadid&#125; %&#123;LOGLEVEL:loglevel&#125; %&#123;NOTSPACE:logger&#125; %&#123;SPACE&#125;%&#123;GREEDYDATA:message&#125;&quot;]
+            overwrite =&gt; [ &quot;message&quot; ]
+        &#125;
+        date &#123;
+            match =&gt; [ &quot;timestamp&quot;, &quot;yyyy-MM-dd HH:mm:ss.SSS&quot; ]
+            timezone =&gt; &quot;UTC&quot;
+        &#125;
+        mutate &#123;
+            convert =&gt; &#123;
+                &quot;threadid&quot; =&gt; &quot;integer&quot;
+            &#125;
+            add_field =&gt; &#123;
+                &quot;webtype&quot; =&gt; &quot;%&#123;[fields][webtype]]&#125;&quot;
+            &#125;
+        &#125;
+    &#125;
+&#125;
+</code></pre>
+<blockquote>
+<p>logstash 能使用多個 .conf檔是因為 在<a href="(/2022/04/16/elk-sample/)">上一篇</a> docker-compose.yml 中<br>設定logstash 的 command: -f /etc/logstash/conf.d/<br>代表會吃 /etc/logstash/conf.d/ 底下的所有.conf設定，故 logstash-custom.conf 的設定才能生效</p>
+</blockquote>
+<h2 id="Grok-debugger"><a href="#Grok-debugger" class="headerlink" title="Grok debugger"></a>Grok debugger</h2><p>kibana有提供 <a href="/app/kibana#/dev_tools/grokdebugger">grok pattern debugger頁面</a><br>可用來測試 Log 與 grok pattern 格式 是否符合<br><img src="https://bingxiangstorage.blob.core.windows.net/blog/elk-parse-timestamp/2022-04-18-00-00-23.png"></p>
+<h2 id="重啟服務-查看-timestamp-是否有被parse成功"><a href="#重啟服務-查看-timestamp-是否有被parse成功" class="headerlink" title="重啟服務 查看 timestamp 是否有被parse成功"></a>重啟服務 查看 timestamp 是否有被parse成功</h2><p>原始Log檔</p>
+<pre><code class="txt">2022-04-17 17:01:56.338 26 INFO ELK_Test.Controllers.LogTestController   Nlog Test Value: 測試Timestamp 
+</code></pre>
+<p>經過Logstash Parse後<br>原先的Log 已經被 Parse 成 timestamp &amp; threadid &amp; loglevel &amp; logger &amp; message 各個欄位<br><img src="https://bingxiangstorage.blob.core.windows.net/blog/elk-parse-timestamp/2022-04-18-01-22-39.png"></p>
+<p>message 異動後差異<br><img src="https://bingxiangstorage.blob.core.windows.net/blog/elk-parse-timestamp/2022-04-18-01-08-41.png"></p>
 
-        </article>
-        
-        <p>
-            <a  class="dashang" onclick="dashangToggle()">斗內💰</a>
-        </p>
-        
-        
+      
+       <hr><span style="font-style: italic;color: gray;"> 轉載請註明來源，若有任何錯誤或表達不清楚的地方，歡迎在下方評論區留言，也可以來信至 leozheng0621@gmail.com </span>
+    </div>
+</article>
+
+
+<p>
+    <a  class="dashang" onclick="dashangToggle()">斗內💰</a>
+</p>
+
+
+
+
     <div id="comments"></div>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css">
 
@@ -710,6 +810,13 @@
 </script>
 
 
+
+
+    
+
+
+
+
     </div>
     <div class="copyright">
         <p class="footer-entry">
@@ -718,11 +825,11 @@
 <p class="footer-entry">Built with <a href="https://hexo.io/" target="_blank">Hexo</a> and <a href="https://github.com/yelog/hexo-theme-3-hexo" target="_blank">3-hexo</a> theme</p>
 
     </div>
-</div>
-<div class="full-toc">
-    <button class="full" data-title="切换全屏 快捷键 s"><span class="min "></span></button>
+    <div class="full-toc">
+        <button class="full" data-title="切换全屏 快捷键 s"><span class="min "></span></button>
 <a class="" id="rocket" ></a>
 
+    </div>
 </div>
 
 <div class="hide_box" onclick="dashangToggle()"></div>
