@@ -2,9 +2,9 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <title>Hexo</title>
-  <meta name="keywords" content="">
-  <meta name="description" content="Hexo">
+  <title>GCP VM 開啟防火牆 | Hexo</title>
+  <meta name="keywords" content=" GCP ">
+  <meta name="description" content="GCP VM 開啟防火牆 | Hexo">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <meta name="description" content="GCP VM 開啟防火牆範例說明目前有一台Linux VM 有提供 Redis服務 (port 6379)，但因未開啟 6379 Port，而使得外部服務無法訪問 以Telnet 測試 Port尚未開啟 telnet 34.125.158.104 6379   建立 GCP 防火牆規則 進入 GCP 防火牆頁面  建立 防火牆規則 redis-port    0.0.0.0&#x2F;0 代表允許所有IP設">
 <meta property="og:type" content="article">
@@ -68,7 +68,7 @@
 
 
 <body>
-<aside class="nav mobile">
+<aside class="nav">
     <div class="nav-left">
         <a href="/"
    class="avatar_target">
@@ -661,12 +661,73 @@
         </div>
     </div>
 </aside>
-<div id="post" class="index">
+<div id="post">
     <div class="pjax">
-        <article class="index">
-            <div class="toc-ref">
+        <article id="post-gcp-vm-set-firewall" class="article article-type-post" itemscope itemprop="blogPost">
     
-        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E9%97%9C%E6%96%BC%E6%88%91%E8%88%87%E8%A9%B2%E9%83%A8%E8%90%BD%E6%A0%BC"><span class="toc-text">關於我與該部落格</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%B0%A1%E4%BB%8B"><span class="toc-text">簡介</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%83%A8%E8%90%BD%E6%A0%BC"><span class="toc-text">部落格</span></a></li></ol></li></ol>
+        <h1 class="article-title">GCP VM 開啟防火牆</h1>
+    
+    <div class="article-meta">
+        
+        
+        
+        <span class="book">
+            <i class="iconfont icon-category"></i>
+            
+            
+            <a  data-rel="Devops">Devops</a> > 
+            
+            <a  data-rel="Devops&lt;---&gt;GCP">GCP</a>
+            
+        </span>
+        
+        
+        <span class="tag">
+            <i class="iconfont icon-tag"></i>
+            
+            <a class="color4">GCP</a>
+            
+        </span>
+        
+    </div>
+    <div class="article-meta">
+        
+            發布時間 : <time class="date" title='更新時間: 2022-04-18 23:36:21'>2022-04-18 23:17</time>
+        
+    </div>
+    <div class="article-meta">
+        
+        <span>字數:144</span>
+        
+        
+        <span id="busuanzi_container_page_pv">
+            觀看數 :<span id="busuanzi_value_page_pv">
+                <span class="count-comment">
+                    <span class="spinner">
+                      <div class="cube1"></div>
+                      <div class="cube2"></div>
+                    </span>
+                </span>
+            </span>
+        </span>
+        
+        
+        <span class="top-comment" title="跳转至评论区">
+            <a href="#comments">
+                評論:<span class="count-comment">
+                    <span class="spinner">
+                      <div class="cube1"></div>
+                      <div class="cube2"></div>
+                    </span>
+                </span>
+            </a>
+        </span>
+        
+    </div>
+    
+    <div class="toc-ref">
+    
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#GCP-VM-%E9%96%8B%E5%95%9F%E9%98%B2%E7%81%AB%E7%89%86"><span class="toc-text">GCP VM 開啟防火牆</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AF%84%E4%BE%8B%E8%AA%AA%E6%98%8E"><span class="toc-text">範例說明</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%BB%BA%E7%AB%8B-GCP-%E9%98%B2%E7%81%AB%E7%89%86%E8%A6%8F%E5%89%87"><span class="toc-text">建立 GCP 防火牆規則</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%A8%AD%E5%AE%9A-VM"><span class="toc-text">設定 VM</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%A9%97%E8%AD%89%E7%B5%90%E6%9E%9C"><span class="toc-text">驗證結果</span></a></li></ol></li></ol>
     
 <style>
     .left-col .switch-btn,
@@ -679,20 +740,47 @@
     }
 </style>
 </div>
-            <h1 id="關於我與該部落格"><a href="#關於我與該部落格" class="headerlink" title="關於我與該部落格"></a>關於我與該部落格</h1><h2 id="簡介"><a href="#簡介" class="headerlink" title="簡介"></a>簡介</h2><p>我是一名.Net 開發工程師</p>
-<p>此部落格為軟體開發的學習筆記</p>
-<p>若文章內容有誤，歡迎留言指正，或來信告知 <a href="mailto:&#x6c;&#101;&#111;&#x7a;&#104;&#101;&#110;&#103;&#48;&#x36;&#x32;&#x31;&#64;&#x67;&#109;&#97;&#105;&#x6c;&#x2e;&#99;&#111;&#x6d;">&#x6c;&#101;&#111;&#x7a;&#104;&#101;&#110;&#103;&#48;&#x36;&#x32;&#x31;&#64;&#x67;&#109;&#97;&#105;&#x6c;&#x2e;&#99;&#111;&#x6d;</a></p>
-<h2 id="部落格"><a href="#部落格" class="headerlink" title="部落格"></a>部落格</h2><p>共發布：<code class="article_number"></code>篇文章， 共<code class="site_word_count"></code>字。</p>
-<p>部落格總訪問人數：<code class="site_uv"></code> 人次， 訪問量：<code class="site_pv"></code>次</p>
-<p>此部落格通過 <a target="_blank" rel="noopener" href="https://hexo.io/">Hexo</a> 建立，部屬在 <a target="_blank" rel="noopener" href="https://pages.github.com/">GitHub Pages</a>主題 <a target="_blank" rel="noopener" href="https://github.com/yelog/hexo-theme-3-hexo">3-hexo</a></p>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="GCP-VM-開啟防火牆"><a href="#GCP-VM-開啟防火牆" class="headerlink" title="GCP VM 開啟防火牆"></a>GCP VM 開啟防火牆</h1><h2 id="範例說明"><a href="#範例說明" class="headerlink" title="範例說明"></a>範例說明</h2><p>目前有一台Linux VM 有提供 Redis服務 (port 6379)，但因未開啟 6379 Port，而使得外部服務無法訪問<br><img src="https://bingxiangstorage.blob.core.windows.net/blog/gcp-vm-set-firewall/2022-04-18-23-24-23.png"></p>
+<p>以Telnet 測試 Port尚未開啟</p>
+<pre><code class="CMD">telnet 34.125.158.104 6379
+</code></pre>
+<p><img src="https://bingxiangstorage.blob.core.windows.net/blog/gcp-vm-set-firewall/2022-04-18-23-25-16.png"></p>
+<h2 id="建立-GCP-防火牆規則"><a href="#建立-GCP-防火牆規則" class="headerlink" title="建立 GCP 防火牆規則"></a>建立 GCP 防火牆規則</h2><ol>
+<li><p>進入 GCP 防火牆頁面<br><img src="https://bingxiangstorage.blob.core.windows.net/blog/gcp-vm-set-firewall/2022-04-18-23-27-56.png"></p>
+</li>
+<li><p>建立 防火牆規則 redis-port<br><img src="https://bingxiangstorage.blob.core.windows.net/blog/gcp-vm-set-firewall/2022-04-18-23-28-39.png"><br><img src="https://bingxiangstorage.blob.core.windows.net/blog/gcp-vm-set-firewall/2022-04-18-23-29-58.png"></p>
+</li>
+</ol>
+<blockquote>
+<p>0.0.0.0/0 代表允許所有IP<br>設定 開通 6379 TCP Port<br><img src="https://bingxiangstorage.blob.core.windows.net/blog/gcp-vm-set-firewall/2022-04-18-23-30-43.png"></p>
+</blockquote>
+<h2 id="設定-VM"><a href="#設定-VM" class="headerlink" title="設定 VM"></a>設定 VM</h2><ol>
+<li><p>編輯 VM<br><img src="https://bingxiangstorage.blob.core.windows.net/blog/gcp-vm-set-firewall/2022-04-18-23-32-58.png"></p>
+</li>
+<li><p>網路標記 新增 redis-port =&gt; 儲存<br><img src="https://bingxiangstorage.blob.core.windows.net/blog/gcp-vm-set-firewall/2022-04-18-23-33-42.png"></p>
+</li>
+</ol>
+<h2 id="驗證結果"><a href="#驗證結果" class="headerlink" title="驗證結果"></a>驗證結果</h2><p>再次以Telnet 測試 6379 Port，已可正常訪問</p>
+<pre><code class="CMD">telnet 34.125.158.104 6379
+</code></pre>
+<p><img src="https://bingxiangstorage.blob.core.windows.net/blog/gcp-vm-set-firewall/2022-04-18-23-35-52.png"></p>
 
-        </article>
-        
-        <p>
-            <a  class="dashang" onclick="dashangToggle()">斗內💰</a>
-        </p>
-        
-        
+      
+       <hr><span style="font-style: italic;color: gray;"> 轉載請註明來源，若有任何錯誤或表達不清楚的地方，歡迎在下方評論區留言，也可以來信至 leozheng0621@gmail.com </span>
+    </div>
+</article>
+
+
+<p>
+    <a  class="dashang" onclick="dashangToggle()">斗內💰</a>
+</p>
+
+
+
+
     <div id="comments"></div>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css">
 
@@ -714,6 +802,13 @@
 </script>
 
 
+
+
+    
+
+
+
+
     </div>
     <div class="copyright">
         <p class="footer-entry">
@@ -722,11 +817,11 @@
 <p class="footer-entry">Built with <a href="https://hexo.io/" target="_blank">Hexo</a> and <a href="https://github.com/yelog/hexo-theme-3-hexo" target="_blank">3-hexo</a> theme</p>
 
     </div>
-</div>
-<div class="full-toc">
-    <button class="full" data-title="切换全屏 快捷键 s"><span class="min "></span></button>
+    <div class="full-toc">
+        <button class="full" data-title="切换全屏 快捷键 s"><span class="min "></span></button>
 <a class="" id="rocket" ></a>
 
+    </div>
 </div>
 
 <div class="hide_box" onclick="dashangToggle()"></div>

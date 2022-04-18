@@ -6,32 +6,28 @@
   <meta name="keywords" content="">
   <meta name="description" content="Hexo">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-<meta name="description" content="軟體說明ELK 是由 Elasticsearch、Logstash、Kibana 所組成 Elasticsearch 是一套開源式的分散式搜尋引擎 官網 Logstash 可將蒐集到的Log做進一步處理，Parse成統一格式 官網 Kibana 則是可將Elasticsearch的資料 視覺化的呈現在前端 官網 擴充工具beats 是輕量級的系統監測收集器，可將收集到的 data 進行轉拋 bea">
+<meta name="description" content="GCP VM 開啟防火牆範例說明目前有一台Linux VM 有提供 Redis服務 (port 6379)，但因未開啟 6379 Port，而使得外部服務無法訪問 以Telnet 測試 Port尚未開啟 telnet 34.125.158.104 6379   建立 GCP 防火牆規則 進入 GCP 防火牆頁面  建立 防火牆規則 redis-port    0.0.0.0&#x2F;0 代表允許所有IP設">
 <meta property="og:type" content="article">
-<meta property="og:title" content="ELK Stack">
-<meta property="og:url" content="http://example.com/2022/04/16/elk-sample/index.html">
+<meta property="og:title" content="GCP VM 開啟防火牆">
+<meta property="og:url" content="http://example.com/2022/04/18/gcp-vm-set-firewall/index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="軟體說明ELK 是由 Elasticsearch、Logstash、Kibana 所組成 Elasticsearch 是一套開源式的分散式搜尋引擎 官網 Logstash 可將蒐集到的Log做進一步處理，Parse成統一格式 官網 Kibana 則是可將Elasticsearch的資料 視覺化的呈現在前端 官網 擴充工具beats 是輕量級的系統監測收集器，可將收集到的 data 進行轉拋 bea">
+<meta property="og:description" content="GCP VM 開啟防火牆範例說明目前有一台Linux VM 有提供 Redis服務 (port 6379)，但因未開啟 6379 Port，而使得外部服務無法訪問 以Telnet 測試 Port尚未開啟 telnet 34.125.158.104 6379   建立 GCP 防火牆規則 進入 GCP 防火牆頁面  建立 防火牆規則 redis-port    0.0.0.0&#x2F;0 代表允許所有IP設">
 <meta property="og:locale" content="zh_TW">
-<meta property="og:image" content="https://bingxiangstorage.blob.core.windows.net/blog/elk-sample/2022-04-16-22-52-53.png">
-<meta property="og:image" content="https://bingxiangstorage.blob.core.windows.net/blog/elk-sample/2022-04-17-17-00-37.png">
-<meta property="og:image" content="https://bingxiangstorage.blob.core.windows.net/blog/elk-sample/2022-04-17-22-53-29.png">
-<meta property="og:image" content="https://bingxiangstorage.blob.core.windows.net/blog/elk-sample/2022-04-16-23-13-22.png">
-<meta property="og:image" content="https://bingxiangstorage.blob.core.windows.net/blog/elk-sample/2022-04-16-23-13-31.png">
-<meta property="og:image" content="https://bingxiangstorage.blob.core.windows.net/blog/elk-sample/2022-04-16-23-54-02.png">
-<meta property="og:image" content="https://bingxiangstorage.blob.core.windows.net/blog/elk-sample/2022-04-16-23-28-30.png">
-<meta property="og:image" content="https://bingxiangstorage.blob.core.windows.net/blog/elk-sample/2022-04-16-23-28-43.png">
-<meta property="og:image" content="https://bingxiangstorage.blob.core.windows.net/blog/elk-sample/2022-04-16-23-28-57.png">
-<meta property="og:image" content="https://bingxiangstorage.blob.core.windows.net/blog/elk-sample/2022-04-16-23-29-04.png">
-<meta property="og:image" content="https://bingxiangstorage.blob.core.windows.net/blog/elk-sample/2022-04-16-23-29-43.png">
-<meta property="og:image" content="https://bingxiangstorage.blob.core.windows.net/blog/elk-sample/2022-04-16-23-29-54.png">
-<meta property="og:image" content="https://bingxiangstorage.blob.core.windows.net/blog/elk-sample/2022-04-16-23-30-02.png">
-<meta property="article:published_time" content="2022-04-16T14:29:52.000Z">
-<meta property="article:modified_time" content="2022-04-17T17:12:43.308Z">
+<meta property="og:image" content="https://bingxiangstorage.blob.core.windows.net/blog/gcp-vm-set-firewall/2022-04-18-23-24-23.png">
+<meta property="og:image" content="https://bingxiangstorage.blob.core.windows.net/blog/gcp-vm-set-firewall/2022-04-18-23-25-16.png">
+<meta property="og:image" content="https://bingxiangstorage.blob.core.windows.net/blog/gcp-vm-set-firewall/2022-04-18-23-27-56.png">
+<meta property="og:image" content="https://bingxiangstorage.blob.core.windows.net/blog/gcp-vm-set-firewall/2022-04-18-23-28-39.png">
+<meta property="og:image" content="https://bingxiangstorage.blob.core.windows.net/blog/gcp-vm-set-firewall/2022-04-18-23-29-58.png">
+<meta property="og:image" content="https://bingxiangstorage.blob.core.windows.net/blog/gcp-vm-set-firewall/2022-04-18-23-30-43.png">
+<meta property="og:image" content="https://bingxiangstorage.blob.core.windows.net/blog/gcp-vm-set-firewall/2022-04-18-23-32-58.png">
+<meta property="og:image" content="https://bingxiangstorage.blob.core.windows.net/blog/gcp-vm-set-firewall/2022-04-18-23-33-42.png">
+<meta property="og:image" content="https://bingxiangstorage.blob.core.windows.net/blog/gcp-vm-set-firewall/2022-04-18-23-35-52.png">
+<meta property="article:published_time" content="2022-04-18T15:17:08.000Z">
+<meta property="article:modified_time" content="2022-04-18T15:36:21.222Z">
 <meta property="article:author" content="Leo Zheng">
-<meta property="article:tag" content="ELK">
+<meta property="article:tag" content="GCP">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://bingxiangstorage.blob.core.windows.net/blog/elk-sample/2022-04-16-22-52-53.png">
+<meta name="twitter:image" content="https://bingxiangstorage.blob.core.windows.net/blog/gcp-vm-set-firewall/2022-04-18-23-24-23.png">
 
 
 <link rel="icon" href="/img/avatar.jpg">
@@ -120,7 +116,7 @@
     <li>
         <div class="all active" data-rel="全部文章">全部文章
             
-                <small>(23)</small>
+                <small>(24)</small>
             
         </div>
     </li>
@@ -187,7 +183,7 @@
                         <i class="fold iconfont icon-right"></i>
                         
                         Devops
-                        <small>(14)</small>
+                        <small>(15)</small>
                         
                     </div>
                     
@@ -234,7 +230,7 @@
                                         
                                         GCP
                                         
-                                            <small>(4
+                                            <small>(5
                                                 )</small>
                                         
                                     </div>
@@ -364,8 +360,8 @@
         
     </div>
 </div>
-<input type="hidden" id="yelog_site_posts_number" value="23">
-<input type="hidden" id="yelog_site_word_count" value="11.1k">
+<input type="hidden" id="yelog_site_posts_number" value="24">
+<input type="hidden" id="yelog_site_word_count" value="11.3k">
 <div style="display: none">
     <span id="busuanzi_value_site_uv"></span>
     <span id="busuanzi_value_site_pv"></span>
@@ -456,6 +452,14 @@
 
     
     <nav id="title-list-nav">
+        
+        <a  class="全部文章 Devops GCP "
+           href="/2022/04/18/gcp-vm-set-firewall/"
+           data-tag="GCP"
+           data-author="" >
+            <span class="post-title" title="GCP VM 開啟防火牆">GCP VM 開啟防火牆</span>
+            <span class="post-date" title="2022-04-18 23:17:08">2022/04/18</span>
+        </a>
         
         <a  class="全部文章 Devops ELK "
            href="/2022/04/17/elk-parse-timestamp/"
@@ -677,7 +681,7 @@
 </div>
             <h1 id="關於我與該部落格"><a href="#關於我與該部落格" class="headerlink" title="關於我與該部落格"></a>關於我與該部落格</h1><h2 id="簡介"><a href="#簡介" class="headerlink" title="簡介"></a>簡介</h2><p>我是一名.Net 開發工程師</p>
 <p>此部落格為軟體開發的學習筆記</p>
-<p>若文章內容有誤，歡迎留言指正，或來信告知 <a href="mailto:&#x6c;&#101;&#x6f;&#122;&#104;&#x65;&#x6e;&#103;&#x30;&#x36;&#x32;&#x31;&#64;&#x67;&#109;&#x61;&#105;&#x6c;&#46;&#99;&#111;&#x6d;">&#x6c;&#101;&#x6f;&#122;&#104;&#x65;&#x6e;&#103;&#x30;&#x36;&#x32;&#x31;&#64;&#x67;&#109;&#x61;&#105;&#x6c;&#46;&#99;&#111;&#x6d;</a></p>
+<p>若文章內容有誤，歡迎留言指正，或來信告知 <a href="mailto:&#x6c;&#x65;&#x6f;&#122;&#104;&#101;&#x6e;&#103;&#x30;&#x36;&#x32;&#x31;&#x40;&#103;&#x6d;&#97;&#105;&#x6c;&#46;&#x63;&#x6f;&#109;">&#x6c;&#x65;&#x6f;&#122;&#104;&#101;&#x6e;&#103;&#x30;&#x36;&#x32;&#x31;&#x40;&#103;&#x6d;&#97;&#105;&#x6c;&#46;&#x63;&#x6f;&#109;</a></p>
 <h2 id="部落格"><a href="#部落格" class="headerlink" title="部落格"></a>部落格</h2><p>共發布：<code class="article_number"></code>篇文章， 共<code class="site_word_count"></code>字。</p>
 <p>部落格總訪問人數：<code class="site_uv"></code> 人次， 訪問量：<code class="site_pv"></code>次</p>
 <p>此部落格通過 <a target="_blank" rel="noopener" href="https://hexo.io/">Hexo</a> 建立，部屬在 <a target="_blank" rel="noopener" href="https://pages.github.com/">GitHub Pages</a>主題 <a target="_blank" rel="noopener" href="https://github.com/yelog/hexo-theme-3-hexo">3-hexo</a></p>
