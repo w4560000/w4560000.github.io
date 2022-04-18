@@ -6,28 +6,37 @@
   <meta name="keywords" content="">
   <meta name="description" content="Hexo">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-<meta name="description" content="GCP VM 開啟防火牆範例說明目前有一台Linux VM 有提供 Redis服務 (port 6379)，但因未開啟 6379 Port，而使得外部服務無法訪問 以Telnet 測試 Port尚未開啟 telnet 34.125.158.104 6379   建立 GCP 防火牆規則 進入 GCP 防火牆頁面  建立 防火牆規則 redis-port    0.0.0.0&#x2F;0 代表允許所有IP設">
+<meta name="description" content="建立 .Net Core 3.1 Web API 專案 做範例VS2019 建立 建立 GCP Compute Engine使用 ASP.NET Framework 映像檔 建立較為快速 設定 GCP Compute Engine為VM 建立 Windows密碼 遠端進入VM中 安裝 專案對應的 Dotnet Core SDK、Runtime、dotnet-hostinghttps:&#x2F;&#x2F;dotne">
 <meta property="og:type" content="article">
-<meta property="og:title" content="GCP VM 開啟防火牆">
-<meta property="og:url" content="http://example.com/2022/04/18/gcp-vm-set-firewall/index.html">
+<meta property="og:title" content="Visual Studio Deploy .Net Core 3.1 專案 至 GCP Compute Engine">
+<meta property="og:url" content="http://example.com/2022/04/19/dotnet-core-deploy-gce/index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="GCP VM 開啟防火牆範例說明目前有一台Linux VM 有提供 Redis服務 (port 6379)，但因未開啟 6379 Port，而使得外部服務無法訪問 以Telnet 測試 Port尚未開啟 telnet 34.125.158.104 6379   建立 GCP 防火牆規則 進入 GCP 防火牆頁面  建立 防火牆規則 redis-port    0.0.0.0&#x2F;0 代表允許所有IP設">
+<meta property="og:description" content="建立 .Net Core 3.1 Web API 專案 做範例VS2019 建立 建立 GCP Compute Engine使用 ASP.NET Framework 映像檔 建立較為快速 設定 GCP Compute Engine為VM 建立 Windows密碼 遠端進入VM中 安裝 專案對應的 Dotnet Core SDK、Runtime、dotnet-hostinghttps:&#x2F;&#x2F;dotne">
 <meta property="og:locale" content="zh_TW">
-<meta property="og:image" content="https://bingxiangstorage.blob.core.windows.net/blog/gcp-vm-set-firewall/2022-04-18-23-24-23.png">
-<meta property="og:image" content="https://bingxiangstorage.blob.core.windows.net/blog/gcp-vm-set-firewall/2022-04-18-23-25-16.png">
-<meta property="og:image" content="https://bingxiangstorage.blob.core.windows.net/blog/gcp-vm-set-firewall/2022-04-18-23-27-56.png">
-<meta property="og:image" content="https://bingxiangstorage.blob.core.windows.net/blog/gcp-vm-set-firewall/2022-04-18-23-28-39.png">
-<meta property="og:image" content="https://bingxiangstorage.blob.core.windows.net/blog/gcp-vm-set-firewall/2022-04-18-23-29-58.png">
-<meta property="og:image" content="https://bingxiangstorage.blob.core.windows.net/blog/gcp-vm-set-firewall/2022-04-18-23-30-43.png">
-<meta property="og:image" content="https://bingxiangstorage.blob.core.windows.net/blog/gcp-vm-set-firewall/2022-04-18-23-32-58.png">
-<meta property="og:image" content="https://bingxiangstorage.blob.core.windows.net/blog/gcp-vm-set-firewall/2022-04-18-23-33-42.png">
-<meta property="og:image" content="https://bingxiangstorage.blob.core.windows.net/blog/gcp-vm-set-firewall/2022-04-18-23-35-52.png">
-<meta property="article:published_time" content="2022-04-18T15:17:08.000Z">
-<meta property="article:modified_time" content="2022-04-18T15:36:21.222Z">
+<meta property="og:image" content="https://bingxiangstorage.blob.core.windows.net/blog/dotnet-core-deploy-gce/2022-04-19-01-10-00.png">
+<meta property="og:image" content="https://bingxiangstorage.blob.core.windows.net/blog/dotnet-core-deploy-gce/2022-04-19-01-11-10.png">
+<meta property="og:image" content="https://bingxiangstorage.blob.core.windows.net/blog/dotnet-core-deploy-gce/2022-04-19-01-11-18.png">
+<meta property="og:image" content="https://bingxiangstorage.blob.core.windows.net/blog/dotnet-core-deploy-gce/2022-04-19-00-24-42.png">
+<meta property="og:image" content="https://bingxiangstorage.blob.core.windows.net/blog/dotnet-core-deploy-gce/2022-04-19-00-24-50.png">
+<meta property="og:image" content="https://bingxiangstorage.blob.core.windows.net/blog/dotnet-core-deploy-gce/2022-04-19-00-25-56.png">
+<meta property="og:image" content="https://bingxiangstorage.blob.core.windows.net/blog/dotnet-core-deploy-gce/2022-04-19-00-41-06.png">
+<meta property="og:image" content="https://bingxiangstorage.blob.core.windows.net/blog/dotnet-core-deploy-gce/2022-04-19-01-01-28.png">
+<meta property="og:image" content="https://bingxiangstorage.blob.core.windows.net/blog/dotnet-core-deploy-gce/2022-04-19-00-11-23.png">
+<meta property="og:image" content="https://bingxiangstorage.blob.core.windows.net/blog/dotnet-core-deploy-gce/2022-04-19-00-32-53.png">
+<meta property="og:image" content="https://bingxiangstorage.blob.core.windows.net/blog/dotnet-core-deploy-gce/2022-04-19-00-33-27.png">
+<meta property="og:image" content="https://bingxiangstorage.blob.core.windows.net/blog/dotnet-core-deploy-gce/2022-04-19-00-34-25.png">
+<meta property="og:image" content="https://bingxiangstorage.blob.core.windows.net/blog/dotnet-core-deploy-gce/2022-04-19-00-35-19.png">
+<meta property="og:image" content="https://bingxiangstorage.blob.core.windows.net/blog/dotnet-core-deploy-gce/2022-04-19-00-36-11.png">
+<meta property="og:image" content="https://bingxiangstorage.blob.core.windows.net/blog/dotnet-core-deploy-gce/2022-04-19-00-53-44.png">
+<meta property="og:image" content="https://bingxiangstorage.blob.core.windows.net/blog/dotnet-core-deploy-gce/2022-04-19-00-54-20.png">
+<meta property="og:image" content="https://bingxiangstorage.blob.core.windows.net/blog/dotnet-core-deploy-gce/2022-04-19-00-55-10.png">
+<meta property="og:image" content="https://bingxiangstorage.blob.core.windows.net/blog/dotnet-core-deploy-gce/2022-04-19-01-16-00.png">
+<meta property="article:published_time" content="2022-04-18T16:04:26.000Z">
+<meta property="article:modified_time" content="2022-04-18T17:21:56.236Z">
 <meta property="article:author" content="Leo Zheng">
-<meta property="article:tag" content="GCP">
+<meta property="article:tag" content=".NetCore">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://bingxiangstorage.blob.core.windows.net/blog/gcp-vm-set-firewall/2022-04-18-23-24-23.png">
+<meta name="twitter:image" content="https://bingxiangstorage.blob.core.windows.net/blog/dotnet-core-deploy-gce/2022-04-19-01-10-00.png">
 
 
 <link rel="icon" href="/img/avatar.jpg">
@@ -116,7 +125,7 @@
     <li>
         <div class="all active" data-rel="全部文章">全部文章
             
-                <small>(24)</small>
+                <small>(25)</small>
             
         </div>
     </li>
@@ -128,7 +137,7 @@
                         <i class="fold iconfont icon-right"></i>
                         
                         Backend
-                        <small>(4)</small>
+                        <small>(5)</small>
                         
                     </div>
                     
@@ -151,7 +160,7 @@
                                         
                                         .NetCore
                                         
-                                            <small>(1
+                                            <small>(2
                                                 )</small>
                                         
                                     </div>
@@ -360,8 +369,8 @@
         
     </div>
 </div>
-<input type="hidden" id="yelog_site_posts_number" value="24">
-<input type="hidden" id="yelog_site_word_count" value="11.3k">
+<input type="hidden" id="yelog_site_posts_number" value="25">
+<input type="hidden" id="yelog_site_word_count" value="11.4k">
 <div style="display: none">
     <span id="busuanzi_value_site_uv"></span>
     <span id="busuanzi_value_site_pv"></span>
@@ -411,6 +420,10 @@
             </li>
         
             <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>.NetCore</a>
+            </li>
+        
+            <li class="article-tag-list-item">
                 <i class="iconfont icon-tag"></i><a>Azure</a>
             </li>
         
@@ -452,6 +465,14 @@
 
     
     <nav id="title-list-nav">
+        
+        <a  class="全部文章 Backend .NetCore "
+           href="/2022/04/19/dotnet-core-deploy-gce/"
+           data-tag=".NetCore"
+           data-author="" >
+            <span class="post-title" title="Visual Studio Deploy .Net Core 3.1 專案 至 GCP Compute Engine">Visual Studio Deploy .Net Core 3.1 專案 至 GCP Compute Engine</span>
+            <span class="post-date" title="2022-04-19 00:04:26">2022/04/19</span>
+        </a>
         
         <a  class="全部文章 Devops GCP "
            href="/2022/04/18/gcp-vm-set-firewall/"
@@ -681,7 +702,7 @@
 </div>
             <h1 id="關於我與該部落格"><a href="#關於我與該部落格" class="headerlink" title="關於我與該部落格"></a>關於我與該部落格</h1><h2 id="簡介"><a href="#簡介" class="headerlink" title="簡介"></a>簡介</h2><p>我是一名.Net 開發工程師</p>
 <p>此部落格為軟體開發的學習筆記</p>
-<p>若文章內容有誤，歡迎留言指正，或來信告知 <a href="mailto:&#108;&#101;&#x6f;&#x7a;&#x68;&#x65;&#x6e;&#x67;&#x30;&#54;&#50;&#x31;&#64;&#x67;&#x6d;&#97;&#x69;&#x6c;&#46;&#99;&#x6f;&#x6d;">&#108;&#101;&#x6f;&#x7a;&#x68;&#x65;&#x6e;&#x67;&#x30;&#54;&#50;&#x31;&#64;&#x67;&#x6d;&#97;&#x69;&#x6c;&#46;&#99;&#x6f;&#x6d;</a></p>
+<p>若文章內容有誤，歡迎留言指正，或來信告知 <a href="mailto:&#x6c;&#101;&#111;&#x7a;&#104;&#x65;&#x6e;&#103;&#48;&#54;&#50;&#x31;&#64;&#x67;&#109;&#97;&#x69;&#108;&#x2e;&#x63;&#111;&#x6d;">&#x6c;&#101;&#111;&#x7a;&#104;&#x65;&#x6e;&#103;&#48;&#54;&#50;&#x31;&#64;&#x67;&#109;&#97;&#x69;&#108;&#x2e;&#x63;&#111;&#x6d;</a></p>
 <h2 id="部落格"><a href="#部落格" class="headerlink" title="部落格"></a>部落格</h2><p>共發布：<code class="article_number"></code>篇文章， 共<code class="site_word_count"></code>字。</p>
 <p>部落格總訪問人數：<code class="site_uv"></code> 人次， 訪問量：<code class="site_pv"></code>次</p>
 <p>此部落格通過 <a target="_blank" rel="noopener" href="https://hexo.io/">Hexo</a> 建立，部屬在 <a target="_blank" rel="noopener" href="https://pages.github.com/">GitHub Pages</a>主題 <a target="_blank" rel="noopener" href="https://github.com/yelog/hexo-theme-3-hexo">3-hexo</a></p>

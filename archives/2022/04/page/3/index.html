@@ -2,9 +2,9 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <title>Certbot 建立 TLS憑證 並匯入IIS | Hexo</title>
-  <meta name="keywords" content=" Certbot ">
-  <meta name="description" content="Certbot 建立 TLS憑證 並匯入IIS | Hexo">
+  <title>Hexo</title>
+  <meta name="keywords" content="">
+  <meta name="description" content="Hexo">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <meta name="description" content="建立 .Net Core 3.1 Web API 專案 做範例VS2019 建立 建立 GCP Compute Engine使用 ASP.NET Framework 映像檔 建立較為快速 設定 GCP Compute Engine為VM 建立 Windows密碼 遠端進入VM中 安裝 專案對應的 Dotnet Core SDK、Runtime、dotnet-hostinghttps:&#x2F;&#x2F;dotne">
 <meta property="og:type" content="article">
@@ -77,7 +77,7 @@
 
 
 <body>
-<aside class="nav">
+<aside class="nav mobile">
     <div class="nav-left">
         <a href="/"
    class="avatar_target">
@@ -682,73 +682,12 @@
         </div>
     </div>
 </aside>
-<div id="post">
+<div id="post" class="index">
     <div class="pjax">
-        <article id="post-certbot-tls-certificate" class="article article-type-post" itemscope itemprop="blogPost">
+        <article class="index">
+            <div class="toc-ref">
     
-        <h1 class="article-title">Certbot 建立 TLS憑證 並匯入IIS</h1>
-    
-    <div class="article-meta">
-        
-        
-        
-        <span class="book">
-            <i class="iconfont icon-category"></i>
-            
-            
-            <a  data-rel="Tool">Tool</a> > 
-            
-            <a  data-rel="Tool&lt;---&gt;Certbot">Certbot</a>
-            
-        </span>
-        
-        
-        <span class="tag">
-            <i class="iconfont icon-tag"></i>
-            
-            <a class="color3">Certbot</a>
-            
-        </span>
-        
-    </div>
-    <div class="article-meta">
-        
-            發布時間 : <time class="date" title='更新時間: 2022-04-12 23:49:47'>2022-04-11 23:08</time>
-        
-    </div>
-    <div class="article-meta">
-        
-        <span>字數:478</span>
-        
-        
-        <span id="busuanzi_container_page_pv">
-            觀看數 :<span id="busuanzi_value_page_pv">
-                <span class="count-comment">
-                    <span class="spinner">
-                      <div class="cube1"></div>
-                      <div class="cube2"></div>
-                    </span>
-                </span>
-            </span>
-        </span>
-        
-        
-        <span class="top-comment" title="跳转至评论区">
-            <a href="#comments">
-                評論:<span class="count-comment">
-                    <span class="spinner">
-                      <div class="cube1"></div>
-                      <div class="cube2"></div>
-                    </span>
-                </span>
-            </a>
-        </span>
-        
-    </div>
-    
-    <div class="toc-ref">
-    
-        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%96%8B%E7%99%BC%E7%92%B0%E5%A2%83"><span class="toc-text">開發環境</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%9C%AC%E6%96%87%E7%AF%84%E4%BE%8B%E6%B5%81%E7%A8%8B"><span class="toc-text">本文範例流程</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#certbot-%E5%BB%BA%E7%AB%8BTLS%E6%86%91%E8%AD%89"><span class="toc-text">certbot 建立TLS憑證</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%BB%BA%E7%AB%8B-IIS%E7%94%A8%E7%9A%84-PFX-%E6%86%91%E8%AD%89"><span class="toc-text">建立 IIS用的 PFX 憑證</span></a></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E9%97%9C%E6%96%BC%E6%88%91%E8%88%87%E8%A9%B2%E9%83%A8%E8%90%BD%E6%A0%BC"><span class="toc-text">關於我與該部落格</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%B0%A1%E4%BB%8B"><span class="toc-text">簡介</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%83%A8%E8%90%BD%E6%A0%BC"><span class="toc-text">部落格</span></a></li></ol></li></ol>
     
 <style>
     .left-col .switch-btn,
@@ -761,84 +700,20 @@
     }
 </style>
 </div>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="開發環境"><a href="#開發環境" class="headerlink" title="開發環境"></a>開發環境</h2><ul>
-<li>Windows 10 (home 20H2)</li>
-</ul>
-<h2 id="本文範例流程"><a href="#本文範例流程" class="headerlink" title="本文範例流程"></a>本文範例流程</h2><ol>
-<li>以 Cerbot 建立免費 TLS 憑證</li>
-<li>GCP 的 Cloud DNS 協助完成 DNS-01 挑戰 (可由其他 DNS 服務代替)</li>
-<li>透過 openssl 工具轉換privkey.pem &amp; cert.pem 成 .pfx檔 (IIS憑證檔)</li>
-<li>匯入.pfx憑證檔 至 IIS</li>
-</ol>
-<h2 id="certbot-建立TLS憑證"><a href="#certbot-建立TLS憑證" class="headerlink" title="certbot 建立TLS憑證"></a>certbot 建立TLS憑證</h2><ol>
-<li><p>到 Certbot官網 下載certbot.exe<br><a target="_blank" rel="noopener" href="https://certbot.eff.org/lets-encrypt/windows-other">https://certbot.eff.org/lets-encrypt/windows-other</a><br><a target="_blank" rel="noopener" href="https://dl.eff.org/certbot-beta-installer-win32.exe">https://dl.eff.org/certbot-beta-installer-win32.exe</a></p>
-</li>
-<li><p>安裝 &amp; 以 CMD 方式執行 Certbot</p>
-</li>
-<li><p>產生裸網域憑證、子網域憑證</p>
-<pre><code class="CMD">certbot certonly --manual -m testbingxiang01@gmail.com -d *.bingxiangtest.com
-</code></pre>
-<p><img src="https://bingxiangstorage.blob.core.windows.net/blog/certbot-tls-certificate/2022-04-11-23-43-33.png"></p>
-</li>
-<li><p>至GCP Cloud DNS 完成 DNS-01挑戰<br><img src="https://bingxiangstorage.blob.core.windows.net/blog/certbot-tls-certificate/2022-04-11-23-21-28.png"></p>
-</li>
-<li><p>成功後, 則自動下載憑證至目錄中<br><img src="https://bingxiangstorage.blob.core.windows.net/blog/certbot-tls-certificate/2022-04-11-23-38-16.png"></p>
-</li>
-</ol>
-<blockquote>
-<p>cert.pem : 主要的伺服器憑證<br>privkey.pem : 伺服器憑證的私密金鑰(private key)（注意：此憑證並未設定密碼）<br>chain.pem : 中繼憑證，有些網站伺服器會需要特別安裝（e.g. OCSP stapling in Nginx &gt;=1.3.7）<br>fullchain.pem: 完整的憑證鏈，裡面包含所有憑證（伺服器憑證+中繼憑證）</p>
-</blockquote>
-<h2 id="建立-IIS用的-PFX-憑證"><a href="#建立-IIS用的-PFX-憑證" class="headerlink" title="建立 IIS用的 PFX 憑證"></a>建立 IIS用的 PFX 憑證</h2><ol>
-<li>安裝 openssl 工具<blockquote>
-<p>可透過chocolatey安裝 較方便</p>
-</blockquote>
-</li>
-</ol>
-<pre><code class="PowerShell"># 安裝 chocolatey (以admin權限開啟powershell執行)
-Set-ExecutionPolicy Bypass -Scope Process -Force;[System.Net.ServicePointManager]::SecurityProtocol = System.Net.ServicePointManager]::SecurityProtocol -bor 3072; iex ((New-Object System.Net.WebClient).DownloadString(&#39;https://community.chocolatey.org/install.ps1&#39;))
+            <h1 id="關於我與該部落格"><a href="#關於我與該部落格" class="headerlink" title="關於我與該部落格"></a>關於我與該部落格</h1><h2 id="簡介"><a href="#簡介" class="headerlink" title="簡介"></a>簡介</h2><p>我是一名.Net 開發工程師</p>
+<p>此部落格為軟體開發的學習筆記</p>
+<p>若文章內容有誤，歡迎留言指正，或來信告知 <a href="mailto:&#108;&#101;&#111;&#122;&#x68;&#101;&#110;&#103;&#x30;&#x36;&#x32;&#x31;&#64;&#103;&#109;&#97;&#105;&#108;&#46;&#99;&#111;&#109;">&#108;&#101;&#111;&#122;&#x68;&#101;&#110;&#103;&#x30;&#x36;&#x32;&#x31;&#64;&#103;&#109;&#97;&#105;&#108;&#46;&#99;&#111;&#109;</a></p>
+<h2 id="部落格"><a href="#部落格" class="headerlink" title="部落格"></a>部落格</h2><p>共發布：<code class="article_number"></code>篇文章， 共<code class="site_word_count"></code>字。</p>
+<p>部落格總訪問人數：<code class="site_uv"></code> 人次， 訪問量：<code class="site_pv"></code>次</p>
+<p>此部落格通過 <a target="_blank" rel="noopener" href="https://hexo.io/">Hexo</a> 建立，部屬在 <a target="_blank" rel="noopener" href="https://pages.github.com/">GitHub Pages</a>主題 <a target="_blank" rel="noopener" href="https://github.com/yelog/hexo-theme-3-hexo">3-hexo</a></p>
 
-# 安裝 openssl工具
-choco install openssl
-</code></pre>
-<ol start="2">
-<li><p>切換資料夾路徑至 剛剛使用certbot產憑證的資料夾</p>
-<pre><code class="Powershell">cd C:\Certbot\live\bingxiangtest.com
-</code></pre>
-</li>
-<li><p>創建pfx憑證</p>
-<pre><code class="Powershell">openssl  pkcs12 -export -out &quot;certificate_combined.pfx&quot; -inkey &quot;privkey.pem&quot; -in &quot;cert.pem&quot; -certfile &quot;fullchain.pem&quot; -password &quot;pass:a123456&quot;
-</code></pre>
-</li>
-<li><p>匯入IIS憑證 並綁定web site<br>開啟IIS Server Certificates頁面<br><img src="https://bingxiangstorage.blob.core.windows.net/blog/certbot-tls-certificate/2022-04-11-23-28-28.png"></p>
-</li>
-</ol>
-<p>匯入剛剛建立的pfx憑證 並輸入密碼<br><img src="https://bingxiangstorage.blob.core.windows.net/blog/certbot-tls-certificate/2022-04-11-23-28-45.png"></p>
-<p>將Web Site 綁定 SSL憑證<br><img src="https://bingxiangstorage.blob.core.windows.net/blog/certbot-tls-certificate/2022-04-11-23-29-03.png"></p>
-<blockquote>
-<p>若出現 A specified logon session does not exist. …的錯誤 則以第五步驟匯入憑證</p>
-</blockquote>
-<ol start="5">
-<li>改以 windows certlm 匯入憑證</li>
-</ol>
-<p>cmd 執行certlm.msc<br><img src="https://bingxiangstorage.blob.core.windows.net/blog/certbot-tls-certificate/2022-04-11-23-29-31.png"></p>
-<p>Personal -&gt; Certificates -&gt; All Tasks -&gt; Import…<br><img src="https://bingxiangstorage.blob.core.windows.net/blog/certbot-tls-certificate/2022-04-11-23-29-46.png"><br>再匯入剛剛的相同的.pfx憑證即可再IIS 綁定SSL</p>
-
-      
-       <hr><span style="font-style: italic;color: gray;"> 轉載請註明來源，若有任何錯誤或表達不清楚的地方，歡迎在下方評論區留言，也可以來信至 leozheng0621@gmail.com </span>
-    </div>
-</article>
-
-
-<p>
-    <a  class="dashang" onclick="dashangToggle()">斗內💰</a>
-</p>
-
-
-
-
+        </article>
+        
+        <p>
+            <a  class="dashang" onclick="dashangToggle()">斗內💰</a>
+        </p>
+        
+        
     <div id="comments"></div>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css">
 
@@ -860,13 +735,6 @@ choco install openssl
 </script>
 
 
-
-
-    
-
-
-
-
     </div>
     <div class="copyright">
         <p class="footer-entry">
@@ -875,11 +743,11 @@ choco install openssl
 <p class="footer-entry">Built with <a href="https://hexo.io/" target="_blank">Hexo</a> and <a href="https://github.com/yelog/hexo-theme-3-hexo" target="_blank">3-hexo</a> theme</p>
 
     </div>
-    <div class="full-toc">
-        <button class="full" data-title="切换全屏 快捷键 s"><span class="min "></span></button>
+</div>
+<div class="full-toc">
+    <button class="full" data-title="切换全屏 快捷键 s"><span class="min "></span></button>
 <a class="" id="rocket" ></a>
 
-    </div>
 </div>
 
 <div class="hide_box" onclick="dashangToggle()"></div>

@@ -2,9 +2,9 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <title>Certbot 建立 TLS憑證 並匯入IIS | Hexo</title>
-  <meta name="keywords" content=" Certbot ">
-  <meta name="description" content="Certbot 建立 TLS憑證 並匯入IIS | Hexo">
+  <title>Visual Studio Deploy .Net Core 3.1 專案 至 GCP Compute Engine | Hexo</title>
+  <meta name="keywords" content=" .NetCore ">
+  <meta name="description" content="Visual Studio Deploy .Net Core 3.1 專案 至 GCP Compute Engine | Hexo">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <meta name="description" content="建立 .Net Core 3.1 Web API 專案 做範例VS2019 建立 建立 GCP Compute Engine使用 ASP.NET Framework 映像檔 建立較為快速 設定 GCP Compute Engine為VM 建立 Windows密碼 遠端進入VM中 安裝 專案對應的 Dotnet Core SDK、Runtime、dotnet-hostinghttps:&#x2F;&#x2F;dotne">
 <meta property="og:type" content="article">
@@ -684,9 +684,9 @@
 </aside>
 <div id="post">
     <div class="pjax">
-        <article id="post-certbot-tls-certificate" class="article article-type-post" itemscope itemprop="blogPost">
+        <article id="post-dotnet-core-deploy-gce" class="article article-type-post" itemscope itemprop="blogPost">
     
-        <h1 class="article-title">Certbot 建立 TLS憑證 並匯入IIS</h1>
+        <h1 class="article-title">Visual Studio Deploy .Net Core 3.1 專案 至 GCP Compute Engine</h1>
     
     <div class="article-meta">
         
@@ -696,9 +696,9 @@
             <i class="iconfont icon-category"></i>
             
             
-            <a  data-rel="Tool">Tool</a> > 
+            <a  data-rel="Backend">Backend</a> > 
             
-            <a  data-rel="Tool&lt;---&gt;Certbot">Certbot</a>
+            <a  data-rel="Backend&lt;---&gt;.NetCore">.NetCore</a>
             
         </span>
         
@@ -706,19 +706,19 @@
         <span class="tag">
             <i class="iconfont icon-tag"></i>
             
-            <a class="color3">Certbot</a>
+            <a class="color4">.NetCore</a>
             
         </span>
         
     </div>
     <div class="article-meta">
         
-            發布時間 : <time class="date" title='更新時間: 2022-04-12 23:49:47'>2022-04-11 23:08</time>
+            發布時間 : <time class="date" title='更新時間: 2022-04-19 01:21:56'>2022-04-19 00:04</time>
         
     </div>
     <div class="article-meta">
         
-        <span>字數:478</span>
+        <span>字數:159</span>
         
         
         <span id="busuanzi_container_page_pv">
@@ -748,7 +748,7 @@
     
     <div class="toc-ref">
     
-        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%96%8B%E7%99%BC%E7%92%B0%E5%A2%83"><span class="toc-text">開發環境</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%9C%AC%E6%96%87%E7%AF%84%E4%BE%8B%E6%B5%81%E7%A8%8B"><span class="toc-text">本文範例流程</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#certbot-%E5%BB%BA%E7%AB%8BTLS%E6%86%91%E8%AD%89"><span class="toc-text">certbot 建立TLS憑證</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%BB%BA%E7%AB%8B-IIS%E7%94%A8%E7%9A%84-PFX-%E6%86%91%E8%AD%89"><span class="toc-text">建立 IIS用的 PFX 憑證</span></a></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%BB%BA%E7%AB%8B-Net-Core-3-1-Web-API-%E5%B0%88%E6%A1%88-%E5%81%9A%E7%AF%84%E4%BE%8B"><span class="toc-text">建立 .Net Core 3.1 Web API 專案 做範例</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%BB%BA%E7%AB%8B-GCP-Compute-Engine"><span class="toc-text">建立 GCP Compute Engine</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%A8%AD%E5%AE%9A-GCP-Compute-Engine"><span class="toc-text">設定 GCP Compute Engine</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Visual-Studio-%E5%AE%89%E8%A3%9D-%E6%93%B4%E5%85%85%E5%A5%97%E4%BB%B6-Google-Cloud-Tools-for-Visual-Studio"><span class="toc-text">Visual Studio 安裝 擴充套件 Google Cloud Tools for Visual Studio</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Deploy-%E5%B0%88%E6%A1%88-%E8%87%B3-GCP-Compute-Engine"><span class="toc-text">Deploy 專案 至 GCP Compute Engine</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%9F%A5%E7%9C%8B%E6%98%AF%E5%90%A6%E9%83%A8%E5%B1%AC%E6%88%90%E5%8A%9F"><span class="toc-text">查看是否部屬成功</span></a></li></ol>
     
 <style>
     .left-col .switch-btn,
@@ -764,67 +764,19 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="開發環境"><a href="#開發環境" class="headerlink" title="開發環境"></a>開發環境</h2><ul>
-<li>Windows 10 (home 20H2)</li>
-</ul>
-<h2 id="本文範例流程"><a href="#本文範例流程" class="headerlink" title="本文範例流程"></a>本文範例流程</h2><ol>
-<li>以 Cerbot 建立免費 TLS 憑證</li>
-<li>GCP 的 Cloud DNS 協助完成 DNS-01 挑戰 (可由其他 DNS 服務代替)</li>
-<li>透過 openssl 工具轉換privkey.pem &amp; cert.pem 成 .pfx檔 (IIS憑證檔)</li>
-<li>匯入.pfx憑證檔 至 IIS</li>
-</ol>
-<h2 id="certbot-建立TLS憑證"><a href="#certbot-建立TLS憑證" class="headerlink" title="certbot 建立TLS憑證"></a>certbot 建立TLS憑證</h2><ol>
-<li><p>到 Certbot官網 下載certbot.exe<br><a target="_blank" rel="noopener" href="https://certbot.eff.org/lets-encrypt/windows-other">https://certbot.eff.org/lets-encrypt/windows-other</a><br><a target="_blank" rel="noopener" href="https://dl.eff.org/certbot-beta-installer-win32.exe">https://dl.eff.org/certbot-beta-installer-win32.exe</a></p>
-</li>
-<li><p>安裝 &amp; 以 CMD 方式執行 Certbot</p>
-</li>
-<li><p>產生裸網域憑證、子網域憑證</p>
-<pre><code class="CMD">certbot certonly --manual -m testbingxiang01@gmail.com -d *.bingxiangtest.com
-</code></pre>
-<p><img src="https://bingxiangstorage.blob.core.windows.net/blog/certbot-tls-certificate/2022-04-11-23-43-33.png"></p>
-</li>
-<li><p>至GCP Cloud DNS 完成 DNS-01挑戰<br><img src="https://bingxiangstorage.blob.core.windows.net/blog/certbot-tls-certificate/2022-04-11-23-21-28.png"></p>
-</li>
-<li><p>成功後, 則自動下載憑證至目錄中<br><img src="https://bingxiangstorage.blob.core.windows.net/blog/certbot-tls-certificate/2022-04-11-23-38-16.png"></p>
-</li>
-</ol>
-<blockquote>
-<p>cert.pem : 主要的伺服器憑證<br>privkey.pem : 伺服器憑證的私密金鑰(private key)（注意：此憑證並未設定密碼）<br>chain.pem : 中繼憑證，有些網站伺服器會需要特別安裝（e.g. OCSP stapling in Nginx &gt;=1.3.7）<br>fullchain.pem: 完整的憑證鏈，裡面包含所有憑證（伺服器憑證+中繼憑證）</p>
-</blockquote>
-<h2 id="建立-IIS用的-PFX-憑證"><a href="#建立-IIS用的-PFX-憑證" class="headerlink" title="建立 IIS用的 PFX 憑證"></a>建立 IIS用的 PFX 憑證</h2><ol>
-<li>安裝 openssl 工具<blockquote>
-<p>可透過chocolatey安裝 較方便</p>
-</blockquote>
-</li>
-</ol>
-<pre><code class="PowerShell"># 安裝 chocolatey (以admin權限開啟powershell執行)
-Set-ExecutionPolicy Bypass -Scope Process -Force;[System.Net.ServicePointManager]::SecurityProtocol = System.Net.ServicePointManager]::SecurityProtocol -bor 3072; iex ((New-Object System.Net.WebClient).DownloadString(&#39;https://community.chocolatey.org/install.ps1&#39;))
-
-# 安裝 openssl工具
-choco install openssl
-</code></pre>
-<ol start="2">
-<li><p>切換資料夾路徑至 剛剛使用certbot產憑證的資料夾</p>
-<pre><code class="Powershell">cd C:\Certbot\live\bingxiangtest.com
-</code></pre>
-</li>
-<li><p>創建pfx憑證</p>
-<pre><code class="Powershell">openssl  pkcs12 -export -out &quot;certificate_combined.pfx&quot; -inkey &quot;privkey.pem&quot; -in &quot;cert.pem&quot; -certfile &quot;fullchain.pem&quot; -password &quot;pass:a123456&quot;
-</code></pre>
-</li>
-<li><p>匯入IIS憑證 並綁定web site<br>開啟IIS Server Certificates頁面<br><img src="https://bingxiangstorage.blob.core.windows.net/blog/certbot-tls-certificate/2022-04-11-23-28-28.png"></p>
-</li>
-</ol>
-<p>匯入剛剛建立的pfx憑證 並輸入密碼<br><img src="https://bingxiangstorage.blob.core.windows.net/blog/certbot-tls-certificate/2022-04-11-23-28-45.png"></p>
-<p>將Web Site 綁定 SSL憑證<br><img src="https://bingxiangstorage.blob.core.windows.net/blog/certbot-tls-certificate/2022-04-11-23-29-03.png"></p>
-<blockquote>
-<p>若出現 A specified logon session does not exist. …的錯誤 則以第五步驟匯入憑證</p>
-</blockquote>
-<ol start="5">
-<li>改以 windows certlm 匯入憑證</li>
-</ol>
-<p>cmd 執行certlm.msc<br><img src="https://bingxiangstorage.blob.core.windows.net/blog/certbot-tls-certificate/2022-04-11-23-29-31.png"></p>
-<p>Personal -&gt; Certificates -&gt; All Tasks -&gt; Import…<br><img src="https://bingxiangstorage.blob.core.windows.net/blog/certbot-tls-certificate/2022-04-11-23-29-46.png"><br>再匯入剛剛的相同的.pfx憑證即可再IIS 綁定SSL</p>
+        <h2 id="建立-Net-Core-3-1-Web-API-專案-做範例"><a href="#建立-Net-Core-3-1-Web-API-專案-做範例" class="headerlink" title="建立 .Net Core 3.1 Web API 專案 做範例"></a>建立 .Net Core 3.1 Web API 專案 做範例</h2><p>VS2019 建立<br><img src="https://bingxiangstorage.blob.core.windows.net/blog/dotnet-core-deploy-gce/2022-04-19-01-10-00.png"><br><img src="https://bingxiangstorage.blob.core.windows.net/blog/dotnet-core-deploy-gce/2022-04-19-01-11-10.png"><br><img src="https://bingxiangstorage.blob.core.windows.net/blog/dotnet-core-deploy-gce/2022-04-19-01-11-18.png"></p>
+<h2 id="建立-GCP-Compute-Engine"><a href="#建立-GCP-Compute-Engine" class="headerlink" title="建立 GCP Compute Engine"></a>建立 GCP Compute Engine</h2><p>使用 ASP.NET Framework 映像檔 建立較為快速<br><img src="https://bingxiangstorage.blob.core.windows.net/blog/dotnet-core-deploy-gce/2022-04-19-00-24-42.png"><br><img src="https://bingxiangstorage.blob.core.windows.net/blog/dotnet-core-deploy-gce/2022-04-19-00-24-50.png"></p>
+<h2 id="設定-GCP-Compute-Engine"><a href="#設定-GCP-Compute-Engine" class="headerlink" title="設定 GCP Compute Engine"></a>設定 GCP Compute Engine</h2><p>為VM 建立 Windows密碼<br><img src="https://bingxiangstorage.blob.core.windows.net/blog/dotnet-core-deploy-gce/2022-04-19-00-25-56.png"></p>
+<p>遠端進入VM中 安裝 專案對應的 Dotnet Core SDK、Runtime、dotnet-hosting<br><a target="_blank" rel="noopener" href="https://dotnet.microsoft.com/download/dotnet/3.1">https://dotnet.microsoft.com/download/dotnet/3.1</a><br><img src="https://bingxiangstorage.blob.core.windows.net/blog/dotnet-core-deploy-gce/2022-04-19-00-41-06.png"></p>
+<p>預先建立部屬的IIS Web Site、資料夾<br><img src="https://bingxiangstorage.blob.core.windows.net/blog/dotnet-core-deploy-gce/2022-04-19-01-01-28.png"></p>
+<h2 id="Visual-Studio-安裝-擴充套件-Google-Cloud-Tools-for-Visual-Studio"><a href="#Visual-Studio-安裝-擴充套件-Google-Cloud-Tools-for-Visual-Studio" class="headerlink" title="Visual Studio 安裝 擴充套件 Google Cloud Tools for Visual Studio"></a>Visual Studio 安裝 擴充套件 Google Cloud Tools for Visual Studio</h2><p><img src="https://bingxiangstorage.blob.core.windows.net/blog/dotnet-core-deploy-gce/2022-04-19-00-11-23.png"></p>
+<p>設定 Google Cloud Tools for Visual Studio<br><img src="https://bingxiangstorage.blob.core.windows.net/blog/dotnet-core-deploy-gce/2022-04-19-00-32-53.png"></p>
+<p>登入 GCP 帳號<br><img src="https://bingxiangstorage.blob.core.windows.net/blog/dotnet-core-deploy-gce/2022-04-19-00-33-27.png"><br><img src="https://bingxiangstorage.blob.core.windows.net/blog/dotnet-core-deploy-gce/2022-04-19-00-34-25.png"></p>
+<p>設定 所屬Project<br><img src="https://bingxiangstorage.blob.core.windows.net/blog/dotnet-core-deploy-gce/2022-04-19-00-35-19.png"></p>
+<p>設定成功 即可看到剛剛建立的 aspnet-2 機器<br><img src="https://bingxiangstorage.blob.core.windows.net/blog/dotnet-core-deploy-gce/2022-04-19-00-36-11.png"></p>
+<h2 id="Deploy-專案-至-GCP-Compute-Engine"><a href="#Deploy-專案-至-GCP-Compute-Engine" class="headerlink" title="Deploy 專案 至 GCP Compute Engine"></a>Deploy 專案 至 GCP Compute Engine</h2><p><img src="https://bingxiangstorage.blob.core.windows.net/blog/dotnet-core-deploy-gce/2022-04-19-00-53-44.png"><br><img src="https://bingxiangstorage.blob.core.windows.net/blog/dotnet-core-deploy-gce/2022-04-19-00-54-20.png"></p>
+<p>選擇 目標 VM instance &amp; IIS Site Name<br><img src="https://bingxiangstorage.blob.core.windows.net/blog/dotnet-core-deploy-gce/2022-04-19-00-55-10.png"></p>
+<h2 id="查看是否部屬成功"><a href="#查看是否部屬成功" class="headerlink" title="查看是否部屬成功"></a>查看是否部屬成功</h2><p><img src="https://bingxiangstorage.blob.core.windows.net/blog/dotnet-core-deploy-gce/2022-04-19-01-16-00.png"></p>
 
       
        <hr><span style="font-style: italic;color: gray;"> 轉載請註明來源，若有任何錯誤或表達不清楚的地方，歡迎在下方評論區留言，也可以來信至 leozheng0621@gmail.com </span>
