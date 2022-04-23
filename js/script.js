@@ -354,21 +354,21 @@ function inputChange() {
         $(".nav-right nav a").css("display", "none");
         $(".nav-right nav a." + activeTitle).css("display", "block");
     } else if (val.substr(0, 1) === "#") {
-        searchType = '标签'
-        containType = '为'
+        searchType = '標籤'
+        containType = '為'
         if (val.substr(1).length !== 0) {
             $(".nav-right nav a").css("display", "none");
             $(".nav-right nav").find("a." + activeTitle + ":contains_tag('" + val.substr(1) + "')").css("display", "block");
         }
     } else if (val.substr(0, 1) === "@") {
         searchType = '作者'
-        containType= '为'
+        containType= '為'
         if (val.substr(1).length !== 0) {
             $(".nav-right nav a").css("display", "none");
             $(".nav-right nav").find("a." + activeTitle + ":contains_author('" + val.substr(1) + "')").css("display", "block");
         }
     } else {
-        searchType = '标题'
+        searchType = '標題'
         containType = '包含'
         // $(".nav-right nav a").css("display", "none");
         $(".nav-right nav").find("a." + activeTitle + ":"+ ($('#search-panel > .icon-case-sensitive').hasClass('active') ? 'containsSensitive' : 'contains') + "('" + val + "')").css("display", "block");
@@ -402,9 +402,9 @@ function inputChange() {
     if (val !== '') {
         $('#default-panel .icon-search').addClass('active')
         if (val === 'in:') {
-            $('#no-item-tips').show().html('正在进行全局关键字搜索，请输入关键字');
+            $('#no-item-tips').show().html('正在進行全部文章關鍵字搜尋，請輸入關鍵字');
         } else if (!val.startsWith('in:') && $(".nav-right nav a:visible").length === 0) {
-            $('#no-item-tips').show().html('未在 <span>' + activeTitle + '</span> 分类中找到'+ searchType + containType + ' <span>' + val.replace(/^[@|#]/g,'') + '</span> 的文章');
+            $('#no-item-tips').show().html('未在 <span>' + activeTitle + '</span> 分類中找到'+ searchType + containType + ' <span>' + val.replace(/^[@|#]/g,'') + '</span> 的文章');
         }
     } else {
         $('#default-panel .icon-search').removeClass('active')
@@ -765,9 +765,9 @@ function bind() {
 function copyCode(e) {
     $(e).parent().prev().text()
     if (copy($(e).parent().prev().text())) {
-        $(e).html('复制成功')
+        $(e).html('複製成功')
         setTimeout(function () {
-            $(e).html('复制代码')
+            $(e).html('複製代碼')
         }, 1000)
     }
 }
@@ -795,7 +795,7 @@ function copy (text) {
         window.getSelection().removeAllRanges();
         isSuccess = true
     } catch (e) {
-        console.log('复制失败')
+        console.log('複製失敗')
     }
 
     if (text) {
