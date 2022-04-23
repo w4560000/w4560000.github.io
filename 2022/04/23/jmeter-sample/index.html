@@ -2,9 +2,9 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <title>Logstash Parse Timestamp | Hexo</title>
-  <meta name="keywords" content=" ELK ">
-  <meta name="description" content="Logstash Parse Timestamp | Hexo">
+  <title>JMeter壓力測試 範例 | Hexo</title>
+  <meta name="keywords" content=" JMeter ">
+  <meta name="description" content="JMeter壓力測試 範例 | Hexo">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <meta name="description" content="準備測試API以.Net 為範例, 新增一個簡單的API功能(傳入甚麼參數 就回傳甚麼參數) [Route(&quot;api&#x2F;[controller]&quot;)] [ApiController] public class TestController : ControllerBase &amp;#123;     [HttpPost]     public string TestAPI(A mode">
 <meta property="og:type" content="article">
@@ -714,9 +714,9 @@
 </aside>
 <div id="post">
     <div class="pjax">
-        <article id="post-elk-parse-timestamp" class="article article-type-post" itemscope itemprop="blogPost">
+        <article id="post-jmeter-sample" class="article article-type-post" itemscope itemprop="blogPost">
     
-        <h1 class="article-title">Logstash Parse Timestamp</h1>
+        <h1 class="article-title">JMeter壓力測試 範例</h1>
     
     <div class="article-meta">
         
@@ -726,9 +726,9 @@
             <i class="iconfont icon-category"></i>
             
             
-            <a  data-rel="Devops">Devops</a> > 
+            <a  data-rel="Tool">Tool</a> > 
             
-            <a  data-rel="Devops&lt;---&gt;ELK">ELK</a>
+            <a  data-rel="Tool&lt;---&gt;JMeter">JMeter</a>
             
         </span>
         
@@ -736,19 +736,19 @@
         <span class="tag">
             <i class="iconfont icon-tag"></i>
             
-            <a class="color4">ELK</a>
+            <a class="color2">JMeter</a>
             
         </span>
         
     </div>
     <div class="article-meta">
         
-            發布時間 : <time class="date" title='更新時間: 2022-04-18 01:26:25'>2022-04-17 17:10</time>
+            發布時間 : <time class="date" title='更新時間: 2022-04-23 22:03:54'>2022-04-23 21:51</time>
         
     </div>
     <div class="article-meta">
         
-        <span>字數:424</span>
+        <span>字數:362</span>
         
         
         <span id="busuanzi_container_page_pv">
@@ -778,7 +778,7 @@
     
     <div class="toc-ref">
     
-        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%89%8D%E8%A8%80"><span class="toc-text">前言</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Logstash-Parse-Timestamp"><span class="toc-text">Logstash Parse Timestamp</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Grok-debugger"><span class="toc-text">Grok debugger</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%87%8D%E5%95%9F%E6%9C%8D%E5%8B%99-%E6%9F%A5%E7%9C%8B-timestamp-%E6%98%AF%E5%90%A6%E6%9C%89%E8%A2%ABparse%E6%88%90%E5%8A%9F"><span class="toc-text">重啟服務 查看 timestamp 是否有被parse成功</span></a></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%BA%96%E5%82%99%E6%B8%AC%E8%A9%A6API"><span class="toc-text">準備測試API</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%B8%AC%E8%A9%A6%E6%A2%9D%E4%BB%B6"><span class="toc-text">測試條件</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%A8%AD%E5%AE%9A-JMeter%E8%85%B3%E6%9C%AC"><span class="toc-text">設定 JMeter腳本</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%9F%A5%E7%9C%8B%E6%B8%AC%E8%A9%A6%E7%B5%90%E6%9E%9C"><span class="toc-text">查看測試結果</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#CLI%E6%96%B9%E5%BC%8F-Run-Test"><span class="toc-text">CLI方式 Run Test</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%9F%A5%E7%9C%8B%E5%A0%B1%E5%91%8A"><span class="toc-text">查看報告</span></a></li></ol>
     
 <style>
     .left-col .switch-btn,
@@ -794,42 +794,86 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>繼上一篇<a href="/2022/04/16/elk-sample/">ELK Stack</a> 介紹建置範例後<br>最後發現 Timestamp 與 Log 紀錄 應用程式當下的Log時間 不符<br><img src="https://bingxiangstorage.blob.core.windows.net/blog/elk-parse-timestamp/2022-04-17-17-15-20.png"></p>
-<p>其原因為 Filebeat會偵測檔案異動 而進行轉拋Log資料的動作，但還是會跟程式內Log的時間 有時間差<br>本篇範例 在Logstash 轉拋資料到 Elasticsearch 進行 Timestamp 處理，改取Log紀錄裡的時間，這樣在Kibana搜尋時間時，才能知道Log發生的精準時間</p>
-<h2 id="Logstash-Parse-Timestamp"><a href="#Logstash-Parse-Timestamp" class="headerlink" title="Logstash Parse Timestamp"></a>Logstash Parse Timestamp</h2><p>上一篇<a href="/2022/04/16/elk-sample/">ELK Stack</a> 在 logstash/conf.d 建立了 logstash.conf<br>這次 要在建立另一個.conf用來Parse資料欄位</p>
-<p>在 logstash/conf.d 底下 建立 logstash-custom.conf (檔案名稱可自定義)</p>
-<pre><code class="CMD">vi logstash-custom.conf
-</code></pre>
-<pre><code>filter &#123;
-    if [fields][service] == &quot;weblog&quot; &#123;
-        grok &#123;
-            match =&gt; [&quot;message&quot;, &quot;%&#123;TIMESTAMP_ISO8601:timestamp&#125; %&#123;NUMBER:threadid&#125; %&#123;LOGLEVEL:loglevel&#125; %&#123;NOTSPACE:logger&#125; %&#123;SPACE&#125;%&#123;GREEDYDATA:message&#125;&quot;]
-            overwrite =&gt; [ &quot;message&quot; ]
-        &#125;
-        date &#123;
-            match =&gt; [ &quot;timestamp&quot;, &quot;yyyy-MM-dd HH:mm:ss.SSS&quot; ]
-            timezone =&gt; &quot;UTC&quot;
-        &#125;
-        mutate &#123;
-            convert =&gt; &#123;
-                &quot;threadid&quot; =&gt; &quot;integer&quot;
-            &#125;
-            add_field =&gt; &#123;
-                &quot;webtype&quot; =&gt; &quot;%&#123;[fields][webtype]]&#125;&quot;
-            &#125;
-        &#125;
+        <h2 id="準備測試API"><a href="#準備測試API" class="headerlink" title="準備測試API"></a>準備測試API</h2><p>以.Net 為範例, 新增一個簡單的API功能(傳入甚麼參數 就回傳甚麼參數)</p>
+<pre><code class="CSharp">[Route(&quot;api/[controller]&quot;)]
+[ApiController]
+public class TestController : ControllerBase
+&#123;
+    [HttpPost]
+    public string TestAPI(A model)
+    &#123;
+        return model.TestProperty;
     &#125;
 &#125;
+
+public class A
+&#123;
+    public string TestProperty &#123; get; set; &#125;
+&#125;
 </code></pre>
-<blockquote>
-<p>logstash 能使用多個 .conf檔是因為 在<a href="(/2022/04/16/elk-sample/)">上一篇</a> docker-compose.yml 中<br>設定logstash 的 command: -f /etc/logstash/conf.d/<br>代表會吃 /etc/logstash/conf.d/ 底下的所有.conf設定，故 logstash-custom.conf 的設定才能生效</p>
+<pre><code>API: https://localhost:44344/api/Test
+Http Method: POST
+Header: Content-Type = application/json
+Param:
+&#123;
+    “testProperty”: “1000”
+&#125;
+</code></pre>
+<p><img src="https://bingxiangstorage.blob.core.windows.net/blog/jmeter-sample/2022-04-23-21-56-27.png"></p>
+<h2 id="測試條件"><a href="#測試條件" class="headerlink" title="測試條件"></a>測試條件</h2><blockquote>
+<p>每兩秒呼叫 <a target="_blank" rel="noopener" href="https://localhost:44344/api/Test">https://localhost:44344/api/Test</a> 10次，20次循環 (loop 20次)<br>傳入的 TestProperty 依序遞增</p>
 </blockquote>
-<h2 id="Grok-debugger"><a href="#Grok-debugger" class="headerlink" title="Grok debugger"></a>Grok debugger</h2><p>kibana有提供 <a href="/app/kibana#/dev_tools/grokdebugger">grok pattern debugger頁面</a><br>可用來測試 Log 與 grok pattern 格式 是否符合<br><img src="https://bingxiangstorage.blob.core.windows.net/blog/elk-parse-timestamp/2022-04-18-00-00-23.png"></p>
-<h2 id="重啟服務-查看-timestamp-是否有被parse成功"><a href="#重啟服務-查看-timestamp-是否有被parse成功" class="headerlink" title="重啟服務 查看 timestamp 是否有被parse成功"></a>重啟服務 查看 timestamp 是否有被parse成功</h2><p>原始Log檔</p>
-<pre><code class="txt">2022-04-17 17:01:56.338 26 INFO ELK_Test.Controllers.LogTestController   Nlog Test Value: 測試Timestamp 
+<h2 id="設定-JMeter腳本"><a href="#設定-JMeter腳本" class="headerlink" title="設定 JMeter腳本"></a>設定 JMeter腳本</h2><ol>
+<li><p>開啟JMeter<br><img src="https://bingxiangstorage.blob.core.windows.net/blog/jmeter-sample/2022-04-23-21-57-42.png"></p>
+</li>
+<li><p>新增 Threads (Users) &gt; Thread Group<br><img src="https://bingxiangstorage.blob.core.windows.net/blog/jmeter-sample/2022-04-23-21-58-46.png"></p>
+</li>
+</ol>
+<p>設定呼叫次數 &amp; loop次數<br><img src="https://bingxiangstorage.blob.core.windows.net/blog/jmeter-sample/2022-04-23-21-58-59.png"></p>
+<ol start="3">
+<li>新增 Sampler &gt; HTTP Request<br><img src="https://bingxiangstorage.blob.core.windows.net/blog/jmeter-sample/2022-04-23-21-59-18.png"></li>
+</ol>
+<p>設定 呼叫 API路徑 &amp; 參數</p>
+<blockquote>
+<p>傳入的 testProperty 為動態遞增參數, 待會還要設定Conter<br><img src="https://bingxiangstorage.blob.core.windows.net/blog/jmeter-sample/2022-04-23-21-59-36.png"></p>
+</blockquote>
+<ol start="4">
+<li>新增 Config Element &gt; HTTP Header Manager<br><img src="https://bingxiangstorage.blob.core.windows.net/blog/jmeter-sample/2022-04-23-21-59-56.png"></li>
+</ol>
+<p>設定 Content-type = application/json<br><img src="https://bingxiangstorage.blob.core.windows.net/blog/jmeter-sample/2022-04-23-22-00-10.png"></p>
+<ol start="5">
+<li>新增 Config Element &gt; Counter<br><img src="https://bingxiangstorage.blob.core.windows.net/blog/jmeter-sample/2022-04-23-22-00-27.png"></li>
+</ol>
+<p>設定 testProperty (遞增數值)<br><img src="https://bingxiangstorage.blob.core.windows.net/blog/jmeter-sample/2022-04-23-22-00-41.png"></p>
+<ol start="6">
+<li>新增 Timer &gt; Constant Time<br><img src="https://bingxiangstorage.blob.core.windows.net/blog/jmeter-sample/2022-04-23-22-00-52.png"></li>
+</ol>
+<p>設定 delay 2000ms<br><img src="https://bingxiangstorage.blob.core.windows.net/blog/jmeter-sample/2022-04-23-22-01-04.png"></p>
+<ol start="7">
+<li>新增 查看測試結果的Listener<br><img src="https://bingxiangstorage.blob.core.windows.net/blog/jmeter-sample/2022-04-23-22-01-26.png"></li>
+</ol>
+<h2 id="查看測試結果"><a href="#查看測試結果" class="headerlink" title="查看測試結果"></a>查看測試結果</h2><blockquote>
+<p>每兩秒打 API 10 次，20次循環 (共約花 40秒 &amp; 呼叫API 200次)</p>
+</blockquote>
+<ol>
+<li><p>傳入參數遞增<br><img src="https://bingxiangstorage.blob.core.windows.net/blog/jmeter-sample/2022-04-23-22-01-54.png"><br><img src="https://bingxiangstorage.blob.core.windows.net/blog/jmeter-sample/2022-04-23-22-02-05.png"></p>
+</li>
+<li><p>API Response Status &amp; 回應時間<br><img src="https://bingxiangstorage.blob.core.windows.net/blog/jmeter-sample/2022-04-23-22-02-20.png"></p>
+</li>
+<li><p>查看呼叫次數 &amp; (平均、最小、最大)回應時間 …其他欄位資訊<br><img src="https://bingxiangstorage.blob.core.windows.net/blog/jmeter-sample/2022-04-23-22-02-32.png"></p>
+</li>
+</ol>
+<h2 id="CLI方式-Run-Test"><a href="#CLI方式-Run-Test" class="headerlink" title="CLI方式 Run Test"></a>CLI方式 Run Test</h2><blockquote>
+<p>cd 至 apache-jmeter-5.4.3\bin</p>
+</blockquote>
+<pre><code class="PowerShell"># 跑測試 並產.jtl檔 &amp; Report報告
+./jmeter -n -t JMeter_Test.jmx -l JMeter_Test.jtl -e -o D:\Tool\apache-jmeter-5.4.3\Report
+
+# 若已有.jtl檔 則可直接建立Report報告
+./jmeter -g JMeter_Test.jtl -o D:\Tool\apache-jmeter-5.4.3\Report
 </code></pre>
-<p>經過Logstash Parse後<br>原先的Log 已經被 Parse 成 timestamp &amp; threadid &amp; loglevel &amp; logger &amp; message 各個欄位<br><img src="https://bingxiangstorage.blob.core.windows.net/blog/elk-parse-timestamp/2022-04-18-01-22-39.png"></p>
-<p>message 異動後差異<br><img src="https://bingxiangstorage.blob.core.windows.net/blog/elk-parse-timestamp/2022-04-18-01-08-41.png"></p>
+<p><img src="https://bingxiangstorage.blob.core.windows.net/blog/jmeter-sample/2022-04-23-22-03-13.png"></p>
+<h2 id="查看報告"><a href="#查看報告" class="headerlink" title="查看報告"></a>查看報告</h2><p><img src="https://bingxiangstorage.blob.core.windows.net/blog/jmeter-sample/2022-04-23-22-03-44.png"><br><img src="https://bingxiangstorage.blob.core.windows.net/blog/jmeter-sample/2022-04-23-22-03-49.png"></p>
 
       
        <hr><span style="font-style: italic;color: gray;"> 轉載請註明來源，若有任何錯誤或表達不清楚的地方，歡迎在下方評論區留言，也可以來信至 leozheng0621@gmail.com </span>
