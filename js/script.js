@@ -121,8 +121,8 @@ $('.nav-left ul.sub').each(function () {
 })
 
 /* 展开子类 */
-$('.nav-left ul>li>div>.fold').on('click', function (e) {
-    var _this = this;
+$('.nav-left ul>li>div').on('click', function (e) {
+    var _this = $(this).children().first()[0];
     e.stopPropagation();
     $(_this).toggleClass('unfold')
     $(_this).parent().next().toggleClass('hide')

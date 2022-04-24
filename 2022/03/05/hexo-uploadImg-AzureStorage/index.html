@@ -2,9 +2,9 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <title>Hexo-插入圖片 Part2 (以 VS Code 編輯 Markdown) | Hexo</title>
+  <title>Hexo-插入圖片[2] (以 VS Code 編輯 Markdown) | Hexo</title>
   <meta name="keywords" content=" Hexo ">
-  <meta name="description" content="Hexo-插入圖片 Part2 (以 VS Code 編輯 Markdown) | Hexo">
+  <meta name="description" content="Hexo-插入圖片[2] (以 VS Code 編輯 Markdown) | Hexo">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <meta name="description" content="前言繼上一篇ELK Stack 介紹建置範例後本篇 實作 如何將 IIS Log 在 Kibana呈現 IIS 設定 建好一個 IIS 站台後，點擊 紀錄  將標準欄位 全選 &amp; 設定 IIS Log 路徑  IIS Log 路徑 D:\LogFiles\IISLog    修改 filebeat.yml加上 IIS Log ...略 filebeat.inputs:  #&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;">
 <meta property="og:type" content="article">
@@ -661,7 +661,7 @@
            href="/2022/03/05/hexo-uploadImg-AzureStorage/"
            data-tag="Hexo"
            data-author="" >
-            <span class="post-title" title="Hexo-插入圖片 Part2 (以 VS Code 編輯 Markdown)">Hexo-插入圖片 Part2 (以 VS Code 編輯 Markdown)</span>
+            <span class="post-title" title="Hexo-插入圖片[2] (以 VS Code 編輯 Markdown)">Hexo-插入圖片[2] (以 VS Code 編輯 Markdown)</span>
             <span class="post-date" title="2022-03-05 14:43:46">2022/03/05</span>
         </a>
         
@@ -677,7 +677,7 @@
            href="/2022/02/02/hexo-uploadImg/"
            data-tag="Hexo"
            data-author="" >
-            <span class="post-title" title="Hexo-插入圖片 Part1 (以 VS Code 編輯 Markdown)">Hexo-插入圖片 Part1 (以 VS Code 編輯 Markdown)</span>
+            <span class="post-title" title="Hexo-插入圖片[1] (以 VS Code 編輯 Markdown)">Hexo-插入圖片[1] (以 VS Code 編輯 Markdown)</span>
             <span class="post-date" title="2022-02-02 17:03:12">2022/02/02</span>
         </a>
         
@@ -709,7 +709,7 @@
     <div class="pjax">
         <article id="post-hexo-uploadImg-AzureStorage" class="article article-type-post" itemscope itemprop="blogPost">
     
-        <h1 class="article-title">Hexo-插入圖片 Part2 (以 VS Code 編輯 Markdown)</h1>
+        <h1 class="article-title">Hexo-插入圖片[2] (以 VS Code 編輯 Markdown)</h1>
     
     <div class="article-meta">
         
@@ -736,12 +736,12 @@
     </div>
     <div class="article-meta">
         
-            發布時間 : <time class="date" title='更新時間: 2022-04-11 23:30:54'>2022-03-05 14:43</time>
+            發布時間 : <time class="date" title='更新時間: 2022-04-24 16:28:29'>2022-03-05 14:43</time>
         
     </div>
     <div class="article-meta">
         
-        <span>字數:571</span>
+        <span>字數:534</span>
         
         
         <span id="busuanzi_container_page_pv">
@@ -787,7 +787,7 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>繼上一篇<a href="/2022/02/02/hexo-uploadImg/">Hexo-插入圖片 Part1 (以 VS Code 編輯 Markdown)</a><br>分享在VS Code 快速插入圖片後，因考量到圖檔是存在本地Server並隨著版本異動上傳到GitHub，避免日後圖檔數量過多造成儲存庫肥大，故改以上傳到Azure Storage Blob 充當第三方圖庫</p>
+        <p>繼上一篇<a href="/2022/02/02/hexo-uploadImg/">Hexo-插入圖片[1] (以 VS Code 編輯 Markdown)</a><br>分享在VS Code 快速插入圖片後，因考量到圖檔是存在本地Server並隨著版本異動上傳到GitHub，避免日後圖檔數量過多造成儲存庫肥大，故改以上傳到Azure Storage Blob 充當第三方圖庫</p>
 <h2 id="開發環境"><a href="#開發環境" class="headerlink" title="開發環境"></a>開發環境</h2><ul>
 <li>Windows 10 (home 20H2)</li>
 <li>VSCode (1.64.2)</li>
@@ -829,20 +829,16 @@ vsce package
 <p> AzureStorageConnectionString位置<br> <img src="https://bingxiangstorage.blob.core.windows.net/blog/hexo-uploadImg-AzureStorage/2022-03-05-17-22-35.png"></p>
 </li>
 </ol>
-<h2 id="操作說明"><a href="#操作說明" class="headerlink" title="操作說明"></a>操作說明</h2><pre><code>1. 個人常使用的截圖方式為 Windows + Shift + S，此時會複製擷取的圖片到暫存的剪貼簿中
-2. 在VS Code 開啟 .md檔案，輸入 Ctrl + Alt + V 會自動上傳圖檔到AzureStorageBlob上，並生成Markdown語法
-
-    ```
-    ex: ![](https://bingxiangstorage.blob.core.windows.net/blog/hexo-uploadImg-AzureStorage/2022-03-05-17-18-45.png)
-    ```
-
-    可以到Azure上 查看圖檔
-    ![](https://bingxiangstorage.blob.core.windows.net/blog/hexo-uploadImg-AzureStorage/2022-03-05-17-18-45.png)
-
-3. 若檔名相同 會提示是否要覆蓋
-
-    ![](https://bingxiangstorage.blob.core.windows.net/blog/hexo-uploadImg-AzureStorage/2022-03-05-17-19-18.png)
+<h2 id="操作說明"><a href="#操作說明" class="headerlink" title="操作說明"></a>操作說明</h2><ol>
+<li>個人常使用的截圖方式為 Windows + Shift + S，此時會複製擷取的圖片到暫存的剪貼簿中</li>
+<li>在VS Code 開啟 .md檔案，輸入 Ctrl + Alt + V 會自動上傳圖檔到AzureStorageBlob上，並生成Markdown語法</li>
+</ol>
+<pre><code>ex: ![](https://bingxiangstorage.blob.core.windows.net/blog/hexo-uploadImg-AzureStorage/2022-03-05-17-18-45.png)
 </code></pre>
+<p>可以到Azure上 查看圖檔<br><img src="https://bingxiangstorage.blob.core.windows.net/blog/hexo-uploadImg-AzureStorage/2022-03-05-17-18-45.png"></p>
+<ol start="3">
+<li>若檔名相同 會提示是否要覆蓋<br> <img src="https://bingxiangstorage.blob.core.windows.net/blog/hexo-uploadImg-AzureStorage/2022-03-05-17-19-18.png"></li>
+</ol>
 
       
        <hr><span style="font-style: italic;color: gray;"> 轉載請註明來源，若有任何錯誤或表達不清楚的地方，歡迎在下方評論區留言，也可以來信至 leozheng0621@gmail.com </span>

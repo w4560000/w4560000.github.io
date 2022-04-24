@@ -562,7 +562,7 @@
 }
 .nav-left ul.sub {
   transition: height 0.3s, border-top 0.3s;
-  border-left: solid 2px #f00;
+  border-left: solid 2px #42b983;
   overflow-y: hidden;
 }
 .nav-left ul.sub.hide {
