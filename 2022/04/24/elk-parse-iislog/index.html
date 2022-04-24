@@ -6,19 +6,20 @@
   <meta name="keywords" content=" ELK ">
   <meta name="description" content="Kibana 查看IIS Log | Hexo">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-<meta name="description" content="前言繼上一篇ELK Stack 介紹建置範例後本篇 實作 如何將 IIS Log 在 Kibana呈現 IIS 設定 建好一個 IIS 站台後，點擊 紀錄  將標準欄位 全選 &amp; 設定 IIS Log 路徑  IIS Log 路徑 D:\LogFiles\IISLog    修改 filebeat.yml...略 filebeat.inputs:  #&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;">
+<meta name="description" content="前言繼上一篇ELK Stack 介紹建置範例後本篇 實作 如何將 IIS Log 在 Kibana呈現 IIS 設定 建好一個 IIS 站台後，點擊 紀錄  將標準欄位 全選 &amp; 設定 IIS Log 路徑  IIS Log 路徑 D:\LogFiles\IISLog    修改 filebeat.yml加上 IIS Log ...略 filebeat.inputs:  #&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Kibana 查看IIS Log">
 <meta property="og:url" content="http://example.com/2022/04/24/elk-parse-iislog/index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="前言繼上一篇ELK Stack 介紹建置範例後本篇 實作 如何將 IIS Log 在 Kibana呈現 IIS 設定 建好一個 IIS 站台後，點擊 紀錄  將標準欄位 全選 &amp; 設定 IIS Log 路徑  IIS Log 路徑 D:\LogFiles\IISLog    修改 filebeat.yml...略 filebeat.inputs:  #&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;">
+<meta property="og:description" content="前言繼上一篇ELK Stack 介紹建置範例後本篇 實作 如何將 IIS Log 在 Kibana呈現 IIS 設定 建好一個 IIS 站台後，點擊 紀錄  將標準欄位 全選 &amp; 設定 IIS Log 路徑  IIS Log 路徑 D:\LogFiles\IISLog    修改 filebeat.yml加上 IIS Log ...略 filebeat.inputs:  #&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;">
 <meta property="og:locale" content="zh_TW">
 <meta property="og:image" content="https://bingxiangstorage.blob.core.windows.net/blog/elk-parse-iislog/2022-04-24-15-29-41.png">
 <meta property="og:image" content="https://bingxiangstorage.blob.core.windows.net/blog/elk-parse-iislog/2022-04-24-15-30-58.png">
 <meta property="og:image" content="https://bingxiangstorage.blob.core.windows.net/blog/elk-parse-iislog/2022-04-24-15-35-13.png">
 <meta property="og:image" content="https://bingxiangstorage.blob.core.windows.net/blog/elk-parse-iislog/2022-04-24-15-39-54.png">
+<meta property="og:image" content="https://bingxiangstorage.blob.core.windows.net/blog/elk-parse-iislog/2022-04-24-15-53-52.png">
 <meta property="article:published_time" content="2022-04-24T07:24:58.000Z">
-<meta property="article:modified_time" content="2022-04-24T07:47:11.396Z">
+<meta property="article:modified_time" content="2022-04-24T08:08:40.684Z">
 <meta property="article:author" content="Leo Zheng">
 <meta property="article:tag" content="ELK">
 <meta name="twitter:card" content="summary">
@@ -372,7 +373,7 @@
     </div>
 </div>
 <input type="hidden" id="yelog_site_posts_number" value="27">
-<input type="hidden" id="yelog_site_word_count" value="12.2k">
+<input type="hidden" id="yelog_site_word_count" value="12.4k">
 <div style="display: none">
     <span id="busuanzi_value_site_uv"></span>
     <span id="busuanzi_value_site_pv"></span>
@@ -735,12 +736,12 @@
     </div>
     <div class="article-meta">
         
-            發布時間 : <time class="date" title='更新時間: 2022-04-24 15:47:11'>2022-04-24 15:24</time>
+            發布時間 : <time class="date" title='更新時間: 2022-04-24 16:08:40'>2022-04-24 15:24</time>
         
     </div>
     <div class="article-meta">
         
-        <span>字數:423</span>
+        <span>字數:626</span>
         
         
         <span id="busuanzi_container_page_pv">
@@ -770,7 +771,7 @@
     
     <div class="toc-ref">
     
-        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%89%8D%E8%A8%80"><span class="toc-text">前言</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#IIS-%E8%A8%AD%E5%AE%9A"><span class="toc-text">IIS 設定</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BF%AE%E6%94%B9-filebeat-yml"><span class="toc-text">修改 filebeat.yml</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Logstash-Parse-%E8%A8%AD%E5%AE%9A"><span class="toc-text">Logstash Parse 設定</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%87%8D%E5%95%9F%E6%9C%8D%E5%8B%99-%E5%AF%9F%E7%9C%8B%E7%B5%90%E6%9E%9C"><span class="toc-text">重啟服務 察看結果</span></a></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%89%8D%E8%A8%80"><span class="toc-text">前言</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#IIS-%E8%A8%AD%E5%AE%9A"><span class="toc-text">IIS 設定</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BF%AE%E6%94%B9-filebeat-yml"><span class="toc-text">修改 filebeat.yml</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Logstash-Parse-%E8%A8%AD%E5%AE%9A"><span class="toc-text">Logstash Parse 設定</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%87%8D%E5%95%9F%E6%9C%8D%E5%8B%99-%E6%9F%A5%E7%9C%8B%E7%B5%90%E6%9E%9C"><span class="toc-text">重啟服務 查看結果</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%A3%9C%E5%85%85-IIS-Log-%E5%B8%B8%E7%94%A8%E6%90%9C%E5%B0%8B"><span class="toc-text">補充 IIS Log 常用搜尋</span></a></li></ol>
     
 <style>
     .left-col .switch-btn,
@@ -796,14 +797,16 @@
 </blockquote>
 </li>
 </ol>
-<h2 id="修改-filebeat-yml"><a href="#修改-filebeat-yml" class="headerlink" title="修改 filebeat.yml"></a>修改 filebeat.yml</h2><pre><code class="diff">...略
+<h2 id="修改-filebeat-yml"><a href="#修改-filebeat-yml" class="headerlink" title="修改 filebeat.yml"></a>修改 filebeat.yml</h2><p>加上 IIS Log</p>
+<pre><code class="yml">...略
 filebeat.inputs:
 
 #=========================== IIS Log =============================
 
+# 加上 IIS Log
 - input_type: log
   enabled: true
-  paths: d:\LogFiles\IISLog\*\*.log
+  paths: D:\LogFiles\IISLog\*\*.log
   fields:
       service: iislog
   multiline.pattern: &#39;^\d&#123;4&#125;-\d&#123;2&#125;-\d&#123;2&#125; \d&#123;2&#125;:\d&#123;2&#125;:\d&#123;2&#125;&#39;
@@ -811,6 +814,7 @@ filebeat.inputs:
   multiline.match: after
   exclude_lines: [&quot;^#&quot;]
 
+# 原先設定
 - input_type: log
   enabled: true
   paths: D:\LogFiles\WebLog\ELK_Test\*.log
@@ -850,11 +854,48 @@ filebeat.inputs:
     &#125;
 &#125;
 </code></pre>
-<h2 id="重啟服務-察看結果"><a href="#重啟服務-察看結果" class="headerlink" title="重啟服務 察看結果"></a>重啟服務 察看結果</h2><blockquote>
-<p>服務重啟後，呼叫IIS站台時 即可看到 IISLog 在 Elasticsearch 的資料<br>建立 index pattern 後 即可查看資料</p>
+<h2 id="重啟服務-查看結果"><a href="#重啟服務-查看結果" class="headerlink" title="重啟服務 查看結果"></a>重啟服務 查看結果</h2><blockquote>
+<p>服務重啟後，呼叫IIS站台時 可看到 IISLog 在 Elasticsearch 的資料<br>建立 index pattern 後 即可查看資料</p>
 </blockquote>
 <p><img src="https://bingxiangstorage.blob.core.windows.net/blog/elk-parse-iislog/2022-04-24-15-35-13.png"></p>
+<p>原始 IIS Log</p>
+<pre><code class="txt">2022-04-24 07:21:41 W3SVC9 90PC194017 ::1 GET /api/LogTest value=123 8000 - ::1 HTTP/1.1 Mozilla/5.0+(Windows+NT+10.0;+Win64;+x64)+AppleWebKit/537.36+(KHTML,+like+Gecko)+Chrome/100.0.4896.127+Safari/537.36+Edg/100.0.1185.50 ASP.NET_SessionId=gvmxduvbth4t2stj2ejdk1c3;+__AntiXsrfToken=a162b2326ea24f01adf7f4e5b4734eea;+.AdventureWorks.Session=CfDJ8HKxZviXaBZPjCP8k%2BtJ7bhxCkb%2F%2BBN5eN1%2F0He27%2Frmc0mhi7HcOnIR6jOYQoi0Ywn%2Br66AmpOEkVcH5vfouVXI%2BoCuPKsP%2FQYx0rTUalga7EFsUWYsnqmuvNrbrJDubpnElDL2oXmq8mzMsjJNVdhZPvIuKCDAIixgBASsgWmM;+trdipcktrffcext=1;+_dd_s=logs=1&amp;id=b90d8831-e1b9-43f4-bf36-d1ab87a1b001&amp;created=1650783776468&amp;expire=1650785801284 - localhost:8000 200 0 0 140 1188 1
+</code></pre>
 <p>可以看到 IIS Log 已被轉成相關欄位 更便於搜尋<br><img src="https://bingxiangstorage.blob.core.windows.net/blog/elk-parse-iislog/2022-04-24-15-39-54.png"></p>
+<h2 id="補充-IIS-Log-常用搜尋"><a href="#補充-IIS-Log-常用搜尋" class="headerlink" title="補充 IIS Log 常用搜尋"></a>補充 IIS Log 常用搜尋</h2><p>順便紀錄一下 常用的 IIS Log 在 Kibana上的 <a target="_blank" rel="noopener" href="https://www.elastic.co/guide/en/kibana/7.8/kuery-query.html">KQL</a>語法<br><img src="https://bingxiangstorage.blob.core.windows.net/blog/elk-parse-iislog/2022-04-24-15-53-52.png"></p>
+<ol>
+<li>搜尋 特定 機器 Request</li>
+</ol>
+<pre><code>hostname: &quot;$hostname&quot;
+
+# ex:
+# hostname: &quot;90PC194017&quot;
+</code></pre>
+<ol start="2">
+<li>搜尋 特定 站台 Request</li>
+</ol>
+<pre><code>HttpHost: &quot;$HttpHost&quot;
+
+# ex:
+# HttpHost: &quot;localhost:8000&quot;
+</code></pre>
+<ol start="3">
+<li>搜尋 特定 API</li>
+</ol>
+<pre><code>HttpURL: &quot;$HttpURL&quot;
+
+# ex:
+# HttpURL: &quot;/api/LogTest&quot;
+</code></pre>
+<ol start="4">
+<li>搜尋 回應時間</li>
+</ol>
+<pre><code>HttpTimeTaken &gt; $HttpTimeTaken
+HttpTimeTaken &lt; $HttpTimeTaken
+
+# ex: 回應時間 超過 10 毫秒
+# HttpTimeTaken &gt; 10
+</code></pre>
 
       
        <hr><span style="font-style: italic;color: gray;"> 轉載請註明來源，若有任何錯誤或表達不清楚的地方，歡迎在下方評論區留言，也可以來信至 leozheng0621@gmail.com </span>
