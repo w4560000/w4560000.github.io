@@ -6,21 +6,19 @@
   <meta name="keywords" content="">
   <meta name="description" content="Hexo">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-<meta name="description" content="下載OpenSSH 下載 OpenSSH-Win64.ziphttps:&#x2F;&#x2F;github.com&#x2F;PowerShell&#x2F;Win32-OpenSSH&#x2F;releases  解壓縮後 CD 至 目標路徑  安裝 OpenSSH   .\install-sshd.ps1   為服務器生成SSH密鑰  ssh-keygen.exe –A   SSHD服務啟用自動啟動  Set-Service -Name s">
+<meta name="description" content="前言本篇紀錄 如何以 kubeadm 架設 K8S Cluster以 GCP VM 作範例機器 GCP 機器設定一台 control plane 機器三台 Node 機器 設定 VPC &amp; Firewall # 建立 VPC gcloud compute networks create example-k8s --subnet-mode custom  # 建立 VPC 子網路 gclou">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Windows Server 2012 R2 SFTP 服務架設">
-<meta property="og:url" content="http://example.com/2022/04/25/sftp-windows-init/index.html">
+<meta property="og:title" content="以 kubeadm 架設 K8S Cluster">
+<meta property="og:url" content="http://example.com/2022/04/25/k8s-cluster-kubeadm-init/index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="下載OpenSSH 下載 OpenSSH-Win64.ziphttps:&#x2F;&#x2F;github.com&#x2F;PowerShell&#x2F;Win32-OpenSSH&#x2F;releases  解壓縮後 CD 至 目標路徑  安裝 OpenSSH   .\install-sshd.ps1   為服務器生成SSH密鑰  ssh-keygen.exe –A   SSHD服務啟用自動啟動  Set-Service -Name s">
+<meta property="og:description" content="前言本篇紀錄 如何以 kubeadm 架設 K8S Cluster以 GCP VM 作範例機器 GCP 機器設定一台 control plane 機器三台 Node 機器 設定 VPC &amp; Firewall # 建立 VPC gcloud compute networks create example-k8s --subnet-mode custom  # 建立 VPC 子網路 gclou">
 <meta property="og:locale" content="zh_TW">
-<meta property="og:image" content="https://bingxiangstorage.blob.core.windows.net/blog/sftp-windows-init/2022-04-25-23-29-42.png">
-<meta property="og:image" content="https://bingxiangstorage.blob.core.windows.net/blog/sftp-windows-init/2022-04-25-23-31-56.png">
-<meta property="article:published_time" content="2022-04-25T15:28:18.000Z">
-<meta property="article:modified_time" content="2022-04-25T15:31:58.517Z">
+<meta property="article:published_time" content="2022-04-25T15:36:27.000Z">
+<meta property="article:modified_time" content="2022-04-25T16:09:35.846Z">
 <meta property="article:author" content="Leo Zheng">
-<meta property="article:tag" content="SFTP">
+<meta property="article:tag" content="GCP">
+<meta property="article:tag" content="K8S">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://bingxiangstorage.blob.core.windows.net/blog/sftp-windows-init/2022-04-25-23-29-42.png">
 
 
 <link rel="icon" href="/img/avatar.jpg">
@@ -109,7 +107,7 @@
     <li>
         <div class="all active" data-rel="全部文章">全部文章
             
-                <small>(28)</small>
+                <small>(29)</small>
             
         </div>
     </li>
@@ -176,7 +174,7 @@
                         <i class="fold iconfont icon-right"></i>
                         
                         Devops
-                        <small>(16)</small>
+                        <small>(17)</small>
                         
                     </div>
                     
@@ -224,6 +222,18 @@
                                         GCP
                                         
                                             <small>(5
+                                                )</small>
+                                        
+                                    </div>
+                                    
+                                </li>
+                            
+                                <li>
+                                    <div data-rel="Devops<--->K8S">
+                                        
+                                        K8S
+                                        
+                                            <small>(1
                                                 )</small>
                                         
                                     </div>
@@ -363,6 +373,10 @@
             
         
     
+        
+            
+        
+    
 </ul>
 <div class="left-bottom">
     <div class="menus">
@@ -385,8 +399,8 @@
         
     </div>
 </div>
-<input type="hidden" id="yelog_site_posts_number" value="28">
-<input type="hidden" id="yelog_site_word_count" value="12.5k">
+<input type="hidden" id="yelog_site_posts_number" value="29">
+<input type="hidden" id="yelog_site_word_count" value="12.8k">
 <div style="display: none">
     <span id="busuanzi_value_site_uv"></span>
     <span id="busuanzi_value_site_pv"></span>
@@ -472,7 +486,15 @@
             </li>
         
             <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>IIS</a>
+            </li>
+        
+            <li class="article-tag-list-item">
                 <i class="iconfont icon-tag"></i><a>JMeter</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>K8S</a>
             </li>
         
             <li class="article-tag-list-item">
@@ -483,12 +505,36 @@
                 <i class="iconfont icon-tag"></i><a>SFTP</a>
             </li>
         
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>Teams</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>TLS</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>VS Debugger Tool</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>Vue</a>
+            </li>
+        
     </div>
 
 </div>
 
     
     <nav id="title-list-nav">
+        
+        <a  class="全部文章 Devops K8S "
+           href="/2022/04/25/k8s-cluster-kubeadm-init/"
+           data-tag="GCP,K8S"
+           data-author="" >
+            <span class="post-title" title="以 kubeadm 架設 K8S Cluster">以 kubeadm 架設 K8S Cluster</span>
+            <span class="post-date" title="2022-04-25 23:36:27">2022/04/25</span>
+        </a>
         
         <a  class="全部文章 Tool SFTP "
            href="/2022/04/25/sftp-windows-init/"
@@ -500,7 +546,7 @@
         
         <a  class="全部文章 Devops ELK "
            href="/2022/04/24/elk-parse-iislog/"
-           data-tag="ELK"
+           data-tag="ELK,IIS"
            data-author="" >
             <span class="post-title" title="Kibana 查看IIS Log">Kibana 查看IIS Log</span>
             <span class="post-date" title="2022-04-24 15:24:58">2022/04/24</span>
@@ -516,7 +562,7 @@
         
         <a  class="全部文章 Backend .NetCore "
            href="/2022/04/19/dotnet-core-deploy-gce/"
-           data-tag=".NetCore"
+           data-tag=".NetCore,GCP"
            data-author="" >
             <span class="post-title" title="Visual Studio Deploy .Net Core 3.1 專案 至 GCP Compute Engine">Visual Studio Deploy .Net Core 3.1 專案 至 GCP Compute Engine</span>
             <span class="post-date" title="2022-04-19 00:04:26">2022/04/19</span>
@@ -540,7 +586,7 @@
         
         <a  class="全部文章 Devops ELK "
            href="/2022/04/16/elk-sample/"
-           data-tag="ELK"
+           data-tag="Docker,ELK"
            data-author="" >
             <span class="post-title" title="ELK Stack">ELK Stack</span>
             <span class="post-date" title="2022-04-16 22:29:52">2022/04/16</span>
@@ -548,7 +594,7 @@
         
         <a  class="全部文章 Devops Azure "
            href="/2022/04/13/azure-devops-webhook-teams/"
-           data-tag="Azure"
+           data-tag="Azure,Teams"
            data-author="" >
             <span class="post-title" title="Azure Devops Pipeline Webhook 通知 Teams 頻道">Azure Devops Pipeline Webhook 通知 Teams 頻道</span>
             <span class="post-date" title="2022-04-13 22:50:05">2022/04/13</span>
@@ -564,7 +610,7 @@
         
         <a  class="全部文章 Tool Certbot "
            href="/2022/04/11/certbot-tls-certificate/"
-           data-tag="Certbot"
+           data-tag="Certbot,TLS"
            data-author="" >
             <span class="post-title" title="Certbot 建立 TLS憑證 並匯入IIS">Certbot 建立 TLS憑證 並匯入IIS</span>
             <span class="post-date" title="2022-04-11 23:08:05">2022/04/11</span>
@@ -572,7 +618,7 @@
         
         <a  class="全部文章 Devops Azure "
            href="/2022/04/09/azure-devops-cicd-sample/"
-           data-tag="Azure"
+           data-tag="Azure,.NetCore,Vue"
            data-author="" >
             <span class="post-title" title="Azure Devops 設定 .NetCore 和 Vue CI/CD Deploy 至 Azure App Service">Azure Devops 設定 .NetCore 和 Vue CI/CD Deploy 至 Azure App Service</span>
             <span class="post-date" title="2022-04-09 23:38:50">2022/04/09</span>
@@ -604,7 +650,7 @@
         
         <a  class="全部文章 Backend .NetCore "
            href="/2022/04/07/dotnet-core-CancellationTokenSource/"
-           data-tag="MultiThread"
+           data-tag=".NetCore,MultiThread"
            data-author="" >
             <span class="post-title" title=".Net Core CancellationTokenSource的應用">.Net Core CancellationTokenSource的應用</span>
             <span class="post-date" title="2022-04-07 23:25:31">2022/04/07</span>
@@ -644,7 +690,7 @@
         
         <a  class="全部文章 Devops Azure "
            href="/2022/04/03/azure-push-acr/"
-           data-tag="Azure"
+           data-tag="Azure,Docker"
            data-author="" >
             <span class="post-title" title="上傳Docker Image至 Azure Container Registry">上傳Docker Image至 Azure Container Registry</span>
             <span class="post-date" title="2022-04-03 22:51:38">2022/04/03</span>
@@ -652,7 +698,7 @@
         
         <a  class="全部文章 Backend .Net "
            href="/2022/04/03/dotnet-remote-debugger/"
-           data-tag=".Net"
+           data-tag=".Net,VS Debugger Tool"
            data-author="" >
             <span class="post-title" title="遠端debug 掛載在IIS的服務站台">遠端debug 掛載在IIS的服務站台</span>
             <span class="post-date" title="2022-04-03 22:33:05">2022/04/03</span>
@@ -660,7 +706,7 @@
         
         <a  class="全部文章 Devops GCP "
            href="/2022/04/02/gcp-cloud-build-deploy-gke/"
-           data-tag="GCP"
+           data-tag="GCP,K8S"
            data-author="" >
             <span class="post-title" title="GCP Cloud Build 部署至 K8S中">GCP Cloud Build 部署至 K8S中</span>
             <span class="post-date" title="2022-04-02 22:40:55">2022/04/02</span>
@@ -750,7 +796,7 @@
 </div>
             <h1 id="關於我與該部落格"><a href="#關於我與該部落格" class="headerlink" title="關於我與該部落格"></a>關於我與該部落格</h1><h2 id="簡介"><a href="#簡介" class="headerlink" title="簡介"></a>簡介</h2><p>我是一名.Net 開發工程師</p>
 <p>此部落格為軟體開發的學習筆記</p>
-<p>若文章內容有誤，歡迎留言指正，或來信告知 <a href="mailto:&#108;&#101;&#x6f;&#x7a;&#104;&#101;&#x6e;&#103;&#x30;&#x36;&#50;&#x31;&#64;&#103;&#109;&#97;&#x69;&#108;&#x2e;&#99;&#111;&#x6d;">&#108;&#101;&#x6f;&#x7a;&#104;&#101;&#x6e;&#103;&#x30;&#x36;&#50;&#x31;&#64;&#103;&#109;&#97;&#x69;&#108;&#x2e;&#99;&#111;&#x6d;</a></p>
+<p>若文章內容有誤，歡迎留言指正，或來信告知 <a href="mailto:&#x6c;&#101;&#111;&#122;&#104;&#101;&#x6e;&#x67;&#48;&#54;&#50;&#49;&#x40;&#103;&#x6d;&#97;&#x69;&#108;&#x2e;&#x63;&#x6f;&#109;">&#x6c;&#101;&#111;&#122;&#104;&#101;&#x6e;&#x67;&#48;&#54;&#50;&#49;&#x40;&#103;&#x6d;&#97;&#x69;&#108;&#x2e;&#x63;&#x6f;&#109;</a></p>
 <h2 id="部落格"><a href="#部落格" class="headerlink" title="部落格"></a>部落格</h2><p>共發布：<code class="article_number"></code>篇文章， 共<code class="site_word_count"></code>字。</p>
 <p>部落格總訪問人數：<code class="site_uv"></code> 人次， 訪問量：<code class="site_pv"></code>次</p>
 <p>此部落格通過 <a target="_blank" rel="noopener" href="https://hexo.io/">Hexo</a> 建立，部屬在 <a target="_blank" rel="noopener" href="https://pages.github.com/">GitHub Pages</a>主題 <a target="_blank" rel="noopener" href="https://github.com/yelog/hexo-theme-3-hexo">3-hexo</a></p>
