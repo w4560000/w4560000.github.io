@@ -2,9 +2,9 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <title>Hexo</title>
-  <meta name="keywords" content="">
-  <meta name="description" content="Hexo">
+  <title>建立 K8S Dashboard v2.5.1 | Hexo</title>
+  <meta name="keywords" content=" K8S ">
+  <meta name="description" content="建立 K8S Dashboard v2.5.1 | Hexo">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <meta name="description" content="安裝 K8S Dashboard可先查看 目前 K8S 版本，再決定 安裝 甚麼版本的 k8s Dashboardk8s Dashboard Release 本篇文章的 K8S 版本 為 v1.23.6，故安裝 v2.5.1 做測試 下載 官方 v2.5.1 yaml檔 wget https:&#x2F;&#x2F;raw.githubusercontent.com&#x2F;kubernetes&#x2F;dashboard&#x2F;v2.5">
 <meta property="og:type" content="article">
@@ -63,7 +63,7 @@
 
 
 <body>
-<aside class="nav mobile">
+<aside class="nav">
     <div class="nav-left">
         <a href="/"
    class="avatar_target">
@@ -788,12 +788,73 @@
         </div>
     </div>
 </aside>
-<div id="post" class="index">
+<div id="post">
     <div class="pjax">
-        <article class="index">
-            <div class="toc-ref">
+        <article id="post-k8s-dashboard-init" class="article article-type-post" itemscope itemprop="blogPost">
     
-        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E9%97%9C%E6%96%BC%E6%88%91%E8%88%87%E8%A9%B2%E9%83%A8%E8%90%BD%E6%A0%BC"><span class="toc-text">關於我與該部落格</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%B0%A1%E4%BB%8B"><span class="toc-text">簡介</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%83%A8%E8%90%BD%E6%A0%BC"><span class="toc-text">部落格</span></a></li></ol></li></ol>
+        <h1 class="article-title">建立 K8S Dashboard v2.5.1</h1>
+    
+    <div class="article-meta">
+        
+        
+        
+        <span class="book">
+            <i class="iconfont icon-category"></i>
+            
+            
+            <a  data-rel="Devops">Devops</a> > 
+            
+            <a  data-rel="Devops&lt;---&gt;K8S">K8S</a>
+            
+        </span>
+        
+        
+        <span class="tag">
+            <i class="iconfont icon-tag"></i>
+            
+            <a class="color4">K8S</a>
+            
+        </span>
+        
+    </div>
+    <div class="article-meta">
+        
+            發布時間 : <time class="date" title='更新時間: 2022-04-28 23:40:10'>2022-04-28 22:52</time>
+        
+    </div>
+    <div class="article-meta">
+        
+        <span>字數:679</span>
+        
+        
+        <span id="busuanzi_container_page_pv">
+            觀看數 :<span id="busuanzi_value_page_pv">
+                <span class="count-comment">
+                    <span class="spinner">
+                      <div class="cube1"></div>
+                      <div class="cube2"></div>
+                    </span>
+                </span>
+            </span>
+        </span>
+        
+        
+        <span class="top-comment" title="跳转至评论区">
+            <a href="#comments">
+                評論:<span class="count-comment">
+                    <span class="spinner">
+                      <div class="cube1"></div>
+                      <div class="cube2"></div>
+                    </span>
+                </span>
+            </a>
+        </span>
+        
+    </div>
+    
+    <div class="toc-ref">
+    
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%89%E8%A3%9D-K8S-Dashboard"><span class="toc-text">安裝 K8S Dashboard</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%BB%BA%E7%AB%8B%E5%B8%B3%E8%99%9F"><span class="toc-text">建立帳號</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%9F%A5%E7%9C%8B-k8s-dashboard"><span class="toc-text">查看 k8s-dashboard</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%A7%BB%E9%99%A4-k8s-Dashboard"><span class="toc-text">移除 k8s-Dashboard</span></a></li></ol>
     
 <style>
     .left-col .switch-btn,
@@ -806,20 +867,164 @@
     }
 </style>
 </div>
-            <h1 id="關於我與該部落格"><a href="#關於我與該部落格" class="headerlink" title="關於我與該部落格"></a>關於我與該部落格</h1><h2 id="簡介"><a href="#簡介" class="headerlink" title="簡介"></a>簡介</h2><p>我是一名.Net 開發工程師</p>
-<p>此部落格為軟體開發的學習筆記</p>
-<p>若文章內容有誤，歡迎留言指正，或來信告知 <a href="mailto:&#108;&#x65;&#111;&#122;&#104;&#x65;&#x6e;&#x67;&#48;&#54;&#50;&#x31;&#x40;&#103;&#x6d;&#x61;&#x69;&#x6c;&#46;&#x63;&#x6f;&#109;">&#108;&#x65;&#111;&#122;&#104;&#x65;&#x6e;&#x67;&#48;&#54;&#50;&#x31;&#x40;&#103;&#x6d;&#x61;&#x69;&#x6c;&#46;&#x63;&#x6f;&#109;</a></p>
-<h2 id="部落格"><a href="#部落格" class="headerlink" title="部落格"></a>部落格</h2><p>共發布：<code class="article_number"></code>篇文章， 共<code class="site_word_count"></code>字。</p>
-<p>部落格總訪問人數：<code class="site_uv"></code> 人次， 訪問量：<code class="site_pv"></code>次</p>
-<p>此部落格通過 <a target="_blank" rel="noopener" href="https://hexo.io/">Hexo</a> 建立，部屬在 <a target="_blank" rel="noopener" href="https://pages.github.com/">GitHub Pages</a>主題 <a target="_blank" rel="noopener" href="https://github.com/yelog/hexo-theme-3-hexo">3-hexo</a></p>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="安裝-K8S-Dashboard"><a href="#安裝-K8S-Dashboard" class="headerlink" title="安裝 K8S Dashboard"></a>安裝 K8S Dashboard</h2><p>可先查看 目前 K8S 版本，再決定 安裝 甚麼版本的 k8s Dashboard<br><a target="_blank" rel="noopener" href="https://github.com/kubernetes/dashboard/releases">k8s Dashboard Release</a></p>
+<p>本篇文章的 K8S 版本 為 v1.23.6，故安裝 v2.5.1 做測試<br><img src="https://bingxiangstorage.blob.core.windows.net/blog/k8s-dashboard-init/2022-04-28-22-57-10.png"></p>
+<p>下載 官方 v2.5.1 yaml檔</p>
+<pre><code class="bash">wget https://raw.githubusercontent.com/kubernetes/dashboard/v2.5.1/aio/deploy/recommended.yaml
+</code></pre>
+<p>修改 yaml檔  原本 Service 預設是Cluster IP，因要讓外部訪問改成 NodePort</p>
+<pre><code class="bash">vi recommended.yaml
 
-        </article>
-        
-        <p>
-            <a  class="dashang" onclick="dashangToggle()">斗內💰</a>
-        </p>
-        
-        
+...
+kind: Service
+apiVersion: v1
+metadata:
+  labels:
+    k8s-app: kubernetes-dashboard
+  name: kubernetes-dashboard
+  namespace: kubernetes-dashboard
+spec:
+  type: NodePort # 新增 NodePort
+  ports:
+    - port: 443
+      targetPort: 8443
+      nodePort: 30012 # 新增 NodePort
+  selector:
+    k8s-app: kubernetes-dashboard
+...
+</code></pre>
+<p>執行</p>
+<pre><code class="bash">kubectl apply -f recommended.yaml
+
+# 輸出
+namespace/kubernetes-dashboard created
+serviceaccount/kubernetes-dashboard created
+service/kubernetes-dashboard created
+secret/kubernetes-dashboard-certs created
+secret/kubernetes-dashboard-csrf created
+secret/kubernetes-dashboard-key-holder created
+configmap/kubernetes-dashboard-settings created
+role.rbac.authorization.k8s.io/kubernetes-dashboard created
+clusterrole.rbac.authorization.k8s.io/kubernetes-dashboard created
+rolebinding.rbac.authorization.k8s.io/kubernetes-dashboard created
+clusterrolebinding.rbac.authorization.k8s.io/kubernetes-dashboard created
+deployment.apps/kubernetes-dashboard created
+service/dashboard-metrics-scraper created
+deployment.apps/dashboard-metrics-scraper created
+</code></pre>
+<p>查看服務</p>
+<pre><code class="bash">kubectl get all -n kubernetes-dashboard
+
+# 輸出
+NAME                                             READY   STATUS    RESTARTS   AGE
+pod/dashboard-metrics-scraper-799d786dbf-hcd9f   1/1     Running   0          22s
+pod/kubernetes-dashboard-fb8648fd9-v42j5         1/1     Running   0          22s
+
+NAME                                TYPE        CLUSTER-IP       EXTERNAL-IP   PORT(S)         AGE
+service/dashboard-metrics-scraper   ClusterIP   10.97.184.132    &lt;none&gt;        8000/TCP        22s
+service/kubernetes-dashboard        NodePort    10.102.139.251   &lt;none&gt;        443:30012/TCP   23s
+
+NAME                                        READY   UP-TO-DATE   AVAILABLE   AGE
+deployment.apps/dashboard-metrics-scraper   1/1     1            1           22s
+deployment.apps/kubernetes-dashboard        1/1     1            1           22s
+
+NAME                                                   DESIRED   CURRENT   READY   AGE
+replicaset.apps/dashboard-metrics-scraper-799d786dbf   1         1         1       22s
+replicaset.apps/kubernetes-dashboard-fb8648fd9         1         1         1       22s
+</code></pre>
+<h2 id="建立帳號"><a href="#建立帳號" class="headerlink" title="建立帳號"></a>建立帳號</h2><pre><code class="bash">cat &lt;&lt;EOF | kubectl create -f -
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: admin
+  namespace: kubernetes-dashboard
+
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRoleBinding
+metadata:
+  name: admin
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: ClusterRole
+  name: cluster-admin
+subjects:
+- kind: ServiceAccount
+  name: admin
+  namespace: kubernetes-dashboard
+EOF
+
+# 輸出
+serviceaccount/admin created
+clusterrolebinding.rbac.authorization.k8s.io/admin created
+</code></pre>
+<p>查看 Secret</p>
+<pre><code class="bash">kubectl get secret -n kubernetes-dashboard
+
+# 輸出
+admin-token-g9mmj                  kubernetes.io/service-account-token   3      41s
+default-token-6vfd5                kubernetes.io/service-account-token   3      14m
+kubernetes-dashboard-certs         Opaque                                0      14m
+kubernetes-dashboard-csrf          Opaque                                1      14m
+kubernetes-dashboard-key-holder    Opaque                                2      14m
+kubernetes-dashboard-token-8h4vm   kubernetes.io/service-account-token   3      14m
+</code></pre>
+<p>取得Token</p>
+<pre><code class="bash">kubectl describe secret admin-token-g9mmj -n kubernetes-dashboard
+
+# 輸出
+Name:         admin-token-g9mmj
+Namespace:    kubernetes-dashboard
+Labels:       &lt;none&gt;
+Annotations:  kubernetes.io/service-account.name: admin
+              kubernetes.io/service-account.uid: 727ec787-1289-45c0-894f-948a9e034e9f
+
+Type:  kubernetes.io/service-account-token
+
+Data
+====
+namespace:  20 bytes
+token:      [TOKEN_CONTENT]
+ca.crt:     1099 bytes
+</code></pre>
+<h2 id="查看-k8s-dashboard"><a href="#查看-k8s-dashboard" class="headerlink" title="查看 k8s-dashboard"></a>查看 k8s-dashboard</h2><p>主機IP為 34.80.184.65<br><img src="https://bingxiangstorage.blob.core.windows.net/blog/k8s-dashboard-init/2022-04-28-23-16-49.png"></p>
+<p>訪問 <a target="_blank" rel="noopener" href="https://34.80.184.65:30012/">https://34.80.184.65:30012/</a><br><img src="https://bingxiangstorage.blob.core.windows.net/blog/k8s-dashboard-init/2022-04-28-23-17-23.png"></p>
+<p>輸入token後 即可登入<br><img src="https://bingxiangstorage.blob.core.windows.net/blog/k8s-dashboard-init/2022-04-28-23-26-56.png"></p>
+<h2 id="移除-k8s-Dashboard"><a href="#移除-k8s-Dashboard" class="headerlink" title="移除 k8s-Dashboard"></a>移除 k8s-Dashboard</h2><pre><code class="bash">kubectl delete -f recommended.yaml
+
+# 輸出
+namespace &quot;kubernetes-dashboard&quot; deleted
+serviceaccount &quot;kubernetes-dashboard&quot; deleted
+service &quot;kubernetes-dashboard&quot; deleted
+secret &quot;kubernetes-dashboard-certs&quot; deleted
+secret &quot;kubernetes-dashboard-csrf&quot; deleted
+secret &quot;kubernetes-dashboard-key-holder&quot; deleted
+configmap &quot;kubernetes-dashboard-settings&quot; deleted
+role.rbac.authorization.k8s.io &quot;kubernetes-dashboard&quot; deleted
+clusterrole.rbac.authorization.k8s.io &quot;kubernetes-dashboard&quot; deleted
+rolebinding.rbac.authorization.k8s.io &quot;kubernetes-dashboard&quot; deleted
+clusterrolebinding.rbac.authorization.k8s.io &quot;kubernetes-dashboard&quot; deleted
+deployment.apps &quot;kubernetes-dashboard&quot; deleted
+service &quot;dashboard-metrics-scraper&quot; deleted
+deployment.apps &quot;dashboard-metrics-scraper&quot; deleted
+</code></pre>
+
+      
+       <hr><span style="font-style: italic;color: gray;"> 轉載請註明來源，若有任何錯誤或表達不清楚的地方，歡迎在下方評論區留言，也可以來信至 leozheng0621@gmail.com </span>
+    </div>
+</article>
+
+
+<p>
+    <a  class="dashang" onclick="dashangToggle()">斗內💰</a>
+</p>
+
+
+
+
     <div id="comments"></div>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css">
 
@@ -841,6 +1046,13 @@
 </script>
 
 
+
+
+    
+
+
+
+
     </div>
     <div class="copyright">
         <p class="footer-entry">
@@ -849,11 +1061,11 @@
 <p class="footer-entry">Built with <a href="https://hexo.io/" target="_blank">Hexo</a> and <a href="https://github.com/yelog/hexo-theme-3-hexo" target="_blank">3-hexo</a> theme</p>
 
     </div>
-</div>
-<div class="full-toc">
-    <button class="full" data-title="切换全屏 快捷键 s"><span class="min "></span></button>
+    <div class="full-toc">
+        <button class="full" data-title="切换全屏 快捷键 s"><span class="min "></span></button>
 <a class="" id="rocket" ></a>
 
+    </div>
 </div>
 
 <div class="hide_box" onclick="dashangToggle()"></div>
