@@ -6,23 +6,28 @@
   <meta name="keywords" content="">
   <meta name="description" content="w4560000.github.io">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-<meta name="description" content="安裝 K8S Dashboard可先查看 目前 K8S 版本，再決定 安裝 甚麼版本的 k8s Dashboardk8s Dashboard Release 本篇文章的 K8S 版本 為 v1.23.6，故安裝 v2.5.1 做測試 下載 官方 v2.5.1 yaml檔 wget https:&#x2F;&#x2F;raw.githubusercontent.com&#x2F;kubernetes&#x2F;dashboard&#x2F;v2.5">
+<meta name="description" content="下載 FileZilla_Server-0_9_60_1 先到 https:&#x2F;&#x2F;zh-tw.osdn.net&#x2F;projects&#x2F;filezilla&#x2F;downloads&#x2F;67735&#x2F;FileZilla_Server-0_9_60_1.exe 下載 FileZilla_Server  安裝完後 啟動FileZilla Server 開啟設定頁 Edit &#x3D;&gt; Settings    設定Pass">
 <meta property="og:type" content="article">
-<meta property="og:title" content="建立 K8S Dashboard v2.5.1">
-<meta property="og:url" content="http://example.com/2022/04/28/k8s-dashboard-init/index.html">
+<meta property="og:title" content="Windows Server 2012 R2 FileZilla Server FTPS 服務架設">
+<meta property="og:url" content="http://example.com/2022/04/29/filezilla-ftps-init/index.html">
 <meta property="og:site_name" content="w4560000.github.io">
-<meta property="og:description" content="安裝 K8S Dashboard可先查看 目前 K8S 版本，再決定 安裝 甚麼版本的 k8s Dashboardk8s Dashboard Release 本篇文章的 K8S 版本 為 v1.23.6，故安裝 v2.5.1 做測試 下載 官方 v2.5.1 yaml檔 wget https:&#x2F;&#x2F;raw.githubusercontent.com&#x2F;kubernetes&#x2F;dashboard&#x2F;v2.5">
+<meta property="og:description" content="下載 FileZilla_Server-0_9_60_1 先到 https:&#x2F;&#x2F;zh-tw.osdn.net&#x2F;projects&#x2F;filezilla&#x2F;downloads&#x2F;67735&#x2F;FileZilla_Server-0_9_60_1.exe 下載 FileZilla_Server  安裝完後 啟動FileZilla Server 開啟設定頁 Edit &#x3D;&gt; Settings    設定Pass">
 <meta property="og:locale" content="zh_TW">
-<meta property="og:image" content="https://bingxiangstorage.blob.core.windows.net/blog/k8s-dashboard-init/2022-04-28-22-57-10.png">
-<meta property="og:image" content="https://bingxiangstorage.blob.core.windows.net/blog/k8s-dashboard-init/2022-04-28-23-16-49.png">
-<meta property="og:image" content="https://bingxiangstorage.blob.core.windows.net/blog/k8s-dashboard-init/2022-04-28-23-17-23.png">
-<meta property="og:image" content="https://bingxiangstorage.blob.core.windows.net/blog/k8s-dashboard-init/2022-04-28-23-26-56.png">
-<meta property="article:published_time" content="2022-04-28T14:52:30.000Z">
-<meta property="article:modified_time" content="2022-04-28T15:40:10.539Z">
+<meta property="og:image" content="https://bingxiangstorage.blob.core.windows.net/blog/filezilla-ftps-init/2022-04-29-00-14-57.png">
+<meta property="og:image" content="https://bingxiangstorage.blob.core.windows.net/blog/filezilla-ftps-init/2022-04-29-00-16-09.png">
+<meta property="og:image" content="https://bingxiangstorage.blob.core.windows.net/blog/filezilla-ftps-init/2022-04-29-00-16-54.png">
+<meta property="og:image" content="https://bingxiangstorage.blob.core.windows.net/blog/filezilla-ftps-init/2022-04-29-00-17-06.png">
+<meta property="og:image" content="https://bingxiangstorage.blob.core.windows.net/blog/filezilla-ftps-init/2022-04-29-00-18-14.png">
+<meta property="og:image" content="https://bingxiangstorage.blob.core.windows.net/blog/filezilla-ftps-init/2022-04-29-00-19-13.png">
+<meta property="og:image" content="https://bingxiangstorage.blob.core.windows.net/blog/filezilla-ftps-init/2022-04-29-00-19-30.png">
+<meta property="og:image" content="https://bingxiangstorage.blob.core.windows.net/blog/filezilla-ftps-init/2022-04-29-00-33-28.png">
+<meta property="article:published_time" content="2022-04-28T16:13:02.000Z">
+<meta property="article:modified_time" content="2022-04-28T16:38:32.016Z">
 <meta property="article:author" content="Leo Zheng">
-<meta property="article:tag" content="K8S">
+<meta property="article:tag" content="FileZilla">
+<meta property="article:tag" content="FTPS">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://bingxiangstorage.blob.core.windows.net/blog/k8s-dashboard-init/2022-04-28-22-57-10.png">
+<meta name="twitter:image" content="https://bingxiangstorage.blob.core.windows.net/blog/filezilla-ftps-init/2022-04-29-00-14-57.png">
 
 
 <link rel="icon" href="/img/avatar.jpg">
@@ -111,7 +116,7 @@
     <li>
         <div class="all active" data-rel="全部文章">全部文章
             
-                <small>(30)</small>
+                <small>(31)</small>
             
         </div>
     </li>
@@ -261,7 +266,7 @@
                         <i class="fold iconfont icon-right"></i>
                         
                         Tool
-                        <small>(7)</small>
+                        <small>(8)</small>
                         
                     </div>
                     
@@ -283,6 +288,18 @@
                                     <div data-rel="Tool<--->Certbot">
                                         
                                         Certbot
+                                        
+                                            <small>(1
+                                                )</small>
+                                        
+                                    </div>
+                                    
+                                </li>
+                            
+                                <li>
+                                    <div data-rel="Tool<--->FileZilla">
+                                        
+                                        FileZilla
                                         
                                             <small>(1
                                                 )</small>
@@ -381,6 +398,10 @@
             
         
     
+        
+            
+        
+    
 </ul>
 <div class="left-bottom">
     <div class="menus">
@@ -403,8 +424,8 @@
         
     </div>
 </div>
-<input type="hidden" id="yelog_site_posts_number" value="30">
-<input type="hidden" id="yelog_site_word_count" value="14.4k">
+<input type="hidden" id="yelog_site_posts_number" value="31">
+<input type="hidden" id="yelog_site_word_count" value="15k">
 <div style="display: none">
     <span id="busuanzi_value_site_uv"></span>
     <span id="busuanzi_value_site_pv"></span>
@@ -478,6 +499,14 @@
             </li>
         
             <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>FileZilla</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>FTPS</a>
+            </li>
+        
+            <li class="article-tag-list-item">
                 <i class="iconfont icon-tag"></i><a>GCP</a>
             </li>
         
@@ -531,6 +560,14 @@
 
     
     <nav id="title-list-nav">
+        
+        <a  class="全部文章 Tool FileZilla "
+           href="/2022/04/29/filezilla-ftps-init/"
+           data-tag="FileZilla,FTPS"
+           data-author="" >
+            <span class="post-title" title="Windows Server 2012 R2 FileZilla Server FTPS 服務架設">Windows Server 2012 R2 FileZilla Server FTPS 服務架設</span>
+            <span class="post-date" title="2022-04-29 00:13:02">2022/04/29</span>
+        </a>
         
         <a  class="全部文章 Devops K8S "
            href="/2022/04/28/k8s-dashboard-init/"
@@ -808,7 +845,7 @@
 </div>
             <h1 id="關於我與該部落格"><a href="#關於我與該部落格" class="headerlink" title="關於我與該部落格"></a>關於我與該部落格</h1><h2 id="簡介"><a href="#簡介" class="headerlink" title="簡介"></a>簡介</h2><p>我是一名.Net 開發工程師</p>
 <p>此部落格為軟體開發的學習筆記</p>
-<p>若文章內容有誤，歡迎留言指正，或來信告知 <a href="mailto:&#x6c;&#x65;&#x6f;&#x7a;&#104;&#101;&#x6e;&#103;&#x30;&#54;&#50;&#x31;&#x40;&#103;&#109;&#97;&#x69;&#108;&#46;&#99;&#111;&#109;">&#x6c;&#x65;&#x6f;&#x7a;&#104;&#101;&#x6e;&#103;&#x30;&#54;&#50;&#x31;&#x40;&#103;&#109;&#97;&#x69;&#108;&#46;&#99;&#111;&#109;</a></p>
+<p>若文章內容有誤，歡迎留言指正，或來信告知 <a href="mailto:&#108;&#101;&#111;&#122;&#104;&#101;&#110;&#x67;&#x30;&#54;&#x32;&#x31;&#64;&#x67;&#109;&#x61;&#105;&#x6c;&#46;&#x63;&#111;&#x6d;">&#108;&#101;&#111;&#122;&#104;&#101;&#110;&#x67;&#x30;&#54;&#x32;&#x31;&#64;&#x67;&#109;&#x61;&#105;&#x6c;&#46;&#x63;&#111;&#x6d;</a></p>
 <h2 id="部落格"><a href="#部落格" class="headerlink" title="部落格"></a>部落格</h2><p>共發布：<code class="article_number"></code>篇文章， 共<code class="site_word_count"></code>字。</p>
 <p>部落格總訪問人數：<code class="site_uv"></code> 人次， 訪問量：<code class="site_pv"></code>次</p>
 <p>此部落格通過 <a target="_blank" rel="noopener" href="https://hexo.io/">Hexo</a> 建立，部屬在 <a target="_blank" rel="noopener" href="https://pages.github.com/">GitHub Pages</a>主題 <a target="_blank" rel="noopener" href="https://github.com/yelog/hexo-theme-3-hexo">3-hexo</a></p>
