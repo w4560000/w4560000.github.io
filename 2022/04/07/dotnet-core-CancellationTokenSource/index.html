@@ -6,12 +6,12 @@
   <meta name="keywords" content=" .NetCore , MultiThread ">
   <meta name="description" content=".Net Core CancellationTokenSource的應用 | w4560000.github.io">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-<meta name="description" content="設定 Gmail 發信帳號 安全性原先只要啟用 低安全性應用程式存取權 即可以 SMTP 發信，但因 2022 年 5 月 30後 Google因為安全性問題關閉此功能所以改以設定應用程式密碼來取得權限  進入發信帳號的 Google 帳戶 &gt; 安全性 &gt; 兩步驟驗證  依照步驟 透過 簡訊 or 電話 進行認證  設定 應用程式密碼  取得 應用程式密碼 (先複製出來 紀錄)   建">
+<meta name="description" content="設定 Gmail 發信帳號 安全性原先只要啟用 低安全性應用程式存取權 即可以 SMTP 發信但因 2022 年 5 月 30後 Google因為安全性問題關閉此功能所以改以設定應用程式密碼來取得權限  進入發信帳號的 Google 帳戶 &gt; 安全性 &gt; 兩步驟驗證  依照步驟 透過 簡訊 or 電話 進行認證  設定 應用程式密碼  取得 應用程式密碼 (先複製出來 紀錄)   建立">
 <meta property="og:type" content="article">
-<meta property="og:title" content="dotnet-core-nlog-mail">
+<meta property="og:title" content=".Net Core 3.1 設定 NLog 寄信流程">
 <meta property="og:url" content="http://example.com/2022/04/30/dotnet-core-nlog-mail/index.html">
 <meta property="og:site_name" content="w4560000.github.io">
-<meta property="og:description" content="設定 Gmail 發信帳號 安全性原先只要啟用 低安全性應用程式存取權 即可以 SMTP 發信，但因 2022 年 5 月 30後 Google因為安全性問題關閉此功能所以改以設定應用程式密碼來取得權限  進入發信帳號的 Google 帳戶 &gt; 安全性 &gt; 兩步驟驗證  依照步驟 透過 簡訊 or 電話 進行認證  設定 應用程式密碼  取得 應用程式密碼 (先複製出來 紀錄)   建">
+<meta property="og:description" content="設定 Gmail 發信帳號 安全性原先只要啟用 低安全性應用程式存取權 即可以 SMTP 發信但因 2022 年 5 月 30後 Google因為安全性問題關閉此功能所以改以設定應用程式密碼來取得權限  進入發信帳號的 Google 帳戶 &gt; 安全性 &gt; 兩步驟驗證  依照步驟 透過 簡訊 or 電話 進行認證  設定 應用程式密碼  取得 應用程式密碼 (先複製出來 紀錄)   建立">
 <meta property="og:locale" content="zh_TW">
 <meta property="og:image" content="https://bingxiangstorage.blob.core.windows.net/blog/dotnet-core-nlog-mail/2022-05-01-00-43-40.png">
 <meta property="og:image" content="https://bingxiangstorage.blob.core.windows.net/blog/dotnet-core-nlog-mail/2022-05-01-00-41-08.png">
@@ -21,7 +21,7 @@
 <meta property="og:image" content="https://bingxiangstorage.blob.core.windows.net/blog/dotnet-core-nlog-mail/2022-05-01-00-59-49.png">
 <meta property="og:image" content="https://bingxiangstorage.blob.core.windows.net/blog/dotnet-core-nlog-mail/2022-05-01-01-01-13.png">
 <meta property="article:published_time" content="2022-04-30T15:20:11.000Z">
-<meta property="article:modified_time" content="2022-04-30T17:01:17.995Z">
+<meta property="article:modified_time" content="2022-04-30T17:10:25.761Z">
 <meta property="article:author" content="Leo Zheng">
 <meta property="article:tag" content=".NetCore">
 <meta property="article:tag" content="NLog">
@@ -568,7 +568,7 @@
            href="/2022/04/30/dotnet-core-nlog-mail/"
            data-tag=".NetCore,NLog"
            data-author="" >
-            <span class="post-title" title="dotnet-core-nlog-mail">dotnet-core-nlog-mail</span>
+            <span class="post-title" title=".Net Core 3.1 設定 NLog 寄信流程">.Net Core 3.1 設定 NLog 寄信流程</span>
             <span class="post-date" title="2022-04-30 23:20:11">2022/04/30</span>
         </a>
         
