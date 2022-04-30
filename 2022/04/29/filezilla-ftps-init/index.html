@@ -6,28 +6,27 @@
   <meta name="keywords" content=" FileZilla , FTPS ">
   <meta name="description" content="Windows Server 2012 R2 FileZilla Server FTPS 服務架設 | w4560000.github.io">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-<meta name="description" content="下載 FileZilla_Server-0_9_60_1 先到 https:&#x2F;&#x2F;zh-tw.osdn.net&#x2F;projects&#x2F;filezilla&#x2F;downloads&#x2F;67735&#x2F;FileZilla_Server-0_9_60_1.exe 下載 FileZilla_Server  安裝完後 啟動FileZilla Server 開啟設定頁 Edit &#x3D;&gt; Settings    設定Pass">
+<meta name="description" content="設定 Gmail 發信帳號 安全性原先只要啟用 低安全性應用程式存取權 即可以 SMTP 發信，但因 2022 年 5 月 30後 Google因為安全性問題關閉此功能所以改以設定應用程式密碼來取得權限  進入發信帳號的 Google 帳戶 &gt; 安全性 &gt; 兩步驟驗證  依照步驟 透過 簡訊 or 電話 進行認證  設定 應用程式密碼  取得 應用程式密碼 (先複製出來 紀錄)   建">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Windows Server 2012 R2 FileZilla Server FTPS 服務架設">
-<meta property="og:url" content="http://example.com/2022/04/29/filezilla-ftps-init/index.html">
+<meta property="og:title" content="dotnet-core-nlog-mail">
+<meta property="og:url" content="http://example.com/2022/04/30/dotnet-core-nlog-mail/index.html">
 <meta property="og:site_name" content="w4560000.github.io">
-<meta property="og:description" content="下載 FileZilla_Server-0_9_60_1 先到 https:&#x2F;&#x2F;zh-tw.osdn.net&#x2F;projects&#x2F;filezilla&#x2F;downloads&#x2F;67735&#x2F;FileZilla_Server-0_9_60_1.exe 下載 FileZilla_Server  安裝完後 啟動FileZilla Server 開啟設定頁 Edit &#x3D;&gt; Settings    設定Pass">
+<meta property="og:description" content="設定 Gmail 發信帳號 安全性原先只要啟用 低安全性應用程式存取權 即可以 SMTP 發信，但因 2022 年 5 月 30後 Google因為安全性問題關閉此功能所以改以設定應用程式密碼來取得權限  進入發信帳號的 Google 帳戶 &gt; 安全性 &gt; 兩步驟驗證  依照步驟 透過 簡訊 or 電話 進行認證  設定 應用程式密碼  取得 應用程式密碼 (先複製出來 紀錄)   建">
 <meta property="og:locale" content="zh_TW">
-<meta property="og:image" content="https://bingxiangstorage.blob.core.windows.net/blog/filezilla-ftps-init/2022-04-29-00-14-57.png">
-<meta property="og:image" content="https://bingxiangstorage.blob.core.windows.net/blog/filezilla-ftps-init/2022-04-29-00-16-09.png">
-<meta property="og:image" content="https://bingxiangstorage.blob.core.windows.net/blog/filezilla-ftps-init/2022-04-29-00-16-54.png">
-<meta property="og:image" content="https://bingxiangstorage.blob.core.windows.net/blog/filezilla-ftps-init/2022-04-29-00-17-06.png">
-<meta property="og:image" content="https://bingxiangstorage.blob.core.windows.net/blog/filezilla-ftps-init/2022-04-29-00-18-14.png">
-<meta property="og:image" content="https://bingxiangstorage.blob.core.windows.net/blog/filezilla-ftps-init/2022-04-29-00-19-13.png">
-<meta property="og:image" content="https://bingxiangstorage.blob.core.windows.net/blog/filezilla-ftps-init/2022-04-29-00-19-30.png">
-<meta property="og:image" content="https://bingxiangstorage.blob.core.windows.net/blog/filezilla-ftps-init/2022-04-29-00-33-28.png">
-<meta property="article:published_time" content="2022-04-28T16:13:02.000Z">
-<meta property="article:modified_time" content="2022-04-28T16:38:32.016Z">
+<meta property="og:image" content="https://bingxiangstorage.blob.core.windows.net/blog/dotnet-core-nlog-mail/2022-05-01-00-43-40.png">
+<meta property="og:image" content="https://bingxiangstorage.blob.core.windows.net/blog/dotnet-core-nlog-mail/2022-05-01-00-41-08.png">
+<meta property="og:image" content="https://bingxiangstorage.blob.core.windows.net/blog/dotnet-core-nlog-mail/2022-05-01-00-47-28.png">
+<meta property="og:image" content="https://bingxiangstorage.blob.core.windows.net/blog/dotnet-core-nlog-mail/2022-05-01-00-48-12.png">
+<meta property="og:image" content="https://bingxiangstorage.blob.core.windows.net/blog/dotnet-core-nlog-mail/2022-05-01-00-48-34.png">
+<meta property="og:image" content="https://bingxiangstorage.blob.core.windows.net/blog/dotnet-core-nlog-mail/2022-05-01-00-59-49.png">
+<meta property="og:image" content="https://bingxiangstorage.blob.core.windows.net/blog/dotnet-core-nlog-mail/2022-05-01-01-01-13.png">
+<meta property="article:published_time" content="2022-04-30T15:20:11.000Z">
+<meta property="article:modified_time" content="2022-04-30T17:01:17.995Z">
 <meta property="article:author" content="Leo Zheng">
-<meta property="article:tag" content="FileZilla">
-<meta property="article:tag" content="FTPS">
+<meta property="article:tag" content=".NetCore">
+<meta property="article:tag" content="NLog">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://bingxiangstorage.blob.core.windows.net/blog/filezilla-ftps-init/2022-04-29-00-14-57.png">
+<meta name="twitter:image" content="https://bingxiangstorage.blob.core.windows.net/blog/dotnet-core-nlog-mail/2022-05-01-00-43-40.png">
 
 
 <link rel="icon" href="/img/avatar.jpg">
@@ -116,7 +115,7 @@
     <li>
         <div class="all active" data-rel="全部文章">全部文章
             
-                <small>(31)</small>
+                <small>(32)</small>
             
         </div>
     </li>
@@ -128,7 +127,7 @@
                         <i class="fold iconfont icon-right"></i>
                         
                         Backend
-                        <small>(5)</small>
+                        <small>(6)</small>
                         
                     </div>
                     
@@ -151,7 +150,7 @@
                                         
                                         .NetCore
                                         
-                                            <small>(2
+                                            <small>(3
                                                 )</small>
                                         
                                     </div>
@@ -424,8 +423,8 @@
         
     </div>
 </div>
-<input type="hidden" id="yelog_site_posts_number" value="31">
-<input type="hidden" id="yelog_site_word_count" value="15k">
+<input type="hidden" id="yelog_site_posts_number" value="32">
+<input type="hidden" id="yelog_site_word_count" value="15.7k">
 <div style="display: none">
     <span id="busuanzi_value_site_uv"></span>
     <span id="busuanzi_value_site_pv"></span>
@@ -535,6 +534,10 @@
             </li>
         
             <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>NLog</a>
+            </li>
+        
+            <li class="article-tag-list-item">
                 <i class="iconfont icon-tag"></i><a>SFTP</a>
             </li>
         
@@ -560,6 +563,14 @@
 
     
     <nav id="title-list-nav">
+        
+        <a  class="全部文章 Backend .NetCore "
+           href="/2022/04/30/dotnet-core-nlog-mail/"
+           data-tag=".NetCore,NLog"
+           data-author="" >
+            <span class="post-title" title="dotnet-core-nlog-mail">dotnet-core-nlog-mail</span>
+            <span class="post-date" title="2022-04-30 23:20:11">2022/04/30</span>
+        </a>
         
         <a  class="全部文章 Tool FileZilla "
            href="/2022/04/29/filezilla-ftps-init/"

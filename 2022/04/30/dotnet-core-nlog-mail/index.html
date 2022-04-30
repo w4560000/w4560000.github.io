@@ -2,9 +2,9 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <title>w4560000.github.io</title>
-  <meta name="keywords" content="">
-  <meta name="description" content="w4560000.github.io">
+  <title>dotnet-core-nlog-mail | w4560000.github.io</title>
+  <meta name="keywords" content=" .NetCore , NLog ">
+  <meta name="description" content="dotnet-core-nlog-mail | w4560000.github.io">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <meta name="description" content="設定 Gmail 發信帳號 安全性原先只要啟用 低安全性應用程式存取權 即可以 SMTP 發信，但因 2022 年 5 月 30後 Google因為安全性問題關閉此功能所以改以設定應用程式密碼來取得權限  進入發信帳號的 Google 帳戶 &gt; 安全性 &gt; 兩步驟驗證  依照步驟 透過 簡訊 or 電話 進行認證  設定 應用程式密碼  取得 應用程式密碼 (先複製出來 紀錄)   建">
 <meta property="og:type" content="article">
@@ -67,7 +67,7 @@
 
 
 <body>
-<aside class="nav mobile">
+<aside class="nav">
     <div class="nav-left">
         <a href="/"
    class="avatar_target">
@@ -836,12 +836,75 @@
         </div>
     </div>
 </aside>
-<div id="post" class="index">
+<div id="post">
     <div class="pjax">
-        <article class="index">
-            <div class="toc-ref">
+        <article id="post-dotnet-core-nlog-mail" class="article article-type-post" itemscope itemprop="blogPost">
     
-        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E9%97%9C%E6%96%BC%E6%88%91%E8%88%87%E8%A9%B2%E9%83%A8%E8%90%BD%E6%A0%BC"><span class="toc-text">關於我與該部落格</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%B0%A1%E4%BB%8B"><span class="toc-text">簡介</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%83%A8%E8%90%BD%E6%A0%BC"><span class="toc-text">部落格</span></a></li></ol></li></ol>
+        <h1 class="article-title">dotnet-core-nlog-mail</h1>
+    
+    <div class="article-meta">
+        
+        
+        
+        <span class="book">
+            <i class="iconfont icon-category"></i>
+            
+            
+            <a  data-rel="Backend">Backend</a> > 
+            
+            <a  data-rel="Backend&lt;---&gt;.NetCore">.NetCore</a>
+            
+        </span>
+        
+        
+        <span class="tag">
+            <i class="iconfont icon-tag"></i>
+            
+            <a class="color4">.NetCore</a>
+            
+            <a class="color5">NLog</a>
+            
+        </span>
+        
+    </div>
+    <div class="article-meta">
+        
+            發布時間 : <time class="date" title='更新時間: 2022-05-01 01:01:17'>2022-04-30 23:20</time>
+        
+    </div>
+    <div class="article-meta">
+        
+        <span>字數:755</span>
+        
+        
+        <span id="busuanzi_container_page_pv">
+            觀看數 :<span id="busuanzi_value_page_pv">
+                <span class="count-comment">
+                    <span class="spinner">
+                      <div class="cube1"></div>
+                      <div class="cube2"></div>
+                    </span>
+                </span>
+            </span>
+        </span>
+        
+        
+        <span class="top-comment" title="跳转至评论区">
+            <a href="#comments">
+                評論:<span class="count-comment">
+                    <span class="spinner">
+                      <div class="cube1"></div>
+                      <div class="cube2"></div>
+                    </span>
+                </span>
+            </a>
+        </span>
+        
+    </div>
+    
+    <div class="toc-ref">
+    
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E8%A8%AD%E5%AE%9A-Gmail-%E7%99%BC%E4%BF%A1%E5%B8%B3%E8%99%9F-%E5%AE%89%E5%85%A8%E6%80%A7"><span class="toc-text">設定 Gmail 發信帳號 安全性</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%BB%BA%E7%AB%8B%E6%B8%AC%E8%A9%A6%E5%B0%88%E6%A1%88"><span class="toc-text">建立測試專案</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%BB%BA%E7%AB%8B-Net-Core-3-1-WebAPi%E5%B0%88%E6%A1%88%E5%81%9A%E7%AF%84%E4%BE%8B"><span class="toc-text">建立 .Net Core 3.1 WebAPi專案做範例</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%89%E8%A3%9D-NLog%E7%9B%B8%E9%97%9C%E5%A5%97%E4%BB%B6"><span class="toc-text">安裝 NLog相關套件</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%96%B0%E5%A2%9E%E3%80%81%E8%A8%AD%E5%AE%9A-Nlog-config"><span class="toc-text">新增、設定 Nlog.config</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BF%AE%E6%94%B9-csproj"><span class="toc-text">修改 .csproj</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BF%AE%E6%94%B9-program-cs-UseNLog"><span class="toc-text">修改 program.cs (UseNLog)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BF%AE%E6%94%B9-WeatherForecastController-cs-%E6%96%B0%E5%A2%9E%E4%B8%80%E8%A1%8C-Error-Log-%E4%BD%9C%E7%AF%84%E4%BE%8B"><span class="toc-text">修改 WeatherForecastController.cs (新增一行 Error Log 作範例)</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%B8%AC%E8%A9%A6%E7%B5%90%E6%9E%9C"><span class="toc-text">測試結果</span></a></li></ol>
     
 <style>
     .left-col .switch-btn,
@@ -854,20 +917,167 @@
     }
 </style>
 </div>
-            <h1 id="關於我與該部落格"><a href="#關於我與該部落格" class="headerlink" title="關於我與該部落格"></a>關於我與該部落格</h1><h2 id="簡介"><a href="#簡介" class="headerlink" title="簡介"></a>簡介</h2><p>我是一名.Net 開發工程師</p>
-<p>此部落格為軟體開發的學習筆記</p>
-<p>若文章內容有誤，歡迎留言指正，或來信告知 <a href="mailto:&#108;&#x65;&#111;&#122;&#x68;&#101;&#x6e;&#x67;&#48;&#54;&#x32;&#49;&#x40;&#103;&#x6d;&#97;&#105;&#x6c;&#46;&#99;&#111;&#109;">&#108;&#x65;&#111;&#122;&#x68;&#101;&#x6e;&#x67;&#48;&#54;&#x32;&#49;&#x40;&#103;&#x6d;&#97;&#105;&#x6c;&#46;&#99;&#111;&#109;</a></p>
-<h2 id="部落格"><a href="#部落格" class="headerlink" title="部落格"></a>部落格</h2><p>共發布：<code class="article_number"></code>篇文章， 共<code class="site_word_count"></code>字。</p>
-<p>部落格總訪問人數：<code class="site_uv"></code> 人次， 訪問量：<code class="site_pv"></code>次</p>
-<p>此部落格通過 <a target="_blank" rel="noopener" href="https://hexo.io/">Hexo</a> 建立，部屬在 <a target="_blank" rel="noopener" href="https://pages.github.com/">GitHub Pages</a>主題 <a target="_blank" rel="noopener" href="https://github.com/yelog/hexo-theme-3-hexo">3-hexo</a></p>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="設定-Gmail-發信帳號-安全性"><a href="#設定-Gmail-發信帳號-安全性" class="headerlink" title="設定 Gmail 發信帳號 安全性"></a>設定 Gmail 發信帳號 安全性</h1><p>原先只要啟用 低安全性應用程式存取權 即可以 SMTP 發信，但因 2022 年 5 月 30後 Google因為安全性問題關閉此功能<br>所以改以設定應用程式密碼來取得權限<br><img src="https://bingxiangstorage.blob.core.windows.net/blog/dotnet-core-nlog-mail/2022-05-01-00-43-40.png"></p>
+<ol>
+<li><p>進入發信帳號的 Google 帳戶 &gt; 安全性 &gt; 兩步驟驗證<br><img src="https://bingxiangstorage.blob.core.windows.net/blog/dotnet-core-nlog-mail/2022-05-01-00-41-08.png"></p>
+</li>
+<li><p>依照步驟 透過 簡訊 or 電話 進行認證</p>
+</li>
+<li><p>設定 應用程式密碼<br><img src="https://bingxiangstorage.blob.core.windows.net/blog/dotnet-core-nlog-mail/2022-05-01-00-47-28.png"><br><img src="https://bingxiangstorage.blob.core.windows.net/blog/dotnet-core-nlog-mail/2022-05-01-00-48-12.png"></p>
+</li>
+<li><p>取得 應用程式密碼 (先複製出來 紀錄)<br><img src="https://bingxiangstorage.blob.core.windows.net/blog/dotnet-core-nlog-mail/2022-05-01-00-48-34.png"></p>
+</li>
+</ol>
+<h1 id="建立測試專案"><a href="#建立測試專案" class="headerlink" title="建立測試專案"></a>建立測試專案</h1><h2 id="建立-Net-Core-3-1-WebAPi專案做範例"><a href="#建立-Net-Core-3-1-WebAPi專案做範例" class="headerlink" title="建立 .Net Core 3.1 WebAPi專案做範例"></a>建立 .Net Core 3.1 WebAPi專案做範例</h2><pre><code class="CMD">dotnet new webapi -f netcoreapp3.1 -o Nlog_Test
+</code></pre>
+<h2 id="安裝-NLog相關套件"><a href="#安裝-NLog相關套件" class="headerlink" title="安裝 NLog相關套件"></a>安裝 NLog相關套件</h2><pre><code>dotnet add package NLog.Web.AspNetCore
+dotnet add package NLog.MailKit
+dotnet add package NLog.Config
+</code></pre>
+<h2 id="新增、設定-Nlog-config"><a href="#新增、設定-Nlog-config" class="headerlink" title="新增、設定 Nlog.config"></a>新增、設定 Nlog.config</h2><blockquote>
+<p>subject = 標題<br>to = 收信人<br>from = 發信人<br>smtpUserName = 發信帳號<br>smtpPassword = 可填入剛剛設定的應用程式密碼</p>
+</blockquote>
+<pre><code>&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot; ?&gt;
+&lt;nlog
+  xmlns=&quot;http://www.nlog-project.org/schemas/NLog.xsd&quot;
+  xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot;
+  autoReload=&quot;true&quot;
+  internalLogLevel=&quot;info&quot;
+  internalLogFile=&quot;C:\Logs\MyWebsite\nlog-internal.txt&quot;&gt;
 
-        </article>
-        
-        <p>
-            <a  class="dashang" onclick="dashangToggle()">斗內💰</a>
-        </p>
-        
-        
+    &lt;extensions&gt;
+        &lt;!--enable NLog.Web for ASP.NET Core--&gt;
+        &lt;add assembly=&quot;NLog.Web.AspNetCore&quot;/&gt;
+    &lt;/extensions&gt;
+
+    &lt;targets async=&quot;true&quot;&gt;
+        &lt;target xsi:type=&quot;Mail&quot;
+                name=&quot;email&quot;
+                header=&quot;HEADER $&#123;newline&#125;&quot;
+                footer=&quot;$&#123;newline&#125; FOOTER&quot;
+                html=&quot;true&quot;
+                addNewLines=&quot;true&quot;
+                replaceNewlineWithBrTagInHtml=&quot;true&quot;
+                subject=&quot;Nlog_Test~~&quot;
+                to=&quot;to@gmail.com&quot;
+                from=&quot;from@gmail.com&quot;
+                smtpAuthentication=&quot;Basic&quot;
+                smtpServer=&quot;smtp.gmail.com&quot;
+                smtpPort=&quot;587&quot;
+                smtpUserName=&quot;from@gmail.com&quot;
+                smtpPassword=&quot;fvtrqbrkdkgslzux&quot;/&gt;
+    &lt;/targets&gt;
+    &lt;rules&gt;
+        &lt;logger name=&quot;*&quot; minlevel=&quot;Error&quot; writeTo=&quot;email&quot; /&gt;
+    &lt;/rules&gt;
+&lt;/nlog&gt;
+</code></pre>
+<h2 id="修改-csproj"><a href="#修改-csproj" class="headerlink" title="修改 .csproj"></a>修改 .csproj</h2><p>設定Nlog 複製到輸出目錄</p>
+<pre><code>&lt;Project Sdk=&quot;Microsoft.NET.Sdk.Web&quot;&gt;
+
+  &lt;PropertyGroup&gt;
+    &lt;TargetFramework&gt;netcoreapp3.1&lt;/TargetFramework&gt;
+  &lt;/PropertyGroup&gt;
+
+  &lt;ItemGroup&gt;
+    &lt;PackageReference Include=&quot;NLog.Config&quot; Version=&quot;4.7.15&quot; /&gt;
+    &lt;PackageReference Include=&quot;NLog.MailKit&quot; Version=&quot;4.1.0&quot; /&gt;
+    &lt;PackageReference Include=&quot;NLog.Web.AspNetCore&quot; Version=&quot;4.14.0&quot; /&gt;
+  &lt;/ItemGroup&gt;
+
+  &lt;ItemGroup&gt;
+    &lt;Content Update=&quot;Nlog.config&quot;&gt;
+      &lt;CopyToOutputDirectory&gt;Always&lt;/CopyToOutputDirectory&gt;
+    &lt;/Content&gt;
+  &lt;/ItemGroup&gt;
+&lt;/Project&gt;
+</code></pre>
+<h2 id="修改-program-cs-UseNLog"><a href="#修改-program-cs-UseNLog" class="headerlink" title="修改 program.cs (UseNLog)"></a>修改 program.cs (UseNLog)</h2><pre><code class="CSharp">using Microsoft.AspNetCore.Hosting;
+using Microsoft.Extensions.Hosting;
+using NLog.Web;
+
+namespace Nlog_Test
+&#123;
+    public class Program
+    &#123;
+        public static void Main(string[] args)
+        &#123;
+            CreateHostBuilder(args).Build().Run();
+        &#125;
+
+        public static IHostBuilder CreateHostBuilder(string[] args) =&gt;
+            Host.CreateDefaultBuilder(args)
+                .ConfigureWebHostDefaults(webBuilder =&gt;
+                &#123;
+                    webBuilder.UseStartup&lt;Startup&gt;();
+                &#125;).UseNLog();
+    &#125;
+&#125;
+</code></pre>
+<h2 id="修改-WeatherForecastController-cs-新增一行-Error-Log-作範例"><a href="#修改-WeatherForecastController-cs-新增一行-Error-Log-作範例" class="headerlink" title="修改 WeatherForecastController.cs (新增一行 Error Log 作範例)"></a>修改 WeatherForecastController.cs (新增一行 Error Log 作範例)</h2><pre><code class="CSharp">using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Logging;
+
+namespace Nlog_Test.Controllers
+&#123;
+    [ApiController]
+    [Route(&quot;[controller]&quot;)]
+    public class WeatherForecastController : ControllerBase
+    &#123;
+        private static readonly string[] Summaries = new[]
+        &#123;
+            &quot;Freezing&quot;, &quot;Bracing&quot;, &quot;Chilly&quot;, &quot;Cool&quot;, &quot;Mild&quot;, &quot;Warm&quot;, &quot;Balmy&quot;, &quot;Hot&quot;, &quot;Sweltering&quot;, &quot;Scorching&quot;
+        &#125;;
+
+        private readonly ILogger&lt;WeatherForecastController&gt; _logger;
+
+        public WeatherForecastController(ILogger&lt;WeatherForecastController&gt; logger)
+        &#123;
+            _logger = logger;
+        &#125;
+
+        [HttpGet]
+        public IEnumerable&lt;WeatherForecast&gt; Get()
+        &#123;
+            _logger.LogError(&quot;發生錯誤~~~~&quot;);
+
+            var rng = new Random();
+            return Enumerable.Range(1, 5).Select(index =&gt; new WeatherForecast
+            &#123;
+                Date = DateTime.Now.AddDays(index),
+                TemperatureC = rng.Next(-20, 55),
+                Summary = Summaries[rng.Next(Summaries.Length)]
+            &#125;)
+            .ToArray();
+        &#125;
+    &#125;
+&#125;
+</code></pre>
+<h1 id="測試結果"><a href="#測試結果" class="headerlink" title="測試結果"></a>測試結果</h1><p>將服務跑起來後, 呼叫 <a target="_blank" rel="noopener" href="https://localhost:5001/WeatherForecast">https://localhost:5001/WeatherForecast</a></p>
+<pre><code class="CMD">dotnet run 
+</code></pre>
+<p><img src="https://bingxiangstorage.blob.core.windows.net/blog/dotnet-core-nlog-mail/2022-05-01-00-59-49.png"></p>
+<p>即可至信箱確認<br><img src="https://bingxiangstorage.blob.core.windows.net/blog/dotnet-core-nlog-mail/2022-05-01-01-01-13.png"></p>
+
+      
+       <hr><span style="font-style: italic;color: gray;"> 轉載請註明來源，若有任何錯誤或表達不清楚的地方，歡迎在下方評論區留言，也可以來信至 leozheng0621@gmail.com </span>
+    </div>
+</article>
+
+
+<p>
+    <a  class="dashang" onclick="dashangToggle()">斗內💰</a>
+</p>
+
+
+
+
     <div id="comments"></div>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css">
 
@@ -889,6 +1099,13 @@
 </script>
 
 
+
+
+    
+
+
+
+
     </div>
     <div class="copyright">
         <p class="footer-entry">
@@ -897,11 +1114,11 @@
 <p class="footer-entry">Built with <a href="https://hexo.io/" target="_blank">Hexo</a> and <a href="https://github.com/yelog/hexo-theme-3-hexo" target="_blank">3-hexo</a> theme</p>
 
     </div>
-</div>
-<div class="full-toc">
-    <button class="full" data-title="切换全屏 快捷键 s"><span class="min "></span></button>
+    <div class="full-toc">
+        <button class="full" data-title="切换全屏 快捷键 s"><span class="min "></span></button>
 <a class="" id="rocket" ></a>
 
+    </div>
 </div>
 
 <div class="hide_box" onclick="dashangToggle()"></div>
