@@ -2,9 +2,9 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <title>Git 修改Message &amp; Author &amp; Email &amp; Committer | w4560000.github.io</title>
-  <meta name="keywords" content=" Git ">
-  <meta name="description" content="Git 修改Message &amp; Author &amp; Email &amp; Committer | w4560000.github.io">
+  <title>.Net Core 3.1 Docker 範例 | w4560000.github.io</title>
+  <meta name="keywords" content=" .NetCore , Docker ">
+  <meta name="description" content=".Net Core 3.1 Docker 範例 | w4560000.github.io">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <meta name="description" content="前言本文 建立一個 .Net Core 3.1 WebAPI 專案並參考 .Net Core 3.1 類別庫 專案撰寫Dockerfile 讓專案跑在Docker Container中 建立範例專案建立 .Net Core 3.1 WebAPI 專案 作範例測試# ~ mkdir dockerSample cd dockerSample  # ~&#x2F;dockerSample dotnet new s">
 <meta property="og:type" content="article">
@@ -840,9 +840,9 @@
 </aside>
 <div id="post">
     <div class="pjax">
-        <article id="post-git-modify-author" class="article article-type-post" itemscope itemprop="blogPost">
+        <article id="post-dotnet-core-docker-sample" class="article article-type-post" itemscope itemprop="blogPost">
     
-        <h1 class="article-title">Git 修改Message &amp; Author &amp; Email &amp; Committer</h1>
+        <h1 class="article-title">.Net Core 3.1 Docker 範例</h1>
     
     <div class="article-meta">
         
@@ -852,9 +852,9 @@
             <i class="iconfont icon-category"></i>
             
             
-            <a  data-rel="Tool">Tool</a> > 
+            <a  data-rel="Backend">Backend</a> > 
             
-            <a  data-rel="Tool&lt;---&gt;Git">Git</a>
+            <a  data-rel="Backend&lt;---&gt;.NetCore">.NetCore</a>
             
         </span>
         
@@ -862,19 +862,21 @@
         <span class="tag">
             <i class="iconfont icon-tag"></i>
             
-            <a class="color4">Git</a>
+            <a class="color4">.NetCore</a>
+            
+            <a class="color2">Docker</a>
             
         </span>
         
     </div>
     <div class="article-meta">
         
-            發布時間 : <time class="date" title='更新時間: 2022-03-05 17:09:21'>2022-02-17 16:29</time>
+            發布時間 : <time class="date" title='更新時間: 2022-05-02 00:07:57'>2022-05-01 17:11</time>
         
     </div>
     <div class="article-meta">
         
-        <span>字數:683</span>
+        <span>字數:404</span>
         
         
         <span id="busuanzi_container_page_pv">
@@ -904,7 +906,7 @@
     
     <div class="toc-ref">
     
-        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E9%96%8B%E7%99%BC%E7%92%B0%E5%A2%83"><span class="toc-text">開發環境</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%BF%AE%E6%94%B9Author-amp-Email-amp-Committer"><span class="toc-text">修改Author &amp; Email &amp; Committer</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BF%AE%E6%94%B9%E7%AC%AC%E4%BA%8C%E7%AD%86Commit%E7%B4%80%E9%8C%84%E7%9A%84-Author-amp-Email"><span class="toc-text">修改第二筆Commit紀錄的 Author &amp; Email</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BF%AE%E6%94%B9%E7%AC%AC%E4%BA%8C%E7%AD%86Commit%E7%B4%80%E9%8C%84%E7%9A%84-Author-amp-Email-amp-Committer-By-user"><span class="toc-text">修改第二筆Commit紀錄的 Author &amp; Email &amp; Committer By user</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%A3%9C%E5%85%85"><span class="toc-text">補充</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BF%AE%E6%94%B9%E7%AC%AC%E4%B8%80%E7%AD%86Commit%E7%B4%80%E9%8C%84%E7%9A%84-Author-amp-Email"><span class="toc-text">修改第一筆Commit紀錄的 Author &amp; Email</span></a></li></ol></li></ol></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%89%8D%E8%A8%80"><span class="toc-text">前言</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%BB%BA%E7%AB%8B%E7%AF%84%E4%BE%8B%E5%B0%88%E6%A1%88"><span class="toc-text">建立範例專案</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%BB%BA%E7%AB%8B-Net-Core-3-1-WebAPI-%E5%B0%88%E6%A1%88-%E4%BD%9C%E7%AF%84%E4%BE%8B%E6%B8%AC%E8%A9%A6"><span class="toc-text">建立 .Net Core 3.1 WebAPI 專案 作範例測試</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BF%AE%E6%94%B9-dockerSample-Service-gt-Class1-cs"><span class="toc-text">修改 dockerSample_Service &gt; Class1.cs</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BF%AE%E6%94%B9-dockerSample-WebApi-gt-Controllers-gt-WeatherForecastController-cs"><span class="toc-text">修改 dockerSample_WebApi &gt; Controllers &gt; WeatherForecastController.cs</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%92%B0%E5%AF%AB-Dockerfile"><span class="toc-text">撰寫 Dockerfile</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%B7%A8%E8%AD%AF%E3%80%81%E5%9F%B7%E8%A1%8C-DockerImage"><span class="toc-text">編譯、執行 DockerImage</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%B7%A8%E8%AD%AF-Image"><span class="toc-text">編譯 Image</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%BB%BA%E7%AB%8B-Container"><span class="toc-text">建立 Container</span></a></li></ol></li></ol></li></ol>
     
 <style>
     .left-col .switch-btn,
@@ -920,99 +922,106 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="開發環境"><a href="#開發環境" class="headerlink" title="開發環境"></a>開發環境</h1><ul>
-<li>Windows 10 (home 20H2)</li>
-<li>Git (git version 2.31.1.windows.1)</li>
-</ul>
-<h1 id="修改Author-amp-Email-amp-Committer"><a href="#修改Author-amp-Email-amp-Committer" class="headerlink" title="修改Author &amp; Email &amp; Committer"></a>修改Author &amp; Email &amp; Committer</h1><p>假設目前在版控中的專案的Author 有異常<br>(e.g. Author忘記設定導致吃到global設定 or 忘記切換git user 等等 哩哩摳摳的事情)<br>且已經有Commit紀錄了 此時可由以下步驟來做修改</p>
-<blockquote>
-<p>目前git紀錄<br><img src="https://bingxiangstorage.blob.core.windows.net/blog/git-modify-author/2022-02-17-00-55-46.png"></p>
-</blockquote>
-<h2 id="修改第二筆Commit紀錄的-Author-amp-Email"><a href="#修改第二筆Commit紀錄的-Author-amp-Email" class="headerlink" title="修改第二筆Commit紀錄的 Author &amp; Email"></a>修改第二筆Commit紀錄的 Author &amp; Email</h2><ol>
-<li>rebase 要修改Commit紀錄的前一筆Commit ID 進入VI互動模式<pre><code class="PowerShell">git rebase -i ff37
+        <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>本文 建立一個 .Net Core 3.1 WebAPI 專案<br>並參考 .Net Core 3.1 類別庫 專案<br>撰寫Dockerfile 讓專案跑在Docker Container中</p>
+<h2 id="建立範例專案"><a href="#建立範例專案" class="headerlink" title="建立範例專案"></a>建立範例專案</h2><h3 id="建立-Net-Core-3-1-WebAPI-專案-作範例測試"><a href="#建立-Net-Core-3-1-WebAPI-專案-作範例測試" class="headerlink" title="建立 .Net Core 3.1 WebAPI 專案 作範例測試"></a>建立 .Net Core 3.1 WebAPI 專案 作範例測試</h3><pre><code class="CMD"># ~
+mkdir dockerSample
+cd dockerSample
+
+# ~/dockerSample
+dotnet new sln
+dotnet new webapi -f netcoreapp3.1 -o dockerSample_WebApi
+dotnet new classlib -f netcoreapp3.1 -o dockerSample_Service
+
+# 專案檔 加入 dockerSample_WebApi、dockerSample_Service
+dotnet sln add dockerSample_WebApi/dockerSample_WebApi.csproj
+dotnet sln add dockerSample_Service/dockerSample_Service.csproj
+
+# dockerSample_WebApi 加入參考 dockerSample_Service
+dotnet add dockerSample_WebApi/dockerSample_WebApi.csproj reference dockerSample_Service/dockerSample_Service.csproj
 </code></pre>
-<img src="https://bingxiangstorage.blob.core.windows.net/blog/git-modify-author/2022-02-16-23-47-16.png"></li>
-</ol>
-<blockquote>
-<p>進入VI互動模式時<br>按下 a 進入編輯模式 進行修改<br>修改完成後, 按下 Esc 離開 輸入 :wq! (強制儲存離開)</p>
-</blockquote>
-<ol start="2">
-<li>修改第二筆Commit紀錄<br>在第二筆CommitID 下一行 修改Author &amp; Email</li>
-</ol>
-<pre><code class="PowerShell">exec git commit --amend --author=&quot;Author Name &lt;email@address.com&gt;&quot; --no-edit
+<h3 id="修改-dockerSample-Service-gt-Class1-cs"><a href="#修改-dockerSample-Service-gt-Class1-cs" class="headerlink" title="修改 dockerSample_Service &gt; Class1.cs"></a>修改 dockerSample_Service &gt; Class1.cs</h3><pre><code class="CSharp">namespace dockerSample_Service
+&#123;
+    public class Class1
+    &#123;
+        public string Test()
+        &#123;
+            return &quot;dockerSample_Service&quot;;
+        &#125;
+    &#125;
+&#125;
 </code></pre>
-<p><img src="https://bingxiangstorage.blob.core.windows.net/blog/git-modify-author/2022-02-16-23-48-11.png"></p>
-<blockquote>
-<p>此時查看目前log異動狀況<br>發現 第二筆Commit紀錄的 Author &amp; Email 已被修改<br>但進一步查看時 發現 Committer 還是舊的，因Committer需要另行修改</p>
-</blockquote>
-<pre><code class="PowerShell">git log
-git show --pretty=fuller ff37
-git show --pretty=fuller 3cd2
-git show --pretty=fuller f30d
+<h3 id="修改-dockerSample-WebApi-gt-Controllers-gt-WeatherForecastController-cs"><a href="#修改-dockerSample-WebApi-gt-Controllers-gt-WeatherForecastController-cs" class="headerlink" title="修改 dockerSample_WebApi &gt; Controllers &gt; WeatherForecastController.cs"></a>修改 dockerSample_WebApi &gt; Controllers &gt; WeatherForecastController.cs</h3><pre><code class="CSharp">using dockerSample_Service;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Logging;
+
+namespace dockerSample_WebApi.Controllers
+&#123;
+    [ApiController]
+    [Route(&quot;[controller]&quot;)]
+    public class WeatherForecastController : ControllerBase
+    &#123;
+        private readonly ILogger&lt;WeatherForecastController&gt; _logger;
+
+        public WeatherForecastController(ILogger&lt;WeatherForecastController&gt; logger)
+        &#123;
+            _logger = logger;
+        &#125;
+
+        [HttpGet]
+        public string Get()
+        &#123;
+            return new Class1().Test();
+        &#125;
+    &#125;
+&#125;
 </code></pre>
-<p><img src="https://bingxiangstorage.blob.core.windows.net/blog/git-modify-author/2022-02-16-23-59-13.png"></p>
-<h2 id="修改第二筆Commit紀錄的-Author-amp-Email-amp-Committer-By-user"><a href="#修改第二筆Commit紀錄的-Author-amp-Email-amp-Committer-By-user" class="headerlink" title="修改第二筆Commit紀錄的 Author &amp; Email &amp; Committer By user"></a>修改第二筆Commit紀錄的 Author &amp; Email &amp; Committer By user</h2><blockquote>
-<p>先列出目前 Git user</p>
-</blockquote>
-<pre><code class="PowerShell">git config user.name
-git config user.email 
+<h2 id="撰寫-Dockerfile"><a href="#撰寫-Dockerfile" class="headerlink" title="撰寫 Dockerfile"></a>撰寫 Dockerfile</h2><pre><code class="CMD"># ~/dockerSample
+echo. &gt; Dockerfile
 </code></pre>
-<p><img src="https://bingxiangstorage.blob.core.windows.net/blog/git-modify-author/2022-02-17-00-02-20.png"></p>
-<blockquote>
-<p>修正目前Git版控資料夾內的user.name &amp; user.email</p>
-</blockquote>
-<pre><code class="PowerShell">git config user.name &quot;New Author Name&quot;
-git config user.email &quot;new_email@address.com&quot;
+<p>Dockerfile</p>
+<pre><code># https://hub.docker.com/_/microsoft-dotnet
+FROM mcr.microsoft.com/dotnet/sdk:3.1 AS build
+WORKDIR /source
+
+# copy csproj and restore as distinct layers
+COPY *.sln .
+COPY dockerSample_WebApi/*.csproj ./dockerSample_WebApi/
+COPY dockerSample_Service/*.csproj ./dockerSample_Service/
+RUN dotnet restore
+
+# copy everything else and build app
+COPY dockerSample_WebApi/. ./dockerSample_WebApi/
+COPY dockerSample_Service/. ./dockerSample_Service/
+
+WORKDIR /source/dockerSample_WebApi
+RUN dotnet publish -c release -o /app --no-restore
+
+# final stage/image
+FROM mcr.microsoft.com/dotnet/aspnet:3.1
+WORKDIR /app
+COPY --from=build /app ./
+ENTRYPOINT [&quot;dotnet&quot;, &quot;dockerSample_WebApi.dll&quot;]
 </code></pre>
-<ol>
-<li><p>rebase 要修改Commit紀錄的前一筆Commit ID</p>
-<pre><code class="PowerShell">git rebase -i ff37
+<h2 id="編譯、執行-DockerImage"><a href="#編譯、執行-DockerImage" class="headerlink" title="編譯、執行 DockerImage"></a>編譯、執行 DockerImage</h2><h3 id="編譯-Image"><a href="#編譯-Image" class="headerlink" title="編譯 Image"></a>編譯 Image</h3><pre><code class="CMD"># ~/dockerSample
+docker build -t dockersample_webapi --no-cache .
+
+# 編譯完成後 查看 Image
+docker images
+
+# 輸出
+REPOSITORY            TAG       IMAGE ID       CREATED          SIZE
+dockersample_webapi   latest    95f60d82602c   2 minutes ago    208MB
 </code></pre>
-<p><img src="https://bingxiangstorage.blob.core.windows.net/blog/git-modify-author/2022-02-17-00-05-19.png"></p>
-</li>
-<li><p>修改第二筆Commit紀錄<br>在第二筆CommitID 下一行 修改Author &amp; Email</p>
-<pre><code class="PowerShell">exec git commit --amend --reset-author --no-edit
+<h3 id="建立-Container"><a href="#建立-Container" class="headerlink" title="建立 Container"></a>建立 Container</h3><pre><code class="CMD">docker run --name dockersample_webapi -d -p 8080:80 dockersample_webapi
+
+# 建立完成後 確認 Container
+docker ps -a
+
+# 輸出
+CONTAINER ID   IMAGE                 COMMAND                  CREATED          STATUS          PORTS                  NAMES
+38ac29c81f36   dockersample_webapi   &quot;dotnet dockerSample…&quot;   20 seconds ago   Up 19 seconds   0.0.0.0:8080-&gt;80/tcp   dockersample_webapi
 </code></pre>
-<p><img src="https://bingxiangstorage.blob.core.windows.net/blog/git-modify-author/2022-02-17-00-06-44.png"></p>
-</li>
-</ol>
-<blockquote>
-<p>再查看一次 目前異動狀況<br>發現 第二筆Commit紀錄的 Author &amp; Email &amp; Committer 已被 user.name &amp; user.email 覆蓋<br>有另一點需要特別注意 第三筆Commit紀錄 雖然Author &amp; Email 未被覆蓋<br>但Committer與CommitDate已被刷新，因rebase是重新建立新的Commit紀錄 不是修改<br>所以可以發現第二筆和第三筆CommitID(SHA)被異動了，因為它們是新的Commit紀錄<br>這也導致第三筆的Committer和CommitDate被更改 需要特別注意</p>
-</blockquote>
-<pre><code class="PowerShell">git log
-git show --pretty=fuller ff37
-git show --pretty=fuller f5da
-git show --pretty=fuller 6dcb
-</code></pre>
-<p><img src="https://bingxiangstorage.blob.core.windows.net/blog/git-modify-author/2022-02-17-00-11-52.png"></p>
-<h2 id="補充"><a href="#補充" class="headerlink" title="補充"></a>補充</h2><h3 id="修改第一筆Commit紀錄的-Author-amp-Email"><a href="#修改第一筆Commit紀錄的-Author-amp-Email" class="headerlink" title="修改第一筆Commit紀錄的 Author &amp; Email"></a>修改第一筆Commit紀錄的 Author &amp; Email</h3><blockquote>
-<p>先列一下 目前Git log 情況<br>w4560000 是錯誤的Author 已經Commit兩筆紀錄了</p>
-</blockquote>
-<pre><code class="PowerShell">git log
-git show --pretty=fuller e51d
-git show --pretty=fuller 6ac4
-</code></pre>
-<p><img src="https://bingxiangstorage.blob.core.windows.net/blog/git-modify-author/2022-02-17-00-26-49.png"></p>
-<ol>
-<li><p>修改第一筆Commit紀錄比較特別 因它是第一筆，rebase時不能找前一個CommitID來rebase，需rebase root</p>
-<pre><code class="PowerShell">git rebase -i --root
-</code></pre>
-<p><img src="https://bingxiangstorage.blob.core.windows.net/blog/git-modify-author/2022-02-17-00-27-11.png"></p>
-</li>
-<li><p>修改第一筆Commit紀錄<br>在第一筆CommitID 下一行 修改Author &amp; Email</p>
-<pre><code class="PowerShell">exec git commit --amend --author=&quot;First Author Name &lt;firstemail@address.com&gt;&quot; --no-edit
-</code></pre>
-<p><img src="https://bingxiangstorage.blob.core.windows.net/blog/git-modify-author/2022-02-17-00-27-59.png"></p>
-</li>
-</ol>
-<blockquote>
-<p>此時查看目前log異動狀況 確認第一筆是否已被修改且第二筆正常</p>
-</blockquote>
-<pre><code class="PowerShell">git log
-git show --pretty=fuller a318
-git show --pretty=fuller a9a1
-</code></pre>
-<p><img src="https://bingxiangstorage.blob.core.windows.net/blog/git-modify-author/2022-02-17-00-30-41.png"></p>
+<p>呼叫 API 確認功能是否正常<br><a target="_blank" rel="noopener" href="http://localhost:8080/weatherforecast">http://localhost:8080/weatherforecast</a><br><img src="https://bingxiangstorage.blob.core.windows.net/blog/dotnet-core-docker-sample/2022-05-01-23-06-12.png"></p>
 
       
        <hr><span style="font-style: italic;color: gray;"> 轉載請註明來源，若有任何錯誤或表達不清楚的地方，歡迎在下方評論區留言，也可以來信至 leozheng0621@gmail.com </span>
