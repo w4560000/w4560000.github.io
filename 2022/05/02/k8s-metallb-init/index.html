@@ -2,9 +2,9 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <title>地端 K8S 設定 metallb | w4560000.github.io</title>
+  <title>地端 K8S 設定 MetalLB | w4560000.github.io</title>
   <meta name="keywords" content=" K8S ">
-  <meta name="description" content="地端 K8S 設定 metallb | w4560000.github.io">
+  <meta name="description" content="地端 K8S 設定 MetalLB | w4560000.github.io">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <meta name="description" content="開發環境 Windows 10 (home 20H2)  前言此篇文章記錄如何推送&amp;拉取 Dockerfile 至 Google Container Registry以.Net Core 3.1 專案 作範例 前置作業 搜尋 Container Registry 並啟用服務 下載 gcloud工具 先透過範例專案 build 出 DockerImage，可參考流程  推送(Push) Do">
 <meta property="og:type" content="article">
@@ -566,10 +566,10 @@
         </a>
         
         <a  class="全部文章 Devops K8S "
-           href="/2022/05/02/k8s-ingress-nginx-metallb/"
+           href="/2022/05/02/k8s-metallb-init/"
            data-tag="K8S"
            data-author="" >
-            <span class="post-title" title="地端 K8S 設定 metallb">地端 K8S 設定 metallb</span>
+            <span class="post-title" title="地端 K8S 設定 MetalLB">地端 K8S 設定 MetalLB</span>
             <span class="post-date" title="2022-05-02 03:33:42">2022/05/02</span>
         </a>
         
@@ -855,9 +855,9 @@
 </aside>
 <div id="post">
     <div class="pjax">
-        <article id="post-k8s-ingress-nginx-metallb" class="article article-type-post" itemscope itemprop="blogPost">
+        <article id="post-k8s-metallb-init" class="article article-type-post" itemscope itemprop="blogPost">
     
-        <h1 class="article-title">地端 K8S 設定 metallb</h1>
+        <h1 class="article-title">地端 K8S 設定 MetalLB</h1>
     
     <div class="article-meta">
         
@@ -884,12 +884,12 @@
     </div>
     <div class="article-meta">
         
-            發布時間 : <time class="date" title='更新時間: 2022-05-04 01:56:02'>2022-05-02 03:33</time>
+            發布時間 : <time class="date" title='更新時間: 2022-05-04 01:57:50'>2022-05-02 03:33</time>
         
     </div>
     <div class="article-meta">
         
-        <span>字數:560</span>
+        <span>字數:552</span>
         
         
         <span id="busuanzi_container_page_pv">
@@ -939,12 +939,12 @@
 <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>機器環境可參考此篇文章 <a href="/2022/04/25/k8s-cluster-kubeadm-init/">以 kubeadm 架設 K8S Cluster</a></p>
 <p>在雲端環境的K8S(ex: GKE)，都有跟自有的雲端服務整合(負載平衡器 &amp; 外部IP位址)<br>但在地端環境，則無法達成負載平衡，需要透過額外套件才能達成</p>
 <p><a target="_blank" rel="noopener" href="https://metallb.universe.tf/">MetalLB</a> 是一個為了地端環境而生的負載平衡套件<br>有兩種使用方式 Layer2、BGP 說明可<a target="_blank" rel="noopener" href="https://blog.csdn.net/easylife206/article/details/123492225">參考</a></p>
-<p>Layer2 可讓相同網段IP 當作 LoadBalance IP，實作起來較簡單<br>但地端K8S，我主要是架設測是環境為用途，正式環境則走GKE，在測試環境中，不需要讓外網訪問，故使用L2即可<br>若要改把外部IP 當作 LoadBalance IP 就要改用 BGP了，之後有時間再來實作看看</p>
+<p>Layer2 可讓相同網段IP 當作 LoadBalance IP，實作起來較簡單<br>地端K8S，我主要是架設測是環境為用途，在測試環境中，不需要讓外網訪問，故使用L2即可<br>若要改把外部IP 當作 LoadBalance IP 就要改用 BGP了，之後有時間再來實作看看</p>
 <h2 id="以-Layer2-實現-K8S-Cluster-Loadbalance"><a href="#以-Layer2-實現-K8S-Cluster-Loadbalance" class="headerlink" title="以 Layer2 實現 K8S Cluster Loadbalance"></a>以 Layer2 實現 K8S Cluster Loadbalance</h2><p>安裝 MetalLB</p>
 <pre><code class="bash">kubectl apply -f https://raw.githubusercontent.com/metallb/metallb/v0.12.1/manifests/namespace.yaml
 kubectl apply -f https://raw.githubusercontent.com/metallb/metallb/v0.12.1/manifests/metallb.yaml
 </code></pre>
-<p>目前K8S Cluster 集群IP<br>10.240.0.11 controller<br>10.240.0.20 worker-0<br>10.240.0.21 worker-1<br>10.240.0.22 worker-2</p>
+<p>目前K8S Cluster 集群 IP<br>10.240.0.11 controller<br>10.240.0.20 worker-0<br>10.240.0.21 worker-1<br>10.240.0.22 worker-2</p>
 <p>設定 10.240.0.1-10.240.0.9 作為 Loadbalance address-pools</p>
 <pre><code class="bash">cat &lt;&lt;EOF | kubectl create -f -
 apiVersion: v1
