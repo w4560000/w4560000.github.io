@@ -2,22 +2,32 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <title>個人常用MSSQL腳本 | w4560000.github.io</title>
-  <meta name="keywords" content=" MSSQL ">
-  <meta name="description" content="個人常用MSSQL腳本 | w4560000.github.io">
+  <title>新增 SQL Server Agent Job | w4560000.github.io</title>
+  <meta name="keywords" content=" SQL Server ">
+  <meta name="description" content="新增 SQL Server Agent Job | w4560000.github.io">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-<meta name="description" content="新增 Table新增資料表 Exam.dbo.TestTable USE [Exam] GO  IF EXISTS (SELECT * FROM sys.objects WHERE object_id &#x3D; OBJECT_ID(N&#39;[dbo].[TestTable]&#39;) AND type in (N&#39;U&#39;)) BEGIN     EXEC sys.sp_dropext">
+<meta name="description" content="新增每十分鐘排程 執行 SP 設定作業名稱 新增步驟 設定排程觸發時間 下圖 為 每10分鐘排程 為範例 設定完成後 取得建立Job的SQL腳本 微調 刪除Job 邏輯 (在不同環境執行時job_id 會不同, 所以需要重新撈取job_id再刪除) USE [msdb] GO  -- 刪除Job &#x2F;****** Object:  Job [每十分鐘執行高風險刷退處置]    Script Date">
 <meta property="og:type" content="article">
-<meta property="og:title" content="個人常用MSSQL腳本">
-<meta property="og:url" content="http://example.com/2022/05/04/mssql-common-script/index.html">
+<meta property="og:title" content="新增 SQL Server Agent Job">
+<meta property="og:url" content="http://example.com/2022/05/04/sql-server-agent-job/index.html">
 <meta property="og:site_name" content="w4560000.github.io">
-<meta property="og:description" content="新增 Table新增資料表 Exam.dbo.TestTable USE [Exam] GO  IF EXISTS (SELECT * FROM sys.objects WHERE object_id &#x3D; OBJECT_ID(N&#39;[dbo].[TestTable]&#39;) AND type in (N&#39;U&#39;)) BEGIN     EXEC sys.sp_dropext">
+<meta property="og:description" content="新增每十分鐘排程 執行 SP 設定作業名稱 新增步驟 設定排程觸發時間 下圖 為 每10分鐘排程 為範例 設定完成後 取得建立Job的SQL腳本 微調 刪除Job 邏輯 (在不同環境執行時job_id 會不同, 所以需要重新撈取job_id再刪除) USE [msdb] GO  -- 刪除Job &#x2F;****** Object:  Job [每十分鐘執行高風險刷退處置]    Script Date">
 <meta property="og:locale" content="zh_TW">
-<meta property="article:published_time" content="2022-05-03T18:03:53.000Z">
-<meta property="article:modified_time" content="2022-05-03T18:08:32.060Z">
+<meta property="og:image" content="https://bingxiangstorage.blob.core.windows.net/blog/sql-server-agent-job/2022-05-04-22-11-17.png">
+<meta property="og:image" content="https://bingxiangstorage.blob.core.windows.net/blog/sql-server-agent-job/2022-05-04-22-11-41.png">
+<meta property="og:image" content="https://bingxiangstorage.blob.core.windows.net/blog/sql-server-agent-job/2022-05-04-22-11-52.png">
+<meta property="og:image" content="https://bingxiangstorage.blob.core.windows.net/blog/sql-server-agent-job/2022-05-04-22-13-13.png">
+<meta property="og:image" content="https://bingxiangstorage.blob.core.windows.net/blog/sql-server-agent-job/2022-05-04-22-13-31.png">
+<meta property="og:image" content="https://bingxiangstorage.blob.core.windows.net/blog/sql-server-agent-job/2022-05-04-22-22-16.png">
+<meta property="og:image" content="https://bingxiangstorage.blob.core.windows.net/blog/sql-server-agent-job/2022-05-04-22-22-56.png">
+<meta property="og:image" content="https://bingxiangstorage.blob.core.windows.net/blog/sql-server-agent-job/2022-05-04-22-23-52.png">
+<meta property="og:image" content="https://bingxiangstorage.blob.core.windows.net/blog/sql-server-agent-job/2022-05-04-22-23-58.png">
+<meta property="article:published_time" content="2022-05-04T13:56:02.000Z">
+<meta property="article:modified_time" content="2022-05-04T14:24:00.467Z">
 <meta property="article:author" content="Leo Zheng">
-<meta property="article:tag" content="MSSQL">
+<meta property="article:tag" content="SQL Server">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://bingxiangstorage.blob.core.windows.net/blog/sql-server-agent-job/2022-05-04-22-11-17.png">
 
 
 <link rel="icon" href="/img/avatar.jpg">
@@ -106,7 +116,7 @@
     <li>
         <div class="all active" data-rel="全部文章">全部文章
             
-                <small>(36)</small>
+                <small>(37)</small>
             
         </div>
     </li>
@@ -173,18 +183,18 @@
                         <i class="fold iconfont icon-right"></i>
                         
                         Database
-                        <small>(1)</small>
+                        <small>(2)</small>
                         
                     </div>
                     
                         <ul class="sub hide">
                             
                                 <li>
-                                    <div data-rel="Database<--->MSSQL">
+                                    <div data-rel="Database<--->SQL Server">
                                         
-                                        MSSQL
+                                        SQL Server
                                         
-                                            <small>(1
+                                            <small>(2
                                                 )</small>
                                         
                                     </div>
@@ -449,8 +459,8 @@
         
     </div>
 </div>
-<input type="hidden" id="yelog_site_posts_number" value="36">
-<input type="hidden" id="yelog_site_word_count" value="17.5k">
+<input type="hidden" id="yelog_site_posts_number" value="37">
+<input type="hidden" id="yelog_site_word_count" value="18k">
 <div style="display: none">
     <span id="busuanzi_value_site_uv"></span>
     <span id="busuanzi_value_site_pv"></span>
@@ -556,10 +566,6 @@
             </li>
         
             <li class="article-tag-list-item">
-                <i class="iconfont icon-tag"></i><a>MSSQL</a>
-            </li>
-        
-            <li class="article-tag-list-item">
                 <i class="iconfont icon-tag"></i><a>MultiThread</a>
             </li>
         
@@ -569,6 +575,10 @@
         
             <li class="article-tag-list-item">
                 <i class="iconfont icon-tag"></i><a>SFTP</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>SQL Server</a>
             </li>
         
             <li class="article-tag-list-item">
@@ -594,11 +604,19 @@
     
     <nav id="title-list-nav">
         
-        <a  class="全部文章 Database MSSQL "
-           href="/2022/05/04/mssql-common-script/"
-           data-tag="MSSQL"
+        <a  class="全部文章 Database SQL Server "
+           href="/2022/05/04/sql-server-agent-job/"
+           data-tag="SQL Server"
            data-author="" >
-            <span class="post-title" title="個人常用MSSQL腳本">個人常用MSSQL腳本</span>
+            <span class="post-title" title="新增 SQL Server Agent Job">新增 SQL Server Agent Job</span>
+            <span class="post-date" title="2022-05-04 21:56:02">2022/05/04</span>
+        </a>
+        
+        <a  class="全部文章 Database SQL Server "
+           href="/2022/05/04/sql-server-common-script/"
+           data-tag="SQL Server"
+           data-author="" >
+            <span class="post-title" title="個人常用 SQL Server 腳本">個人常用 SQL Server 腳本</span>
             <span class="post-date" title="2022-05-04 02:03:53">2022/05/04</span>
         </a>
         
@@ -900,9 +918,9 @@
 </aside>
 <div id="post">
     <div class="pjax">
-        <article id="post-mssql-common-script" class="article article-type-post" itemscope itemprop="blogPost">
+        <article id="post-sql-server-agent-job" class="article article-type-post" itemscope itemprop="blogPost">
     
-        <h1 class="article-title">個人常用MSSQL腳本</h1>
+        <h1 class="article-title">新增 SQL Server Agent Job</h1>
     
     <div class="article-meta">
         
@@ -914,7 +932,7 @@
             
             <a  data-rel="Database">Database</a> > 
             
-            <a  data-rel="Database&lt;---&gt;MSSQL">MSSQL</a>
+            <a  data-rel="Database&lt;---&gt;SQL Server">SQL Server</a>
             
         </span>
         
@@ -922,19 +940,19 @@
         <span class="tag">
             <i class="iconfont icon-tag"></i>
             
-            <a class="color1">MSSQL</a>
+            <a class="color1">SQL Server</a>
             
         </span>
         
     </div>
     <div class="article-meta">
         
-            發布時間 : <time class="date" title='更新時間: 2022-05-04 02:08:32'>2022-05-04 02:03</time>
+            發布時間 : <time class="date" title='更新時間: 2022-05-04 22:24:00'>2022-05-04 21:56</time>
         
     </div>
     <div class="article-meta">
         
-        <span>字數:561</span>
+        <span>字數:509</span>
         
         
         <span id="busuanzi_container_page_pv">
@@ -964,7 +982,7 @@
     
     <div class="toc-ref">
     
-        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%96%B0%E5%A2%9E-Table"><span class="toc-text">新增 Table</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%96%B0%E5%A2%9E-SP"><span class="toc-text">新增 SP</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%95%B0%E5%8B%95-Table-Schema"><span class="toc-text">異動 Table Schema</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%96%B0%E5%A2%9E-Type"><span class="toc-text">新增 Type</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%96%B0%E5%A2%9E-DB-User%E6%AC%8A%E9%99%90"><span class="toc-text">新增 DB User權限</span></a></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%96%B0%E5%A2%9E%E6%AF%8F%E5%8D%81%E5%88%86%E9%90%98%E6%8E%92%E7%A8%8B-%E5%9F%B7%E8%A1%8C-SP"><span class="toc-text">新增每十分鐘排程 執行 SP</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%9F%A5%E7%9C%8B%E6%8E%92%E7%A8%8B%E5%9F%B7%E8%A1%8C%E7%B4%80%E9%8C%84"><span class="toc-text">查看排程執行紀錄</span></a></li></ol>
     
 <style>
     .left-col .switch-btn,
@@ -980,141 +998,94 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="新增-Table"><a href="#新增-Table" class="headerlink" title="新增 Table"></a>新增 Table</h2><p>新增資料表 Exam.dbo.TestTable</p>
-<pre><code class="Sql">USE [Exam]
+        <h2 id="新增每十分鐘排程-執行-SP"><a href="#新增每十分鐘排程-執行-SP" class="headerlink" title="新增每十分鐘排程 執行 SP"></a>新增每十分鐘排程 執行 SP</h2><p><img src="https://bingxiangstorage.blob.core.windows.net/blog/sql-server-agent-job/2022-05-04-22-11-17.png"></p>
+<p>設定作業名稱<br><img src="https://bingxiangstorage.blob.core.windows.net/blog/sql-server-agent-job/2022-05-04-22-11-41.png"></p>
+<p>新增步驟<br><img src="https://bingxiangstorage.blob.core.windows.net/blog/sql-server-agent-job/2022-05-04-22-11-52.png"><br><img src="https://bingxiangstorage.blob.core.windows.net/blog/sql-server-agent-job/2022-05-04-22-13-13.png"></p>
+<p>設定排程觸發時間<br><img src="https://bingxiangstorage.blob.core.windows.net/blog/sql-server-agent-job/2022-05-04-22-13-31.png"></p>
+<p>下圖 為 每10分鐘排程 為範例<br><img src="https://bingxiangstorage.blob.core.windows.net/blog/sql-server-agent-job/2022-05-04-22-22-16.png"></p>
+<p>設定完成後 取得建立Job的SQL腳本<br><img src="https://bingxiangstorage.blob.core.windows.net/blog/sql-server-agent-job/2022-05-04-22-22-56.png"></p>
+<p>微調 刪除Job 邏輯 (在不同環境執行時job_id 會不同, 所以需要重新撈取job_id再刪除)</p>
+<pre><code class="Sql">USE [msdb]
 GO
 
-IF EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N&#39;[dbo].[TestTable]&#39;) AND type in (N&#39;U&#39;))
+-- 刪除Job
+/****** Object:  Job [每十分鐘執行高風險刷退處置]    Script Date: 2021/5/14 下午 04:51:13 ******/
+DECLARE @job_id uniqueidentifier
+SELECT  @job_id = job_id
+FROM msdb.dbo.sysjobs_view
+where name = N&#39;TestJob&#39;
+
+IF  EXISTS (SELECT job_id FROM msdb.dbo.sysjobs_view WHERE name = N&#39;TestJob&#39;)
+EXEC msdb.dbo.sp_delete_job @job_id=@job_id, @delete_unused_schedule=1
+GO
+
+-- 刪除Job
+
+/****** Object:  Job [TestJob]    Script Date: 2022/5/3 下午 04:30:44 ******/
+BEGIN TRANSACTION
+DECLARE @ReturnCode INT
+SELECT @ReturnCode = 0
+/****** Object:  JobCategory [[Uncategorized (Local)]]    Script Date: 2022/5/3 下午 04:30:44 ******/
+IF NOT EXISTS (SELECT name FROM msdb.dbo.syscategories WHERE name=N&#39;[Uncategorized (Local)]&#39; AND category_class=1)
 BEGIN
-    EXEC sys.sp_dropextendedproperty @name=N&#39;MS_Description&#39; , @level0type=N&#39;SCHEMA&#39;,@level0name=N&#39;dbo&#39;, @level1type=N&#39;TABLE&#39;,@level1name=N&#39;TestTable&#39;, @level2type=N&#39;COLUMN&#39;,@level2name=N&#39;TestName&#39;
-
-    EXEC sys.sp_dropextendedproperty @name=N&#39;MS_Description&#39; , @level0type=N&#39;SCHEMA&#39;,@level0name=N&#39;dbo&#39;, @level1type=N&#39;TABLE&#39;,@level1name=N&#39;TestTable&#39;, @level2type=N&#39;COLUMN&#39;,@level2name=N&#39;TestID&#39;
-
-    DROP TABLE [dbo].[TestTable]
-END
-GO
-
-/****** Object:  Table [dbo].[TestTable]    Script Date: 2022/5/3 下午 02:44:15 ******/
-SET ANSI_NULLS ON
-GO
-
-SET QUOTED_IDENTIFIER ON
-GO
-
-CREATE TABLE [dbo].[TestTable](
-    [TestID] [nchar](10) NOT NULL,
-    [TestName] [nchar](10) NULL,
- CONSTRAINT [PK_TestTable] PRIMARY KEY CLUSTERED 
-(
-    [TestID] ASC
-)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
-) ON [PRIMARY]
-GO
-
-EXEC sys.sp_addextendedproperty @name=N&#39;MS_Description&#39;, @value=N&#39;測試ID&#39; , @level0type=N&#39;SCHEMA&#39;,@level0name=N&#39;dbo&#39;, @level1type=N&#39;TABLE&#39;,@level1name=N&#39;TestTable&#39;, @level2type=N&#39;COLUMN&#39;,@level2name=N&#39;TestID&#39;
-GO
-
-EXEC sys.sp_addextendedproperty @name=N&#39;MS_Description&#39;, @value=N&#39;測試名稱&#39; , @level0type=N&#39;SCHEMA&#39;,@level0name=N&#39;dbo&#39;, @level1type=N&#39;TABLE&#39;,@level1name=N&#39;TestTable&#39;, @level2type=N&#39;COLUMN&#39;,@level2name=N&#39;TestName&#39;
-GO
-</code></pre>
-<h2 id="新增-SP"><a href="#新增-SP" class="headerlink" title="新增 SP"></a>新增 SP</h2><p>新增預存程序 Exam.dbo.SP_Query_TestTable</p>
-<pre><code class="Sql">USE [Exam]
-GO
-
-IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N&#39;[dbo].[SP_Query_TestTable]&#39;) AND type IN (N&#39;P&#39;, N&#39;PC&#39;))
-DROP PROCEDURE [dbo].[SP_Query_TestTable]
-GO
-
-SET ANSI_NULLS ON
-GO
-
-SET QUOTED_IDENTIFIER ON
-GO
-
-/*
-    ==================================================================
-    Description
-         
-                
-    ==================================================================
-    History    
-        2020/05/14        誰    Created. 
-
-    =================================================================
-    Step
-    
-    ==================================================================
-    Result
-
-    ==================================================================
-    Example
-    
-        EXEC Exam.dbo.SP_Query_TestTable
-            @QueryParam = &#39;1&#39;
-
-            
-*/
-
-
-CREATE PROCEDURE [dbo].[SP_Query_TestTable]
-     @QueryParam        NCHAR(10)    -- 查詢參數
-AS
-BEGIN    
-    --切換為最大權限使用者
-    --EXECUTE AS LOGIN = &#39;Executer&#39;;
-    SET NOCOUNT ON;
-    
-    SELECT * FROM dbo.TestTable
-    WHERE TestID = @QueryParam
+EXEC @ReturnCode = msdb.dbo.sp_add_category @class=N&#39;JOB&#39;, @type=N&#39;LOCAL&#39;, @name=N&#39;[Uncategorized (Local)]&#39;
+IF (@@ERROR &lt;&gt; 0 OR @ReturnCode &lt;&gt; 0) GOTO QuitWithRollback
 
 END
 
-GO
-
-GRANT EXECUTE ON [SP_Query_TestTable] TO [PUBLIC] AS [dbo] ;
+DECLARE @jobId BINARY(16)
+EXEC @ReturnCode =  msdb.dbo.sp_add_job @job_name=N&#39;TestJob&#39;, 
+        @enabled=1, 
+        @notify_level_eventlog=0, 
+        @notify_level_email=0, 
+        @notify_level_netsend=0, 
+        @notify_level_page=0, 
+        @delete_level=0, 
+        @description=N&#39;測試排程&#39;, 
+        @category_name=N&#39;[Uncategorized (Local)]&#39;, 
+        @owner_login_name=N&#39;sqlserver&#39;, @job_id = @jobId OUTPUT
+IF (@@ERROR &lt;&gt; 0 OR @ReturnCode &lt;&gt; 0) GOTO QuitWithRollback
+/****** Object:  Step [Job1]    Script Date: 2022/5/3 下午 04:30:44 ******/
+EXEC @ReturnCode = msdb.dbo.sp_add_jobstep @job_id=@jobId, @step_name=N&#39;Job1&#39;, 
+        @step_id=1, 
+        @cmdexec_success_code=0, 
+        @on_success_action=1, 
+        @on_success_step_id=0, 
+        @on_fail_action=2, 
+        @on_fail_step_id=0, 
+        @retry_attempts=0, 
+        @retry_interval=0, 
+        @os_run_priority=0, @subsystem=N&#39;TSQL&#39;, 
+        @command=N&#39;EXEC Exam.dbo.SP_Query_TestTable @QueryParam = &#39;&#39;1&#39;&#39;&#39;, 
+        @database_name=N&#39;Exam&#39;, 
+        @flags=0
+IF (@@ERROR &lt;&gt; 0 OR @ReturnCode &lt;&gt; 0) GOTO QuitWithRollback
+EXEC @ReturnCode = msdb.dbo.sp_update_job @job_id = @jobId, @start_step_id = 1
+IF (@@ERROR &lt;&gt; 0 OR @ReturnCode &lt;&gt; 0) GOTO QuitWithRollback
+EXEC @ReturnCode = msdb.dbo.sp_add_jobschedule @job_id=@jobId, @name=N&#39;Testschedule&#39;, 
+        @enabled=1, 
+        @freq_type=4, 
+        @freq_interval=1, 
+        @freq_subday_type=4, 
+        @freq_subday_interval=10, 
+        @freq_relative_interval=0, 
+        @freq_recurrence_factor=0, 
+        @active_start_date=20220503, 
+        @active_end_date=99991231, 
+        @active_start_time=0, 
+        @active_end_time=235959, 
+        @schedule_uid=N&#39;56fea05f-1843-4a53-9d31-9afea83bd469&#39;
+IF (@@ERROR &lt;&gt; 0 OR @ReturnCode &lt;&gt; 0) GOTO QuitWithRollback
+EXEC @ReturnCode = msdb.dbo.sp_add_jobserver @job_id = @jobId, @server_name = N&#39;(local)&#39;
+IF (@@ERROR &lt;&gt; 0 OR @ReturnCode &lt;&gt; 0) GOTO QuitWithRollback
+COMMIT TRANSACTION
+GOTO EndSave
+QuitWithRollback:
+    IF (@@TRANCOUNT &gt; 0) ROLLBACK TRANSACTION
+EndSave:
 GO
 </code></pre>
-<h2 id="異動-Table-Schema"><a href="#異動-Table-Schema" class="headerlink" title="異動 Table Schema"></a>異動 Table Schema</h2><p>新增 Exam.dbo.TestTable CreateDate 欄位</p>
-<pre><code class="Sql">USE [Exam]
-GO
-
-IF ( SELECT COUNT(NAME) FROM SYSCOLUMNS
-     WHERE ID = ( SELECT ID FROM SYSOBJECTS WHERE NAME = &#39;TestTable&#39; )
-   AND NAME = &#39;CreateDate&#39; ) = 0
-BEGIN
-    ALTER TABLE dbo.TestTable ADD CreateDate Datetime;
-END
-</code></pre>
-<h2 id="新增-Type"><a href="#新增-Type" class="headerlink" title="新增 Type"></a>新增 Type</h2><p>新增 Exam.dbo.UDT_TestType</p>
-<pre><code class="Sql">USE [Exam]
-GO
-
-/****** Object:  UserDefinedTableType [dbo].[UDT_TestType]    Script Date: 07/02/2019 17:46:14 ******/
-IF  EXISTS (SELECT * FROM sys.types st JOIN sys.schemas ss ON st.schema_id = ss.schema_id WHERE st.name = N&#39;UDT_TestType&#39; AND ss.name = N&#39;dbo&#39;)
-DROP TYPE [dbo].[UDT_TestType]
-GO
-
-USE [Exam]
-GO
-
-/****** Object:  UserDefinedTableType [dbo].[UDT_TestType]    Script Date: 07/02/2019 17:46:14 ******/
-CREATE TYPE [dbo].[UDT_TestType] AS TABLE(
-    [RowNo]            INT
-    , [TestName]    NCHAR(10)
-)
-GO
-
-GRANT EXECUTE ON TYPE::[dbo].[UDT_TestType] TO [public] AS [dbo]
-GO
-</code></pre>
-<h2 id="新增-DB-User權限"><a href="#新增-DB-User權限" class="headerlink" title="新增 DB User權限"></a>新增 DB User權限</h2><pre><code class="Sql">USE [Exam]
-GO
-
-IF EXISTS (SELECT * FROM sys.server_principals WHERE name = N&#39;WebUser&#39;)
-BEGIN
-    ALTER ROLE [db_datareader] ADD MEMBER [WebUser]
-END
-</code></pre>
+<h2 id="查看排程執行紀錄"><a href="#查看排程執行紀錄" class="headerlink" title="查看排程執行紀錄"></a>查看排程執行紀錄</h2><p><img src="https://bingxiangstorage.blob.core.windows.net/blog/sql-server-agent-job/2022-05-04-22-23-52.png"><br><img src="https://bingxiangstorage.blob.core.windows.net/blog/sql-server-agent-job/2022-05-04-22-23-58.png"></p>
 
       
        <hr><span style="font-style: italic;color: gray;"> 轉載請註明來源，若有任何錯誤或表達不清楚的地方，歡迎在下方評論區留言，也可以來信至 leozheng0621@gmail.com </span>

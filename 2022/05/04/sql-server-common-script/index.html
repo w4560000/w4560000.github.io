@@ -2,22 +2,32 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <title>w4560000.github.io</title>
-  <meta name="keywords" content="">
-  <meta name="description" content="w4560000.github.io">
+  <title>個人常用 SQL Server 腳本 | w4560000.github.io</title>
+  <meta name="keywords" content=" SQL Server ">
+  <meta name="description" content="個人常用 SQL Server 腳本 | w4560000.github.io">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-<meta name="description" content="新增 Table新增資料表 Exam.dbo.TestTable USE [Exam] GO  IF EXISTS (SELECT * FROM sys.objects WHERE object_id &#x3D; OBJECT_ID(N&#39;[dbo].[TestTable]&#39;) AND type in (N&#39;U&#39;)) BEGIN     EXEC sys.sp_dropext">
+<meta name="description" content="新增每十分鐘排程 執行 SP 設定作業名稱 新增步驟 設定排程觸發時間 下圖 為 每10分鐘排程 為範例 設定完成後 取得建立Job的SQL腳本 微調 刪除Job 邏輯 (在不同環境執行時job_id 會不同, 所以需要重新撈取job_id再刪除) USE [msdb] GO  -- 刪除Job &#x2F;****** Object:  Job [每十分鐘執行高風險刷退處置]    Script Date">
 <meta property="og:type" content="article">
-<meta property="og:title" content="個人常用MSSQL腳本">
-<meta property="og:url" content="http://example.com/2022/05/04/mssql-common-script/index.html">
+<meta property="og:title" content="新增 SQL Server Agent Job">
+<meta property="og:url" content="http://example.com/2022/05/04/sql-server-agent-job/index.html">
 <meta property="og:site_name" content="w4560000.github.io">
-<meta property="og:description" content="新增 Table新增資料表 Exam.dbo.TestTable USE [Exam] GO  IF EXISTS (SELECT * FROM sys.objects WHERE object_id &#x3D; OBJECT_ID(N&#39;[dbo].[TestTable]&#39;) AND type in (N&#39;U&#39;)) BEGIN     EXEC sys.sp_dropext">
+<meta property="og:description" content="新增每十分鐘排程 執行 SP 設定作業名稱 新增步驟 設定排程觸發時間 下圖 為 每10分鐘排程 為範例 設定完成後 取得建立Job的SQL腳本 微調 刪除Job 邏輯 (在不同環境執行時job_id 會不同, 所以需要重新撈取job_id再刪除) USE [msdb] GO  -- 刪除Job &#x2F;****** Object:  Job [每十分鐘執行高風險刷退處置]    Script Date">
 <meta property="og:locale" content="zh_TW">
-<meta property="article:published_time" content="2022-05-03T18:03:53.000Z">
-<meta property="article:modified_time" content="2022-05-03T18:08:32.060Z">
+<meta property="og:image" content="https://bingxiangstorage.blob.core.windows.net/blog/sql-server-agent-job/2022-05-04-22-11-17.png">
+<meta property="og:image" content="https://bingxiangstorage.blob.core.windows.net/blog/sql-server-agent-job/2022-05-04-22-11-41.png">
+<meta property="og:image" content="https://bingxiangstorage.blob.core.windows.net/blog/sql-server-agent-job/2022-05-04-22-11-52.png">
+<meta property="og:image" content="https://bingxiangstorage.blob.core.windows.net/blog/sql-server-agent-job/2022-05-04-22-13-13.png">
+<meta property="og:image" content="https://bingxiangstorage.blob.core.windows.net/blog/sql-server-agent-job/2022-05-04-22-13-31.png">
+<meta property="og:image" content="https://bingxiangstorage.blob.core.windows.net/blog/sql-server-agent-job/2022-05-04-22-22-16.png">
+<meta property="og:image" content="https://bingxiangstorage.blob.core.windows.net/blog/sql-server-agent-job/2022-05-04-22-22-56.png">
+<meta property="og:image" content="https://bingxiangstorage.blob.core.windows.net/blog/sql-server-agent-job/2022-05-04-22-23-52.png">
+<meta property="og:image" content="https://bingxiangstorage.blob.core.windows.net/blog/sql-server-agent-job/2022-05-04-22-23-58.png">
+<meta property="article:published_time" content="2022-05-04T13:56:02.000Z">
+<meta property="article:modified_time" content="2022-05-04T14:24:00.467Z">
 <meta property="article:author" content="Leo Zheng">
-<meta property="article:tag" content="MSSQL">
+<meta property="article:tag" content="SQL Server">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://bingxiangstorage.blob.core.windows.net/blog/sql-server-agent-job/2022-05-04-22-11-17.png">
 
 
 <link rel="icon" href="/img/avatar.jpg">
@@ -58,7 +68,7 @@
 
 
 <body>
-<aside class="nav mobile">
+<aside class="nav">
     <div class="nav-left">
         <a href="/"
    class="avatar_target">
@@ -106,7 +116,7 @@
     <li>
         <div class="all active" data-rel="全部文章">全部文章
             
-                <small>(36)</small>
+                <small>(37)</small>
             
         </div>
     </li>
@@ -173,18 +183,18 @@
                         <i class="fold iconfont icon-right"></i>
                         
                         Database
-                        <small>(1)</small>
+                        <small>(2)</small>
                         
                     </div>
                     
                         <ul class="sub hide">
                             
                                 <li>
-                                    <div data-rel="Database<--->MSSQL">
+                                    <div data-rel="Database<--->SQL Server">
                                         
-                                        MSSQL
+                                        SQL Server
                                         
-                                            <small>(1
+                                            <small>(2
                                                 )</small>
                                         
                                     </div>
@@ -449,8 +459,8 @@
         
     </div>
 </div>
-<input type="hidden" id="yelog_site_posts_number" value="36">
-<input type="hidden" id="yelog_site_word_count" value="17.5k">
+<input type="hidden" id="yelog_site_posts_number" value="37">
+<input type="hidden" id="yelog_site_word_count" value="18k">
 <div style="display: none">
     <span id="busuanzi_value_site_uv"></span>
     <span id="busuanzi_value_site_pv"></span>
@@ -556,10 +566,6 @@
             </li>
         
             <li class="article-tag-list-item">
-                <i class="iconfont icon-tag"></i><a>MSSQL</a>
-            </li>
-        
-            <li class="article-tag-list-item">
                 <i class="iconfont icon-tag"></i><a>MultiThread</a>
             </li>
         
@@ -569,6 +575,10 @@
         
             <li class="article-tag-list-item">
                 <i class="iconfont icon-tag"></i><a>SFTP</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>SQL Server</a>
             </li>
         
             <li class="article-tag-list-item">
@@ -594,11 +604,19 @@
     
     <nav id="title-list-nav">
         
-        <a  class="全部文章 Database MSSQL "
-           href="/2022/05/04/mssql-common-script/"
-           data-tag="MSSQL"
+        <a  class="全部文章 Database SQL Server "
+           href="/2022/05/04/sql-server-agent-job/"
+           data-tag="SQL Server"
            data-author="" >
-            <span class="post-title" title="個人常用MSSQL腳本">個人常用MSSQL腳本</span>
+            <span class="post-title" title="新增 SQL Server Agent Job">新增 SQL Server Agent Job</span>
+            <span class="post-date" title="2022-05-04 21:56:02">2022/05/04</span>
+        </a>
+        
+        <a  class="全部文章 Database SQL Server "
+           href="/2022/05/04/sql-server-common-script/"
+           data-tag="SQL Server"
+           data-author="" >
+            <span class="post-title" title="個人常用 SQL Server 腳本">個人常用 SQL Server 腳本</span>
             <span class="post-date" title="2022-05-04 02:03:53">2022/05/04</span>
         </a>
         
@@ -898,12 +916,73 @@
         </div>
     </div>
 </aside>
-<div id="post" class="index">
+<div id="post">
     <div class="pjax">
-        <article class="index">
-            <div class="toc-ref">
+        <article id="post-sql-server-common-script" class="article article-type-post" itemscope itemprop="blogPost">
     
-        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E9%97%9C%E6%96%BC%E6%88%91%E8%88%87%E8%A9%B2%E9%83%A8%E8%90%BD%E6%A0%BC"><span class="toc-text">關於我與該部落格</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%B0%A1%E4%BB%8B"><span class="toc-text">簡介</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%83%A8%E8%90%BD%E6%A0%BC"><span class="toc-text">部落格</span></a></li></ol></li></ol>
+        <h1 class="article-title">個人常用 SQL Server 腳本</h1>
+    
+    <div class="article-meta">
+        
+        
+        
+        <span class="book">
+            <i class="iconfont icon-category"></i>
+            
+            
+            <a  data-rel="Database">Database</a> > 
+            
+            <a  data-rel="Database&lt;---&gt;SQL Server">SQL Server</a>
+            
+        </span>
+        
+        
+        <span class="tag">
+            <i class="iconfont icon-tag"></i>
+            
+            <a class="color1">SQL Server</a>
+            
+        </span>
+        
+    </div>
+    <div class="article-meta">
+        
+            發布時間 : <time class="date" title='更新時間: 2022-05-04 21:55:49'>2022-05-04 02:03</time>
+        
+    </div>
+    <div class="article-meta">
+        
+        <span>字數:561</span>
+        
+        
+        <span id="busuanzi_container_page_pv">
+            觀看數 :<span id="busuanzi_value_page_pv">
+                <span class="count-comment">
+                    <span class="spinner">
+                      <div class="cube1"></div>
+                      <div class="cube2"></div>
+                    </span>
+                </span>
+            </span>
+        </span>
+        
+        
+        <span class="top-comment" title="跳转至评论区">
+            <a href="#comments">
+                評論:<span class="count-comment">
+                    <span class="spinner">
+                      <div class="cube1"></div>
+                      <div class="cube2"></div>
+                    </span>
+                </span>
+            </a>
+        </span>
+        
+    </div>
+    
+    <div class="toc-ref">
+    
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%96%B0%E5%A2%9E-Table"><span class="toc-text">新增 Table</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%96%B0%E5%A2%9E-SP"><span class="toc-text">新增 SP</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%95%B0%E5%8B%95-Table-Schema"><span class="toc-text">異動 Table Schema</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%96%B0%E5%A2%9E-Type"><span class="toc-text">新增 Type</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%96%B0%E5%A2%9E-DB-User%E6%AC%8A%E9%99%90"><span class="toc-text">新增 DB User權限</span></a></li></ol>
     
 <style>
     .left-col .switch-btn,
@@ -916,20 +995,158 @@
     }
 </style>
 </div>
-            <h1 id="關於我與該部落格"><a href="#關於我與該部落格" class="headerlink" title="關於我與該部落格"></a>關於我與該部落格</h1><h2 id="簡介"><a href="#簡介" class="headerlink" title="簡介"></a>簡介</h2><p>我是一名.Net 開發工程師</p>
-<p>此部落格為軟體開發的學習筆記</p>
-<p>若文章內容有誤，歡迎留言指正，或來信告知 <a href="mailto:&#108;&#101;&#111;&#x7a;&#x68;&#101;&#110;&#x67;&#48;&#54;&#50;&#49;&#x40;&#x67;&#x6d;&#97;&#x69;&#x6c;&#46;&#x63;&#111;&#109;">&#108;&#101;&#111;&#x7a;&#x68;&#101;&#110;&#x67;&#48;&#54;&#50;&#49;&#x40;&#x67;&#x6d;&#97;&#x69;&#x6c;&#46;&#x63;&#111;&#109;</a></p>
-<h2 id="部落格"><a href="#部落格" class="headerlink" title="部落格"></a>部落格</h2><p>共發布：<code class="article_number"></code>篇文章， 共<code class="site_word_count"></code>字。</p>
-<p>部落格總訪問人數：<code class="site_uv"></code> 人次， 訪問量：<code class="site_pv"></code>次</p>
-<p>此部落格通過 <a target="_blank" rel="noopener" href="https://hexo.io/">Hexo</a> 建立，部屬在 <a target="_blank" rel="noopener" href="https://pages.github.com/">GitHub Pages</a>主題 <a target="_blank" rel="noopener" href="https://github.com/yelog/hexo-theme-3-hexo">3-hexo</a></p>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="新增-Table"><a href="#新增-Table" class="headerlink" title="新增 Table"></a>新增 Table</h2><p>新增資料表 Exam.dbo.TestTable</p>
+<pre><code class="Sql">USE [Exam]
+GO
 
-        </article>
-        
-        <p>
-            <a  class="dashang" onclick="dashangToggle()">斗內💰</a>
-        </p>
-        
-        
+IF EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N&#39;[dbo].[TestTable]&#39;) AND type in (N&#39;U&#39;))
+BEGIN
+    EXEC sys.sp_dropextendedproperty @name=N&#39;MS_Description&#39; , @level0type=N&#39;SCHEMA&#39;,@level0name=N&#39;dbo&#39;, @level1type=N&#39;TABLE&#39;,@level1name=N&#39;TestTable&#39;, @level2type=N&#39;COLUMN&#39;,@level2name=N&#39;TestName&#39;
+
+    EXEC sys.sp_dropextendedproperty @name=N&#39;MS_Description&#39; , @level0type=N&#39;SCHEMA&#39;,@level0name=N&#39;dbo&#39;, @level1type=N&#39;TABLE&#39;,@level1name=N&#39;TestTable&#39;, @level2type=N&#39;COLUMN&#39;,@level2name=N&#39;TestID&#39;
+
+    DROP TABLE [dbo].[TestTable]
+END
+GO
+
+/****** Object:  Table [dbo].[TestTable]    Script Date: 2022/5/3 下午 02:44:15 ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+CREATE TABLE [dbo].[TestTable](
+    [TestID] [nchar](10) NOT NULL,
+    [TestName] [nchar](10) NULL,
+ CONSTRAINT [PK_TestTable] PRIMARY KEY CLUSTERED 
+(
+    [TestID] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+
+EXEC sys.sp_addextendedproperty @name=N&#39;MS_Description&#39;, @value=N&#39;測試ID&#39; , @level0type=N&#39;SCHEMA&#39;,@level0name=N&#39;dbo&#39;, @level1type=N&#39;TABLE&#39;,@level1name=N&#39;TestTable&#39;, @level2type=N&#39;COLUMN&#39;,@level2name=N&#39;TestID&#39;
+GO
+
+EXEC sys.sp_addextendedproperty @name=N&#39;MS_Description&#39;, @value=N&#39;測試名稱&#39; , @level0type=N&#39;SCHEMA&#39;,@level0name=N&#39;dbo&#39;, @level1type=N&#39;TABLE&#39;,@level1name=N&#39;TestTable&#39;, @level2type=N&#39;COLUMN&#39;,@level2name=N&#39;TestName&#39;
+GO
+</code></pre>
+<h2 id="新增-SP"><a href="#新增-SP" class="headerlink" title="新增 SP"></a>新增 SP</h2><p>新增預存程序 Exam.dbo.SP_Query_TestTable</p>
+<pre><code class="Sql">USE [Exam]
+GO
+
+IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N&#39;[dbo].[SP_Query_TestTable]&#39;) AND type IN (N&#39;P&#39;, N&#39;PC&#39;))
+DROP PROCEDURE [dbo].[SP_Query_TestTable]
+GO
+
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+/*
+    ==================================================================
+    Description
+         
+                
+    ==================================================================
+    History    
+        2020/05/14        誰    Created. 
+
+    =================================================================
+    Step
+    
+    ==================================================================
+    Result
+
+    ==================================================================
+    Example
+    
+        EXEC Exam.dbo.SP_Query_TestTable
+            @QueryParam = &#39;1&#39;
+
+            
+*/
+
+
+CREATE PROCEDURE [dbo].[SP_Query_TestTable]
+     @QueryParam        NCHAR(10)    -- 查詢參數
+AS
+BEGIN    
+    --切換為最大權限使用者
+    --EXECUTE AS LOGIN = &#39;Executer&#39;;
+    SET NOCOUNT ON;
+    
+    SELECT * FROM dbo.TestTable
+    WHERE TestID = @QueryParam
+
+END
+
+GO
+
+GRANT EXECUTE ON [SP_Query_TestTable] TO [PUBLIC] AS [dbo] ;
+GO
+</code></pre>
+<h2 id="異動-Table-Schema"><a href="#異動-Table-Schema" class="headerlink" title="異動 Table Schema"></a>異動 Table Schema</h2><p>新增 Exam.dbo.TestTable CreateDate 欄位</p>
+<pre><code class="Sql">USE [Exam]
+GO
+
+IF ( SELECT COUNT(NAME) FROM SYSCOLUMNS
+     WHERE ID = ( SELECT ID FROM SYSOBJECTS WHERE NAME = &#39;TestTable&#39; )
+   AND NAME = &#39;CreateDate&#39; ) = 0
+BEGIN
+    ALTER TABLE dbo.TestTable ADD CreateDate Datetime;
+END
+</code></pre>
+<h2 id="新增-Type"><a href="#新增-Type" class="headerlink" title="新增 Type"></a>新增 Type</h2><p>新增 Exam.dbo.UDT_TestType</p>
+<pre><code class="Sql">USE [Exam]
+GO
+
+/****** Object:  UserDefinedTableType [dbo].[UDT_TestType]    Script Date: 07/02/2019 17:46:14 ******/
+IF  EXISTS (SELECT * FROM sys.types st JOIN sys.schemas ss ON st.schema_id = ss.schema_id WHERE st.name = N&#39;UDT_TestType&#39; AND ss.name = N&#39;dbo&#39;)
+DROP TYPE [dbo].[UDT_TestType]
+GO
+
+USE [Exam]
+GO
+
+/****** Object:  UserDefinedTableType [dbo].[UDT_TestType]    Script Date: 07/02/2019 17:46:14 ******/
+CREATE TYPE [dbo].[UDT_TestType] AS TABLE(
+    [RowNo]            INT
+    , [TestName]    NCHAR(10)
+)
+GO
+
+GRANT EXECUTE ON TYPE::[dbo].[UDT_TestType] TO [public] AS [dbo]
+GO
+</code></pre>
+<h2 id="新增-DB-User權限"><a href="#新增-DB-User權限" class="headerlink" title="新增 DB User權限"></a>新增 DB User權限</h2><pre><code class="Sql">USE [Exam]
+GO
+
+IF EXISTS (SELECT * FROM sys.server_principals WHERE name = N&#39;WebUser&#39;)
+BEGIN
+    ALTER ROLE [db_datareader] ADD MEMBER [WebUser]
+END
+</code></pre>
+
+      
+       <hr><span style="font-style: italic;color: gray;"> 轉載請註明來源，若有任何錯誤或表達不清楚的地方，歡迎在下方評論區留言，也可以來信至 leozheng0621@gmail.com </span>
+    </div>
+</article>
+
+
+<p>
+    <a  class="dashang" onclick="dashangToggle()">斗內💰</a>
+</p>
+
+
+
+
     <div id="comments"></div>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css">
 
@@ -951,6 +1168,13 @@
 </script>
 
 
+
+
+    
+
+
+
+
     </div>
     <div class="copyright">
         <p class="footer-entry">
@@ -959,11 +1183,11 @@
 <p class="footer-entry">Built with <a href="https://hexo.io/" target="_blank">Hexo</a> and <a href="https://github.com/yelog/hexo-theme-3-hexo" target="_blank">3-hexo</a> theme</p>
 
     </div>
-</div>
-<div class="full-toc">
-    <button class="full" data-title="切换全屏 快捷键 s"><span class="min "></span></button>
+    <div class="full-toc">
+        <button class="full" data-title="切换全屏 快捷键 s"><span class="min "></span></button>
 <a class="" id="rocket" ></a>
 
+    </div>
 </div>
 
 <div class="hide_box" onclick="dashangToggle()"></div>
