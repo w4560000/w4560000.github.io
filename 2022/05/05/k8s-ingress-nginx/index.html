@@ -2,22 +2,25 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <title>w4560000.github.io</title>
-  <meta name="keywords" content="">
-  <meta name="description" content="w4560000.github.io">
+  <title>地端 K8S 安裝 ingress-nginx | w4560000.github.io</title>
+  <meta name="keywords" content=" K8S ">
+  <meta name="description" content="地端 K8S 安裝 ingress-nginx | w4560000.github.io">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-<meta name="description" content="合併多筆資料欄位 為單一字串 (FOR XML PATH &amp; STUFF)DECLARE @T1 TABLE(Column1 VARCHAR(10))  INSERT INTO @T1 SELECT &#39;1&#39; UNION SELECT &#39;2&#39; UNION SELECT &#39;3&#39;   -- FOR XML PATH MSDN文件 https:&#x2F;&#x2F;d">
+<meta name="description" content="前言在還沒設定 Ingress 前，我們的Service服務會設成 NodePort 來讓外部訪問使用，但若服務一多則會造成混亂，且還要提供Port號才能讓外部訪問 而Ingress 可以讓我們透過設定Domain的方式 導引至不同的Service 然而 Ingress 的負載平衡功能 需由 Ingress Controller 提供目前有許多 Ingress Controller 可供使用 可參">
 <meta property="og:type" content="article">
-<meta property="og:title" content="個人常用 SQL Server 語法">
-<meta property="og:url" content="http://example.com/2022/05/05/sql-server-common-syntax/index.html">
+<meta property="og:title" content="地端 K8S 安裝 ingress-nginx">
+<meta property="og:url" content="http://example.com/2022/05/05/k8s-ingress-nginx/index.html">
 <meta property="og:site_name" content="w4560000.github.io">
-<meta property="og:description" content="合併多筆資料欄位 為單一字串 (FOR XML PATH &amp; STUFF)DECLARE @T1 TABLE(Column1 VARCHAR(10))  INSERT INTO @T1 SELECT &#39;1&#39; UNION SELECT &#39;2&#39; UNION SELECT &#39;3&#39;   -- FOR XML PATH MSDN文件 https:&#x2F;&#x2F;d">
+<meta property="og:description" content="前言在還沒設定 Ingress 前，我們的Service服務會設成 NodePort 來讓外部訪問使用，但若服務一多則會造成混亂，且還要提供Port號才能讓外部訪問 而Ingress 可以讓我們透過設定Domain的方式 導引至不同的Service 然而 Ingress 的負載平衡功能 需由 Ingress Controller 提供目前有許多 Ingress Controller 可供使用 可參">
 <meta property="og:locale" content="zh_TW">
-<meta property="article:published_time" content="2022-05-05T14:50:16.000Z">
-<meta property="article:modified_time" content="2022-05-05T14:52:08.180Z">
+<meta property="og:image" content="https://bingxiangstorage.blob.core.windows.net/blog/k8s-ingress-nginx/2022-05-05-23-15-34.png">
+<meta property="og:image" content="https://bingxiangstorage.blob.core.windows.net/blog/k8s-ingress-nginx/2022-05-06-00-27-17.png">
+<meta property="article:published_time" content="2022-05-05T14:57:32.000Z">
+<meta property="article:modified_time" content="2022-05-05T16:39:30.256Z">
 <meta property="article:author" content="Leo Zheng">
-<meta property="article:tag" content="SQLServer">
+<meta property="article:tag" content="K8S">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://bingxiangstorage.blob.core.windows.net/blog/k8s-ingress-nginx/2022-05-05-23-15-34.png">
 
 
 <link rel="icon" href="/img/avatar.jpg">
@@ -58,7 +61,7 @@
 
 
 <body>
-<aside class="nav mobile">
+<aside class="nav">
     <div class="nav-left">
         <a href="/"
    class="avatar_target">
@@ -106,7 +109,7 @@
     <li>
         <div class="all active" data-rel="全部文章">全部文章
             
-                <small>(38)</small>
+                <small>(39)</small>
             
         </div>
     </li>
@@ -204,7 +207,7 @@
                         <i class="fold iconfont icon-right"></i>
                         
                         Devops
-                        <small>(20)</small>
+                        <small>(21)</small>
                         
                     </div>
                     
@@ -263,7 +266,7 @@
                                         
                                         K8S
                                         
-                                            <small>(3
+                                            <small>(4
                                                 )</small>
                                         
                                     </div>
@@ -318,9 +321,9 @@
                                 </li>
                             
                                 <li>
-                                    <div data-rel="Tool<--->FileZilla">
+                                    <div data-rel="Tool<--->FTPS">
                                         
-                                        FileZilla
+                                        FTPS
                                         
                                             <small>(1
                                                 )</small>
@@ -449,8 +452,8 @@
         
     </div>
 </div>
-<input type="hidden" id="yelog_site_posts_number" value="38">
-<input type="hidden" id="yelog_site_word_count" value="18.8k">
+<input type="hidden" id="yelog_site_posts_number" value="39">
+<input type="hidden" id="yelog_site_word_count" value="19.4k">
 <div style="display: none">
     <span id="busuanzi_value_site_uv"></span>
     <span id="busuanzi_value_site_pv"></span>
@@ -594,6 +597,14 @@
     
     <nav id="title-list-nav">
         
+        <a  class="全部文章 Devops K8S "
+           href="/2022/05/05/k8s-ingress-nginx/"
+           data-tag="K8S"
+           data-author="" >
+            <span class="post-title" title="地端 K8S 安裝 ingress-nginx">地端 K8S 安裝 ingress-nginx</span>
+            <span class="post-date" title="2022-05-05 22:57:32">2022/05/05</span>
+        </a>
+        
         <a  class="全部文章 Database SQLServer "
            href="/2022/05/05/sql-server-common-syntax/"
            data-tag="SQLServer"
@@ -650,7 +661,7 @@
             <span class="post-date" title="2022-04-30 23:20:11">2022/04/30</span>
         </a>
         
-        <a  class="全部文章 Tool FileZilla "
+        <a  class="全部文章 Tool FTPS "
            href="/2022/04/29/filezilla-ftps-init/"
            data-tag="FileZilla,FTPS"
            data-author="" >
@@ -914,12 +925,73 @@
         </div>
     </div>
 </aside>
-<div id="post" class="index">
+<div id="post">
     <div class="pjax">
-        <article class="index">
-            <div class="toc-ref">
+        <article id="post-k8s-ingress-nginx" class="article article-type-post" itemscope itemprop="blogPost">
     
-        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E9%97%9C%E6%96%BC%E6%88%91%E8%88%87%E8%A9%B2%E9%83%A8%E8%90%BD%E6%A0%BC"><span class="toc-text">關於我與該部落格</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%B0%A1%E4%BB%8B"><span class="toc-text">簡介</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%83%A8%E8%90%BD%E6%A0%BC"><span class="toc-text">部落格</span></a></li></ol></li></ol>
+        <h1 class="article-title">地端 K8S 安裝 ingress-nginx</h1>
+    
+    <div class="article-meta">
+        
+        
+        
+        <span class="book">
+            <i class="iconfont icon-category"></i>
+            
+            
+            <a  data-rel="Devops">Devops</a> > 
+            
+            <a  data-rel="Devops&lt;---&gt;K8S">K8S</a>
+            
+        </span>
+        
+        
+        <span class="tag">
+            <i class="iconfont icon-tag"></i>
+            
+            <a class="color4">K8S</a>
+            
+        </span>
+        
+    </div>
+    <div class="article-meta">
+        
+            發布時間 : <time class="date" title='更新時間: 2022-05-06 00:39:30'>2022-05-05 22:57</time>
+        
+    </div>
+    <div class="article-meta">
+        
+        <span>字數:654</span>
+        
+        
+        <span id="busuanzi_container_page_pv">
+            觀看數 :<span id="busuanzi_value_page_pv">
+                <span class="count-comment">
+                    <span class="spinner">
+                      <div class="cube1"></div>
+                      <div class="cube2"></div>
+                    </span>
+                </span>
+            </span>
+        </span>
+        
+        
+        <span class="top-comment" title="跳转至评论区">
+            <a href="#comments">
+                評論:<span class="count-comment">
+                    <span class="spinner">
+                      <div class="cube1"></div>
+                      <div class="cube2"></div>
+                    </span>
+                </span>
+            </a>
+        </span>
+        
+    </div>
+    
+    <div class="toc-ref">
+    
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%89%8D%E8%A8%80"><span class="toc-text">前言</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%89%8D%E7%BD%AE%E4%BD%9C%E6%A5%AD"><span class="toc-text">前置作業</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%A8%AD%E5%AE%9A-Deployment%E3%80%81Service"><span class="toc-text">設定 Deployment、Service</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%89%E8%A3%9D-ingress-nginx"><span class="toc-text">安裝 ingress-nginx</span></a></li></ol>
     
 <style>
     .left-col .switch-btn,
@@ -932,16 +1004,160 @@
     }
 </style>
 </div>
-            <h1 id="關於我與該部落格"><a href="#關於我與該部落格" class="headerlink" title="關於我與該部落格"></a>關於我與該部落格</h1><h2 id="簡介"><a href="#簡介" class="headerlink" title="簡介"></a>簡介</h2><p>我是一名.Net 開發工程師</p>
-<p>此部落格為軟體開發的學習筆記</p>
-<p>若文章內容有誤，歡迎留言指正，或來信告知 <a href="mailto:&#108;&#101;&#111;&#122;&#104;&#101;&#x6e;&#x67;&#x30;&#54;&#x32;&#x31;&#64;&#103;&#x6d;&#97;&#x69;&#x6c;&#46;&#x63;&#111;&#x6d;">&#108;&#101;&#111;&#122;&#104;&#101;&#x6e;&#x67;&#x30;&#54;&#x32;&#x31;&#64;&#103;&#x6d;&#97;&#x69;&#x6c;&#46;&#x63;&#111;&#x6d;</a></p>
-<h2 id="部落格"><a href="#部落格" class="headerlink" title="部落格"></a>部落格</h2><p>共發布：<code class="article_number"></code>篇文章， 共<code class="site_word_count"></code>字。</p>
-<p>部落格總訪問人數：<code class="site_uv"></code> 人次， 訪問量：<code class="site_pv"></code>次</p>
-<p>此部落格通過 <a target="_blank" rel="noopener" href="https://hexo.io/">Hexo</a> 建立，部屬在 <a target="_blank" rel="noopener" href="https://pages.github.com/">GitHub Pages</a>主題 <a target="_blank" rel="noopener" href="https://github.com/yelog/hexo-theme-3-hexo">3-hexo</a></p>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>在還沒設定 Ingress 前，我們的Service服務會設成 NodePort 來讓外部訪問使用，但若服務一多則會造成混亂，且還要提供Port號才能讓外部訪問</p>
+<p>而<a target="_blank" rel="noopener" href="https://kubernetes.io/docs/concepts/services-networking/ingress/">Ingress</a> 可以讓我們透過設定Domain的方式 導引至不同的Service<br><img src="https://bingxiangstorage.blob.core.windows.net/blog/k8s-ingress-nginx/2022-05-05-23-15-34.png"></p>
+<p>然而 Ingress 的負載平衡功能 需由 Ingress Controller 提供<br>目前有許多 Ingress Controller 可供使用 可參考 <a target="_blank" rel="noopener" href="https://kubernetes.io/docs/concepts/services-networking/ingress-controllers/">Ingress Controllers</a></p>
+<p>Kubernetes 維護了 <a target="_blank" rel="noopener" href="https://github.com/kubernetes/ingress-gce/blob/master/README.md">ingress-gce</a> 和 <a target="_blank" rel="noopener" href="https://github.com/kubernetes/ingress-nginx/blob/main/README.md">ingress-nginx</a>，在GKE上 有預設提供 ingress-gce controller 可供使用，但在地端 則需要自行安裝 ingress controller</p>
+<p>本文紀錄 如何 安裝 ingress-nginx</p>
+<h2 id="前置作業"><a href="#前置作業" class="headerlink" title="前置作業"></a>前置作業</h2><p>預先準備 </p>
+<ul>
+<li>K8S 環境 參考 <a href="/2022/04/25/k8s-cluster-kubeadm-init/">以 kubeadm 架設 K8S Cluster</a></li>
+<li>DockerImage (<a href="/2022/05/02/gcp-push-gcr/">.Net Core 3.1 WebAPI</a> Build 的 Image 當範例，可自行選用其他 Image 操作)</li>
+</ul>
+<h2 id="設定-Deployment、Service"><a href="#設定-Deployment、Service" class="headerlink" title="設定 Deployment、Service"></a>設定 Deployment、Service</h2><pre><code class="bash">cat &lt;&lt;EOF | kubectl create -f -
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: web-sample
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: dockersample-webapi
+  labels:
+    app: dockersample-webapi
+  namespace: web-sample
+spec:
+  selector:
+    matchLabels:
+      app: dockersample-webapi
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: dockersample-webapi
+    spec:
+      containers:
+        - name: web-container
+          image: &#39;asia.gcr.io/clean-tower-347505/dockersample_webapi&#39;
+          ports:
+            - name: http
+              containerPort: 80
+              protocol: TCP
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: dockersample-webapi
+  namespace: web-sample
+spec:
+  type: ClusterIP
+  ports:
+    - name: http-port
+      port: 80
+      targetPort: 80
+      protocol: TCP
+  selector:
+    app: dockersample-webapi
+EOF
 
-        </article>
-        
-        
+
+# 輸出
+namespace/web-sample created
+deployment.apps/dockersample-webapi created
+service/dockersample-webapi created
+</code></pre>
+<p>確認物件</p>
+<pre><code class="bash">kubectl get all -n web-sample
+
+# 輸出
+NAME                                       READY   STATUS    RESTARTS   AGE
+pod/dockersample-webapi-7d66f7cdb7-57zgm   1/1     Running   0          109s
+
+NAME                          TYPE        CLUSTER-IP      EXTERNAL-IP   PORT(S)   AGE
+service/dockersample-webapi   ClusterIP   10.106.152.16   &lt;none&gt;        80/TCP    109s
+
+NAME                                  READY   UP-TO-DATE   AVAILABLE   AGE
+deployment.apps/dockersample-webapi   1/1     1            1           109s
+
+NAME                                             DESIRED   CURRENT   READY   AGE
+replicaset.apps/dockersample-webapi-7d66f7cdb7   1         1         1       109s
+</code></pre>
+<p>先測試服務 確認服務正常</p>
+<pre><code class="bash">curl -i http://10.106.152.16/weatherforecast
+
+# 輸出
+HTTP/1.1 200 OK
+Date: Thu, 05 May 2022 15:57:02 GMT
+Content-Type: text/plain; charset=utf-8
+Server: Kestrel
+Transfer-Encoding: chunked
+
+dockerSample_Service
+</code></pre>
+<blockquote>
+<p>若要清除物件 重新建立 可參考</p>
+<pre><code class="bash">kubectl delete all --all -n web-sample
+kubectl delete ns web-sample
+</code></pre>
+</blockquote>
+<h2 id="安裝-ingress-nginx"><a href="#安裝-ingress-nginx" class="headerlink" title="安裝 ingress-nginx"></a>安裝 ingress-nginx</h2><pre><code class="bash">kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/controller-v1.1.1/deploy/static/provider/cloud/deploy.yaml
+</code></pre>
+<p>設定 Ingress</p>
+<pre><code class="bash">cat &lt;&lt;EOF | kubectl create -f -
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: web-ingress
+  namespace: web-sample
+  annotations:
+    nginx.ingress.kubernetes.io/rewrite-target: /
+    nginx.ingress.kubernetes.io/ssl-redirect: &quot;false&quot;
+    nginx.ingress.kubernetes.io/force-ssl-redirect: &quot;false&quot;
+spec:
+  ingressClassName: nginx
+  rules:
+    - host: leozhengtest.dockersample-webapi.com
+      http:
+        paths:
+          - path: /
+            pathType: ImplementationSpecific
+            backend:
+              service: 
+                name: dockersample-webapi
+                port:
+                  number: 80
+EOF
+</code></pre>
+<p>查看 Ingress IP (因有安裝 MetalLB 會自動分配 IP Address，流程可參考 <a href="/2022/05/02/k8s-metallb-init/">地端 K8S 設定 MetalLB</a>)</p>
+<pre><code class="bash">kubectl get ing -n web-sample -o wide
+
+# 輸出
+NAME          CLASS   HOSTS                                  ADDRESS      PORTS   AGE
+web-ingress   nginx   leozhengtest.dockersample-webapi.com   10.240.0.1   80      12m
+</code></pre>
+<p>新增 domain 測試</p>
+<pre><code class="bash">vi /etc/hosts
+
+10.240.0.1 leozhengtest.dockersample-webapi.com
+</code></pre>
+<p>測試 Ingress 服務 確認是否有導向 dockersample-webapi 的 service</p>
+<pre><code class="bash">curl -i http://leozhengtest.dockersample-webapi.com/weatherforecast
+</code></pre>
+<p><img src="https://bingxiangstorage.blob.core.windows.net/blog/k8s-ingress-nginx/2022-05-06-00-27-17.png"></p>
+
+      
+       <hr><span style="font-style: italic;color: gray;"> 轉載請註明來源，若有任何錯誤或表達不清楚的地方，歡迎在下方評論區留言，也可以來信至 leozheng0621@gmail.com </span>
+    </div>
+</article>
+
+
+
+
+
     <div id="comments"></div>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css">
 
@@ -963,6 +1179,13 @@
 </script>
 
 
+
+
+    
+
+
+
+
     </div>
     <div class="copyright">
         <p class="footer-entry">
@@ -971,11 +1194,11 @@
 <p class="footer-entry">Built with <a href="https://hexo.io/" target="_blank">Hexo</a> and <a href="https://github.com/yelog/hexo-theme-3-hexo" target="_blank">3-hexo</a> theme</p>
 
     </div>
-</div>
-<div class="full-toc">
-    <button class="full" data-title="切换全屏 快捷键 s"><span class="min "></span></button>
+    <div class="full-toc">
+        <button class="full" data-title="切换全屏 快捷键 s"><span class="min "></span></button>
 <a class="" id="rocket" ></a>
 
+    </div>
 </div>
 
 </body>
