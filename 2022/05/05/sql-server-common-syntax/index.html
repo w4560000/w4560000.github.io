@@ -2,9 +2,9 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <title>Hexo-插入圖片[2] (以 VS Code 編輯 Markdown) | w4560000.github.io</title>
-  <meta name="keywords" content=" Hexo ">
-  <meta name="description" content="Hexo-插入圖片[2] (以 VS Code 編輯 Markdown) | w4560000.github.io">
+  <title>個人常用 SQL Server 語法 | w4560000.github.io</title>
+  <meta name="keywords" content=" SQLServer ">
+  <meta name="description" content="個人常用 SQL Server 語法 | w4560000.github.io">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <meta name="description" content="合併多筆資料欄位 為單一字串 (FOR XML PATH &amp; STUFF)DECLARE @T1 TABLE(Column1 VARCHAR(10))  INSERT INTO @T1 SELECT &#39;1&#39; UNION SELECT &#39;2&#39; UNION SELECT &#39;3&#39;   -- FOR XML PATH MSDN文件 https:&#x2F;&#x2F;d">
 <meta property="og:type" content="article">
@@ -916,9 +916,9 @@
 </aside>
 <div id="post">
     <div class="pjax">
-        <article id="post-hexo-uploadImg-AzureStorage" class="article article-type-post" itemscope itemprop="blogPost">
+        <article id="post-sql-server-common-syntax" class="article article-type-post" itemscope itemprop="blogPost">
     
-        <h1 class="article-title">Hexo-插入圖片[2] (以 VS Code 編輯 Markdown)</h1>
+        <h1 class="article-title">個人常用 SQL Server 語法</h1>
     
     <div class="article-meta">
         
@@ -928,9 +928,9 @@
             <i class="iconfont icon-category"></i>
             
             
-            <a  data-rel="Tool">Tool</a> > 
+            <a  data-rel="Database">Database</a> > 
             
-            <a  data-rel="Tool&lt;---&gt;Hexo">Hexo</a>
+            <a  data-rel="Database&lt;---&gt;SQLServer">SQLServer</a>
             
         </span>
         
@@ -938,19 +938,19 @@
         <span class="tag">
             <i class="iconfont icon-tag"></i>
             
-            <a class="color5">Hexo</a>
+            <a class="color5">SQLServer</a>
             
         </span>
         
     </div>
     <div class="article-meta">
         
-            發布時間 : <time class="date" title='更新時間: 2022-04-24 16:28:29'>2022-03-05 14:43</time>
+            發布時間 : <time class="date" title='更新時間: 2022-05-05 22:52:08'>2022-05-05 22:50</time>
         
     </div>
     <div class="article-meta">
         
-        <span>字數:534</span>
+        <span>字數:769</span>
         
         
         <span id="busuanzi_container_page_pv">
@@ -980,7 +980,7 @@
     
     <div class="toc-ref">
     
-        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%96%8B%E7%99%BC%E7%92%B0%E5%A2%83"><span class="toc-text">開發環境</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%89%E8%A3%9D-VSCode%E6%93%B4%E5%85%85%E6%AA%94-vsix"><span class="toc-text">安裝 VSCode擴充檔 .vsix</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%93%8D%E4%BD%9C%E8%AA%AA%E6%98%8E"><span class="toc-text">操作說明</span></a></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%90%88%E4%BD%B5%E5%A4%9A%E7%AD%86%E8%B3%87%E6%96%99%E6%AC%84%E4%BD%8D-%E7%82%BA%E5%96%AE%E4%B8%80%E5%AD%97%E4%B8%B2-FOR-XML-PATH-amp-STUFF"><span class="toc-text">合併多筆資料欄位 為單一字串 (FOR XML PATH &amp; STUFF)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#CTE-%E7%AF%84%E4%BE%8B"><span class="toc-text">CTE 範例</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%88%86%E9%A0%81%E8%99%95%E7%90%86%E7%AF%84%E4%BE%8B"><span class="toc-text">分頁處理範例</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#GOTO-%E7%AF%84%E4%BE%8B"><span class="toc-text">GOTO 範例</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#OUTPUT%E7%AF%84%E4%BE%8B"><span class="toc-text">OUTPUT範例</span></a></li></ol>
     
 <style>
     .left-col .switch-btn,
@@ -996,58 +996,182 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>繼上一篇<a href="/2022/02/02/hexo-uploadImg/">Hexo-插入圖片[1] (以 VS Code 編輯 Markdown)</a><br>分享在VS Code 快速插入圖片後，因考量到圖檔是存在本地Server並隨著版本異動上傳到GitHub，避免日後圖檔數量過多造成儲存庫肥大，故改以上傳到Azure Storage Blob 充當第三方圖庫</p>
-<h2 id="開發環境"><a href="#開發環境" class="headerlink" title="開發環境"></a>開發環境</h2><ul>
-<li>Windows 10 (home 20H2)</li>
-<li>VSCode (1.64.2)</li>
-</ul>
-<h2 id="安裝-VSCode擴充檔-vsix"><a href="#安裝-VSCode擴充檔-vsix" class="headerlink" title="安裝 VSCode擴充檔 .vsix"></a>安裝 VSCode擴充檔 .vsix</h2><p>因原先的插入圖片方法是透過 該 <a target="_blank" rel="noopener" href="https://marketplace.visualstudio.com/items?itemName=mushan.vscode-paste-image">VScode擴充套件</a> 達成，Clone其 <a target="_blank" rel="noopener" href="https://github.com/mushanshitiancai/vscode-paste-image">開源專案</a> 後查看SourceCode發現並沒有上傳到第三方圖庫功能，於是趁著228連假空檔改寫了一下，新增儲存到Azure Storage Blob的功能也順便發了PR<br>但因只有支援Windows會不會被Merge進版本就不知道了</p>
-<p>而因尚未被Merge進版本，可以先利用我fork出來的 <a target="_blank" rel="noopener" href="https://github.com/w4560000/vscode-paste-image">修改版本</a> 自己產生 .vsix檔 來安裝到自己的VSCode上</p>
-<ol>
-<li><p>建立 VSCode擴充檔 .vsix </p>
-<pre><code class="PowerShell"># Clone專案
-clone https://github.com/w4560000/vscode-paste-image.git
+        <h2 id="合併多筆資料欄位-為單一字串-FOR-XML-PATH-amp-STUFF"><a href="#合併多筆資料欄位-為單一字串-FOR-XML-PATH-amp-STUFF" class="headerlink" title="合併多筆資料欄位 為單一字串 (FOR XML PATH &amp; STUFF)"></a>合併多筆資料欄位 為單一字串 (FOR XML PATH &amp; STUFF)</h2><pre><code class="sql">DECLARE @T1 TABLE(Column1 VARCHAR(10))
 
-# 切至資料夾
-cd vscode-paste-image
+INSERT INTO @T1
+SELECT &#39;1&#39; UNION
+SELECT &#39;2&#39; UNION
+SELECT &#39;3&#39; 
 
-# install 專案所需套件
-npm install
+-- FOR XML PATH MSDN文件 https://docs.microsoft.com/zh-tw/sql/relational-databases/xml/examples-using-path-mode?view=sql-server-ver15
+-- STUFF 用法 STUFF MSDN文件 https://docs.microsoft.com/zh-tw/sql/t-sql/functions/stuff-transact-sql?view=sql-server-ver15
+-- STUFF ( str , start , length , replace_str )
+-- STUFF ( 原字串, 起始位置, 移除長度, 替換字串)
 
-# 建立 .vsix檔
-npm i vsce -g
-vsce package
+-- 替換字串第一個字元
+-- STUFF ( &#39;,1,2,3&#39;, 1, 1, &#39;&#39;)
+
+SELECT STUFF (
+    (
+        SELECT &#39;,&#39; + Column1
+        FROM  @T1
+        FOR XML PATH(&#39;&#39;)
+    ), 1,1,&#39;&#39;)
 </code></pre>
-</li>
-<li><p>安裝 VSCode擴充</p>
-<p> <img src="https://bingxiangstorage.blob.core.windows.net/blog/hexo-uploadImg-AzureStorage/2022-03-05-15-24-57.png"></p>
-<p> 安裝 vscode-paste-image-1.0.4.vsix &amp; 重啟 VSCode</p>
-</li>
-<li><p>設定 擴充套件</p>
-<p> 在VSCode setting.json 新增</p>
-<pre><code class="json">&#123;
-    &quot;pasteImage.path&quot;: &quot;$&#123;currentFileNameWithoutExt&#125;&quot;,
-    &quot;pasteImage.basePath&quot;: &quot;&quot;,
-    &quot;pasteImage.filePathConfirmInputBoxMode&quot;: &quot;onlyName&quot;,
-    &quot;pasteImage.azureIsUploadStorage&quot;: true,
-    &quot;pasteImage.azureStorageConnectionString&quot;: &quot;&#123;Your azureStorageConnectionString&#125;&quot;,
-    &quot;pasteImage.azureStorageContainerName&quot;: &quot;blog&quot;
-&#125;
+<h2 id="CTE-範例"><a href="#CTE-範例" class="headerlink" title="CTE 範例"></a>CTE 範例</h2><pre><code class="sql">DECLARE @T1 TABLE(T1Column1 VARCHAR(10))
+DECLARE @T2 TABLE(T2Column1 VARCHAR(10))
+DECLARE @T3 TABLE(T3Column1 VARCHAR(10))
+
+INSERT INTO @T1 SELECT &#39;T1-1&#39; UNION SELECT &#39;T1-2&#39;
+INSERT INTO @T2 SELECT &#39;T2-1&#39; UNION SELECT &#39;T2-2&#39;
+INSERT INTO @T3 SELECT &#39;T3-1&#39; UNION SELECT &#39;T3-2&#39;
+
+
+;WITH QueryT1 AS
+(
+    SELECT * FROM @T1
+),
+QueryT2 AS
+(
+    SELECT * FROM @T2
+),
+QueryT3 AS
+(
+    SELECT * FROM @T3
+)
+SELECT * FROM QueryT1 t1
+INNER JOIN QueryT2 t2 ON 1 = 1
+INNER JOIN QueryT3 t3 ON 1 = 1
 </code></pre>
-<p> 我修改的功能 新增三個參數<br> azureIsUploadStorage = 是否要上傳到AzureStorage (若為false，則跟原先套件功能一樣 圖檔儲存到本地)<br> azureStorageConnectionString = 你的AzureStorage儲存庫連線字串<br> azureStorageContainerName = 你的AzureStorage容器名稱 (若沒有容器 會建立新的)</p>
-<p> AzureStorageConnectionString位置<br> <img src="https://bingxiangstorage.blob.core.windows.net/blog/hexo-uploadImg-AzureStorage/2022-03-05-17-22-35.png"></p>
-</li>
-</ol>
-<h2 id="操作說明"><a href="#操作說明" class="headerlink" title="操作說明"></a>操作說明</h2><ol>
-<li>個人常使用的截圖方式為 Windows + Shift + S，此時會複製擷取的圖片到暫存的剪貼簿中</li>
-<li>在VS Code 開啟 .md檔案，輸入 Ctrl + Alt + V 會自動上傳圖檔到AzureStorageBlob上，並生成Markdown語法</li>
-</ol>
-<pre><code>ex: ![](https://bingxiangstorage.blob.core.windows.net/blog/hexo-uploadImg-AzureStorage/2022-03-05-17-18-45.png)
+<h2 id="分頁處理範例"><a href="#分頁處理範例" class="headerlink" title="分頁處理範例"></a>分頁處理範例</h2><pre><code class="sql">-- Init Data
+DECLARE @T1 TABLE(ID INT, T1Column1 VARCHAR(10))
+DECLARE @Index INT = 0, @TempData VARCHAR(6);
+
+-- Insert Data
+WHILE @Index &lt; 250
+BEGIN
+    INSERT INTO @T1 VALUES (@Index, &#39;Data-&#39; + CONVERT(VARCHAR(6), @Index));
+    SET @Index = @Index + 1;
+END
+
+
+DECLARE @PageIndex        INT = 1        -- 目前頁次
+DECLARE @PageSize        INT = 50    -- 每頁筆數
+DECLARE @TotalRecords    INT = 0        -- 總筆數
+
+SELECT *
+INTO #ResultData
+FROM ( 
+        -- 業務邏輯 BEGIN
+        SELECT 
+            ROW_NUMBER() OVER (ORDER BY ID DESC) AS RowNo,
+            T1Column1
+        FROM @T1
+        -- 業務邏輯 END
+     ) DataList
+
+-- 分頁處理
+SELECT * 
+FROM #ResultData
+WHERE RowNo BETWEEN @PageSize * ( @PageIndex - 1 ) + 1 AND ( @PageSize * @PageIndex )
+ORDER BY RowNo
+
+-- 取總筆數
+SELECT @TotalRecords = Count(1) FROM #ResultData
+SELECT @TotalRecords
 </code></pre>
-<p>可以到Azure上 查看圖檔<br><img src="https://bingxiangstorage.blob.core.windows.net/blog/hexo-uploadImg-AzureStorage/2022-03-05-17-18-45.png"></p>
-<ol start="3">
-<li>若檔名相同 會提示是否要覆蓋<br> <img src="https://bingxiangstorage.blob.core.windows.net/blog/hexo-uploadImg-AzureStorage/2022-03-05-17-19-18.png"></li>
-</ol>
+<h2 id="GOTO-範例"><a href="#GOTO-範例" class="headerlink" title="GOTO 範例"></a>GOTO 範例</h2><pre><code class="sql">DECLARE @TempNumber INT = Round(RAND() * 100, 0);
+DECLARE @Level INT = 0;
+PRINT(&#39;START&#39;)
+
+IF ( @TempNumber &lt; 20)
+BEGIN
+    GOTO End_Proc;    
+END
+
+SET @Level += 1;
+PRINT(&#39;第一關檢核:數字 &gt; 20 通過&#39;)
+
+
+IF ( @TempNumber &lt; 50)
+BEGIN
+    GOTO End_Proc;    
+END
+
+SET @Level += 1;
+PRINT(&#39;第二關檢核:數字 &gt; 50 通過&#39;)
+
+IF ( @TempNumber &lt; 80)
+BEGIN
+    GOTO End_Proc;    
+END
+
+SET @Level += 1;
+PRINT(&#39;第三關檢核:數字 &gt; 80 通過&#39;)
+
+End_Proc:
+    PRINT(&#39;數字&#39; + CONVERT(VARCHAR(6), @TempNumber) + &#39; 共通過&#39; + CONVERT(VARCHAR(6), @Level) + &#39;關檢核&#39;)
+    PRINT(&#39;END&#39;)
+</code></pre>
+<h2 id="OUTPUT範例"><a href="#OUTPUT範例" class="headerlink" title="OUTPUT範例"></a>OUTPUT範例</h2><pre><code class="sql">-- OUTPUT https://docs.microsoft.com/zh-tw/sql/t-sql/queries/output-clause-transact-sql?view=sql-server-ver15
+-- 可接在 INSERT、UPDATE、DELETE、MERGE 後使用
+
+-- 寫入 @T1 的資料 OUTPUT 也寫入 @TempData
+
+DECLARE @T1 TABLE(Column1 VARCHAR(10))
+DECLARE @TempData TABLE(TempColumn1 VARCHAR(10))
+
+INSERT INTO @T1
+OUTPUT INSERTED.Column1
+INTO @TempData (TempColumn1)
+SELECT &#39;1&#39; UNION
+SELECT &#39;2&#39; UNION
+SELECT &#39;3&#39; 
+
+SELECT TempColumn1 AS &#39;新增過的資料&#39; FROM @TempData
+DELETE @TempData
+
+-- 更新 @T1 的資料 OUTPUT 寫入 @TempData
+UPDATE @T1
+SET Column1 = &#39;1&#39;
+OUTPUT INSERTED.Column1
+INTO @TempData (TempColumn1)
+
+SELECT TempColumn1 AS &#39;更新過的資料&#39; FROM @TempData
+DELETE @TempData
+
+-- 刪除 @T1 的資料 OUTPUT 寫入 @TempData
+DELETE @T1
+OUTPUT DELETED.Column1
+INTO @TempData (TempColumn1)
+WHERE Column1 = &#39;1&#39;
+
+
+SELECT TempColumn1 AS &#39;刪除過的資料&#39; FROM @TempData
+
+-- MERGE @T1 的資料 OUTPUT 寫入 @MyTempTable
+INSERT INTO @T1
+SELECT &#39;1&#39; UNION ALL
+SELECT &#39;1&#39; UNION ALL
+SELECT &#39;3&#39; 
+
+DECLARE @MyTempTable TABLE
+    (ExistingData VARCHAR(10),
+     ActionTaken nvarchar(10),  
+     NewData VARCHAR(10)
+    )
+
+MERGE @T1 t1
+USING ( SELECT &#39;1&#39; &#39;DataColumn&#39;) data
+ON t1.Column1 = data.DataColumn
+WHEN MATCHED THEN
+    UPDATE SET t1.Column1 = &#39;100&#39;
+WHEN NOT MATCHED THEN
+    INSERT VALUES (&#39;999&#39;)
+OUTPUT deleted.Column1, $action, inserted.Column1 INTO @MyTempTable; 
+
+SELECT ExistingData AS &#39;舊資料&#39;, ActionTaken AS &#39;操作行為&#39;, NewData AS &#39;新資料&#39; FROM @MyTempTable
+</code></pre>
 
       
        <hr><span style="font-style: italic;color: gray;"> 轉載請註明來源，若有任何錯誤或表達不清楚的地方，歡迎在下方評論區留言，也可以來信至 leozheng0621@gmail.com </span>

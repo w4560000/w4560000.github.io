@@ -127,11 +127,11 @@ $('.nav-left ul>li>div').on('click', function (e) {
     $(_this).toggleClass('unfold')
     $(_this).parent().next().toggleClass('hide')
     $(_this).parents('ul.sub').each(function () {
-        if ($(_this).hasClass('unfold')) {
-            $(this).height($(this).height() + parseInt($(_this).parent().next().attr('style').match(/\d+/g)[0]) + 1)
-        } else {
-            $(this).height($(this).height() - parseInt($(_this).parent().next().attr('style').match(/\d+/g)[0]) - 1)
-        }
+        // if ($(_this).hasClass('unfold')) {
+        //     $(this).height($(this).height() + parseInt($(_this).parent().next().attr('style').match(/\d+/g)[0]) + 1)
+        // } else {
+        //     $(this).height($(this).height() - parseInt($(_this).parent().next().attr('style').match(/\d+/g)[0]) - 1)
+        // }
     })
 
 })
@@ -316,6 +316,7 @@ $searchInput.on("change", function (e) {
 });
 /*根据搜索条件，过滤文章列表*/
 function inputChange() {
+    debugger
     var i;
     setTimeout(function () {
         $searchInput.focus()
@@ -352,6 +353,7 @@ function inputChange() {
     })
     if (val === "") {
         $(".nav-right nav a").css("display", "none");
+        debugger
         $(".nav-right nav a." + activeTitle).css("display", "block");
     } else if (val.substr(0, 1) === "#") {
         searchType = '標籤'
