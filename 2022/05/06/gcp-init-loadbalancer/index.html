@@ -2,9 +2,9 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <title>w4560000.github.io</title>
-  <meta name="keywords" content="">
-  <meta name="description" content="w4560000.github.io">
+  <title>建立 GCP Load balancer | w4560000.github.io</title>
+  <meta name="keywords" content=" GCP ">
+  <meta name="description" content="建立 GCP Load balancer | w4560000.github.io">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <meta name="description" content="建立執行個體群組 選取執行個體群組  以新增非代管的執行個體群組當範例  建立好執行個體群組後 點選編輯  加入相同區域的VM到執行個體群組中  確認是否將VM 成功加入 執行個體群組中   建立Load balancer 選取負載平衡  選取 HTTP(S) 負載平衡  依照需求選取  建立後端服務  設定後端設定  設定主機與路徑規則  設定前端設定 (80、443)   設定https時需要">
 <meta property="og:type" content="article">
@@ -81,7 +81,7 @@
 
 
 <body>
-<aside class="nav mobile">
+<aside class="nav">
     <div class="nav-left">
         <a href="/"
    class="avatar_target">
@@ -953,12 +953,73 @@
         </div>
     </div>
 </aside>
-<div id="post" class="index">
+<div id="post">
     <div class="pjax">
-        <article class="index">
-            <div class="toc-ref">
+        <article id="post-gcp-init-loadbalancer" class="article article-type-post" itemscope itemprop="blogPost">
     
-        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E9%97%9C%E6%96%BC%E6%88%91%E8%88%87%E8%A9%B2%E9%83%A8%E8%90%BD%E6%A0%BC"><span class="toc-text">關於我與該部落格</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%B0%A1%E4%BB%8B"><span class="toc-text">簡介</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%83%A8%E8%90%BD%E6%A0%BC"><span class="toc-text">部落格</span></a></li></ol></li></ol>
+        <h1 class="article-title">建立 GCP Load balancer</h1>
+    
+    <div class="article-meta">
+        
+        
+        
+        <span class="book">
+            <i class="iconfont icon-category"></i>
+            
+            
+            <a  data-rel="Devops">Devops</a> > 
+            
+            <a  data-rel="Devops&lt;---&gt;GCP">GCP</a>
+            
+        </span>
+        
+        
+        <span class="tag">
+            <i class="iconfont icon-tag"></i>
+            
+            <a class="color4">GCP</a>
+            
+        </span>
+        
+    </div>
+    <div class="article-meta">
+        
+            發布時間 : <time class="date" title='更新時間: 2022-05-07 00:00:46'>2022-05-06 23:53</time>
+        
+    </div>
+    <div class="article-meta">
+        
+        <span>字數:245</span>
+        
+        
+        <span id="busuanzi_container_page_pv">
+            觀看數 :<span id="busuanzi_value_page_pv">
+                <span class="count-comment">
+                    <span class="spinner">
+                      <div class="cube1"></div>
+                      <div class="cube2"></div>
+                    </span>
+                </span>
+            </span>
+        </span>
+        
+        
+        <span class="top-comment" title="跳转至评论区">
+            <a href="#comments">
+                評論:<span class="count-comment">
+                    <span class="spinner">
+                      <div class="cube1"></div>
+                      <div class="cube2"></div>
+                    </span>
+                </span>
+            </a>
+        </span>
+        
+    </div>
+    
+    <div class="toc-ref">
+    
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%BB%BA%E7%AB%8B%E5%9F%B7%E8%A1%8C%E5%80%8B%E9%AB%94%E7%BE%A4%E7%B5%84"><span class="toc-text">建立執行個體群組</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%BB%BA%E7%AB%8BLoad-balancer"><span class="toc-text">建立Load balancer</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%B8%AC%E8%A9%A6%E5%8A%9F%E8%83%BD%E6%98%AF%E5%90%A6%E6%AD%A3%E5%B8%B8"><span class="toc-text">測試功能是否正常</span></a></li></ol>
     
 <style>
     .left-col .switch-btn,
@@ -971,16 +1032,65 @@
     }
 </style>
 </div>
-            <h1 id="關於我與該部落格"><a href="#關於我與該部落格" class="headerlink" title="關於我與該部落格"></a>關於我與該部落格</h1><h2 id="簡介"><a href="#簡介" class="headerlink" title="簡介"></a>簡介</h2><p>我是一名.Net 開發工程師</p>
-<p>此部落格為軟體開發的學習筆記</p>
-<p>若文章內容有誤，歡迎留言指正，或來信告知 <a href="mailto:&#108;&#x65;&#x6f;&#x7a;&#x68;&#x65;&#110;&#x67;&#48;&#54;&#50;&#49;&#x40;&#x67;&#x6d;&#97;&#105;&#108;&#46;&#x63;&#111;&#109;">&#108;&#x65;&#x6f;&#x7a;&#x68;&#x65;&#110;&#x67;&#48;&#54;&#50;&#49;&#x40;&#x67;&#x6d;&#97;&#105;&#108;&#46;&#x63;&#111;&#109;</a></p>
-<h2 id="部落格"><a href="#部落格" class="headerlink" title="部落格"></a>部落格</h2><p>共發布：<code class="article_number"></code>篇文章， 共<code class="site_word_count"></code>字。</p>
-<p>部落格總訪問人數：<code class="site_uv"></code> 人次， 訪問量：<code class="site_pv"></code>次</p>
-<p>此部落格通過 <a target="_blank" rel="noopener" href="https://hexo.io/">Hexo</a> 建立，部屬在 <a target="_blank" rel="noopener" href="https://pages.github.com/">GitHub Pages</a>主題 <a target="_blank" rel="noopener" href="https://github.com/yelog/hexo-theme-3-hexo">3-hexo</a></p>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="建立執行個體群組"><a href="#建立執行個體群組" class="headerlink" title="建立執行個體群組"></a>建立執行個體群組</h2><ol>
+<li><p>選取執行個體群組<br><img src="https://bingxiangstorage.blob.core.windows.net/blog/gcp-init-loadbalancer/2022-05-06-23-53-59.png"></p>
+</li>
+<li><p>以新增非代管的執行個體群組當範例<br><img src="https://bingxiangstorage.blob.core.windows.net/blog/gcp-init-loadbalancer/2022-05-06-23-54-37.png"></p>
+</li>
+<li><p>建立好執行個體群組後 點選編輯<br><img src="https://bingxiangstorage.blob.core.windows.net/blog/gcp-init-loadbalancer/2022-05-06-23-54-50.png"></p>
+</li>
+<li><p>加入相同區域的VM到執行個體群組中<br><img src="https://bingxiangstorage.blob.core.windows.net/blog/gcp-init-loadbalancer/2022-05-06-23-55-02.png"></p>
+</li>
+<li><p>確認是否將VM 成功加入 執行個體群組中<br><img src="https://bingxiangstorage.blob.core.windows.net/blog/gcp-init-loadbalancer/2022-05-06-23-55-12.png"></p>
+</li>
+</ol>
+<h2 id="建立Load-balancer"><a href="#建立Load-balancer" class="headerlink" title="建立Load balancer"></a>建立Load balancer</h2><ol>
+<li><p>選取負載平衡<br><img src="https://bingxiangstorage.blob.core.windows.net/blog/gcp-init-loadbalancer/2022-05-06-23-55-33.png"></p>
+</li>
+<li><p>選取 HTTP(S) 負載平衡<br><img src="https://bingxiangstorage.blob.core.windows.net/blog/gcp-init-loadbalancer/2022-05-06-23-55-43.png"></p>
+</li>
+<li><p>依照需求選取<br><img src="https://bingxiangstorage.blob.core.windows.net/blog/gcp-init-loadbalancer/2022-05-06-23-55-54.png"></p>
+</li>
+<li><p>建立後端服務<br><img src="https://bingxiangstorage.blob.core.windows.net/blog/gcp-init-loadbalancer/2022-05-06-23-56-05.png"></p>
+</li>
+<li><p>設定後端設定<br><img src="https://bingxiangstorage.blob.core.windows.net/blog/gcp-init-loadbalancer/2022-05-06-23-56-17.png"></p>
+</li>
+<li><p>設定主機與路徑規則<br><img src="https://bingxiangstorage.blob.core.windows.net/blog/gcp-init-loadbalancer/2022-05-06-23-56-30.png"></p>
+</li>
+<li><p>設定前端設定 (80、443)</p>
+</li>
+</ol>
+<p>設定https時需要憑證 可以建立<br><img src="https://bingxiangstorage.blob.core.windows.net/blog/gcp-init-loadbalancer/2022-05-06-23-56-48.png"></p>
+<p>可拿既有憑證建立 或者 建立 Google代管憑證<br><img src="https://bingxiangstorage.blob.core.windows.net/blog/gcp-init-loadbalancer/2022-05-06-23-57-15.png"></p>
+<ol start="8">
+<li>待建立完成後測試<br><img src="https://bingxiangstorage.blob.core.windows.net/blog/gcp-init-loadbalancer/2022-05-06-23-57-35.png"></li>
+</ol>
+<blockquote>
+<p>若選擇建立 Google代管憑證<br>記得到 Cloud Domains設定對應的domain<br><img src="https://bingxiangstorage.blob.core.windows.net/blog/gcp-init-loadbalancer/2022-05-06-23-57-59.png"></p>
+<p>並到 Cloud DNS設定domain對應的IP<br><img src="https://bingxiangstorage.blob.core.windows.net/blog/gcp-init-loadbalancer/2022-05-06-23-58-13.png"></p>
+<p>設定完成後 到Load balancer查看憑證狀態是否正常<br><img src="https://bingxiangstorage.blob.core.windows.net/blog/gcp-init-loadbalancer/2022-05-06-23-58-32.png"></p>
+</blockquote>
+<h2 id="測試功能是否正常"><a href="#測試功能是否正常" class="headerlink" title="測試功能是否正常"></a>測試功能是否正常</h2><ul>
+<li><p>確認目前轉導IP<br><img src="https://bingxiangstorage.blob.core.windows.net/blog/gcp-init-loadbalancer/2022-05-06-23-59-27.png"></p>
+</li>
+<li><p>測試 http 轉導正常<br><img src="https://bingxiangstorage.blob.core.windows.net/blog/gcp-init-loadbalancer/2022-05-06-23-59-49.png"><br><img src="https://bingxiangstorage.blob.core.windows.net/blog/gcp-init-loadbalancer/2022-05-06-23-59-55.png"></p>
+</li>
+<li><p>測試 https 轉導正常<br><img src="https://bingxiangstorage.blob.core.windows.net/blog/gcp-init-loadbalancer/2022-05-07-00-00-19.png"><br><img src="https://bingxiangstorage.blob.core.windows.net/blog/gcp-init-loadbalancer/2022-05-07-00-00-25.png"></p>
+</li>
+</ul>
 
-        </article>
-        
-        
+      
+       <hr><span style="font-style: italic;color: gray;"> 轉載請註明來源，若有任何錯誤或表達不清楚的地方，歡迎在下方評論區留言，也可以來信至 leozheng0621@gmail.com </span>
+    </div>
+</article>
+
+
+
+
+
     <div id="comments"></div>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css">
 
@@ -1002,6 +1112,13 @@
 </script>
 
 
+
+
+    
+
+
+
+
     </div>
     <div class="copyright">
         <p class="footer-entry">
@@ -1010,11 +1127,11 @@
 <p class="footer-entry">Built with <a href="https://hexo.io/" target="_blank">Hexo</a> and <a href="https://github.com/yelog/hexo-theme-3-hexo" target="_blank">3-hexo</a> theme</p>
 
     </div>
-</div>
-<div class="full-toc">
-    <button class="full" data-title="切换全屏 快捷键 s"><span class="min "></span></button>
+    <div class="full-toc">
+        <button class="full" data-title="切换全屏 快捷键 s"><span class="min "></span></button>
 <a class="" id="rocket" ></a>
 
+    </div>
 </div>
 
 </body>
