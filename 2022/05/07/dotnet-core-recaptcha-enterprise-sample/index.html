@@ -17,7 +17,7 @@
 <meta property="og:image" content="https://bingxiangstorage.blob.core.windows.net/blog/dotnet-core-recaptcha-enterprise-sample/2022-05-09-00-09-29.png">
 <meta property="og:image" content="https://bingxiangstorage.blob.core.windows.net/blog/dotnet-core-recaptcha-enterprise-sample/2022-05-09-00-15-03.png">
 <meta property="article:published_time" content="2022-05-07T15:39:32.000Z">
-<meta property="article:modified_time" content="2022-05-08T16:22:17.686Z">
+<meta property="article:modified_time" content="2022-05-08T16:27:00.363Z">
 <meta property="article:author" content="Leo Zheng">
 <meta property="article:tag" content=".NetCore">
 <meta property="article:tag" content="GCP">
@@ -976,7 +976,7 @@
     </div>
     <div class="article-meta">
         
-            發布時間 : <time class="date" title='更新時間: 2022-05-09 00:22:17'>2022-05-07 23:39</time>
+            發布時間 : <time class="date" title='更新時間: 2022-05-09 00:27:00'>2022-05-07 23:39</time>
         
     </div>
     <div class="article-meta">
@@ -1083,6 +1083,7 @@ dotnet sln reCAPTCHA_Enterprise_Sample/reCAPTCHA_Enterprise_Sample.sln add reCAP
 <h2 id="安裝套件"><a href="#安裝套件" class="headerlink" title="安裝套件"></a>安裝套件</h2><pre><code class="CMD">dotnet add package Google.Cloud.RecaptchaEnterprise.V1
 </code></pre>
 <h2 id="程式實作"><a href="#程式實作" class="headerlink" title="程式實作"></a>程式實作</h2><p>呼叫Google API時，有分在GCP的機器環境 跟 地端環境<br>若服務是跑在GCP的機器環境，需確認機器環境的服務帳戶 含有 recaptchaenterprise.assessments.create 權限 則可以直接呼叫 不需憑證<br>若服務是在地端環境 或 非 GCP 機器環境，則需要將憑證下載至機器上，呼叫時在設定憑證路徑</p>
+<p>程式碼可參考 <a target="_blank" rel="noopener" href="https://github.com/w4560000/reCAPTCHA_Enterprise_Sample">w4560000/reCAPTCHA_Enterprise_Sample</a></p>
 <ul>
 <li>新增 CreateAssessmentSample.cs<br>程式碼 參考 <a target="_blank" rel="noopener" href="https://cloud.google.com/recaptcha-enterprise/docs/create-assessment?hl=zh-tw#c">google文件</a> 做微調</li>
 </ul>
