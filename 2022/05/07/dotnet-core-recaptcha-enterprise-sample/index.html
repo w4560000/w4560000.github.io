@@ -2,9 +2,9 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <title>w4560000.github.io</title>
-  <meta name="keywords" content="">
-  <meta name="description" content="w4560000.github.io">
+  <title>.Net Core 3.1 reCAPTCHA Enterprise 範例 | w4560000.github.io</title>
+  <meta name="keywords" content=" .NetCore , GCP ">
+  <meta name="description" content=".Net Core 3.1 reCAPTCHA Enterprise 範例 | w4560000.github.io">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <meta name="description" content="前言最近公司計畫導入 reCAPTCHA Enterprise，本篇文章 記錄一下實作細節 設定 reCAPTCHA Enterprise 啟用服務 gcloud services enable recaptchaenterprise.googleapis.com   建立 service account官方文件   # 建立 service-accounts gcloud iam service">
 <meta property="og:type" content="article">
@@ -63,7 +63,7 @@
 
 
 <body>
-<aside class="nav mobile">
+<aside class="nav">
     <div class="nav-left">
         <a href="/"
    class="avatar_target">
@@ -943,12 +943,75 @@
         </div>
     </div>
 </aside>
-<div id="post" class="index">
+<div id="post">
     <div class="pjax">
-        <article class="index">
-            <div class="toc-ref">
+        <article id="post-dotnet-core-recaptcha-enterprise-sample" class="article article-type-post" itemscope itemprop="blogPost">
     
-        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E9%97%9C%E6%96%BC%E6%88%91%E8%88%87%E8%A9%B2%E9%83%A8%E8%90%BD%E6%A0%BC"><span class="toc-text">關於我與該部落格</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%B0%A1%E4%BB%8B"><span class="toc-text">簡介</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%83%A8%E8%90%BD%E6%A0%BC"><span class="toc-text">部落格</span></a></li></ol></li></ol>
+        <h1 class="article-title">.Net Core 3.1 reCAPTCHA Enterprise 範例</h1>
+    
+    <div class="article-meta">
+        
+        
+        
+        <span class="book">
+            <i class="iconfont icon-category"></i>
+            
+            
+            <a  data-rel="Backend">Backend</a> > 
+            
+            <a  data-rel="Backend&lt;---&gt;.NetCore">.NetCore</a>
+            
+        </span>
+        
+        
+        <span class="tag">
+            <i class="iconfont icon-tag"></i>
+            
+            <a class="color4">.NetCore</a>
+            
+            <a class="color4">GCP</a>
+            
+        </span>
+        
+    </div>
+    <div class="article-meta">
+        
+            發布時間 : <time class="date" title='更新時間: 2022-05-09 00:22:17'>2022-05-07 23:39</time>
+        
+    </div>
+    <div class="article-meta">
+        
+        <span>字數:1.3k</span>
+        
+        
+        <span id="busuanzi_container_page_pv">
+            觀看數 :<span id="busuanzi_value_page_pv">
+                <span class="count-comment">
+                    <span class="spinner">
+                      <div class="cube1"></div>
+                      <div class="cube2"></div>
+                    </span>
+                </span>
+            </span>
+        </span>
+        
+        
+        <span class="top-comment" title="跳转至评论区">
+            <a href="#comments">
+                評論:<span class="count-comment">
+                    <span class="spinner">
+                      <div class="cube1"></div>
+                      <div class="cube2"></div>
+                    </span>
+                </span>
+            </a>
+        </span>
+        
+    </div>
+    
+    <div class="toc-ref">
+    
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%89%8D%E8%A8%80"><span class="toc-text">前言</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%A8%AD%E5%AE%9A-reCAPTCHA-Enterprise"><span class="toc-text">設定 reCAPTCHA Enterprise</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%BB%BA%E7%AB%8B-Net-Core-3-1-%E5%B0%88%E6%A1%88"><span class="toc-text">建立 .Net Core 3.1 專案</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%89%E8%A3%9D%E5%A5%97%E4%BB%B6"><span class="toc-text">安裝套件</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%A8%8B%E5%BC%8F%E5%AF%A6%E4%BD%9C"><span class="toc-text">程式實作</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%B8%AC%E8%A9%A6%E7%B5%90%E6%9E%9C"><span class="toc-text">測試結果</span></a></li></ol>
     
 <style>
     .left-col .switch-btn,
@@ -961,16 +1024,292 @@
     }
 </style>
 </div>
-            <h1 id="關於我與該部落格"><a href="#關於我與該部落格" class="headerlink" title="關於我與該部落格"></a>關於我與該部落格</h1><h2 id="簡介"><a href="#簡介" class="headerlink" title="簡介"></a>簡介</h2><p>我是一名.Net 開發工程師</p>
-<p>此部落格為軟體開發的學習筆記</p>
-<p>若文章內容有誤，歡迎留言指正，或來信告知 <a href="mailto:&#x6c;&#101;&#111;&#x7a;&#104;&#101;&#x6e;&#x67;&#x30;&#54;&#50;&#49;&#64;&#103;&#x6d;&#97;&#x69;&#108;&#x2e;&#x63;&#111;&#109;">&#x6c;&#101;&#111;&#x7a;&#104;&#101;&#x6e;&#x67;&#x30;&#54;&#50;&#49;&#64;&#103;&#x6d;&#97;&#x69;&#108;&#x2e;&#x63;&#111;&#109;</a></p>
-<h2 id="部落格"><a href="#部落格" class="headerlink" title="部落格"></a>部落格</h2><p>共發布：<code class="article_number"></code>篇文章， 共<code class="site_word_count"></code>字。</p>
-<p>部落格總訪問人數：<code class="site_uv"></code> 人次， 訪問量：<code class="site_pv"></code>次</p>
-<p>此部落格通過 <a target="_blank" rel="noopener" href="https://hexo.io/">Hexo</a> 建立，部屬在 <a target="_blank" rel="noopener" href="https://pages.github.com/">GitHub Pages</a>主題 <a target="_blank" rel="noopener" href="https://github.com/yelog/hexo-theme-3-hexo">3-hexo</a></p>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>最近公司計畫導入 reCAPTCHA Enterprise，本篇文章 記錄一下實作細節</p>
+<h2 id="設定-reCAPTCHA-Enterprise"><a href="#設定-reCAPTCHA-Enterprise" class="headerlink" title="設定 reCAPTCHA Enterprise"></a>設定 reCAPTCHA Enterprise</h2><ul>
+<li><p>啟用服務</p>
+<pre><code class="Cloud">gcloud services enable recaptchaenterprise.googleapis.com
+</code></pre>
+</li>
+<li><p>建立 service account<br><a target="_blank" rel="noopener" href="https://cloud.google.com/recaptcha-enterprise/docs/set-up-google-cloud?hl=zh-TW#config-svc-gcloud">官方文件</a></p>
+</li>
+</ul>
+<pre><code class="Cloud"># 建立 service-accounts
+gcloud iam service-accounts create [Name]
 
-        </article>
-        
-        
+# 綁定權限
+gcloud projects add-iam-policy-binding [PROJECT_ID] --member=&quot;serviceAccount:[Name]@[PROJECT_ID].iam.gserviceaccount.com&quot; --role=&quot;roles/recaptchaenterprise.agent&quot;
+
+# 下載.json檔憑證至本地端 
+# 若服務是在GCP上且機器環境的服務帳戶 含有 recaptchaenterprise.assessments.create權限，則可略過 不需憑證
+gcloud iam service-accounts keys create [KEY_PATH] --iam-account=[NAME]@[PROJECT_ID].iam.gserviceaccount.com
+
+ex:
+gcloud iam service-accounts create recaptcha-account
+gcloud projects add-iam-policy-binding xxx --member=&quot;serviceAccount:recaptcha-account@xxx.iam.gserviceaccount.com&quot; --role=&quot;roles/recaptchaenterprise.agent&quot;
+gcloud iam service-accounts keys create D:\Lab\service-account-file.json --iam-account=recaptcha-account@xxx.iam.gserviceaccount.com  
+</code></pre>
+<ul>
+<li>建立 reCAPTCHA Enterprise sitekey<br><a target="_blank" rel="noopener" href="https://cloud.google.com/recaptcha-enterprise/docs/create-key?hl=zh-tw#creating_a_site_key">官方文件</a></li>
+</ul>
+<pre><code class="Cloud">gcloud recaptcha keys create \
+  --web \
+  --display-name=[DISPLAY_NAME]  \
+  --integration-type=[INTEGRATION_TYPE] \
+  --domains=[DOMAINS]
+
+ex:
+# 直接取token 驗證分數
+gcloud recaptcha keys create \
+  --web \
+  --display-name=leo-score  \
+  --integration-type=SCORE  \
+  --domains=localhost
+
+# 透過 checkbox 取token 驗證分數
+gcloud recaptcha keys create \
+  --web \
+  --display-name=leo-checkbox  \
+  --integration-type=CHECKBOX  \
+  --domains=localhost
+</code></pre>
+<p>設定成功後 目前有兩筆 recaptcha enterprise 金鑰<br><img src="https://bingxiangstorage.blob.core.windows.net/blog/dotnet-core-recaptcha-enterprise-sample/2022-05-09-00-21-27.png"></p>
+<h2 id="建立-Net-Core-3-1-專案"><a href="#建立-Net-Core-3-1-專案" class="headerlink" title="建立 .Net Core 3.1 專案"></a>建立 .Net Core 3.1 專案</h2><pre><code class="CMD">dotnet new sln -o reCAPTCHA_Enterprise_Sample
+dotnet new mvc -f netcoreapp3.1 -o reCAPTCHA_Enterprise_Sample
+dotnet sln reCAPTCHA_Enterprise_Sample/reCAPTCHA_Enterprise_Sample.sln add reCAPTCHA_Enterprise_Sample/reCAPTCHA_Enterprise_Sample.csproj
+</code></pre>
+<h2 id="安裝套件"><a href="#安裝套件" class="headerlink" title="安裝套件"></a>安裝套件</h2><pre><code class="CMD">dotnet add package Google.Cloud.RecaptchaEnterprise.V1
+</code></pre>
+<h2 id="程式實作"><a href="#程式實作" class="headerlink" title="程式實作"></a>程式實作</h2><p>呼叫Google API時，有分在GCP的機器環境 跟 地端環境<br>若服務是跑在GCP的機器環境，需確認機器環境的服務帳戶 含有 recaptchaenterprise.assessments.create 權限 則可以直接呼叫 不需憑證<br>若服務是在地端環境 或 非 GCP 機器環境，則需要將憑證下載至機器上，呼叫時在設定憑證路徑</p>
+<ul>
+<li>新增 CreateAssessmentSample.cs<br>程式碼 參考 <a target="_blank" rel="noopener" href="https://cloud.google.com/recaptcha-enterprise/docs/create-assessment?hl=zh-tw#c">google文件</a> 做微調</li>
+</ul>
+<pre><code class="Charp">using Google.Api.Gax.ResourceNames;
+using Google.Cloud.RecaptchaEnterprise.V1;
+
+namespace reCAPTCHA_Enterprise_Sample.Service
+&#123;
+    public class CreateAssessmentSample
+    &#123;
+        public RecaptchaEnterpriseServiceClient GetRecaptchaEnterpriseServiceClient_SetEnv()
+        &#123;
+            System.Environment.SetEnvironmentVariable(&quot;GOOGLE_APPLICATION_CREDENTIALS&quot;, @&quot;D:\Lab\reCAPTCHA_Enterprise_Sample\service-account-file.json&quot;);
+            return RecaptchaEnterpriseServiceClient.Create();
+        &#125;
+
+        public RecaptchaEnterpriseServiceClient GetRecaptchaEnterpriseServiceClient_SetCredentialsPath()
+        &#123;
+            return new RecaptchaEnterpriseServiceClientBuilder()
+            &#123;
+                CredentialsPath = @&quot;D:\Lab\reCAPTCHA_Enterprise_Sample\service-account-file.json&quot;
+            &#125;.Build();
+        &#125;
+
+        // Create an assessment to analyze the risk of an UI action.
+        // projectID: GCloud Project ID.
+        // recaptchaSiteKey: Site key obtained by registering a domain/app to use recaptcha.
+        // token: The token obtained from the client on passing the recaptchaSiteKey.
+        // recaptchaAction: Action name corresponding to the token.
+        public decimal createAssessment(string projectID = &quot;project-id&quot;, string recaptchaSiteKey = &quot;recaptcha-site-key&quot;,
+            string token = &quot;action-token&quot;, string recaptchaAction = &quot;action-name&quot;)
+        &#123;
+            // Create the client.
+            // TODO: To avoid memory issues, move this client generation outside
+            // of this example, and cache it (recommended) or call client.close()
+            // before exiting this method.
+
+            // 若在GCP 機器環境的服務帳戶 含有 recaptchaenterprise.assessments.create 權限 則可以直接呼叫 不需憑證
+            RecaptchaEnterpriseServiceClient client = RecaptchaEnterpriseServiceClient.Create();
+
+            // 若在地端環境 或 非 GCP 機器環境，則可以將憑證下載至機器上，呼叫時在設定憑證路徑
+            //RecaptchaEnterpriseServiceClient client = GetRecaptchaEnterpriseServiceClient_SetEnv(); // 透過環境變數
+            //RecaptchaEnterpriseServiceClient client = GetRecaptchaEnterpriseServiceClient_SetCredentialsPath(); // 設定 CredentialsPath
+
+            ProjectName projectName = new ProjectName(projectID);
+
+            // Build the assessment request.
+            CreateAssessmentRequest createAssessmentRequest = new CreateAssessmentRequest()
+            &#123;
+                Assessment = new Assessment()
+                &#123;
+                    // Set the properties of the event to be tracked.
+                    Event = new Event()
+                    &#123;
+                        SiteKey = recaptchaSiteKey,
+                        Token = token,
+                        ExpectedAction = recaptchaAction
+                    &#125;,
+                &#125;,
+                ParentAsProjectName = projectName
+            &#125;;
+
+            Assessment response = client.CreateAssessment(createAssessmentRequest);
+
+            // Check if the token is valid.
+            if (response.TokenProperties.Valid == false)
+            &#123;
+                System.Console.WriteLine(&quot;The CreateAssessment call failed because the token was: &quot; +
+                    response.TokenProperties.InvalidReason.ToString());
+                return 0;
+            &#125;
+
+            // Check if the expected action was executed.
+            if (response.TokenProperties.Action != recaptchaAction)
+            &#123;
+                System.Console.WriteLine(&quot;The action attribute in reCAPTCHA tag is: &quot; +
+                    response.TokenProperties.Action.ToString());
+                System.Console.WriteLine(&quot;The action attribute in the reCAPTCHA tag does not &quot; +
+                    &quot;match the action you are expecting to score&quot;);
+                return 0;
+            &#125;
+
+            // Get the risk score and the reason(s).
+            // For more information on interpreting the assessment,
+            // see: https://cloud.google.com/recaptcha-enterprise/docs/interpret-assessment
+            System.Console.WriteLine(&quot;The reCAPTCHA score is: &quot; + ((decimal)response.RiskAnalysis.Score));
+
+            foreach (RiskAnalysis.Types.ClassificationReason reason in response.RiskAnalysis.Reasons)
+            &#123;
+                System.Console.WriteLine(reason.ToString());
+            &#125;
+
+            return (decimal)response.RiskAnalysis.Score;
+        &#125;
+    &#125;
+&#125;
+</code></pre>
+<ul>
+<li>修改 HomeController.cs</li>
+</ul>
+<pre><code class="Charp">using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Logging;
+using reCAPTCHA_Enterprise_Sample.Models;
+using reCAPTCHA_Enterprise_Sample.Service;
+using System;
+using System.Diagnostics;
+
+namespace reCAPTCHA_Enterprise_Sample.Controllers
+&#123;
+    public class HomeController : Controller
+    &#123;
+        private readonly ILogger&lt;HomeController&gt; _logger;
+
+        public HomeController(ILogger&lt;HomeController&gt; logger)
+        &#123;
+            _logger = logger;
+        &#125;
+
+        public IActionResult Index()
+        &#123;
+            TempData[&quot;sitekey&quot;] = &quot;6Ld_Os8fAAAAACNQDEOxHKvxBWmN2wK6_GUXAZ08&quot;;
+            TempData[&quot;recaptchaAction&quot;] = &quot;Verify_CheckBox&quot;;
+
+            return View();
+        &#125;
+
+        public IActionResult Privacy()
+        &#123;
+            TempData[&quot;sitekey&quot;] = &quot;6LeUx88fAAAAAHsA_b3jPKRVg8Yyyua5Ub2qjE8I&quot;;
+            TempData[&quot;recaptchaAction&quot;] = &quot;Verify_GetToken&quot;;
+
+            return View();
+        &#125;
+
+        [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
+        public IActionResult Error()
+        &#123;
+            return View(new ErrorViewModel &#123; RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier &#125;);
+        &#125;
+
+        [HttpGet]
+        public string CreateAssessment(string token, string recaptchaSiteKey, string recaptchaAction)
+        &#123;
+            try
+            &#123;
+                // 注意 需自行替換projectID
+                return new CreateAssessmentSample().createAssessment(
+                            projectID: &quot;xxx&quot;,
+                            recaptchaSiteKey: recaptchaSiteKey,
+                            token: token,
+                            recaptchaAction: recaptchaAction).ToString();
+            &#125;
+            catch (Exception ex)
+            &#123;
+                return ex.Message;
+            &#125;
+        &#125;
+    &#125;
+&#125;
+</code></pre>
+<ul>
+<li>修改 Index.cshtml</li>
+</ul>
+<pre><code class="CSharp">@&#123;
+    ViewBag.Title = &quot;Home Page&quot;;
+&#125;
+&lt;head&gt;
+    &lt;script src=&quot;https://www.google.com/recaptcha/enterprise.js&quot;&gt;&lt;/script&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;div class=&quot;g-recaptcha&quot;
+         data-sitekey=&quot;@TempData[&quot;sitekey&quot;]&quot;
+         data-action=&#39;@TempData[&quot;recaptchaAction&quot;]&#39;
+         data-callback=&#39;test_recaptcha&#39;&gt;
+    &lt;/div&gt;
+&lt;/body&gt;
+&lt;script&gt;
+    function test_recaptcha(token) &#123;
+        $.get(`/Home/CreateAssessment?token=$&#123;token&#125;&amp;recaptchaSiteKey=@TempData[&quot;sitekey&quot;]&amp;recaptchaAction=@TempData[&quot;recaptchaAction&quot;]`)
+            .then((res) =&gt; alert(res));
+    &#125;
+&lt;/script&gt;
+</code></pre>
+<ul>
+<li>修改 Privacy.cshtml<pre><code class="CSharp">@&#123;
+  ViewBag.Title = &quot;Home Page&quot;;
+&#125;
+@*&lt;style&gt;
+      .grecaptcha-badge &#123;
+          visibility: hidden;
+      &#125;
+  &lt;/style&gt;*@
+&lt;head&gt;
+  &lt;script src=&quot;https://www.google.com/recaptcha/enterprise.js?render=@TempData[&quot;sitekey&quot;]&quot;&gt;&lt;/script&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  &lt;input type=&quot;button&quot; class=&quot;btn btn-secondary col-sm-2&quot; id=&quot;test_verify_score&quot; value=&quot;verify_score&quot; onclick=&quot;verify_score_click()&quot;&gt;
+&lt;/body&gt;
+&lt;script&gt;
+  function verify_score_click() &#123;
+      grecaptcha.enterprise.ready(function () &#123;
+          grecaptcha.enterprise.execute(&#39;@TempData[&quot;sitekey&quot;]&#39;, &#123; action: &#39;@TempData[&quot;recaptchaAction&quot;]&#39; &#125;).then(function (token) &#123;
+              $.get(`/Home/CreateAssessment?token=$&#123;token&#125;&amp;recaptchaSiteKey=@TempData[&quot;sitekey&quot;]&amp;recaptchaAction=@TempData[&quot;recaptchaAction&quot;]`)
+                  .then((res) =&gt; alert(res));
+          &#125;);
+      &#125;);
+  &#125;
+&lt;/script&gt;
+</code></pre>
+</li>
+</ul>
+<h2 id="測試結果"><a href="#測試結果" class="headerlink" title="測試結果"></a>測試結果</h2><ul>
+<li><p>測試 Checkbox<br>/Home/Index<br><img src="https://bingxiangstorage.blob.core.windows.net/blog/dotnet-core-recaptcha-enterprise-sample/2022-05-09-00-09-29.png"></p>
+</li>
+<li><p>測試 Score<br>/Home/Privacy<br><img src="https://bingxiangstorage.blob.core.windows.net/blog/dotnet-core-recaptcha-enterprise-sample/2022-05-09-00-15-03.png"></p>
+</li>
+</ul>
+
+      
+       <hr><span style="font-style: italic;color: gray;"> 轉載請註明來源，若有任何錯誤或表達不清楚的地方，歡迎在下方評論區留言，也可以來信至 leozheng0621@gmail.com </span>
+    </div>
+</article>
+
+
+
+
+
     <div id="comments"></div>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css">
 
@@ -992,6 +1331,13 @@
 </script>
 
 
+
+
+    
+
+
+
+
     </div>
     <div class="copyright">
         <p class="footer-entry">
@@ -1000,11 +1346,11 @@
 <p class="footer-entry">Built with <a href="https://hexo.io/" target="_blank">Hexo</a> and <a href="https://github.com/yelog/hexo-theme-3-hexo" target="_blank">3-hexo</a> theme</p>
 
     </div>
-</div>
-<div class="full-toc">
-    <button class="full" data-title="切换全屏 快捷键 s"><span class="min "></span></button>
+    <div class="full-toc">
+        <button class="full" data-title="切换全屏 快捷键 s"><span class="min "></span></button>
 <a class="" id="rocket" ></a>
 
+    </div>
 </div>
 
 </body>

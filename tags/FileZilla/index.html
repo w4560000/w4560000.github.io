@@ -6,41 +6,23 @@
   <meta name="keywords" content="">
   <meta name="description" content="w4560000.github.io">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-<meta name="description" content="建立執行個體群組 選取執行個體群組  以新增非代管的執行個體群組當範例  建立好執行個體群組後 點選編輯  加入相同區域的VM到執行個體群組中  確認是否將VM 成功加入 執行個體群組中   建立Load balancer 選取負載平衡  選取 HTTP(S) 負載平衡  依照需求選取  建立後端服務  設定後端設定  設定主機與路徑規則  設定前端設定 (80、443)   設定https時需要">
+<meta name="description" content="前言最近公司計畫導入 reCAPTCHA Enterprise，本篇文章 記錄一下實作細節 設定 reCAPTCHA Enterprise 啟用服務 gcloud services enable recaptchaenterprise.googleapis.com   建立 service account官方文件   # 建立 service-accounts gcloud iam service">
 <meta property="og:type" content="article">
-<meta property="og:title" content="建立 GCP Load balancer">
-<meta property="og:url" content="http://example.com/2022/05/06/gcp-init-loadbalancer/index.html">
+<meta property="og:title" content=".Net Core 3.1 reCAPTCHA Enterprise 範例">
+<meta property="og:url" content="http://example.com/2022/05/07/dotnet-core-recaptcha-enterprise-sample/index.html">
 <meta property="og:site_name" content="w4560000.github.io">
-<meta property="og:description" content="建立執行個體群組 選取執行個體群組  以新增非代管的執行個體群組當範例  建立好執行個體群組後 點選編輯  加入相同區域的VM到執行個體群組中  確認是否將VM 成功加入 執行個體群組中   建立Load balancer 選取負載平衡  選取 HTTP(S) 負載平衡  依照需求選取  建立後端服務  設定後端設定  設定主機與路徑規則  設定前端設定 (80、443)   設定https時需要">
+<meta property="og:description" content="前言最近公司計畫導入 reCAPTCHA Enterprise，本篇文章 記錄一下實作細節 設定 reCAPTCHA Enterprise 啟用服務 gcloud services enable recaptchaenterprise.googleapis.com   建立 service account官方文件   # 建立 service-accounts gcloud iam service">
 <meta property="og:locale" content="zh_TW">
-<meta property="og:image" content="https://bingxiangstorage.blob.core.windows.net/blog/gcp-init-loadbalancer/2022-05-06-23-53-59.png">
-<meta property="og:image" content="https://bingxiangstorage.blob.core.windows.net/blog/gcp-init-loadbalancer/2022-05-06-23-54-37.png">
-<meta property="og:image" content="https://bingxiangstorage.blob.core.windows.net/blog/gcp-init-loadbalancer/2022-05-06-23-54-50.png">
-<meta property="og:image" content="https://bingxiangstorage.blob.core.windows.net/blog/gcp-init-loadbalancer/2022-05-06-23-55-02.png">
-<meta property="og:image" content="https://bingxiangstorage.blob.core.windows.net/blog/gcp-init-loadbalancer/2022-05-06-23-55-12.png">
-<meta property="og:image" content="https://bingxiangstorage.blob.core.windows.net/blog/gcp-init-loadbalancer/2022-05-06-23-55-33.png">
-<meta property="og:image" content="https://bingxiangstorage.blob.core.windows.net/blog/gcp-init-loadbalancer/2022-05-06-23-55-43.png">
-<meta property="og:image" content="https://bingxiangstorage.blob.core.windows.net/blog/gcp-init-loadbalancer/2022-05-06-23-55-54.png">
-<meta property="og:image" content="https://bingxiangstorage.blob.core.windows.net/blog/gcp-init-loadbalancer/2022-05-06-23-56-05.png">
-<meta property="og:image" content="https://bingxiangstorage.blob.core.windows.net/blog/gcp-init-loadbalancer/2022-05-06-23-56-17.png">
-<meta property="og:image" content="https://bingxiangstorage.blob.core.windows.net/blog/gcp-init-loadbalancer/2022-05-06-23-56-30.png">
-<meta property="og:image" content="https://bingxiangstorage.blob.core.windows.net/blog/gcp-init-loadbalancer/2022-05-06-23-56-48.png">
-<meta property="og:image" content="https://bingxiangstorage.blob.core.windows.net/blog/gcp-init-loadbalancer/2022-05-06-23-57-15.png">
-<meta property="og:image" content="https://bingxiangstorage.blob.core.windows.net/blog/gcp-init-loadbalancer/2022-05-06-23-57-35.png">
-<meta property="og:image" content="https://bingxiangstorage.blob.core.windows.net/blog/gcp-init-loadbalancer/2022-05-06-23-57-59.png">
-<meta property="og:image" content="https://bingxiangstorage.blob.core.windows.net/blog/gcp-init-loadbalancer/2022-05-06-23-58-13.png">
-<meta property="og:image" content="https://bingxiangstorage.blob.core.windows.net/blog/gcp-init-loadbalancer/2022-05-06-23-58-32.png">
-<meta property="og:image" content="https://bingxiangstorage.blob.core.windows.net/blog/gcp-init-loadbalancer/2022-05-06-23-59-27.png">
-<meta property="og:image" content="https://bingxiangstorage.blob.core.windows.net/blog/gcp-init-loadbalancer/2022-05-06-23-59-49.png">
-<meta property="og:image" content="https://bingxiangstorage.blob.core.windows.net/blog/gcp-init-loadbalancer/2022-05-06-23-59-55.png">
-<meta property="og:image" content="https://bingxiangstorage.blob.core.windows.net/blog/gcp-init-loadbalancer/2022-05-07-00-00-19.png">
-<meta property="og:image" content="https://bingxiangstorage.blob.core.windows.net/blog/gcp-init-loadbalancer/2022-05-07-00-00-25.png">
-<meta property="article:published_time" content="2022-05-06T15:53:04.000Z">
-<meta property="article:modified_time" content="2022-05-06T16:00:46.137Z">
+<meta property="og:image" content="https://bingxiangstorage.blob.core.windows.net/blog/dotnet-core-recaptcha-enterprise-sample/2022-05-09-00-21-27.png">
+<meta property="og:image" content="https://bingxiangstorage.blob.core.windows.net/blog/dotnet-core-recaptcha-enterprise-sample/2022-05-09-00-09-29.png">
+<meta property="og:image" content="https://bingxiangstorage.blob.core.windows.net/blog/dotnet-core-recaptcha-enterprise-sample/2022-05-09-00-15-03.png">
+<meta property="article:published_time" content="2022-05-07T15:39:32.000Z">
+<meta property="article:modified_time" content="2022-05-08T16:22:17.686Z">
 <meta property="article:author" content="Leo Zheng">
+<meta property="article:tag" content=".NetCore">
 <meta property="article:tag" content="GCP">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://bingxiangstorage.blob.core.windows.net/blog/gcp-init-loadbalancer/2022-05-06-23-53-59.png">
+<meta name="twitter:image" content="https://bingxiangstorage.blob.core.windows.net/blog/dotnet-core-recaptcha-enterprise-sample/2022-05-09-00-21-27.png">
 
 
 <link rel="icon" href="/img/avatar.jpg">
@@ -129,7 +111,7 @@
     <li>
         <div class="all active" data-rel="全部文章">全部文章
             
-                <small>(40)</small>
+                <small>(41)</small>
             
         </div>
     </li>
@@ -141,7 +123,7 @@
                         <i class="fold iconfont icon-right"></i>
                         
                         Backend
-                        <small>(7)</small>
+                        <small>(8)</small>
                         
                     </div>
                     
@@ -164,7 +146,7 @@
                                         
                                         .NetCore
                                         
-                                            <small>(4
+                                            <small>(5
                                                 )</small>
                                         
                                     </div>
@@ -472,8 +454,8 @@
         
     </div>
 </div>
-<input type="hidden" id="yelog_site_posts_number" value="40">
-<input type="hidden" id="yelog_site_word_count" value="19.7k">
+<input type="hidden" id="yelog_site_posts_number" value="41">
+<input type="hidden" id="yelog_site_word_count" value="21k">
 <div style="display: none">
     <span id="busuanzi_value_site_uv"></span>
     <span id="busuanzi_value_site_pv"></span>
@@ -616,6 +598,14 @@
 
     
     <nav id="title-list-nav">
+        
+        <a  class="全部文章 Backend .NetCore "
+           href="/2022/05/07/dotnet-core-recaptcha-enterprise-sample/"
+           data-tag=".NetCore,GCP"
+           data-author="" >
+            <span class="post-title" title=".Net Core 3.1 reCAPTCHA Enterprise 範例">.Net Core 3.1 reCAPTCHA Enterprise 範例</span>
+            <span class="post-date" title="2022-05-07 23:39:32">2022/05/07</span>
+        </a>
         
         <a  class="全部文章 Devops GCP "
            href="/2022/05/06/gcp-init-loadbalancer/"
@@ -973,7 +963,7 @@
 </div>
             <h1 id="關於我與該部落格"><a href="#關於我與該部落格" class="headerlink" title="關於我與該部落格"></a>關於我與該部落格</h1><h2 id="簡介"><a href="#簡介" class="headerlink" title="簡介"></a>簡介</h2><p>我是一名.Net 開發工程師</p>
 <p>此部落格為軟體開發的學習筆記</p>
-<p>若文章內容有誤，歡迎留言指正，或來信告知 <a href="mailto:&#108;&#x65;&#x6f;&#122;&#104;&#101;&#x6e;&#103;&#x30;&#x36;&#50;&#49;&#x40;&#103;&#x6d;&#97;&#x69;&#x6c;&#46;&#x63;&#111;&#109;">&#108;&#x65;&#x6f;&#122;&#104;&#101;&#x6e;&#103;&#x30;&#x36;&#50;&#49;&#x40;&#103;&#x6d;&#97;&#x69;&#x6c;&#46;&#x63;&#111;&#109;</a></p>
+<p>若文章內容有誤，歡迎留言指正，或來信告知 <a href="mailto:&#108;&#x65;&#x6f;&#122;&#x68;&#x65;&#110;&#x67;&#48;&#54;&#x32;&#49;&#x40;&#103;&#109;&#x61;&#x69;&#x6c;&#46;&#x63;&#111;&#109;">&#108;&#x65;&#x6f;&#122;&#x68;&#x65;&#110;&#x67;&#48;&#54;&#x32;&#49;&#x40;&#103;&#109;&#x61;&#x69;&#x6c;&#46;&#x63;&#111;&#109;</a></p>
 <h2 id="部落格"><a href="#部落格" class="headerlink" title="部落格"></a>部落格</h2><p>共發布：<code class="article_number"></code>篇文章， 共<code class="site_word_count"></code>字。</p>
 <p>部落格總訪問人數：<code class="site_uv"></code> 人次， 訪問量：<code class="site_pv"></code>次</p>
 <p>此部落格通過 <a target="_blank" rel="noopener" href="https://hexo.io/">Hexo</a> 建立，部屬在 <a target="_blank" rel="noopener" href="https://pages.github.com/">GitHub Pages</a>主題 <a target="_blank" rel="noopener" href="https://github.com/yelog/hexo-theme-3-hexo">3-hexo</a></p>
