@@ -2,9 +2,9 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <title>w4560000.github.io</title>
-  <meta name="keywords" content="">
-  <meta name="description" content="w4560000.github.io">
+  <title>sql-server-index-test | w4560000.github.io</title>
+  <meta name="keywords" content=" SQLServer ">
+  <meta name="description" content="sql-server-index-test | w4560000.github.io">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <meta name="description" content="前言最近公司計畫導入 reCAPTCHA Enterprise，本篇文章 記錄一下實作細節 設定 reCAPTCHA Enterprise 啟用服務 gcloud services enable recaptchaenterprise.googleapis.com   建立 service account官方文件   # 建立 service-accounts gcloud iam service">
 <meta property="og:type" content="article">
@@ -65,7 +65,7 @@
 
 
 <body>
-<aside class="nav mobile">
+<aside class="nav">
     <div class="nav-left">
         <a href="/"
    class="avatar_target">
@@ -961,12 +961,73 @@
         </div>
     </div>
 </aside>
-<div id="post" class="index">
+<div id="post">
     <div class="pjax">
-        <article class="index">
-            <div class="toc-ref">
+        <article id="post-sql-server-index-test" class="article article-type-post" itemscope itemprop="blogPost">
     
-        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E9%97%9C%E6%96%BC%E6%88%91%E8%88%87%E8%A9%B2%E9%83%A8%E8%90%BD%E6%A0%BC"><span class="toc-text">關於我與該部落格</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%B0%A1%E4%BB%8B"><span class="toc-text">簡介</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%83%A8%E8%90%BD%E6%A0%BC"><span class="toc-text">部落格</span></a></li></ol></li></ol>
+        <h1 class="article-title">sql-server-index-test</h1>
+    
+    <div class="article-meta">
+        
+        
+        
+        <span class="book">
+            <i class="iconfont icon-category"></i>
+            
+            
+            <a  data-rel="Database">Database</a> > 
+            
+            <a  data-rel="Database&lt;---&gt;SQLServer">SQLServer</a>
+            
+        </span>
+        
+        
+        <span class="tag">
+            <i class="iconfont icon-tag"></i>
+            
+            <a class="color5">SQLServer</a>
+            
+        </span>
+        
+    </div>
+    <div class="article-meta">
+        
+            發布時間 : <time class="date" title='更新時間: 2022-05-12 00:10:01'>2022-05-12 00:07</time>
+        
+    </div>
+    <div class="article-meta">
+        
+        <span>字數:668</span>
+        
+        
+        <span id="busuanzi_container_page_pv">
+            觀看數 :<span id="busuanzi_value_page_pv">
+                <span class="count-comment">
+                    <span class="spinner">
+                      <div class="cube1"></div>
+                      <div class="cube2"></div>
+                    </span>
+                </span>
+            </span>
+        </span>
+        
+        
+        <span class="top-comment" title="跳转至评论区">
+            <a href="#comments">
+                評論:<span class="count-comment">
+                    <span class="spinner">
+                      <div class="cube1"></div>
+                      <div class="cube2"></div>
+                    </span>
+                </span>
+            </a>
+        </span>
+        
+    </div>
+    
+    <div class="toc-ref">
+    
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Test-Table-Schema"><span class="toc-text">Test Table Schema</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%B4%A2%E5%BC%95-Index-%E6%B8%AC%E8%A9%A6"><span class="toc-text">索引(Index) 測試</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8F%83%E8%80%83%E6%96%87%E7%AB%A0%E3%80%81%E6%B8%AC%E8%A9%A6%E8%B3%87%E6%96%99%E4%BE%86%E6%BA%90"><span class="toc-text">參考文章、測試資料來源</span></a></li></ol>
     
 <style>
     .left-col .switch-btn,
@@ -979,16 +1040,97 @@
     }
 </style>
 </div>
-            <h1 id="關於我與該部落格"><a href="#關於我與該部落格" class="headerlink" title="關於我與該部落格"></a>關於我與該部落格</h1><h2 id="簡介"><a href="#簡介" class="headerlink" title="簡介"></a>簡介</h2><p>我是一名.Net 開發工程師</p>
-<p>此部落格為軟體開發的學習筆記</p>
-<p>若文章內容有誤，歡迎留言指正，或來信告知 <a href="mailto:&#108;&#x65;&#111;&#x7a;&#x68;&#x65;&#x6e;&#103;&#48;&#x36;&#50;&#49;&#64;&#x67;&#x6d;&#x61;&#105;&#108;&#x2e;&#x63;&#111;&#x6d;">&#108;&#x65;&#111;&#x7a;&#x68;&#x65;&#x6e;&#103;&#48;&#x36;&#50;&#49;&#64;&#x67;&#x6d;&#x61;&#105;&#108;&#x2e;&#x63;&#111;&#x6d;</a></p>
-<h2 id="部落格"><a href="#部落格" class="headerlink" title="部落格"></a>部落格</h2><p>共發布：<code class="article_number"></code>篇文章， 共<code class="site_word_count"></code>字。</p>
-<p>部落格總訪問人數：<code class="site_uv"></code> 人次， 訪問量：<code class="site_pv"></code>次</p>
-<p>此部落格通過 <a target="_blank" rel="noopener" href="https://hexo.io/">Hexo</a> 建立，部屬在 <a target="_blank" rel="noopener" href="https://pages.github.com/">GitHub Pages</a>主題 <a target="_blank" rel="noopener" href="https://github.com/yelog/hexo-theme-3-hexo">3-hexo</a></p>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="Test-Table-Schema"><a href="#Test-Table-Schema" class="headerlink" title="Test Table Schema"></a>Test Table Schema</h2><pre><code class="sql">--Table
+CREATE TABLE [dbo].[Products](
+    [ProductID]            [int] IDENTITY(1,1) NOT NULL,
+    [ProductName]        [nvarchar](40) NOT NULL,
+    [SupplierID]        [int] NOT NULL,
+    [CategoryID]        [int] NULL,
+    [QuantityPerUnit]    [nvarchar](20) NULL,
+    [UnitPrice]            [money] NULL,
+    [UnitsInStock]        [smallint] NULL,
+    [UnitsOnOrder]        [smallint] NULL,
+    [ReorderLevel]        [smallint] NULL,
+    [Discontinued]        [bit] NOT NULL,
+)
+--PK
+ALTER TABLE [dbo].[Products] ADD CONSTRAINT [PK_Products] PRIMARY KEY CLUSTERED 
+(
+    ProductID ASC,
+    SupplierID ASC
+)
+--NonClustered Index
+CREATE NONCLUSTERED INDEX [IX_Products_CategoryID] ON [dbo].[Products] 
+(
+    CategoryID ASC
+)
+</code></pre>
+<h2 id="索引-Index-測試"><a href="#索引-Index-測試" class="headerlink" title="索引(Index) 測試"></a>索引(Index) 測試</h2><pre><code class="sql">-- 叢集索引 (ProductID, SupplierID)
+-- 非叢集索引 (CategoryID)
 
-        </article>
-        
-        
+-- 測試 1
+select SupplierID from products where ProductID=999                -- clustered index seek (叢集索引搜尋)
+select * from products where ProductID=999　                    -- clustered index seek (叢集索引搜尋)
+select * from products where ProductID=999 AND SupplierID=12    -- clustered index seek (叢集索引搜尋)
+select * from products where SupplierID=12 AND ProductID=999    -- clustered index seek (叢集索引搜尋)
+
+-- 測試 2
+select SupplierID from products where SupplierID=12                            -- index scan (索引掃描) (因where 需要按照索引順序)
+select ProductID,SupplierID from products where SupplierID=12                -- index scan (索引掃描)
+select ProductID,SupplierID,ProductName from products where SupplierID=12    -- clustered index scan (叢集索引掃描) (因select 有非 index欄位)
+
+-- 測試 3
+select SupplierID,CategoryID from products where CategoryID=8                                        -- index seek (索引搜尋)
+select SupplierID,CategoryID from products where CategoryID=8 AND SupplierID=12                        -- index seek (索引搜尋) (where 搜尋欄位 都有 index)
+select SupplierID,CategoryID from products where CategoryID=8 AND SupplierID=12 AND UnitPrice=10    -- clustered index scan (叢集索引掃描) (where 搜尋欄位 有非 index欄位)
+select SupplierID,CategoryID,ProductName from products where CategoryID=8                            -- clustered index scan (叢集索引掃描) (select 欄位 有非 index欄位)
+select SupplierID,CategoryID,CategoryID from products where CategoryID=8                            -- index seek (索引搜尋) (select 欄位 都有 index)
+
+
+-- 測試 4
+SELECT ProductID,SupplierID,ProductName from products where ProductName=&#39;Schoggi Schokolade&#39; -- 新增 非叢集索引 ProductName前 (clustered index scan (叢集索引掃描))
+
+-- 新增 非叢集索引 ProductName
+CREATE NONCLUSTERED INDEX [IX_Products_ProductName] ON [dbo].[Products] (
+    [ProductName] ASC
+)
+
+SELECT ProductID,SupplierID,ProductName from products where ProductName=&#39;Schoggi Schokolade&#39; -- 新增 非叢集索引 ProductName後 (index seek (索引搜尋))
+
+
+-- 測試5
+select ProductID,SupplierID,ProductName,UnitPrice from products where ProductName=&#39;Schoggi Schokolade&#39; -- clustered index scan (叢集索引掃描) (select 欄位 有非 index欄位)
+
+-- 因為SELECT欄位包含非索引欄位 所以結果會是 叢集索引掃描
+-- 但我們常常會select 很多其他欄位 可以在索引加上 Include 讓其他欄位 變為 Nonkey
+
+CREATE NONCLUSTERED INDEX [IX_Products_ProductName] ON [dbo].[Products] (
+    [ProductName] ASC
+)
+INCLUDE (UnitPrice,UnitsInStock)
+
+select ProductID,SupplierID,ProductName,UnitPrice from products where ProductName=&#39;Schoggi Schokolade&#39; -- index seek (索引搜尋) (select 欄位 有非 index欄位)
+select ProductID,SupplierID,ProductName from products where ProductName=&#39;Schoggi Schokolade&#39; AND UnitPrice = 1 -- index seek (索引搜尋) (select 欄位 有非 index欄位)
+select ProductID,SupplierID,ProductName from products where ProductName=&#39;Schoggi Schokolade&#39; AND UnitsInStock = 1 -- index seek (索引搜尋) (select 欄位 有非 index欄位)
+select ProductID,SupplierID,ProductName,UnitsInStock from products where ProductName=&#39;Schoggi Schokolade&#39; -- index seek (索引搜尋) (select 欄位 有非 index欄位)
+</code></pre>
+<h2 id="參考文章、測試資料來源"><a href="#參考文章、測試資料來源" class="headerlink" title="參考文章、測試資料來源"></a>參考文章、測試資料來源</h2><ul>
+<li><a target="_blank" rel="noopener" href="http://vito-note.blogspot.com/2013/05/blog-post_5510.html">建立索引(1)-叢集與非叢集索引</a></li>
+<li><a target="_blank" rel="noopener" href="http://vito-note.blogspot.com/2013/05/blog-post_2862.html">效能調校(2)-分析執行計畫</a></li>
+</ul>
+
+      
+       <hr><span style="font-style: italic;color: gray;"> 轉載請註明來源，若有任何錯誤或表達不清楚的地方，歡迎在下方評論區留言，也可以來信至 leozheng0621@gmail.com </span>
+    </div>
+</article>
+
+
+
+
+
     <div id="comments"></div>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css">
 
@@ -1010,6 +1152,13 @@
 </script>
 
 
+
+
+    
+
+
+
+
     </div>
     <div class="copyright">
         <p class="footer-entry">
@@ -1018,11 +1167,11 @@
 <p class="footer-entry">Built with <a href="https://hexo.io/" target="_blank">Hexo</a> and <a href="https://github.com/yelog/hexo-theme-3-hexo" target="_blank">3-hexo</a> theme</p>
 
     </div>
-</div>
-<div class="full-toc">
-    <button class="full" data-title="切换全屏 快捷键 s"><span class="min "></span></button>
+    <div class="full-toc">
+        <button class="full" data-title="切换全屏 快捷键 s"><span class="min "></span></button>
 <a class="" id="rocket" ></a>
 
+    </div>
 </div>
 
 </body>
