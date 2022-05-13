@@ -1056,7 +1056,7 @@
     </div>
     <div class="article-meta">
         
-            發布時間 : <time class="date" title='更新時間: 2022-05-06 00:42:33'>2022-05-05 22:57</time>
+            發布時間 : <time class="date" title='更新時間: 2022-05-14 01:33:55'>2022-05-05 22:57</time>
         
     </div>
     <div class="article-meta">
@@ -1107,10 +1107,10 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>在還沒設定 Ingress 前，我們的Service服務會設成 NodePort 來讓外部訪問使用，但若服務一多則會造成混亂，且還要提供Port號才能讓外部訪問</p>
+        <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>在還沒設定 Ingress 前，我們的Service服務會設成 NodePort 來讓外部訪問使用<br>但若服務一多則會造成混亂，且還要提供Port號才能讓外部訪問</p>
 <p>而<a target="_blank" rel="noopener" href="https://kubernetes.io/docs/concepts/services-networking/ingress/">Ingress</a> 可以讓我們透過設定Domain的方式 導引至不同的Service<br><img src="https://bingxiangstorage.blob.core.windows.net/blog/k8s-ingress-nginx/2022-05-05-23-15-34.png"></p>
 <p>然而 Ingress 的負載平衡功能 需由 Ingress Controller 提供<br>目前有許多 Ingress Controller 可供使用 可參考 <a target="_blank" rel="noopener" href="https://kubernetes.io/docs/concepts/services-networking/ingress-controllers/">Ingress Controllers</a></p>
-<p>Kubernetes 維護了 <a target="_blank" rel="noopener" href="https://github.com/kubernetes/ingress-gce/blob/master/README.md">ingress-gce</a> 和 <a target="_blank" rel="noopener" href="https://github.com/kubernetes/ingress-nginx/blob/main/README.md">ingress-nginx</a>，在GKE上 有預設提供 ingress-gce controller 可供使用，但在地端 則需要自行安裝 ingress controller</p>
+<p>Kubernetes 維護了 <a target="_blank" rel="noopener" href="https://github.com/kubernetes/ingress-gce/blob/master/README.md">ingress-gce</a> 和 <a target="_blank" rel="noopener" href="https://github.com/kubernetes/ingress-nginx/blob/main/README.md">ingress-nginx</a>，在GKE上 有預設提供 ingress-gce controller 可供使用<br>但在地端 則需要自行安裝 ingress controller</p>
 <p>本文紀錄 如何 安裝 ingress-nginx</p>
 <h2 id="前置作業"><a href="#前置作業" class="headerlink" title="前置作業"></a>前置作業</h2><p>預先準備 </p>
 <ul>
