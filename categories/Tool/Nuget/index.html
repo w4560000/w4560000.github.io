@@ -2,9 +2,9 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <title>個人常用 SQL Server 語法 | w4560000.github.io</title>
-  <meta name="keywords" content=" SQLServer ">
-  <meta name="description" content="個人常用 SQL Server 語法 | w4560000.github.io">
+  <title>w4560000.github.io</title>
+  <meta name="keywords" content="">
+  <meta name="description" content="w4560000.github.io">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <meta name="description" content="前言Nuget 是開發.Net必備的套件管理工具，nuget.org是大家所熟知公開的套件管理儲存庫但如果是私人或是公司內部自用不想讓他人下載的套件則需要自行在地端建立Nuget Server 或是推到雲服務套件的儲存庫(ex: Azure Devops Artifact)。 雖然目前大部分服務都上到雲端了，地端服務已陸續減少，但因我沒實做過架設地端 Nuget Server，所以還是實作紀錄一下">
 <meta property="og:type" content="article">
@@ -81,7 +81,7 @@
 
 
 <body>
-<aside class="nav">
+<aside class="nav mobile">
     <div class="nav-left">
         <a href="/"
    class="avatar_target">
@@ -1025,73 +1025,12 @@
         </div>
     </div>
 </aside>
-<div id="post">
+<div id="post" class="index">
     <div class="pjax">
-        <article id="post-sql-server-common-syntax" class="article article-type-post" itemscope itemprop="blogPost">
+        <article class="index">
+            <div class="toc-ref">
     
-        <h1 class="article-title">個人常用 SQL Server 語法</h1>
-    
-    <div class="article-meta">
-        
-        
-        
-        <span class="book">
-            <i class="iconfont icon-category"></i>
-            
-            
-            <a  data-rel="Database">Database</a> > 
-            
-            <a  data-rel="Database&lt;---&gt;SQLServer">SQLServer</a>
-            
-        </span>
-        
-        
-        <span class="tag">
-            <i class="iconfont icon-tag"></i>
-            
-            <a class="color5">SQLServer</a>
-            
-        </span>
-        
-    </div>
-    <div class="article-meta">
-        
-            發布時間 : <time class="date" title='更新時間: 2022-05-11 23:44:29'>2022-05-05 22:50</time>
-        
-    </div>
-    <div class="article-meta">
-        
-        <span>字數:892</span>
-        
-        
-        <span id="busuanzi_container_page_pv">
-            觀看數 :<span id="busuanzi_value_page_pv">
-                <span class="count-comment">
-                    <span class="spinner">
-                      <div class="cube1"></div>
-                      <div class="cube2"></div>
-                    </span>
-                </span>
-            </span>
-        </span>
-        
-        
-        <span class="top-comment" title="跳转至评论区">
-            <a href="#comments">
-                評論:<span class="count-comment">
-                    <span class="spinner">
-                      <div class="cube1"></div>
-                      <div class="cube2"></div>
-                    </span>
-                </span>
-            </a>
-        </span>
-        
-    </div>
-    
-    <div class="toc-ref">
-    
-        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%90%88%E4%BD%B5%E5%A4%9A%E7%AD%86%E8%B3%87%E6%96%99%E6%AC%84%E4%BD%8D-%E7%82%BA%E5%96%AE%E4%B8%80%E5%AD%97%E4%B8%B2-FOR-XML-PATH-amp-STUFF"><span class="toc-text">合併多筆資料欄位 為單一字串 (FOR XML PATH &amp; STUFF)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#CTE-%E7%AF%84%E4%BE%8B"><span class="toc-text">CTE 範例</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%88%86%E9%A0%81%E8%99%95%E7%90%86%E7%AF%84%E4%BE%8B"><span class="toc-text">分頁處理範例</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#GOTO-%E7%AF%84%E4%BE%8B"><span class="toc-text">GOTO 範例</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#OUTPUT%E7%AF%84%E4%BE%8B"><span class="toc-text">OUTPUT範例</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#LAG%E3%80%81LEAD-%E7%AF%84%E4%BE%8B"><span class="toc-text">LAG、LEAD 範例</span></a></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E9%97%9C%E6%96%BC%E6%88%91%E8%88%87%E8%A9%B2%E9%83%A8%E8%90%BD%E6%A0%BC"><span class="toc-text">關於我與該部落格</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%B0%A1%E4%BB%8B"><span class="toc-text">簡介</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%83%A8%E8%90%BD%E6%A0%BC"><span class="toc-text">部落格</span></a></li></ol></li></ol>
     
 <style>
     .left-col .switch-btn,
@@ -1104,233 +1043,16 @@
     }
 </style>
 </div>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="合併多筆資料欄位-為單一字串-FOR-XML-PATH-amp-STUFF"><a href="#合併多筆資料欄位-為單一字串-FOR-XML-PATH-amp-STUFF" class="headerlink" title="合併多筆資料欄位 為單一字串 (FOR XML PATH &amp; STUFF)"></a>合併多筆資料欄位 為單一字串 (FOR XML PATH &amp; STUFF)</h2><p><a target="_blank" rel="noopener" href="https://docs.microsoft.com/zh-tw/sql/relational-databases/xml/examples-using-path-mode?view=sql-server-ver15">FOR XML PATH MSDN</a><br><a target="_blank" rel="noopener" href="https://docs.microsoft.com/zh-tw/sql/t-sql/functions/stuff-transact-sql?view=sql-server-ver15">STUFF MSDN</a></p>
-<pre><code class="sql">DECLARE @T1 TABLE(Column1 VARCHAR(10))
+            <h1 id="關於我與該部落格"><a href="#關於我與該部落格" class="headerlink" title="關於我與該部落格"></a>關於我與該部落格</h1><h2 id="簡介"><a href="#簡介" class="headerlink" title="簡介"></a>簡介</h2><p>我是一名.Net 開發工程師</p>
+<p>此部落格為軟體開發的學習筆記</p>
+<p>若文章內容有誤，歡迎留言指正，或來信告知 <a href="mailto:&#108;&#x65;&#x6f;&#122;&#104;&#101;&#x6e;&#x67;&#x30;&#x36;&#50;&#x31;&#x40;&#103;&#109;&#97;&#x69;&#108;&#x2e;&#x63;&#111;&#109;">&#108;&#x65;&#x6f;&#122;&#104;&#101;&#x6e;&#x67;&#x30;&#x36;&#50;&#x31;&#x40;&#103;&#109;&#97;&#x69;&#108;&#x2e;&#x63;&#111;&#109;</a></p>
+<h2 id="部落格"><a href="#部落格" class="headerlink" title="部落格"></a>部落格</h2><p>共發布：<code class="article_number"></code>篇文章， 共<code class="site_word_count"></code>字。</p>
+<p>部落格總訪問人數：<code class="site_uv"></code> 人次， 訪問量：<code class="site_pv"></code>次</p>
+<p>此部落格通過 <a target="_blank" rel="noopener" href="https://hexo.io/">Hexo</a> 建立，部屬在 <a target="_blank" rel="noopener" href="https://pages.github.com/">GitHub Pages</a>主題 <a target="_blank" rel="noopener" href="https://github.com/yelog/hexo-theme-3-hexo">3-hexo</a></p>
 
-INSERT INTO @T1
-SELECT &#39;1&#39; UNION
-SELECT &#39;2&#39; UNION
-SELECT &#39;3&#39; 
-
--- STUFF ( str , start , length , replace_str )
--- STUFF ( 原字串, 起始位置, 移除長度, 替換字串)
-
--- 替換字串第一個字元
--- STUFF ( &#39;,1,2,3&#39;, 1, 1, &#39;&#39;)
-
-SELECT STUFF (
-    (
-        SELECT &#39;,&#39; + Column1
-        FROM  @T1
-        FOR XML PATH(&#39;&#39;)
-    ), 1,1,&#39;&#39;)
-</code></pre>
-<h2 id="CTE-範例"><a href="#CTE-範例" class="headerlink" title="CTE 範例"></a>CTE 範例</h2><p><a target="_blank" rel="noopener" href="https://docs.microsoft.com/zh-tw/sql/t-sql/queries/with-common-table-expression-transact-sql?view=sql-server-ver15">CTE MSDN</a></p>
-<pre><code class="sql">DECLARE @T1 TABLE(T1Column1 VARCHAR(10))
-DECLARE @T2 TABLE(T2Column1 VARCHAR(10))
-DECLARE @T3 TABLE(T3Column1 VARCHAR(10))
-
-INSERT INTO @T1 SELECT &#39;T1-1&#39; UNION SELECT &#39;T1-2&#39;
-INSERT INTO @T2 SELECT &#39;T2-1&#39; UNION SELECT &#39;T2-2&#39;
-INSERT INTO @T3 SELECT &#39;T3-1&#39; UNION SELECT &#39;T3-2&#39;
-
-
-;WITH QueryT1 AS
-(
-    SELECT * FROM @T1
-),
-QueryT2 AS
-(
-    SELECT * FROM @T2
-),
-QueryT3 AS
-(
-    SELECT * FROM @T3
-)
-SELECT * FROM QueryT1 t1
-INNER JOIN QueryT2 t2 ON 1 = 1
-INNER JOIN QueryT3 t3 ON 1 = 1
-</code></pre>
-<h2 id="分頁處理範例"><a href="#分頁處理範例" class="headerlink" title="分頁處理範例"></a>分頁處理範例</h2><pre><code class="sql">-- Init Data
-DECLARE @T1 TABLE(ID INT, T1Column1 VARCHAR(10))
-DECLARE @Index INT = 0, @TempData VARCHAR(6);
-
--- Insert Data
-WHILE @Index &lt; 250
-BEGIN
-    INSERT INTO @T1 VALUES (@Index, &#39;Data-&#39; + CONVERT(VARCHAR(6), @Index));
-    SET @Index = @Index + 1;
-END
-
-
-DECLARE @PageIndex        INT = 1        -- 目前頁次
-DECLARE @PageSize        INT = 50    -- 每頁筆數
-DECLARE @TotalRecords    INT = 0        -- 總筆數
-
-SELECT *
-INTO #ResultData
-FROM ( 
-        -- 業務邏輯 BEGIN
-        SELECT 
-            ROW_NUMBER() OVER (ORDER BY ID DESC) AS RowNo,
-            T1Column1
-        FROM @T1
-        -- 業務邏輯 END
-     ) DataList
-
--- 分頁處理
-SELECT * 
-FROM #ResultData
-WHERE RowNo BETWEEN @PageSize * ( @PageIndex - 1 ) + 1 AND ( @PageSize * @PageIndex )
-ORDER BY RowNo
-
--- 取總筆數
-SELECT @TotalRecords = Count(1) FROM #ResultData
-SELECT @TotalRecords
-</code></pre>
-<h2 id="GOTO-範例"><a href="#GOTO-範例" class="headerlink" title="GOTO 範例"></a>GOTO 範例</h2><p><a target="_blank" rel="noopener" href="https://docs.microsoft.com/zh-tw/sql/t-sql/language-elements/goto-transact-sql?view=sql-server-ver15">GOTO MSDN</a></p>
-<pre><code class="sql">DECLARE @TempNumber INT = Round(RAND() * 100, 0);
-DECLARE @Level INT = 0;
-PRINT(&#39;START&#39;)
-
-IF ( @TempNumber &lt; 20)
-BEGIN
-    GOTO End_Proc;    
-END
-
-SET @Level += 1;
-PRINT(&#39;第一關檢核:數字 &gt; 20 通過&#39;)
-
-
-IF ( @TempNumber &lt; 50)
-BEGIN
-    GOTO End_Proc;    
-END
-
-SET @Level += 1;
-PRINT(&#39;第二關檢核:數字 &gt; 50 通過&#39;)
-
-IF ( @TempNumber &lt; 80)
-BEGIN
-    GOTO End_Proc;    
-END
-
-SET @Level += 1;
-PRINT(&#39;第三關檢核:數字 &gt; 80 通過&#39;)
-
-End_Proc:
-    PRINT(&#39;數字&#39; + CONVERT(VARCHAR(6), @TempNumber) + &#39; 共通過&#39; + CONVERT(VARCHAR(6), @Level) + &#39;關檢核&#39;)
-    PRINT(&#39;END&#39;)
-</code></pre>
-<h2 id="OUTPUT範例"><a href="#OUTPUT範例" class="headerlink" title="OUTPUT範例"></a>OUTPUT範例</h2><p><a target="_blank" rel="noopener" href="https://docs.microsoft.com/zh-tw/sql/t-sql/queries/output-clause-transact-sql?view=sql-server-ver15">OUTPUT MSDN</a></p>
-<pre><code class="sql">-- 可接在 INSERT、UPDATE、DELETE、MERGE 後使用
-
--- 寫入 @T1 的資料 OUTPUT 也寫入 @TempData
-
-DECLARE @T1 TABLE(Column1 VARCHAR(10))
-DECLARE @TempData TABLE(TempColumn1 VARCHAR(10))
-
-INSERT INTO @T1
-OUTPUT INSERTED.Column1
-INTO @TempData (TempColumn1)
-SELECT &#39;1&#39; UNION
-SELECT &#39;2&#39; UNION
-SELECT &#39;3&#39; 
-
-SELECT TempColumn1 AS &#39;新增過的資料&#39; FROM @TempData
-DELETE @TempData
-
--- 更新 @T1 的資料 OUTPUT 寫入 @TempData
-UPDATE @T1
-SET Column1 = &#39;1&#39;
-OUTPUT INSERTED.Column1
-INTO @TempData (TempColumn1)
-
-SELECT TempColumn1 AS &#39;更新過的資料&#39; FROM @TempData
-DELETE @TempData
-
--- 刪除 @T1 的資料 OUTPUT 寫入 @TempData
-DELETE @T1
-OUTPUT DELETED.Column1
-INTO @TempData (TempColumn1)
-WHERE Column1 = &#39;1&#39;
-
-
-SELECT TempColumn1 AS &#39;刪除過的資料&#39; FROM @TempData
-
--- MERGE @T1 的資料 OUTPUT 寫入 @MyTempTable
-INSERT INTO @T1
-SELECT &#39;1&#39; UNION ALL
-SELECT &#39;1&#39; UNION ALL
-SELECT &#39;3&#39; 
-
-DECLARE @MyTempTable TABLE
-    (ExistingData VARCHAR(10),
-     ActionTaken nvarchar(10),  
-     NewData VARCHAR(10)
-    )
-
-MERGE @T1 t1
-USING ( SELECT &#39;1&#39; &#39;DataColumn&#39;) data
-ON t1.Column1 = data.DataColumn
-WHEN MATCHED THEN
-    UPDATE SET t1.Column1 = &#39;100&#39;
-WHEN NOT MATCHED THEN
-    INSERT VALUES (&#39;999&#39;)
-OUTPUT deleted.Column1, $action, inserted.Column1 INTO @MyTempTable; 
-
-SELECT ExistingData AS &#39;舊資料&#39;, ActionTaken AS &#39;操作行為&#39;, NewData AS &#39;新資料&#39; FROM @MyTempTable
-</code></pre>
-<h2 id="LAG、LEAD-範例"><a href="#LAG、LEAD-範例" class="headerlink" title="LAG、LEAD 範例"></a>LAG、LEAD 範例</h2><p><a target="_blank" rel="noopener" href="https://docs.microsoft.com/zh-tw/sql/t-sql/functions/lag-transact-sql?view=sql-server-ver15">LAG MSDN</a><br><a target="_blank" rel="noopener" href="https://docs.microsoft.com/zh-tw/sql/t-sql/functions/lead-transact-sql?view=sql-server-ver15">LEAD MSDN</a></p>
-<pre><code class="sql">--@table 原始資料
-DECLARE @table TABLE 
-(
-    [date] datetime,
-    [user] nvarchar(10),
-    [qty] int
-)
-
-INSERT INTO @table ([date],[user],[qty])
-VALUES
-(&#39;2021/10/1&#39;, &#39;Allen&#39;, 10),
-(&#39;2022/1/25&#39;, &#39;Allen&#39;, 20),
-(&#39;2022/3/10&#39;, &#39;Allen&#39;, 30),
-(&#39;2022/5/20&#39;, &#39;Allen&#39;, 20),
-(&#39;2022/6/7&#39;, &#39;Allen&#39;, 20),
-
-(&#39;2021/6/1&#39;, &#39;Ben&#39;, 40),     
-(&#39;2022/4/1&#39;, &#39;Ben&#39;, 20),
-(&#39;2022/4/10&#39;, &#39;Ben&#39;, 10),
-(&#39;2022/5/3&#39;, &#39;Ben&#39;, 10),
-(&#39;2022/6/7&#39;, &#39;Ben&#39;, 40);
-
-SELECT t.*,
-        DATEDIFF(DAY,
-                LAG([date]) OVER (PARTITION BY [user] ORDER BY [date]),
-                [date]
-                ) AS &#39;與前一筆資料差距天數&#39;
-FROM  @table t 
-
-SELECT t.*,
-        ABS(DATEDIFF(DAY,
-                LEAD([date]) OVER (PARTITION BY [user] ORDER BY [date]),
-                [date]
-                )) AS &#39;與後一筆資料差距天數&#39;
-FROM  @table t 
-</code></pre>
-
-      
-       <hr><span style="font-style: italic;color: gray;"> 轉載請註明來源，若有任何錯誤或表達不清楚的地方，歡迎在下方評論區留言，也可以來信至 leozheng0621@gmail.com </span>
-    </div>
-</article>
-
-
-
-
-
+        </article>
+        
+        
     <div id="comments"></div>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css">
 
@@ -1352,13 +1074,6 @@ FROM  @table t
 </script>
 
 
-
-
-    
-
-
-
-
     </div>
     <div class="copyright">
         <p class="footer-entry">
@@ -1367,11 +1082,11 @@ FROM  @table t
 <p class="footer-entry">Built with <a href="https://hexo.io/" target="_blank">Hexo</a> and <a href="https://github.com/yelog/hexo-theme-3-hexo" target="_blank">3-hexo</a> theme</p>
 
     </div>
-    <div class="full-toc">
-        <button class="full" data-title="切換全屏 快捷鍵 s"><span class="min "></span></button>
+</div>
+<div class="full-toc">
+    <button class="full" data-title="切換全屏 快捷鍵 s"><span class="min "></span></button>
 <a class="" id="rocket" ></a>
 
-    </div>
 </div>
 
 </body>
