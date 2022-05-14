@@ -6,41 +6,18 @@
   <meta name="keywords" content=" SFTP ">
   <meta name="description" content="Windows Server 2012 R2 SFTP 服務架設 | w4560000.github.io">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-<meta name="description" content="前言Nuget 是開發.Net必備的套件管理工具，nuget.org是大家所熟知公開的套件管理儲存庫但如果是私人或是公司內部自用不想讓他人下載的套件則需要自行在地端建立Nuget Server 或是推到雲服務套件的儲存庫(ex: Azure Devops Artifact)。 雖然目前大部分服務都上到雲端了，地端服務已陸續減少，但因我沒實做過架設地端 Nuget Server，所以還是實作紀錄一下">
+<meta name="description" content="Test Table Schema--Table CREATE TABLE [dbo].[Products](     [ProductID]            [int] IDENTITY(1,1) NOT NULL,     [ProductName]        [nvarchar](40) NOT NULL,     [SupplierID]        [int] NOT NUL">
 <meta property="og:type" content="article">
-<meta property="og:title" content="自建 Nuget Server">
-<meta property="og:url" content="http://example.com/2022/05/13/nuget-server-init/index.html">
+<meta property="og:title" content="SQL Server Index 測試">
+<meta property="og:url" content="http://example.com/2022/05/12/sql-server-index-test/index.html">
 <meta property="og:site_name" content="w4560000.github.io">
-<meta property="og:description" content="前言Nuget 是開發.Net必備的套件管理工具，nuget.org是大家所熟知公開的套件管理儲存庫但如果是私人或是公司內部自用不想讓他人下載的套件則需要自行在地端建立Nuget Server 或是推到雲服務套件的儲存庫(ex: Azure Devops Artifact)。 雖然目前大部分服務都上到雲端了，地端服務已陸續減少，但因我沒實做過架設地端 Nuget Server，所以還是實作紀錄一下">
+<meta property="og:description" content="Test Table Schema--Table CREATE TABLE [dbo].[Products](     [ProductID]            [int] IDENTITY(1,1) NOT NULL,     [ProductName]        [nvarchar](40) NOT NULL,     [SupplierID]        [int] NOT NUL">
 <meta property="og:locale" content="zh_TW">
-<meta property="og:image" content="https://bingxiangstorage.blob.core.windows.net/blog/nuget-server-init/2022-05-14-01-02-59.png">
-<meta property="og:image" content="https://bingxiangstorage.blob.core.windows.net/blog/nuget-server-init/2022-05-14-01-03-05.png">
-<meta property="og:image" content="https://bingxiangstorage.blob.core.windows.net/blog/nuget-server-init/2022-05-14-01-04-41.png">
-<meta property="og:image" content="https://bingxiangstorage.blob.core.windows.net/blog/nuget-server-init/2022-05-14-01-06-10.png">
-<meta property="og:image" content="https://bingxiangstorage.blob.core.windows.net/blog/nuget-server-init/2022-05-14-01-06-21.png">
-<meta property="og:image" content="https://bingxiangstorage.blob.core.windows.net/blog/nuget-server-init/2022-05-14-01-06-53.png">
-<meta property="og:image" content="https://bingxiangstorage.blob.core.windows.net/blog/nuget-server-init/2022-05-14-01-08-22.png">
-<meta property="og:image" content="https://bingxiangstorage.blob.core.windows.net/blog/nuget-server-init/2022-05-14-01-08-56.png">
-<meta property="og:image" content="https://bingxiangstorage.blob.core.windows.net/blog/nuget-server-init/2022-05-14-01-10-05.png">
-<meta property="og:image" content="https://bingxiangstorage.blob.core.windows.net/blog/nuget-server-init/2022-05-14-01-11-37.png">
-<meta property="og:image" content="https://bingxiangstorage.blob.core.windows.net/blog/nuget-server-init/2022-05-14-01-12-57.png">
-<meta property="og:image" content="https://bingxiangstorage.blob.core.windows.net/blog/nuget-server-init/2022-05-14-01-13-18.png">
-<meta property="og:image" content="https://bingxiangstorage.blob.core.windows.net/blog/nuget-server-init/2022-05-14-01-14-14.png">
-<meta property="og:image" content="https://bingxiangstorage.blob.core.windows.net/blog/nuget-server-init/2022-05-14-01-15-21.png">
-<meta property="og:image" content="https://bingxiangstorage.blob.core.windows.net/blog/nuget-server-init/2022-05-14-01-15-47.png">
-<meta property="og:image" content="https://bingxiangstorage.blob.core.windows.net/blog/nuget-server-init/2022-05-14-01-28-21.png">
-<meta property="og:image" content="https://bingxiangstorage.blob.core.windows.net/blog/nuget-server-init/2022-05-14-01-16-04.png">
-<meta property="og:image" content="https://bingxiangstorage.blob.core.windows.net/blog/nuget-server-init/2022-05-14-01-16-58.png">
-<meta property="og:image" content="https://bingxiangstorage.blob.core.windows.net/blog/nuget-server-init/2022-05-14-01-17-04.png">
-<meta property="og:image" content="https://bingxiangstorage.blob.core.windows.net/blog/nuget-server-init/2022-05-14-01-17-21.png">
-<meta property="og:image" content="https://bingxiangstorage.blob.core.windows.net/blog/nuget-server-init/2022-05-14-01-18-15.png">
-<meta property="article:published_time" content="2022-05-13T15:14:44.000Z">
-<meta property="article:modified_time" content="2022-05-13T17:28:34.160Z">
+<meta property="article:published_time" content="2022-05-11T16:07:13.000Z">
+<meta property="article:modified_time" content="2022-05-11T16:14:52.859Z">
 <meta property="article:author" content="Leo Zheng">
-<meta property="article:tag" content=".Net">
-<meta property="article:tag" content="Nuget">
+<meta property="article:tag" content="SQLServer">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://bingxiangstorage.blob.core.windows.net/blog/nuget-server-init/2022-05-14-01-02-59.png">
 
 
 <link rel="icon" href="/img/avatar.jpg">
@@ -129,7 +106,7 @@
     <li>
         <div class="all active" data-rel="全部文章">全部文章
             
-                <small>(44)</small>
+                <small>(45)</small>
             
         </div>
     </li>
@@ -322,7 +299,7 @@
                         <i class="fold iconfont icon-right"></i>
                         
                         Tool
-                        <small>(9)</small>
+                        <small>(10)</small>
                         
                     </div>
                     
@@ -392,6 +369,18 @@
                                     <div data-rel="Tool<--->Nuget">
                                         
                                         Nuget
+                                        
+                                            <small>(1
+                                                )</small>
+                                        
+                                    </div>
+                                    
+                                </li>
+                            
+                                <li>
+                                    <div data-rel="Tool<--->PowerShell">
+                                        
+                                        PowerShell
                                         
                                             <small>(1
                                                 )</small>
@@ -482,6 +471,10 @@
             
         
     
+        
+            
+        
+    
 </ul>
 <div class="left-bottom">
     <div class="menus">
@@ -504,8 +497,8 @@
         
     </div>
 </div>
-<input type="hidden" id="yelog_site_posts_number" value="44">
-<input type="hidden" id="yelog_site_word_count" value="22.7k">
+<input type="hidden" id="yelog_site_posts_number" value="45">
+<input type="hidden" id="yelog_site_word_count" value="23.1k">
 <div style="display: none">
     <span id="busuanzi_value_site_uv"></span>
     <span id="busuanzi_value_site_pv"></span>
@@ -627,6 +620,10 @@
             </li>
         
             <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>PowerShell</a>
+            </li>
+        
+            <li class="article-tag-list-item">
                 <i class="iconfont icon-tag"></i><a>SFTP</a>
             </li>
         
@@ -650,12 +647,24 @@
                 <i class="iconfont icon-tag"></i><a>Vue</a>
             </li>
         
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>Windows</a>
+            </li>
+        
     </div>
 
 </div>
 
     
     <nav id="title-list-nav">
+        
+        <a  class="全部文章 Tool PowerShell "
+           href="/2022/05/14/windows-setup-script/"
+           data-tag="Windows,PowerShell"
+           data-author="" >
+            <span class="post-title" title="紀錄一下 常用的 Windows VM 設定環境腳本">紀錄一下 常用的 Windows VM 設定環境腳本</span>
+            <span class="post-date" title="2022-05-14 19:29:07">2022/05/14</span>
+        </a>
         
         <a  class="全部文章 Tool Nuget "
            href="/2022/05/13/nuget-server-init/"
@@ -677,7 +686,7 @@
            href="/2022/05/11/octopus-deploy-init-1/"
            data-tag="OctopusDeploy"
            data-author="" >
-            <span class="post-title" title="octopus-deploy-init-1">octopus-deploy-init-1</span>
+            <span class="post-title" title="Octopus Deploy [1] 安裝 Octopus Server">Octopus Deploy [1] 安裝 Octopus Server</span>
             <span class="post-date" title="2022-05-11 23:57:11">2022/05/11</span>
         </a>
         
