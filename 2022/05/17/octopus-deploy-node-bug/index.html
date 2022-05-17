@@ -2,9 +2,9 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <title>w4560000.github.io</title>
-  <meta name="keywords" content="">
-  <meta name="description" content="w4560000.github.io">
+  <title>設定 Octopus Server 時 ServerNode 建立失敗 | w4560000.github.io</title>
+  <meta name="keywords" content=" OctopusDeploy ">
+  <meta name="description" content="設定 Octopus Server 時 ServerNode 建立失敗 | w4560000.github.io">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <meta name="description" content="前言在上一篇Octopus Deploy [2] 設定 Octopus Server的設定過程中，發現一個地雷在此紀錄一下 異常狀況描述 所有任務都在queue中 不執行  切至 Configuration-Nodes 找不到Nodehttp:&#x2F;&#x2F;localhost&#x2F;app#&#x2F;Spaces-1&#x2F;configuration&#x2F;nodes  切至 Configuration-Diagnostics 查看">
 <meta property="og:type" content="article">
@@ -67,7 +67,7 @@
 
 
 <body>
-<aside class="nav mobile">
+<aside class="nav">
     <div class="nav-left">
         <a href="/"
    class="avatar_target">
@@ -1059,12 +1059,73 @@
         </div>
     </div>
 </aside>
-<div id="post" class="index">
+<div id="post">
     <div class="pjax">
-        <article class="index">
-            <div class="toc-ref">
+        <article id="post-octopus-deploy-node-bug" class="article article-type-post" itemscope itemprop="blogPost">
     
-        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E9%97%9C%E6%96%BC%E6%88%91%E8%88%87%E8%A9%B2%E9%83%A8%E8%90%BD%E6%A0%BC"><span class="toc-text">關於我與該部落格</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%B0%A1%E4%BB%8B"><span class="toc-text">簡介</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%83%A8%E8%90%BD%E6%A0%BC"><span class="toc-text">部落格</span></a></li></ol></li></ol>
+        <h1 class="article-title">設定 Octopus Server 時 ServerNode 建立失敗</h1>
+    
+    <div class="article-meta">
+        
+        
+        
+        <span class="book">
+            <i class="iconfont icon-category"></i>
+            
+            
+            <a  data-rel="Devops">Devops</a> > 
+            
+            <a  data-rel="Devops&lt;---&gt;OctopusDeploy">OctopusDeploy</a>
+            
+        </span>
+        
+        
+        <span class="tag">
+            <i class="iconfont icon-tag"></i>
+            
+            <a class="color4">OctopusDeploy</a>
+            
+        </span>
+        
+    </div>
+    <div class="article-meta">
+        
+            發布時間 : <time class="date" title='更新時間: 2022-05-17 20:08:19'>2022-05-17 19:50</time>
+        
+    </div>
+    <div class="article-meta">
+        
+        <span>字數:466</span>
+        
+        
+        <span id="busuanzi_container_page_pv">
+            觀看數 :<span id="busuanzi_value_page_pv">
+                <span class="count-comment">
+                    <span class="spinner">
+                      <div class="cube1"></div>
+                      <div class="cube2"></div>
+                    </span>
+                </span>
+            </span>
+        </span>
+        
+        
+        <span class="top-comment" title="跳转至评论区">
+            <a href="#comments">
+                評論:<span class="count-comment">
+                    <span class="spinner">
+                      <div class="cube1"></div>
+                      <div class="cube2"></div>
+                    </span>
+                </span>
+            </a>
+        </span>
+        
+    </div>
+    
+    <div class="toc-ref">
+    
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%89%8D%E8%A8%80"><span class="toc-text">前言</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%95%B0%E5%B8%B8%E7%8B%80%E6%B3%81%E6%8F%8F%E8%BF%B0"><span class="toc-text">異常狀況描述</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%99%BC%E7%94%9F%E5%95%8F%E9%A1%8C%E5%8E%9F%E5%9B%A0"><span class="toc-text">發生問題原因</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%A9%97%E8%AD%89%E9%8C%AF%E8%AA%A4%E5%8E%9F%E5%9B%A0"><span class="toc-text">驗證錯誤原因</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%B8%AC%E8%A9%A6%E6%98%AF%E5%90%A6%E7%82%BA-deviceName%E5%AD%97%E6%95%B8%E4%B8%8A%E9%99%90%E5%BD%B1%E9%9F%BF"><span class="toc-text">測試是否為 deviceName字數上限影響</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%B8%AC%E8%A9%A6%E6%98%AF%E5%90%A6%E7%82%BA-deviceName-%E5%90%AB%E6%9C%89-dash%E5%AD%97%E5%85%83-%E5%BD%B1%E9%9F%BF"><span class="toc-text">測試是否為 deviceName 含有 dash字元(-)影響</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%B8%AC%E8%A9%A6%E6%98%AF%E5%90%A6%E7%82%BA-deviceName-%E7%B5%90%E5%B0%BE-dash%E5%AD%97%E5%85%83-%E5%BD%B1%E9%9F%BF"><span class="toc-text">測試是否為 deviceName 結尾 dash字元(-)影響</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%B5%90%E8%AB%96"><span class="toc-text">結論</span></a></li></ol>
     
 <style>
     .left-col .switch-btn,
@@ -1077,16 +1138,59 @@
     }
 </style>
 </div>
-            <h1 id="關於我與該部落格"><a href="#關於我與該部落格" class="headerlink" title="關於我與該部落格"></a>關於我與該部落格</h1><h2 id="簡介"><a href="#簡介" class="headerlink" title="簡介"></a>簡介</h2><p>我是一名.Net 開發工程師</p>
-<p>此部落格為軟體開發的學習筆記</p>
-<p>若文章內容有誤，歡迎留言指正，或來信告知 <a href="mailto:&#x6c;&#x65;&#x6f;&#x7a;&#x68;&#x65;&#x6e;&#103;&#x30;&#54;&#50;&#49;&#64;&#x67;&#109;&#97;&#x69;&#x6c;&#x2e;&#99;&#111;&#109;">&#x6c;&#x65;&#x6f;&#x7a;&#x68;&#x65;&#x6e;&#103;&#x30;&#54;&#50;&#49;&#64;&#x67;&#109;&#97;&#x69;&#x6c;&#x2e;&#99;&#111;&#109;</a>，謝謝</p>
-<h2 id="部落格"><a href="#部落格" class="headerlink" title="部落格"></a>部落格</h2><p>共發布：<code class="article_number"></code>篇文章， 共<code class="site_word_count"></code>字。</p>
-<p>部落格總訪問人數：<code class="site_uv"></code> 人次， 訪問量：<code class="site_pv"></code>次</p>
-<p>此部落格通過 <a target="_blank" rel="noopener" href="https://hexo.io/">Hexo</a> 建立，部屬在 <a target="_blank" rel="noopener" href="https://pages.github.com/">GitHub Pages</a>主題 <a target="_blank" rel="noopener" href="https://github.com/yelog/hexo-theme-3-hexo">3-hexo</a></p>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>在上一篇<a href="/2022/05/15/octopus-deploy-init-2/">Octopus Deploy [2] 設定 Octopus Server</a>的設定過程中，發現一個地雷在此紀錄一下</p>
+<h2 id="異常狀況描述"><a href="#異常狀況描述" class="headerlink" title="異常狀況描述"></a>異常狀況描述</h2><ol>
+<li><p>所有任務都在queue中 不執行<br><img src="https://bingxiangstorage.blob.core.windows.net/blog/octopus-deploy-node-bug/2022-05-17-19-52-50.png"></p>
+</li>
+<li><p>切至 Configuration-Nodes 找不到Node<br><a target="_blank" rel="noopener" href="http://localhost/app#/Spaces-1/configuration/nodes">http://localhost/app#/Spaces-1/configuration/nodes</a><br><img src="https://bingxiangstorage.blob.core.windows.net/blog/octopus-deploy-node-bug/2022-05-17-19-53-19.png"></p>
+</li>
+<li><p>切至 Configuration-Diagnostics 查看 Log<br><a target="_blank" rel="noopener" href="http://localhost/app#/Spaces-1/configuration/diagnostics">http://localhost/app#/Spaces-1/configuration/diagnostics</a><br>發現在對Octopus Server node 執行healthCheck會發生錯誤<br><img src="https://bingxiangstorage.blob.core.windows.net/blog/octopus-deploy-node-bug/2022-05-17-19-53-49.png"></p>
+</li>
+<li><p>查看DB Table OctopusServerNode 沒有資料</p>
+<pre><code class="CMD">sqlcmd -S localhost\SQLEXPRESS -E -y 30 -Y 30
+SELECT * FROM [OctopusDeploy-OctopusServer].[dbo].[OctopusServerNode]
+GO
+</code></pre>
+</li>
+</ol>
+<h2 id="發生問題原因"><a href="#發生問題原因" class="headerlink" title="發生問題原因"></a>發生問題原因</h2><p>目前建置錯誤的deviceName = octopus-deploy-server-1</p>
+<p>查看<br>Install script 第一行 發現建立的serverNodeName會抓deviceName</p>
+<blockquote>
+<p>“C:\Program Files\Octopus Deploy\Octopus\Octopus.Server.exe” create-instance –instance “OctopusServer” –config “C:\Octopus\OctopusServer.config” –serverNodeName “OCTOPUS-DEPLOY-“</p>
+</blockquote>
+<h2 id="驗證錯誤原因"><a href="#驗證錯誤原因" class="headerlink" title="驗證錯誤原因"></a>驗證錯誤原因</h2><h3 id="測試是否為-deviceName字數上限影響"><a href="#測試是否為-deviceName字數上限影響" class="headerlink" title="測試是否為 deviceName字數上限影響"></a>測試是否為 deviceName字數上限影響</h3><p>修改deviceName = aaabbbcccdddeeefffggghhh<br><img src="https://bingxiangstorage.blob.core.windows.net/blog/octopus-deploy-node-bug/2022-05-17-19-55-03.png"></p>
+<p>Install script 第一行 serverNodeName = AAABBBCCCDDDEEE (只取15個deviceName字元)<br><code>&quot;C:\Program Files\Octopus Deploy\Octopus\Octopus.Server.exe&quot; create-instance --instance &quot;OctopusServer&quot; --config &quot;C:\Octopus\OctopusServer.config&quot; --serverNodeName &quot;AAABBBCCCDDDEEE&quot;</code></p>
+<p>查看 DB Table Node 資料正常<br><img src="https://bingxiangstorage.blob.core.windows.net/blog/octopus-deploy-node-bug/2022-05-17-19-56-09.png"></p>
+<blockquote>
+<p>不是deviceName字數上限影響</p>
+</blockquote>
+<h3 id="測試是否為-deviceName-含有-dash字元-影響"><a href="#測試是否為-deviceName-含有-dash字元-影響" class="headerlink" title="測試是否為 deviceName 含有 dash字元(-)影響"></a>測試是否為 deviceName 含有 dash字元(-)影響</h3><p>修改deviceName = aa–b-c-c–deeefffggghhh<br>Install script 第一行 serverNodeName = AA–B-C-C–DEEE<br><code>&quot;C:\Program Files\Octopus Deploy\Octopus\Octopus.Server.exe&quot; create-instance --instance &quot;OctopusServer&quot; --config &quot;C:\Octopus\OctopusServer.config&quot; --serverNodeName &quot;AA--B-C-C--DEEE&quot;</code></p>
+<p>查看 DB Table Node 資料正常<br><img src="https://bingxiangstorage.blob.core.windows.net/blog/octopus-deploy-node-bug/2022-05-17-19-57-04.png"></p>
+<blockquote>
+<p>不是deviceName 含有 dash字元(-)影響</p>
+</blockquote>
+<h3 id="測試是否為-deviceName-結尾-dash字元-影響"><a href="#測試是否為-deviceName-結尾-dash字元-影響" class="headerlink" title="測試是否為 deviceName 結尾 dash字元(-)影響"></a>測試是否為 deviceName 結尾 dash字元(-)影響</h3><p>修改deviceName = aaabbbcccdddee-fffggghhh<br>Install script 第一行 serverNodeName = AAABBBCCCDDDEE-<br><code>&quot;C:\Program Files\Octopus Deploy\Octopus\Octopus.Server.exe&quot; create-instance --instance &quot;OctopusServer&quot; --config &quot;C:\Octopus\OctopusServer.config&quot; --serverNodeName &quot;AAABBBCCCDDDEE-&quot;</code></p>
+<p>查看 DB Table Node 發現沒有資料<br><img src="https://bingxiangstorage.blob.core.windows.net/blog/octopus-deploy-node-bug/2022-05-17-19-58-57.png"></p>
+<p>查看 Configuration-Diagnostics Log 發現能重現錯誤<br><a target="_blank" rel="noopener" href="http://localhost/app#/Spaces-1/configuration/diagnostics">http://localhost/app#/Spaces-1/configuration/diagnostics</a></p>
+<p><img src="https://bingxiangstorage.blob.core.windows.net/blog/octopus-deploy-node-bug/2022-05-17-19-59-34.png"></p>
+<blockquote>
+<p>重現錯誤</p>
+</blockquote>
+<h2 id="結論"><a href="#結論" class="headerlink" title="結論"></a>結論</h2><p>Octopus Deploy 建置 Self-hosted Octopus Server時，會抓取當前的deviceName(hostName) 當作 ServerNodeName 且自動轉為大寫</p>
+<p>而 ServerNodeName 有15個字數上限且最後一位字元不能為dash字元(-) 🔥🔥🔥</p>
 
-        </article>
-        
-        
+      
+       <hr><span style="font-style: italic;color: gray;"> 轉載請註明來源，若有任何錯誤或表達不清楚的地方，歡迎在下方評論區留言，也可以來信至 leozheng0621@gmail.com </span>
+    </div>
+</article>
+
+
+
+
+
     <div id="comments"></div>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css">
 
@@ -1108,6 +1212,13 @@
 </script>
 
 
+
+
+    
+
+
+
+
     </div>
     <div class="copyright">
         <p class="footer-entry">
@@ -1116,11 +1227,11 @@
 <p class="footer-entry">Built with <a href="https://hexo.io/" target="_blank">Hexo</a> and <a href="https://github.com/yelog/hexo-theme-3-hexo" target="_blank">3-hexo</a> theme</p>
 
     </div>
-</div>
-<div class="full-toc">
-    <button class="full" data-title="切換全屏 快捷鍵 s"><span class="min "></span></button>
+    <div class="full-toc">
+        <button class="full" data-title="切換全屏 快捷鍵 s"><span class="min "></span></button>
 <a class="" id="rocket" ></a>
 
+    </div>
 </div>
 
 </body>
