@@ -115,7 +115,7 @@
     <li>
         <div class="all active" data-rel="全部文章">全部文章
             
-                <small>(47)</small>
+                <small>(49)</small>
             
         </div>
     </li>
@@ -213,7 +213,7 @@
                         <i class="fold iconfont icon-right"></i>
                         
                         Devops
-                        <small>(25)</small>
+                        <small>(27)</small>
                         
                     </div>
                     
@@ -284,7 +284,7 @@
                                         
                                         OctopusDeploy
                                         
-                                            <small>(3
+                                            <small>(5
                                                 )</small>
                                         
                                     </div>
@@ -506,8 +506,8 @@
         
     </div>
 </div>
-<input type="hidden" id="yelog_site_posts_number" value="47">
-<input type="hidden" id="yelog_site_word_count" value="23.8k">
+<input type="hidden" id="yelog_site_posts_number" value="49">
+<input type="hidden" id="yelog_site_word_count" value="24.5k">
 <div style="display: none">
     <span id="busuanzi_value_site_uv"></span>
     <span id="busuanzi_value_site_pv"></span>
@@ -666,6 +666,22 @@
 
     
     <nav id="title-list-nav">
+        
+        <a  class="全部文章 Devops OctopusDeploy "
+           href="/2022/05/18/octopus-deploy-init-4/"
+           data-tag="OctopusDeploy"
+           data-author="" >
+            <span class="post-title" title="Octopus Deploy [4] 部署機器 安裝 Octopus Tentacle">Octopus Deploy [4] 部署機器 安裝 Octopus Tentacle</span>
+            <span class="post-date" title="2022-05-18 23:53:25">2022/05/18</span>
+        </a>
+        
+        <a  class="全部文章 Devops OctopusDeploy "
+           href="/2022/05/17/octopus-deploy-init-3/"
+           data-tag="OctopusDeploy"
+           data-author="" >
+            <span class="post-title" title="Octopus Deploy [3] Octopus Server 基礎設定">Octopus Deploy [3] Octopus Server 基礎設定</span>
+            <span class="post-date" title="2022-05-17 20:30:12">2022/05/17</span>
+        </a>
         
         <a  class="全部文章 Devops OctopusDeploy "
            href="/2022/05/17/octopus-deploy-node-bug/"
@@ -1092,12 +1108,12 @@
     </div>
     <div class="article-meta">
         
-            發布時間 : <time class="date" title='更新時間: 2022-05-14 19:33:26'>2022-05-14 19:29</time>
+            發布時間 : <time class="date" title='更新時間: 2022-05-18 23:15:04'>2022-05-14 19:29</time>
         
     </div>
     <div class="article-meta">
         
-        <span>字數:75</span>
+        <span>字數:108</span>
         
         
         <span id="busuanzi_container_page_pv">
@@ -1127,7 +1143,7 @@
     
     <div class="toc-ref">
     
-        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BB%A5%E7%B3%BB%E7%B5%B1%E7%AE%A1%E7%90%86%E5%93%A1%E8%BA%AB%E5%88%86%E9%96%8B%E5%95%9F-PowerShell"><span class="toc-text">以系統管理員身分開啟 PowerShell</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%89%E8%A3%9D-Chrome"><span class="toc-text">安裝 Chrome</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%89%E8%A3%9D-Telnet"><span class="toc-text">安裝 Telnet</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%A8%AD%E5%AE%9A%E5%8F%B0%E5%8C%97%E6%99%82%E5%8D%80"><span class="toc-text">設定台北時區</span></a></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BB%A5%E7%B3%BB%E7%B5%B1%E7%AE%A1%E7%90%86%E5%93%A1%E8%BA%AB%E5%88%86%E9%96%8B%E5%95%9F-PowerShell"><span class="toc-text">以系統管理員身分開啟 PowerShell</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%89%E8%A3%9D-Chrome"><span class="toc-text">安裝 Chrome</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%89%E8%A3%9D-Telnet"><span class="toc-text">安裝 Telnet</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%A8%AD%E5%AE%9A%E5%8F%B0%E5%8C%97%E6%99%82%E5%8D%80"><span class="toc-text">設定台北時區</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%89%E8%A3%9D-chocolatey"><span class="toc-text">安裝 chocolatey</span></a></li></ol>
     
 <style>
     .left-col .switch-btn,
@@ -1148,6 +1164,8 @@
 <h2 id="安裝-Telnet"><a href="#安裝-Telnet" class="headerlink" title="安裝 Telnet"></a>安裝 Telnet</h2><pre><code class="PowerShell">Install-WindowsFeature Telnet-Client
 </code></pre>
 <h2 id="設定台北時區"><a href="#設定台北時區" class="headerlink" title="設定台北時區"></a>設定台北時區</h2><pre><code class="PowerShell">tzutil /s &quot;Taipei Standard Time&quot;
+</code></pre>
+<h2 id="安裝-chocolatey"><a href="#安裝-chocolatey" class="headerlink" title="安裝 chocolatey"></a>安裝 chocolatey</h2><pre><code class="PowerShell">Set-ExecutionPolicy Bypass -Scope Process -Force;[System.Net.ServicePointManager]::SecurityProtocol = System.Net.ServicePointManager]::SecurityProtocol -bor 3072; iex ((New-Object System.Net.WebClient).DownloadString(&#39;https://community.chocolatey.org/install.ps1&#39;))
 </code></pre>
 
       

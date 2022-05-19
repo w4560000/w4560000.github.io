@@ -115,7 +115,7 @@
     <li>
         <div class="all active" data-rel="全部文章">全部文章
             
-                <small>(47)</small>
+                <small>(49)</small>
             
         </div>
     </li>
@@ -213,7 +213,7 @@
                         <i class="fold iconfont icon-right"></i>
                         
                         Devops
-                        <small>(25)</small>
+                        <small>(27)</small>
                         
                     </div>
                     
@@ -284,7 +284,7 @@
                                         
                                         OctopusDeploy
                                         
-                                            <small>(3
+                                            <small>(5
                                                 )</small>
                                         
                                     </div>
@@ -506,8 +506,8 @@
         
     </div>
 </div>
-<input type="hidden" id="yelog_site_posts_number" value="47">
-<input type="hidden" id="yelog_site_word_count" value="23.8k">
+<input type="hidden" id="yelog_site_posts_number" value="49">
+<input type="hidden" id="yelog_site_word_count" value="24.5k">
 <div style="display: none">
     <span id="busuanzi_value_site_uv"></span>
     <span id="busuanzi_value_site_pv"></span>
@@ -666,6 +666,22 @@
 
     
     <nav id="title-list-nav">
+        
+        <a  class="全部文章 Devops OctopusDeploy "
+           href="/2022/05/18/octopus-deploy-init-4/"
+           data-tag="OctopusDeploy"
+           data-author="" >
+            <span class="post-title" title="Octopus Deploy [4] 部署機器 安裝 Octopus Tentacle">Octopus Deploy [4] 部署機器 安裝 Octopus Tentacle</span>
+            <span class="post-date" title="2022-05-18 23:53:25">2022/05/18</span>
+        </a>
+        
+        <a  class="全部文章 Devops OctopusDeploy "
+           href="/2022/05/17/octopus-deploy-init-3/"
+           data-tag="OctopusDeploy"
+           data-author="" >
+            <span class="post-title" title="Octopus Deploy [3] Octopus Server 基礎設定">Octopus Deploy [3] Octopus Server 基礎設定</span>
+            <span class="post-date" title="2022-05-17 20:30:12">2022/05/17</span>
+        </a>
         
         <a  class="全部文章 Devops OctopusDeploy "
            href="/2022/05/17/octopus-deploy-node-bug/"
@@ -1090,12 +1106,12 @@
     </div>
     <div class="article-meta">
         
-            發布時間 : <time class="date" title='更新時間: 2022-05-15 22:12:27'>2022-05-11 23:57</time>
+            發布時間 : <time class="date" title='更新時間: 2022-05-19 22:28:04'>2022-05-11 23:57</time>
         
     </div>
     <div class="article-meta">
         
-        <span>字數:401</span>
+        <span>字數:440</span>
         
         
         <span id="busuanzi_container_page_pv">
@@ -1151,7 +1167,7 @@
 <p>Octopus Server Community 為免費License一年的使用期限<br>但有限制功能 如圖所示<br><img src="https://bingxiangstorage.blob.core.windows.net/blog/octopus-deploy-init-1/2022-05-14-19-05-28.png"><br><img src="https://bingxiangstorage.blob.core.windows.net/blog/octopus-deploy-init-1/2022-05-14-19-08-05.png"></p>
 <h2 id="建立-Octopus-Server-機器環境"><a href="#建立-Octopus-Server-機器環境" class="headerlink" title="建立 Octopus Server 機器環境"></a>建立 Octopus Server 機器環境</h2><p>Octopus Server 機器配備 可參考 <a target="_blank" rel="noopener" href="https://octopus.com/docs/installation/requirements">Installation requirements</a></p>
 <p>先建立GCP VM 作範例機器</p>
-<pre><code class="Cloud">gcloud compute instances create octopus-deploy-server \
+<pre><code class="Cloud">gcloud compute instances create octopus-server \
     --async \
     --boot-disk-size 200GB \
     --can-ip-forward \
@@ -1160,11 +1176,13 @@
     --machine-type e2-standard-2 \
     --scopes compute-rw,storage-ro,service-management,service-control,logging-write,monitoring \
     --zone asia-east1-a \
-    --tags octopus-deploy-server
+    --tags octopus-server
 </code></pre>
-<h2 id="安裝-Octopus-Server"><a href="#安裝-Octopus-Server" class="headerlink" title="安裝 Octopus Server"></a>安裝 Octopus Server</h2><p>先至官網下載 <a target="_blank" rel="noopener" href="https://octopus.com/downloads/server">Download Octopus Server</a><br><img src="https://bingxiangstorage.blob.core.windows.net/blog/octopus-deploy-init-1/2022-05-14-19-50-56.png"><br><img src="https://bingxiangstorage.blob.core.windows.net/blog/octopus-deploy-init-1/2022-05-14-19-51-56.png"><br><img src="https://bingxiangstorage.blob.core.windows.net/blog/octopus-deploy-init-1/2022-05-14-19-55-14.png"><br><img src="https://bingxiangstorage.blob.core.windows.net/blog/octopus-deploy-init-1/2022-05-14-19-52-51.png"></p>
-<p>等待安裝…<br><img src="https://bingxiangstorage.blob.core.windows.net/blog/octopus-deploy-init-1/2022-05-14-19-53-11.png"><br><img src="https://bingxiangstorage.blob.core.windows.net/blog/octopus-deploy-init-1/2022-05-14-19-55-55.png"><br><img src="https://bingxiangstorage.blob.core.windows.net/blog/octopus-deploy-init-1/2022-05-14-19-56-12.png"></p>
-<p>約1、2分鐘後 安裝成功<br><img src="https://bingxiangstorage.blob.core.windows.net/blog/octopus-deploy-init-1/2022-05-14-20-00-45.png"><br><img src="https://bingxiangstorage.blob.core.windows.net/blog/octopus-deploy-init-1/2022-05-14-20-01-43.png"><br><img src="https://bingxiangstorage.blob.core.windows.net/blog/octopus-deploy-init-1/2022-05-14-20-01-59.png"></p>
+<p>將臨時外部IP 提升成永久靜態IP</p>
+<pre><code class="Cloud">gcloud compute addresses create octopus-server-ip --addresses=35.201.217.xxx --region=asia-east1
+</code></pre>
+<h2 id="安裝-Octopus-Server"><a href="#安裝-Octopus-Server" class="headerlink" title="安裝 Octopus Server"></a>安裝 Octopus Server</h2><p>先至官網下載 <a target="_blank" rel="noopener" href="https://octopus.com/downloads/server">Download Octopus Server</a> 當下安裝的版本為 Version 2022.1.2584<br><img src="https://bingxiangstorage.blob.core.windows.net/blog/octopus-deploy-init-1/2022-05-19-21-23-54.png"><br><img src="https://bingxiangstorage.blob.core.windows.net/blog/octopus-deploy-init-1/2022-05-19-21-26-09.png"><br><img src="https://bingxiangstorage.blob.core.windows.net/blog/octopus-deploy-init-1/2022-05-19-21-26-48.png"><br><img src="https://bingxiangstorage.blob.core.windows.net/blog/octopus-deploy-init-1/2022-05-19-21-29-43.png"></p>
+<p>等待安裝…<br><img src="https://bingxiangstorage.blob.core.windows.net/blog/octopus-deploy-init-1/2022-05-14-19-53-11.png"><br><img src="https://bingxiangstorage.blob.core.windows.net/blog/octopus-deploy-init-1/2022-05-14-19-55-55.png"><br><img src="https://bingxiangstorage.blob.core.windows.net/blog/octopus-deploy-init-1/2022-05-14-19-56-12.png"><br>約1、2分鐘後 安裝成功<br><img src="https://bingxiangstorage.blob.core.windows.net/blog/octopus-deploy-init-1/2022-05-19-21-33-19.png"><br><img src="https://bingxiangstorage.blob.core.windows.net/blog/octopus-deploy-init-1/2022-05-14-20-01-43.png"><br><img src="https://bingxiangstorage.blob.core.windows.net/blog/octopus-deploy-init-1/2022-05-19-21-34-29.png"></p>
 <blockquote>
 <p>到目前為止 已順利安裝 Octopus Server 下一篇 <a href="/2022/05/15/octopus-deploy-init-2/">Octopus Deploy [2] 設定 Octopus Server</a> 開始設定 Octopus Server</p>
 </blockquote>
