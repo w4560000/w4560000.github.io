@@ -6,27 +6,19 @@
   <meta name="keywords" content=" OctopusDeploy ">
   <meta name="description" content="Octopus Deploy [3] Octopus Server 基礎設定 | w4560000.github.io">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-<meta name="description" content="前言在上一篇Octopus Deploy [2] 設定 Octopus Server的設定過程中，發現一個地雷在此紀錄一下 異常狀況描述 所有任務都在queue中 不執行  切至 Configuration-Nodes 找不到Nodehttp:&#x2F;&#x2F;localhost&#x2F;app#&#x2F;Spaces-1&#x2F;configuration&#x2F;nodes  切至 Configuration-Diagnostics 查看">
+<meta name="description" content="以系統管理員身分開啟 PowerShell安裝 IIS Enable-WindowsOptionalFeature -Online -FeatureName IIS-WebServerRole -All Enable-WindowsOptionalFeature -Online -FeatureName IIS-WebServer -All Enable-WindowsOptionalFeatur">
 <meta property="og:type" content="article">
-<meta property="og:title" content="設定 Octopus Server 時 ServerNode 建立失敗">
-<meta property="og:url" content="http://example.com/2022/05/17/octopus-deploy-node-bug/index.html">
+<meta property="og:title" content="PowerShell 安裝 IIS">
+<meta property="og:url" content="http://example.com/2022/05/22/windows-setup-iis-script/index.html">
 <meta property="og:site_name" content="w4560000.github.io">
-<meta property="og:description" content="前言在上一篇Octopus Deploy [2] 設定 Octopus Server的設定過程中，發現一個地雷在此紀錄一下 異常狀況描述 所有任務都在queue中 不執行  切至 Configuration-Nodes 找不到Nodehttp:&#x2F;&#x2F;localhost&#x2F;app#&#x2F;Spaces-1&#x2F;configuration&#x2F;nodes  切至 Configuration-Diagnostics 查看">
+<meta property="og:description" content="以系統管理員身分開啟 PowerShell安裝 IIS Enable-WindowsOptionalFeature -Online -FeatureName IIS-WebServerRole -All Enable-WindowsOptionalFeature -Online -FeatureName IIS-WebServer -All Enable-WindowsOptionalFeatur">
 <meta property="og:locale" content="zh_TW">
-<meta property="og:image" content="https://bingxiangstorage.blob.core.windows.net/blog/octopus-deploy-node-bug/2022-05-17-19-52-50.png">
-<meta property="og:image" content="https://bingxiangstorage.blob.core.windows.net/blog/octopus-deploy-node-bug/2022-05-17-19-53-19.png">
-<meta property="og:image" content="https://bingxiangstorage.blob.core.windows.net/blog/octopus-deploy-node-bug/2022-05-17-19-53-49.png">
-<meta property="og:image" content="https://bingxiangstorage.blob.core.windows.net/blog/octopus-deploy-node-bug/2022-05-17-19-55-03.png">
-<meta property="og:image" content="https://bingxiangstorage.blob.core.windows.net/blog/octopus-deploy-node-bug/2022-05-17-19-56-09.png">
-<meta property="og:image" content="https://bingxiangstorage.blob.core.windows.net/blog/octopus-deploy-node-bug/2022-05-17-19-57-04.png">
-<meta property="og:image" content="https://bingxiangstorage.blob.core.windows.net/blog/octopus-deploy-node-bug/2022-05-17-19-58-57.png">
-<meta property="og:image" content="https://bingxiangstorage.blob.core.windows.net/blog/octopus-deploy-node-bug/2022-05-17-19-59-34.png">
-<meta property="article:published_time" content="2022-05-17T11:50:27.000Z">
-<meta property="article:modified_time" content="2022-05-17T12:08:19.856Z">
+<meta property="article:published_time" content="2022-05-21T17:35:49.000Z">
+<meta property="article:modified_time" content="2022-05-21T17:53:19.564Z">
 <meta property="article:author" content="Leo Zheng">
-<meta property="article:tag" content="OctopusDeploy">
+<meta property="article:tag" content="Windows">
+<meta property="article:tag" content="PowerShell">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://bingxiangstorage.blob.core.windows.net/blog/octopus-deploy-node-bug/2022-05-17-19-52-50.png">
 
 
 <link rel="icon" href="/img/avatar.jpg">
@@ -115,7 +107,7 @@
     <li>
         <div class="all active" data-rel="全部文章">全部文章
             
-                <small>(49)</small>
+                <small>(52)</small>
             
         </div>
     </li>
@@ -213,7 +205,7 @@
                         <i class="fold iconfont icon-right"></i>
                         
                         Devops
-                        <small>(27)</small>
+                        <small>(29)</small>
                         
                     </div>
                     
@@ -284,7 +276,7 @@
                                         
                                         OctopusDeploy
                                         
-                                            <small>(5
+                                            <small>(7
                                                 )</small>
                                         
                                     </div>
@@ -308,7 +300,7 @@
                         <i class="fold iconfont icon-right"></i>
                         
                         Tool
-                        <small>(10)</small>
+                        <small>(11)</small>
                         
                     </div>
                     
@@ -391,7 +383,7 @@
                                         
                                         PowerShell
                                         
-                                            <small>(1
+                                            <small>(2
                                                 )</small>
                                         
                                     </div>
@@ -506,8 +498,8 @@
         
     </div>
 </div>
-<input type="hidden" id="yelog_site_posts_number" value="49">
-<input type="hidden" id="yelog_site_word_count" value="24.5k">
+<input type="hidden" id="yelog_site_posts_number" value="52">
+<input type="hidden" id="yelog_site_word_count" value="26.1k">
 <div style="display: none">
     <span id="busuanzi_value_site_uv"></span>
     <span id="busuanzi_value_site_pv"></span>
@@ -667,6 +659,30 @@
     
     <nav id="title-list-nav">
         
+        <a  class="全部文章 Tool PowerShell "
+           href="/2022/05/22/windows-setup-iis-script/"
+           data-tag="Windows,PowerShell"
+           data-author="" >
+            <span class="post-title" title="PowerShell 安裝 IIS">PowerShell 安裝 IIS</span>
+            <span class="post-date" title="2022-05-22 01:35:49">2022/05/22</span>
+        </a>
+        
+        <a  class="全部文章 Devops OctopusDeploy "
+           href="/2022/05/21/octopus-deploy-deployment-process-dotnet/"
+           data-tag=".Net,OctopusDeploy"
+           data-author="" >
+            <span class="post-title" title="Octopus Deploy 設定 .Net MVC 專案 Deployment Process">Octopus Deploy 設定 .Net MVC 專案 Deployment Process</span>
+            <span class="post-date" title="2022-05-21 04:04:55">2022/05/21</span>
+        </a>
+        
+        <a  class="全部文章 Devops OctopusDeploy "
+           href="/2022/05/19/octopus-deploy-dotnet-mvc/"
+           data-tag=".Net,OctopusDeploy"
+           data-author="" >
+            <span class="post-title" title="ASP.NET MVC CI/CD 實作">ASP.NET MVC CI/CD 實作</span>
+            <span class="post-date" title="2022-05-19 22:30:04">2022/05/19</span>
+        </a>
+        
         <a  class="全部文章 Devops OctopusDeploy "
            href="/2022/05/18/octopus-deploy-init-4/"
            data-tag="OctopusDeploy"
@@ -703,7 +719,7 @@
            href="/2022/05/14/windows-setup-script/"
            data-tag="Windows,PowerShell"
            data-author="" >
-            <span class="post-title" title="紀錄一下 常用的 Windows VM 設定環境腳本">紀錄一下 常用的 Windows VM 設定環境腳本</span>
+            <span class="post-title" title="常用的 PowerShell 設定環境腳本">常用的 PowerShell 設定環境腳本</span>
             <span class="post-date" title="2022-05-14 19:29:07">2022/05/14</span>
         </a>
         
@@ -1106,12 +1122,12 @@
     </div>
     <div class="article-meta">
         
-            發布時間 : <time class="date" title='更新時間: 2022-05-19 22:28:02'>2022-05-17 20:30</time>
+            發布時間 : <time class="date" title='更新時間: 2022-05-22 03:01:03'>2022-05-17 20:30</time>
         
     </div>
     <div class="article-meta">
         
-        <span>字數:346</span>
+        <span>字數:591</span>
         
         
         <span id="busuanzi_container_page_pv">
@@ -1141,7 +1157,7 @@
     
     <div class="toc-ref">
     
-        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%89%8D%E8%A8%80"><span class="toc-text">前言</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%BB%BA%E7%AB%8B-Project-Group-Octopus-Server"><span class="toc-text">建立 Project Group (Octopus Server)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%BB%BA%E7%AB%8B-Projects-Octopus-Server"><span class="toc-text">建立 Projects (Octopus Server)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%BB%BA%E7%AB%8B-Environments-Octopus-Server"><span class="toc-text">建立 Environments (Octopus Server)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%BB%BA%E7%AB%8B-Deployment-Targets-Octopus-Server"><span class="toc-text">建立 Deployment Targets (Octopus Server)</span></a></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%89%8D%E8%A8%80"><span class="toc-text">前言</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%BB%BA%E7%AB%8B-Project-Group-Octopus-Server"><span class="toc-text">建立 Project Group (Octopus Server)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%BB%BA%E7%AB%8B-Projects-Octopus-Server"><span class="toc-text">建立 Projects (Octopus Server)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%BB%BA%E7%AB%8B-Environments-Octopus-Server"><span class="toc-text">建立 Environments (Octopus Server)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%BB%BA%E7%AB%8B-Deployment-Targets-Octopus-Server"><span class="toc-text">建立 Deployment Targets (Octopus Server)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%BB%BA%E7%AB%8B-Lifecycles"><span class="toc-text">建立 Lifecycles</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%BB%BA%E7%AB%8B-Project-Channel"><span class="toc-text">建立 Project Channel</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%B5%90%E8%AB%96"><span class="toc-text">結論</span></a></li></ol>
     
 <style>
     .left-col .switch-btn,
@@ -1162,14 +1178,14 @@
 <h2 id="建立-Projects-Octopus-Server"><a href="#建立-Projects-Octopus-Server" class="headerlink" title="建立 Projects (Octopus Server)"></a>建立 Projects (Octopus Server)</h2><p>從藍框建立的 Project 會設為預設的Group<br>從紅框建立的 則歸屬在 Web Group底下<br><img src="https://bingxiangstorage.blob.core.windows.net/blog/octopus-deploy-init-3/2022-05-19-22-02-13.png"><br><img src="https://bingxiangstorage.blob.core.windows.net/blog/octopus-deploy-init-3/2022-05-17-23-50-32.png"><br><img src="https://bingxiangstorage.blob.core.windows.net/blog/octopus-deploy-init-3/2022-05-17-23-51-21.png"><br><img src="https://bingxiangstorage.blob.core.windows.net/blog/octopus-deploy-init-3/2022-05-17-23-51-59.png"></p>
 <h2 id="建立-Environments-Octopus-Server"><a href="#建立-Environments-Octopus-Server" class="headerlink" title="建立 Environments (Octopus Server)"></a>建立 Environments (Octopus Server)</h2><p><img src="https://bingxiangstorage.blob.core.windows.net/blog/octopus-deploy-init-3/2022-05-19-22-04-25.png"></p>
 <p>建立 Develop、QC 環境<br><img src="https://bingxiangstorage.blob.core.windows.net/blog/octopus-deploy-init-3/2022-05-18-00-05-40.png"><br><img src="https://bingxiangstorage.blob.core.windows.net/blog/octopus-deploy-init-3/2022-05-18-00-46-49.png"></p>
-<p><a target="_blank" rel="noopener" href="https://octopus.com/docs/releases/guided-failures">Guided failures</a> todo 有機會在測試使用<br>可啟用失敗引導 =&gt; 當佈署發生錯誤中斷時，可人工操作進行決策</p>
+<p><a target="_blank" rel="noopener" href="https://octopus.com/docs/releases/guided-failures">Guided failures</a><br>可啟用失敗引導 =&gt; 當佈署發生錯誤中斷時，可人工操作進行決策</p>
 <ol>
 <li>FAIL: mark the deployment as failed, don’t try anything else.</li>
 <li>RETRY: retry the step where the error occurred.</li>
 <li>IGNORE: skip the operation, but keep going with the deployment.</li>
 <li>EXCLUDE MACHINE FROM DEPLOYMENTS: exclude the deployment target from the rest of the deployment and proceed.</li>
 </ol>
-<p><a target="_blank" rel="noopener" href="https://octopus.com/docs/infrastructure/deployment-targets/dynamic-infrastructure">Dynamic Infrastructure</a> todo 有機會在測試使用<br>可以透過 Octopus 的 API 動態創建 Octopus accounts, targets, and workers</p>
+<p><a target="_blank" rel="noopener" href="https://octopus.com/docs/infrastructure/deployment-targets/dynamic-infrastructure">Dynamic Infrastructure</a><br>可以透過 Octopus 的 API 動態創建 Octopus accounts, targets, and workers</p>
 <h2 id="建立-Deployment-Targets-Octopus-Server"><a href="#建立-Deployment-Targets-Octopus-Server" class="headerlink" title="建立 Deployment Targets (Octopus Server)"></a>建立 Deployment Targets (Octopus Server)</h2><p><img src="https://bingxiangstorage.blob.core.windows.net/blog/octopus-deploy-init-3/2022-05-18-00-06-47.png"></p>
 <p>有支援多項服務，包括雲服務、Kubernetes<br>以佈署到 Windows 機器做範例，選擇 Listening Tentacles (官網推薦)，其餘方式可參考 <a target="_blank" rel="noopener" href="https://octopus.com/docs/infrastructure/deployment-targets/windows-targets/tentacle-communication">Tentacle communication modes</a><br>Listening Tentacles 是在佈署機器上建立 TCP Port，以供 Octopus Deploy 佈署時連接<br><img src="https://bingxiangstorage.blob.core.windows.net/blog/octopus-deploy-init-3/2022-05-18-00-07-39.png"></p>
 <p>紅框需填入部署機器IP<br><img src="https://bingxiangstorage.blob.core.windows.net/blog/octopus-deploy-init-3/2022-05-19-22-06-47.png"></p>
@@ -1177,9 +1193,29 @@
 <p>部署機器設定好後 填入部署機器IP<br><img src="https://bingxiangstorage.blob.core.windows.net/blog/octopus-deploy-init-3/2022-05-19-22-14-00.png"></p>
 <p>設定 develop機器 Listening Tentacle<br><img src="https://bingxiangstorage.blob.core.windows.net/blog/octopus-deploy-init-3/2022-05-19-00-57-06.png"><br><img src="https://bingxiangstorage.blob.core.windows.net/blog/octopus-deploy-init-3/2022-05-19-22-17-30.png"></p>
 <p>待 develop、qc 都設定好後重新查看 Deployment Targets 是否正確連線<br><img src="https://bingxiangstorage.blob.core.windows.net/blog/octopus-deploy-init-3/2022-05-19-22-20-09.png"></p>
-<blockquote>
-<p>目前 Octopus Server &amp; Octopus Client (develop、qc) 皆已設定完畢，接下來實作 部署 .Net Framework 網站至 IIS</p>
+<h2 id="建立-Lifecycles"><a href="#建立-Lifecycles" class="headerlink" title="建立 Lifecycles"></a>建立 Lifecycles</h2><blockquote>
+<p>Lifecycle 用以限制部署的環境<br><img src="https://bingxiangstorage.blob.core.windows.net/blog/octopus-deploy-init-3/2022-05-21-04-51-23.png"></p>
 </blockquote>
+<blockquote>
+<p>Retention Policy 用以選擇永久保留或清除 releases 版本資料 和 packages 版本資料<br>若是跑在線上的服務 通常會設定清除固定時間的 releases 或 packages，不會讓資料無止盡增長 消耗 octopus Server 硬碟空間<br><img src="https://bingxiangstorage.blob.core.windows.net/blog/octopus-deploy-init-3/2022-05-21-04-54-52.png"></p>
+</blockquote>
+<p>新增 Phases<br><img src="https://bingxiangstorage.blob.core.windows.net/blog/octopus-deploy-init-3/2022-05-21-05-08-57.png"></p>
+<p>限定該Lifecycle 只能部署到 Develop<br><img src="https://bingxiangstorage.blob.core.windows.net/blog/octopus-deploy-init-3/2022-05-21-05-10-06.png"></p>
+<blockquote>
+<p>可選擇 有新建release版本則直接部署到環境機器上 以及 手動點擊release版本進行部署<br>需從產品維運角度來判斷，若是要固定時間部版，則選擇手動部署，若是隨時部署都無所謂的服務，可選擇自動部署<br><img src="https://bingxiangstorage.blob.core.windows.net/blog/octopus-deploy-init-3/2022-05-21-05-00-01.png"></p>
+</blockquote>
+<p>設定完成後 儲存<br><img src="https://bingxiangstorage.blob.core.windows.net/blog/octopus-deploy-init-3/2022-05-21-05-11-08.png"></p>
+<p>建立完成後 查看</p>
+<blockquote>
+<p>目前限定 develop 只能部署到 develop環境， qc 則可以部署到 develop環境、qc環境<br><img src="https://bingxiangstorage.blob.core.windows.net/blog/octopus-deploy-init-3/2022-05-21-05-13-17.png"></p>
+</blockquote>
+<h2 id="建立-Project-Channel"><a href="#建立-Project-Channel" class="headerlink" title="建立 Project Channel"></a>建立 Project Channel</h2><p><img src="https://bingxiangstorage.blob.core.windows.net/blog/octopus-deploy-init-3/2022-05-21-05-15-21.png"></p>
+<p>建立 develop Channel，Lifecycle 選擇 develop (qc依此類推)<br><img src="https://bingxiangstorage.blob.core.windows.net/blog/octopus-deploy-init-3/2022-05-21-05-16-24.png"></p>
+<p>建立完成後 查看</p>
+<blockquote>
+<p>目前該 Project 的 Channel 除了預設 Default之外，又多加了 develop、qc<br><img src="https://bingxiangstorage.blob.core.windows.net/blog/octopus-deploy-init-3/2022-05-21-05-18-08.png"></p>
+</blockquote>
+<h2 id="結論"><a href="#結論" class="headerlink" title="結論"></a>結論</h2><p>目前 Octopus Server &amp; Octopus Client (develop、qc) 皆已設定完畢，接下來實作 部署 .Net Framework 網站至 IIS<br><a href="2022/05/19/octopus-deploy-deployment-process-dotnet/">ASP.NET MVC CI/CD 實作</a></p>
 
       
        <hr><span style="font-style: italic;color: gray;"> 轉載請註明來源，若有任何錯誤或表達不清楚的地方，歡迎在下方評論區留言，也可以來信至 leozheng0621@gmail.com </span>
