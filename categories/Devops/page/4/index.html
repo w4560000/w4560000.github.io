@@ -2,9 +2,9 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <title>ASP.NET MVC CI/CD 實作 | w4560000.github.io</title>
-  <meta name="keywords" content=" .Net , OctopusDeploy ">
-  <meta name="description" content="ASP.NET MVC CI/CD 實作 | w4560000.github.io">
+  <title>w4560000.github.io</title>
+  <meta name="keywords" content="">
+  <meta name="description" content="w4560000.github.io">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <meta name="description" content="前言在 .Net framework 專案，專案參數通常都設定在 Web.config本篇記錄在 Octopus Deploy 如何因應各環境各自轉換 Web.config 開發工具: VS2019 新增組態設定 develop、qc開啟組態管理員 新增組態 develop、qc 右鍵 Web.config &gt; 新增設定轉換 設定 Web.develop.config、Web.qc.conf">
 <meta property="og:type" content="article">
@@ -75,7 +75,7 @@
 
 
 <body>
-<aside class="nav">
+<aside class="nav mobile">
     <div class="nav-left">
         <a href="/"
    class="avatar_target">
@@ -1123,75 +1123,12 @@
         </div>
     </div>
 </aside>
-<div id="post">
+<div id="post" class="index">
     <div class="pjax">
-        <article id="post-octopus-deploy-dotnet-mvc" class="article article-type-post" itemscope itemprop="blogPost">
+        <article class="index">
+            <div class="toc-ref">
     
-        <h1 class="article-title">ASP.NET MVC CI/CD 實作</h1>
-    
-    <div class="article-meta">
-        
-        
-        
-        <span class="book">
-            <i class="iconfont icon-category"></i>
-            
-            
-            <a  data-rel="Devops">Devops</a> > 
-            
-            <a  data-rel="Devops&lt;---&gt;OctopusDeploy">OctopusDeploy</a>
-            
-        </span>
-        
-        
-        <span class="tag">
-            <i class="iconfont icon-tag"></i>
-            
-            <a class="color5">.Net</a>
-            
-            <a class="color4">OctopusDeploy</a>
-            
-        </span>
-        
-    </div>
-    <div class="article-meta">
-        
-            發布時間 : <time class="date" title='更新時間: 2022-05-23 06:32:54'>2022-05-19 22:30</time>
-        
-    </div>
-    <div class="article-meta">
-        
-        <span>字數:707</span>
-        
-        
-        <span id="busuanzi_container_page_pv">
-            觀看數 :<span id="busuanzi_value_page_pv">
-                <span class="count-comment">
-                    <span class="spinner">
-                      <div class="cube1"></div>
-                      <div class="cube2"></div>
-                    </span>
-                </span>
-            </span>
-        </span>
-        
-        
-        <span class="top-comment" title="跳转至评论区">
-            <a href="#comments">
-                評論:<span class="count-comment">
-                    <span class="spinner">
-                      <div class="cube1"></div>
-                      <div class="cube2"></div>
-                    </span>
-                </span>
-            </a>
-        </span>
-        
-    </div>
-    
-    <div class="toc-ref">
-    
-        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%89%8D%E8%A8%80"><span class="toc-text">前言</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%BB%BA%E7%AB%8B-ASP-NET-MVC-%E5%B0%88%E6%A1%88-%E5%8A%A0%E5%85%A5-Git-%E7%89%88%E6%8E%A7-%E4%B8%A6%E4%B8%8A%E5%82%B3%E8%87%B3-Github"><span class="toc-text">建立 ASP.NET MVC 專案 加入 Git 版控 並上傳至 Github</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%BB%BA%E7%AB%8B-Octopus-Server-API-Key"><span class="toc-text">建立 Octopus Server API Key</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%A8%AD%E5%AE%9A-Octopus-Deployment-Process"><span class="toc-text">設定 Octopus Deployment Process</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%A8%AD%E5%AE%9A-Azure-Devops-Pipeline"><span class="toc-text">設定 Azure Devops Pipeline</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%B8%AC%E8%A9%A6-azure-pipeline"><span class="toc-text">測試 azure pipeline</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%B8%AC%E8%A9%A6-Octopus-%E9%83%A8%E7%BD%B2-Releases-%E8%87%B3%E6%A9%9F%E5%99%A8"><span class="toc-text">測試 Octopus 部署 Releases 至機器</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%B5%90%E8%AB%96"><span class="toc-text">結論</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8F%83%E8%80%83%E8%B3%87%E6%96%99"><span class="toc-text">參考資料</span></a></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E9%97%9C%E6%96%BC%E6%88%91%E8%88%87%E8%A9%B2%E9%83%A8%E8%90%BD%E6%A0%BC"><span class="toc-text">關於我與該部落格</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%B0%A1%E4%BB%8B"><span class="toc-text">簡介</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%83%A8%E8%90%BD%E6%A0%BC"><span class="toc-text">部落格</span></a></li></ol></li></ol>
     
 <style>
     .left-col .switch-btn,
@@ -1204,125 +1141,16 @@
     }
 </style>
 </div>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>目前 Octopus Server &amp; Octopus Client 機器 都已安裝並設定成功<br>本篇實作部署 .Net Framework 4.7.2 的 ASP.NET MVC 專案</p>
-<p>CI/CD 流程為<br>ASP.NET MVC 專案 =&gt; Github =&gt; Azure Devops Pipeline =&gt; Octopus Deploy</p>
-<p>開發工具: VS 2019</p>
-<h2 id="建立-ASP-NET-MVC-專案-加入-Git-版控-並上傳至-Github"><a href="#建立-ASP-NET-MVC-專案-加入-Git-版控-並上傳至-Github" class="headerlink" title="建立 ASP.NET MVC 專案 加入 Git 版控 並上傳至 Github"></a>建立 ASP.NET MVC 專案 加入 Git 版控 並上傳至 Github</h2><p>建立專案<br><img src="https://bingxiangstorage.blob.core.windows.net/blog/octopus-deploy-dotnet-mvc/2022-05-19-22-42-24.png"><br><img src="https://bingxiangstorage.blob.core.windows.net/blog/octopus-deploy-dotnet-mvc/2022-05-19-22-35-24.png"></p>
-<p>安裝 Octopus套件</p>
-<pre><code>Install-Package OctoPack -Version 3.6.5
-</code></pre>
-<p>建立 Git 版控<br><img src="https://bingxiangstorage.blob.core.windows.net/blog/octopus-deploy-dotnet-mvc/2022-05-19-22-45-58.png"></p>
-<p>透過 Visual Studio 可快速將儲存庫推送至 Github<br><img src="https://bingxiangstorage.blob.core.windows.net/blog/octopus-deploy-dotnet-mvc/2022-05-19-22-47-12.png"></p>
-<h2 id="建立-Octopus-Server-API-Key"><a href="#建立-Octopus-Server-API-Key" class="headerlink" title="建立 Octopus Server API Key"></a>建立 Octopus Server API Key</h2><p>用以串接 Azure Devops<br><img src="https://bingxiangstorage.blob.core.windows.net/blog/octopus-deploy-dotnet-mvc/2022-05-19-23-28-34.png"><br><img src="https://bingxiangstorage.blob.core.windows.net/blog/octopus-deploy-dotnet-mvc/2022-05-19-23-29-27.png"><br><img src="https://bingxiangstorage.blob.core.windows.net/blog/octopus-deploy-dotnet-mvc/2022-05-19-23-30-03.png"></p>
-<p>記下 API Key<br><img src="https://bingxiangstorage.blob.core.windows.net/blog/octopus-deploy-dotnet-mvc/2022-05-19-23-30-49.png"></p>
-<h2 id="設定-Octopus-Deployment-Process"><a href="#設定-Octopus-Deployment-Process" class="headerlink" title="設定 Octopus Deployment Process"></a>設定 Octopus Deployment Process</h2><p>參考 <a href="2022/05/21/octopus-deploy-deployment-process-dotnet/">Octopus Deploy 設定 .Net MVC 專案 Deployment Process</a></p>
-<h2 id="設定-Azure-Devops-Pipeline"><a href="#設定-Azure-Devops-Pipeline" class="headerlink" title="設定 Azure Devops Pipeline"></a>設定 Azure Devops Pipeline</h2><p>安裝 <a target="_blank" rel="noopener" href="https://marketplace.visualstudio.com/items?itemName=octopusdeploy.octopus-deploy-build-release-tasks">Octopus Deploy Integration 的 Azure Devops Pipeline 擴充工具</a></p>
-<p>先建立專案 (若已有專案 可略過)<br><img src="https://bingxiangstorage.blob.core.windows.net/blog/octopus-deploy-dotnet-mvc/2022-05-19-22-54-15.png"><br><img src="https://bingxiangstorage.blob.core.windows.net/blog/octopus-deploy-dotnet-mvc/2022-05-19-22-55-29.png"></p>
-<p>與章魚建立連線<br><img src="https://bingxiangstorage.blob.core.windows.net/blog/octopus-deploy-dotnet-mvc/2022-05-19-23-32-45.png"><br><img src="https://bingxiangstorage.blob.core.windows.net/blog/octopus-deploy-dotnet-mvc/2022-05-19-23-33-19.png"><br><img src="https://bingxiangstorage.blob.core.windows.net/blog/octopus-deploy-dotnet-mvc/2022-05-19-23-34-12.png"></p>
-<p>複製剛剛在 octopus server 建的 API Key<br><img src="https://bingxiangstorage.blob.core.windows.net/blog/octopus-deploy-dotnet-mvc/2022-05-19-23-48-14.png"></p>
-<p>接著建立 Pipeline<br><img src="https://bingxiangstorage.blob.core.windows.net/blog/octopus-deploy-dotnet-mvc/2022-05-19-22-58-55.png"></p>
-<p>選擇 Github<br><img src="https://bingxiangstorage.blob.core.windows.net/blog/octopus-deploy-dotnet-mvc/2022-05-19-22-59-39.png"></p>
-<p>選擇儲存庫<br><img src="https://bingxiangstorage.blob.core.windows.net/blog/octopus-deploy-dotnet-mvc/2022-05-19-23-00-08.png"></p>
-<p>選擇 預設的 ASP.NET Pipeline<br><img src="https://bingxiangstorage.blob.core.windows.net/blog/octopus-deploy-dotnet-mvc/2022-05-19-23-01-36.png"></p>
-<p>調整 azure-pipelines.yml</p>
-<pre><code class="yml"># ASP.NET
-# Build and test ASP.NET projects.
-# Add steps that publish symbols, save build artifacts, deploy, and more:
-# https://docs.microsoft.com/azure/devops/pipelines/apps/aspnet/build-aspnet-4
+            <h1 id="關於我與該部落格"><a href="#關於我與該部落格" class="headerlink" title="關於我與該部落格"></a>關於我與該部落格</h1><h2 id="簡介"><a href="#簡介" class="headerlink" title="簡介"></a>簡介</h2><p>我是一名.Net 開發工程師</p>
+<p>此部落格為軟體開發的學習筆記</p>
+<p>若文章內容有誤，歡迎留言指正，或來信告知 <a href="mailto:&#108;&#x65;&#111;&#x7a;&#104;&#x65;&#x6e;&#x67;&#x30;&#x36;&#50;&#49;&#x40;&#103;&#x6d;&#97;&#x69;&#x6c;&#x2e;&#99;&#x6f;&#109;">&#108;&#x65;&#111;&#x7a;&#104;&#x65;&#x6e;&#x67;&#x30;&#x36;&#50;&#49;&#x40;&#103;&#x6d;&#97;&#x69;&#x6c;&#x2e;&#99;&#x6f;&#109;</a>，謝謝</p>
+<h2 id="部落格"><a href="#部落格" class="headerlink" title="部落格"></a>部落格</h2><p>共發布：<code class="article_number"></code>篇文章， 共<code class="site_word_count"></code>字。</p>
+<p>部落格總訪問人數：<code class="site_uv"></code> 人次， 訪問量：<code class="site_pv"></code>次</p>
+<p>此部落格通過 <a target="_blank" rel="noopener" href="https://hexo.io/">Hexo</a> 建立，部屬在 <a target="_blank" rel="noopener" href="https://pages.github.com/">GitHub Pages</a>主題 <a target="_blank" rel="noopener" href="https://github.com/yelog/hexo-theme-3-hexo">3-hexo</a></p>
 
-name: $(Date:yyyyMMdd)$(Rev:.r)
-
-trigger:
-- qc
-- develop
-
-pool:
-  vmImage: &#39;windows-latest&#39;
-
-variables:
-  solution: &#39;**/*.sln&#39;
-  buildPlatform: &#39;Any CPU&#39;
-  buildConfiguration: &#39;Release&#39;
-
-steps:
-- task: NuGetToolInstaller@1
-
-- task: OctoInstaller@5
-  inputs:
-    version: &#39;*&#39;
-
-- task: NuGetCommand@2
-  inputs:
-    restoreSolution: &#39;$(solution)&#39;
-
-- task: MSBuild@1
-  inputs:
-    solution: &#39;**/*.sln&#39;
-    platform: &#39;$(buildPlatform)&#39;
-    configuration: &#39;$(buildConfiguration)&#39;
-    msbuildArguments: &#39;/t:Build /p:RunOctoPack=true /p:OctoPackPackageVersion=$(Build.BuildNumber) /p:OctoPackEnforceAddingFiles=true&#39;
-
-- task: Bash@3
-  displayName: Generate ReleaseNotes
-  inputs:
-    targetType: inline
-    script: |
-      git log -1 &gt; ReleaseNotes.txt
-- task: OctopusPush@5
-  inputs:
-    OctoConnectedServiceName: &#39;octopus&#39;
-    Space: &#39;Spaces-1&#39;
-    Package: &#39;$(System.TeamProject)\obj\octopacked\$(System.TeamProject).$(Build.BuildNumber).nupkg&#39;
-    Replace: &#39;false&#39;
-    
-- task: OctopusCreateRelease@5
-  inputs:
-    OctoConnectedServiceName: &#39;octopus&#39;
-    Space: &#39;Spaces-1&#39;
-    ProjectGroup: &#39;Web&#39;
-    ProjectName: &#39;$(System.TeamProject)&#39;
-    ReleaseNumber: &#39;$(Build.BuildNumber)&#39;
-    Channel: &#39;$(Build.SourceBranchName)&#39;
-    AdditionalArguments: &#39;--releaseNoteFile=ReleaseNotes.txt&#39;
-</code></pre>
-<h2 id="測試-azure-pipeline"><a href="#測試-azure-pipeline" class="headerlink" title="測試 azure pipeline"></a>測試 azure pipeline</h2><p>因目前 azure pipeline 設定為 trigger qc、develop 兩個 git 分支，並分別推到 octopus 的 qc、develop Channel<br>先在 git 儲存庫建立 qc、develop 看一下 CI 功能是否正常</p>
-<p>分別建立 qc、develop分支並推送到遠端</p>
-<pre><code class="CMD">git branch qc
-git push origin qc
-
-git branch develop
-git push origin develop
-</code></pre>
-<blockquote>
-<p>20220520.17 是在調整 azure-pipelines.yml 的測試版本 可忽略不看<br>可以發現<br>develop 分支有異動 =&gt; azure pipeline CI 版本至 octopus develop Channel<br>qc 分支有異動 =&gt; azure pipeline CI 版本至 octopus qc Channel</p>
-</blockquote>
-<p>查看 azure pipeline<br><img src="https://bingxiangstorage.blob.core.windows.net/blog/octopus-deploy-dotnet-mvc/2022-05-21-21-41-18.png"></p>
-<p>查看 octopus releases<br><img src="https://bingxiangstorage.blob.core.windows.net/blog/octopus-deploy-dotnet-mvc/2022-05-21-21-42-31.png"></p>
-<h2 id="測試-Octopus-部署-Releases-至機器"><a href="#測試-Octopus-部署-Releases-至機器" class="headerlink" title="測試 Octopus 部署 Releases 至機器"></a>測試 Octopus 部署 Releases 至機器</h2><p>部署 qc 做測試</p>
-<p>部署前 qc機器上 IIS 站台沒有 OctopusProject_Sample 站台<br><img src="https://bingxiangstorage.blob.core.windows.net/blog/octopus-deploy-dotnet-mvc/2022-05-22-02-37-10.png"></p>
-<p>手動點擊 QC 的 release 版本做部署<br><img src="https://bingxiangstorage.blob.core.windows.net/blog/octopus-deploy-dotnet-mvc/2022-05-22-02-30-17.png"><br><img src="https://bingxiangstorage.blob.core.windows.net/blog/octopus-deploy-dotnet-mvc/2022-05-22-02-30-54.png"></p>
-<p>部署中</p>
-<blockquote>
-<p>旁邊有 git 的 commit 版本資訊 是因為 Azure Pipeline Create Octopus Release 時，有帶入 ReleaseNotes.txt<br><img src="https://bingxiangstorage.blob.core.windows.net/blog/octopus-deploy-dotnet-mvc/2022-05-22-02-31-34.png"></p>
-</blockquote>
-<p>部署完成<br>看一下 qc 機器 IIS 站台 確認服務<br><img src="https://bingxiangstorage.blob.core.windows.net/blog/octopus-deploy-dotnet-mvc/2022-05-22-02-34-08.png"><br><img src="https://bingxiangstorage.blob.core.windows.net/blog/octopus-deploy-dotnet-mvc/2022-05-22-02-34-59.png"><br><img src="https://bingxiangstorage.blob.core.windows.net/blog/octopus-deploy-dotnet-mvc/2022-05-22-02-39-26.png"></p>
-<h2 id="結論"><a href="#結論" class="headerlink" title="結論"></a>結論</h2><p>此篇紀錄 從建立 ASP.NET MVC 專案 =&gt; 上傳 Github =&gt; 設定 Azure Devops Pipeline =&gt; 設定 Octopus Deploy 的完整流程<br>下一篇 紀錄 <a href="2022/05/23/octopus-deploy-mutiple-env-variable-setting/">Octopus Deploy 設定多環境變數</a></p>
-<h2 id="參考資料"><a href="#參考資料" class="headerlink" title="參考資料"></a>參考資料</h2><ul>
-<li><a target="_blank" rel="noopener" href="https://octopus.com/docs/guides/deploy-aspnet-app/to-azurewebapp/using-octopus-onprem-azure-devops-builtin">Deploy an ASP.NET application to Azure websites using Octopus and Azure DevOps/TFS</a></li>
-</ul>
-
-      
-       <hr><span style="font-style: italic;color: gray;"> 轉載請註明來源，若有任何錯誤或表達不清楚的地方，歡迎在下方評論區留言，也可以來信至 leozheng0621@gmail.com </span>
-    </div>
-</article>
-
-
-
-
-
+        </article>
+        
+        
     <div id="comments"></div>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css">
 
@@ -1344,13 +1172,6 @@ git push origin develop
 </script>
 
 
-
-
-    
-
-
-
-
     </div>
     <div class="copyright">
         <p class="footer-entry">
@@ -1359,11 +1180,11 @@ git push origin develop
 <p class="footer-entry">Built with <a href="https://hexo.io/" target="_blank">Hexo</a> and <a href="https://github.com/yelog/hexo-theme-3-hexo" target="_blank">3-hexo</a> theme</p>
 
     </div>
-    <div class="full-toc">
-        <button class="full" data-title="切換全屏 快捷鍵 s"><span class="min "></span></button>
+</div>
+<div class="full-toc">
+    <button class="full" data-title="切換全屏 快捷鍵 s"><span class="min "></span></button>
 <a class="" id="rocket" ></a>
 
-    </div>
 </div>
 
 </body>
