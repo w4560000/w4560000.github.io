@@ -6,35 +6,19 @@
   <meta name="keywords" content=" .NetCore , NLog ">
   <meta name="description" content=".Net Core 3.1 設定 NLog 寄信流程 | w4560000.github.io">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-<meta name="description" content="前言在 .Net framework 專案，專案參數通常都設定在 Web.config本篇記錄在 Octopus Deploy 如何因應各環境各自轉換 Web.config 開發工具: VS2019 新增組態設定 develop、qc開啟組態管理員 新增組態 develop、qc 右鍵 Web.config &gt; 新增設定轉換 設定 Web.develop.config、Web.qc.conf">
+<meta name="description" content="以系統管理員身分開啟 PowerShell安裝 IIS Enable-WindowsOptionalFeature -Online -FeatureName IIS-WebServerRole -All Enable-WindowsOptionalFeature -Online -FeatureName IIS-WebServer -All Enable-WindowsOptionalFeatur">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Octopus Deploy 設定多環境變數">
-<meta property="og:url" content="http://example.com/2022/05/23/octopus-deploy-mutiple-env-variable-setting/index.html">
+<meta property="og:title" content="PowerShell 安裝 IIS">
+<meta property="og:url" content="http://example.com/2022/05/22/windows-setup-iis-script/index.html">
 <meta property="og:site_name" content="w4560000.github.io">
-<meta property="og:description" content="前言在 .Net framework 專案，專案參數通常都設定在 Web.config本篇記錄在 Octopus Deploy 如何因應各環境各自轉換 Web.config 開發工具: VS2019 新增組態設定 develop、qc開啟組態管理員 新增組態 develop、qc 右鍵 Web.config &gt; 新增設定轉換 設定 Web.develop.config、Web.qc.conf">
+<meta property="og:description" content="以系統管理員身分開啟 PowerShell安裝 IIS Enable-WindowsOptionalFeature -Online -FeatureName IIS-WebServerRole -All Enable-WindowsOptionalFeature -Online -FeatureName IIS-WebServer -All Enable-WindowsOptionalFeatur">
 <meta property="og:locale" content="zh_TW">
-<meta property="og:image" content="https://bingxiangstorage.blob.core.windows.net/blog/octopus-deploy-mutiple-env-variable-setting/2022-05-23-05-25-53.png">
-<meta property="og:image" content="https://bingxiangstorage.blob.core.windows.net/blog/octopus-deploy-mutiple-env-variable-setting/2022-05-23-05-27-17.png">
-<meta property="og:image" content="https://bingxiangstorage.blob.core.windows.net/blog/octopus-deploy-mutiple-env-variable-setting/2022-05-23-05-28-10.png">
-<meta property="og:image" content="https://bingxiangstorage.blob.core.windows.net/blog/octopus-deploy-mutiple-env-variable-setting/2022-05-23-06-05-22.png">
-<meta property="og:image" content="https://bingxiangstorage.blob.core.windows.net/blog/octopus-deploy-mutiple-env-variable-setting/2022-05-23-05-32-29.png">
-<meta property="og:image" content="https://bingxiangstorage.blob.core.windows.net/blog/octopus-deploy-mutiple-env-variable-setting/2022-05-23-05-38-08.png">
-<meta property="og:image" content="https://bingxiangstorage.blob.core.windows.net/blog/octopus-deploy-mutiple-env-variable-setting/2022-05-23-05-46-54.png">
-<meta property="og:image" content="https://bingxiangstorage.blob.core.windows.net/blog/octopus-deploy-mutiple-env-variable-setting/2022-05-23-05-49-00.png">
-<meta property="og:image" content="https://bingxiangstorage.blob.core.windows.net/blog/octopus-deploy-mutiple-env-variable-setting/2022-05-23-05-51-57.png">
-<meta property="og:image" content="https://bingxiangstorage.blob.core.windows.net/blog/octopus-deploy-mutiple-env-variable-setting/2022-05-23-05-52-20.png">
-<meta property="og:image" content="https://bingxiangstorage.blob.core.windows.net/blog/octopus-deploy-mutiple-env-variable-setting/2022-05-23-05-54-25.png">
-<meta property="og:image" content="https://bingxiangstorage.blob.core.windows.net/blog/octopus-deploy-mutiple-env-variable-setting/2022-05-23-05-57-07.png">
-<meta property="og:image" content="https://bingxiangstorage.blob.core.windows.net/blog/octopus-deploy-mutiple-env-variable-setting/2022-05-23-05-58-39.png">
-<meta property="og:image" content="https://bingxiangstorage.blob.core.windows.net/blog/octopus-deploy-mutiple-env-variable-setting/2022-05-23-06-01-30.png">
-<meta property="og:image" content="https://bingxiangstorage.blob.core.windows.net/blog/octopus-deploy-mutiple-env-variable-setting/2022-05-23-06-01-45.png">
-<meta property="article:published_time" content="2022-05-22T21:10:55.000Z">
-<meta property="article:modified_time" content="2022-05-24T15:04:34.197Z">
+<meta property="article:published_time" content="2022-05-21T17:35:49.000Z">
+<meta property="article:modified_time" content="2022-05-21T17:53:19.564Z">
 <meta property="article:author" content="Leo Zheng">
-<meta property="article:tag" content=".Net">
-<meta property="article:tag" content="OctopusDeploy">
+<meta property="article:tag" content="Windows">
+<meta property="article:tag" content="PowerShell">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://bingxiangstorage.blob.core.windows.net/blog/octopus-deploy-mutiple-env-variable-setting/2022-05-23-05-25-53.png">
 
 
 <link rel="icon" href="/img/avatar.jpg">
