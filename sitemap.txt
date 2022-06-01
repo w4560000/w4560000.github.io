@@ -1,5 +1,6 @@
-http://example.com/2022/05/29/octopus-deploy-k8s/
+http://example.com/2022/06/01/gcp-init-gke/
 http://example.com/2022/05/28/octopus-deploy-dotnet-core3-1-to-k8s/
+http://example.com/2022/05/29/octopus-deploy-k8s/
 http://example.com/2022/05/19/octopus-deploy-dotnet-mvc/
 http://example.com/2022/05/05/k8s-ingress-nginx/
 http://example.com/2022/05/21/octopus-deploy-deployment-process-dotnet/
@@ -59,8 +60,8 @@ http://example.com/
 http://example.com/tags/Azure/
 http://example.com/tags/NetCore/
 http://example.com/tags/Vue/
-http://example.com/tags/Teams/
 http://example.com/tags/Docker/
+http://example.com/tags/Teams/
 http://example.com/tags/Certbot/
 http://example.com/tags/TLS/
 http://example.com/tags/Net/
@@ -85,15 +86,15 @@ http://example.com/tags/Windows/
 http://example.com/tags/PowerShell/
 http://example.com/categories/Devops/
 http://example.com/categories/Devops/Azure/
-http://example.com/categories/Devops/Docker/
 http://example.com/categories/Tool/
+http://example.com/categories/Devops/Docker/
 http://example.com/categories/Backend/
-http://example.com/categories/Devops/ELK/
 http://example.com/categories/Tool/Certbot/
+http://example.com/categories/Devops/ELK/
 http://example.com/categories/Tool/FTPS/
 http://example.com/categories/Devops/GCP/
-http://example.com/categories/Tool/Git/
 http://example.com/categories/Backend/Net/
+http://example.com/categories/Tool/Git/
 http://example.com/categories/Tool/Hexo/
 http://example.com/categories/Backend/NetCore/
 http://example.com/categories/Tool/JMeter/
