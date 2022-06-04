@@ -2,6 +2,15 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://example.com/2022/06/04/elk-k8s-filebeat/</loc>
+    
+    <lastmod>2022-06-04</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
     <loc>http://example.com/2022/06/04/gcp-google-managed-ssl-certificates/</loc>
     
     <lastmod>2022-06-04</lastmod>
@@ -579,6 +588,13 @@
   </url>
   
   <url>
+    <loc>http://example.com/tags/Docker/</loc>
+    <lastmod>2022-06-04</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
     <loc>http://example.com/tags/Certbot/</loc>
     <lastmod>2022-06-04</lastmod>
     <changefreq>weekly</changefreq>
@@ -587,13 +603,6 @@
   
   <url>
     <loc>http://example.com/tags/TLS/</loc>
-    <lastmod>2022-06-04</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>http://example.com/tags/Docker/</loc>
     <lastmod>2022-06-04</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -635,6 +644,13 @@
   </url>
   
   <url>
+    <loc>http://example.com/tags/VS-Debugger-Tool/</loc>
+    <lastmod>2022-06-04</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
     <loc>http://example.com/tags/ELK/</loc>
     <lastmod>2022-06-04</lastmod>
     <changefreq>weekly</changefreq>
@@ -649,7 +665,7 @@
   </url>
   
   <url>
-    <loc>http://example.com/tags/VS-Debugger-Tool/</loc>
+    <loc>http://example.com/tags/K8S/</loc>
     <lastmod>2022-06-04</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -664,13 +680,6 @@
   
   <url>
     <loc>http://example.com/tags/FTPS/</loc>
-    <lastmod>2022-06-04</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>http://example.com/tags/K8S/</loc>
     <lastmod>2022-06-04</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -698,13 +707,6 @@
   </url>
   
   <url>
-    <loc>http://example.com/tags/OctopusDeploy/</loc>
-    <lastmod>2022-06-04</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
     <loc>http://example.com/tags/Nuget/</loc>
     <lastmod>2022-06-04</lastmod>
     <changefreq>weekly</changefreq>
@@ -712,7 +714,7 @@
   </url>
   
   <url>
-    <loc>http://example.com/tags/SQLServer/</loc>
+    <loc>http://example.com/tags/OctopusDeploy/</loc>
     <lastmod>2022-06-04</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -720,6 +722,13 @@
   
   <url>
     <loc>http://example.com/tags/SFTP/</loc>
+    <lastmod>2022-06-04</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>http://example.com/tags/SQLServer/</loc>
     <lastmod>2022-06-04</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -749,14 +758,14 @@
   </url>
   
   <url>
-    <loc>http://example.com/categories/Tool/</loc>
+    <loc>http://example.com/categories/Devops/Azure/</loc>
     <lastmod>2022-06-04</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
-    <loc>http://example.com/categories/Devops/Azure/</loc>
+    <loc>http://example.com/categories/Tool/</loc>
     <lastmod>2022-06-04</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -819,14 +828,14 @@
   </url>
   
   <url>
-    <loc>http://example.com/categories/Tool/Hexo/</loc>
+    <loc>http://example.com/categories/Backend/NetCore/</loc>
     <lastmod>2022-06-04</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
-    <loc>http://example.com/categories/Backend/NetCore/</loc>
+    <loc>http://example.com/categories/Tool/Hexo/</loc>
     <lastmod>2022-06-04</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -847,14 +856,14 @@
   </url>
   
   <url>
-    <loc>http://example.com/categories/Devops/OctopusDeploy/</loc>
+    <loc>http://example.com/categories/Tool/Nuget/</loc>
     <lastmod>2022-06-04</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
-    <loc>http://example.com/categories/Tool/Nuget/</loc>
+    <loc>http://example.com/categories/Devops/OctopusDeploy/</loc>
     <lastmod>2022-06-04</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -868,14 +877,14 @@
   </url>
   
   <url>
-    <loc>http://example.com/categories/Database/</loc>
+    <loc>http://example.com/categories/Tool/SFTP/</loc>
     <lastmod>2022-06-04</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
-    <loc>http://example.com/categories/Tool/SFTP/</loc>
+    <loc>http://example.com/categories/Database/</loc>
     <lastmod>2022-06-04</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
