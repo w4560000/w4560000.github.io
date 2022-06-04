@@ -74,8 +74,8 @@ http://example.com/tags/NLog/
 http://example.com/tags/DesignPattern/
 http://example.com/tags/VS-Debugger-Tool/
 http://example.com/tags/ELK/
-http://example.com/tags/IIS/
 http://example.com/tags/K8S/
+http://example.com/tags/IIS/
 http://example.com/tags/FileZilla/
 http://example.com/tags/FTPS/
 http://example.com/tags/Git/
@@ -97,14 +97,14 @@ http://example.com/categories/Devops/ELK/
 http://example.com/categories/Tool/FTPS/
 http://example.com/categories/Devops/GCP/
 http://example.com/categories/Backend/Net/
-http://example.com/categories/Tool/Git/
 http://example.com/categories/Backend/NetCore/
+http://example.com/categories/Tool/Git/
 http://example.com/categories/Tool/Hexo/
 http://example.com/categories/Tool/JMeter/
 http://example.com/categories/Devops/K8S/
 http://example.com/categories/Tool/Nuget/
-http://example.com/categories/Devops/OctopusDeploy/
 http://example.com/categories/Backend/DesignPattern/
+http://example.com/categories/Devops/OctopusDeploy/
 http://example.com/categories/Tool/SFTP/
 http://example.com/categories/Database/
 http://example.com/categories/Tool/PowerShell/
