@@ -2,9 +2,9 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <title>w4560000.github.io</title>
-  <meta name="keywords" content="">
-  <meta name="description" content="w4560000.github.io">
+  <title>GCP 建立 Google 自管的 SSL 憑證 | w4560000.github.io</title>
+  <meta name="keywords" content=" GCP ">
+  <meta name="description" content="GCP 建立 Google 自管的 SSL 憑證 | w4560000.github.io">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <meta name="description" content="建立Create a Google-managed SSL certificate  記得預先設定 DNS octopuscoresampleqc.leozheng0512.com 的 對應IP憑證才能建立成功  gcloud compute ssl-certificates create $CERTIFICATE_NAME --description&#x3D;$DESCRIPTION  --domain">
 <meta property="og:type" content="article">
@@ -58,7 +58,7 @@
 
 
 <body>
-<aside class="nav mobile">
+<aside class="nav">
     <div class="nav-left">
         <a href="/"
    class="avatar_target">
@@ -1154,12 +1154,73 @@
         </div>
     </div>
 </aside>
-<div id="post" class="index">
+<div id="post">
     <div class="pjax">
-        <article class="index">
-            <div class="toc-ref">
+        <article id="post-gcp-google-managed-ssl-certificates" class="article article-type-post" itemscope itemprop="blogPost">
     
-        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E9%97%9C%E6%96%BC%E6%88%91%E8%88%87%E8%A9%B2%E9%83%A8%E8%90%BD%E6%A0%BC"><span class="toc-text">關於我與該部落格</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%B0%A1%E4%BB%8B"><span class="toc-text">簡介</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%83%A8%E8%90%BD%E6%A0%BC"><span class="toc-text">部落格</span></a></li></ol></li></ol>
+        <h1 class="article-title">GCP 建立 Google 自管的 SSL 憑證</h1>
+    
+    <div class="article-meta">
+        
+        
+        
+        <span class="book">
+            <i class="iconfont icon-category"></i>
+            
+            
+            <a  data-rel="Devops">Devops</a> > 
+            
+            <a  data-rel="Devops&lt;---&gt;GCP">GCP</a>
+            
+        </span>
+        
+        
+        <span class="tag">
+            <i class="iconfont icon-tag"></i>
+            
+            <a class="color4">GCP</a>
+            
+        </span>
+        
+    </div>
+    <div class="article-meta">
+        
+            發布時間 : <time class="date" title='更新時間: 2022-06-04 15:04:55'>2022-06-04 13:01</time>
+        
+    </div>
+    <div class="article-meta">
+        
+        <span>字數:154</span>
+        
+        
+        <span id="busuanzi_container_page_pv">
+            觀看數 :<span id="busuanzi_value_page_pv">
+                <span class="count-comment">
+                    <span class="spinner">
+                      <div class="cube1"></div>
+                      <div class="cube2"></div>
+                    </span>
+                </span>
+            </span>
+        </span>
+        
+        
+        <span class="top-comment" title="跳转至评论区">
+            <a href="#comments">
+                評論:<span class="count-comment">
+                    <span class="spinner">
+                      <div class="cube1"></div>
+                      <div class="cube2"></div>
+                    </span>
+                </span>
+            </a>
+        </span>
+        
+    </div>
+    
+    <div class="toc-ref">
+    
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%BB%BA%E7%AB%8B"><span class="toc-text">建立</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%A2%BA%E8%AA%8D%E6%86%91%E8%AD%89"><span class="toc-text">確認憑證</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%9F%A5%E7%9C%8B%E6%86%91%E8%AD%89%E7%8B%80%E6%85%8B"><span class="toc-text">查看憑證狀態</span></a></li></ol>
     
 <style>
     .left-col .switch-btn,
@@ -1172,16 +1233,45 @@
     }
 </style>
 </div>
-            <h1 id="關於我與該部落格"><a href="#關於我與該部落格" class="headerlink" title="關於我與該部落格"></a>關於我與該部落格</h1><h2 id="簡介"><a href="#簡介" class="headerlink" title="簡介"></a>簡介</h2><p>我是一名.Net 開發工程師</p>
-<p>此部落格為軟體開發的學習筆記</p>
-<p>若文章內容有誤，歡迎留言指正，或來信告知 <a href="mailto:&#x6c;&#101;&#111;&#x7a;&#104;&#101;&#x6e;&#x67;&#x30;&#x36;&#50;&#49;&#64;&#x67;&#109;&#97;&#x69;&#x6c;&#x2e;&#x63;&#111;&#109;">&#x6c;&#101;&#111;&#x7a;&#104;&#101;&#x6e;&#x67;&#x30;&#x36;&#50;&#49;&#64;&#x67;&#109;&#97;&#x69;&#x6c;&#x2e;&#x63;&#111;&#109;</a>，謝謝</p>
-<h2 id="部落格"><a href="#部落格" class="headerlink" title="部落格"></a>部落格</h2><p>共發布：<code class="article_number"></code>篇文章， 共<code class="site_word_count"></code>字。</p>
-<p>部落格總訪問人數：<code class="site_uv"></code> 人次， 訪問量：<code class="site_pv"></code>次</p>
-<p>此部落格通過 <a target="_blank" rel="noopener" href="https://hexo.io/">Hexo</a> 建立，部屬在 <a target="_blank" rel="noopener" href="https://pages.github.com/">GitHub Pages</a>上，主題為 <a target="_blank" rel="noopener" href="https://github.com/yelog/hexo-theme-3-hexo">3-hexo</a></p>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="建立"><a href="#建立" class="headerlink" title="建立"></a>建立</h2><p><a target="_blank" rel="noopener" href="https://cloud.google.com/load-balancing/docs/ssl-certificates/google-managed-certs#create-ssl">Create a Google-managed SSL certificate</a></p>
+<blockquote>
+<p>記得預先設定 DNS octopuscoresampleqc.leozheng0512.com 的 對應IP<br>憑證才能建立成功</p>
+</blockquote>
+<pre><code class="CMD">gcloud compute ssl-certificates create $CERTIFICATE_NAME --description=$DESCRIPTION  --domains=$DOMAIN_LIST  --global
 
-        </article>
-        
-        
+ex: gcloud compute ssl-certificates create &#39;web-ingress-qc-cert&#39; --description=&#39;web-ingress 憑證&#39;  --domains=&#39;octopuscoresampleqc.leozheng0512.com&#39;  --global
+</code></pre>
+<h2 id="確認憑證"><a href="#確認憑證" class="headerlink" title="確認憑證"></a>確認憑證</h2><pre><code class="CMD">gcloud compute ssl-certificates list --global
+
+# 輸出
+NAME: web-ingress-qc-cert
+TYPE: MANAGED
+CREATION_TIMESTAMP: 2022-06-03T23:31:52.230-07:00
+EXPIRE_TIME: 2022-09-01T22:31:53.000-07:00
+MANAGED_STATUS: ACTIVE
+
+octopuscoresampleqc.leozheng0512.com: ACTIVE
+</code></pre>
+<h2 id="查看憑證狀態"><a href="#查看憑證狀態" class="headerlink" title="查看憑證狀態"></a>查看憑證狀態</h2><pre><code class="CMD">gcloud compute ssl-certificates describe $CERTIFICATE_NAME --global --format=&quot;get(managed.domainStatus)&quot;
+
+ex: gcloud compute ssl-certificates describe &#39;web-ingress-qc-cert&#39; --global --format=&quot;get(managed.domainStatus)&quot;
+
+# 輸出
+octopuscoresampleqc.leozheng0512.com=ACTIVE
+</code></pre>
+
+      
+       <hr><span style="font-style: italic;color: gray;"> 轉載請註明來源，若有任何錯誤或表達不清楚的地方，歡迎在下方評論區留言，也可以來信至 leozheng0621@gmail.com </span>
+    </div>
+</article>
+
+
+
+
+
     <div id="comments"></div>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css">
 
@@ -1203,6 +1293,13 @@
 </script>
 
 
+
+
+    
+
+
+
+
     </div>
     <div class="copyright">
         <p class="footer-entry">
@@ -1211,11 +1308,11 @@
 <p class="footer-entry">Built with <a href="https://hexo.io/" target="_blank">Hexo</a> and <a href="https://github.com/yelog/hexo-theme-3-hexo" target="_blank">3-hexo</a> theme</p>
 
     </div>
-</div>
-<div class="full-toc">
-    <button class="full" data-title="切換全屏 快捷鍵 s"><span class="min "></span></button>
+    <div class="full-toc">
+        <button class="full" data-title="切換全屏 快捷鍵 s"><span class="min "></span></button>
 <a class="" id="rocket" ></a>
 
+    </div>
 </div>
 
 </body>

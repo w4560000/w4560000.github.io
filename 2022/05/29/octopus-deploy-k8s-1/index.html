@@ -2,22 +2,21 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <title>Octopus Deploy 設定 Deploy K8S 專案 | w4560000.github.io</title>
+  <title>Octopus Deploy K8S 專案 [1] | w4560000.github.io</title>
   <meta name="keywords" content=" K8S , OctopusDeploy ">
-  <meta name="description" content="Octopus Deploy 設定 Deploy K8S 專案 | w4560000.github.io">
+  <meta name="description" content="Octopus Deploy K8S 專案 [1] | w4560000.github.io">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-<meta name="description" content="初始設定 gcloud 工具設定對應的 GCP 專案 gcloud config set project $GCP_ProjectID  設定預設區域 gcloud config set compute&#x2F;zone $COMPUTE_ZONE  ex: gcloud config set compute&#x2F;zone asia-east1-a  gcloud config set compute&#x2F;reg">
+<meta name="description" content="建立Create a Google-managed SSL certificate  記得預先設定 DNS octopuscoresampleqc.leozheng0512.com 的 對應IP憑證才能建立成功  gcloud compute ssl-certificates create $CERTIFICATE_NAME --description&#x3D;$DESCRIPTION  --domain">
 <meta property="og:type" content="article">
-<meta property="og:title" content="GCP Kubernetes Engine 建置">
-<meta property="og:url" content="http://example.com/2022/06/01/gcp-init-gke/index.html">
+<meta property="og:title" content="GCP 建立 Google 自管的 SSL 憑證">
+<meta property="og:url" content="http://example.com/2022/06/04/gcp-google-managed-ssl-certificates/index.html">
 <meta property="og:site_name" content="w4560000.github.io">
-<meta property="og:description" content="初始設定 gcloud 工具設定對應的 GCP 專案 gcloud config set project $GCP_ProjectID  設定預設區域 gcloud config set compute&#x2F;zone $COMPUTE_ZONE  ex: gcloud config set compute&#x2F;zone asia-east1-a  gcloud config set compute&#x2F;reg">
+<meta property="og:description" content="建立Create a Google-managed SSL certificate  記得預先設定 DNS octopuscoresampleqc.leozheng0512.com 的 對應IP憑證才能建立成功  gcloud compute ssl-certificates create $CERTIFICATE_NAME --description&#x3D;$DESCRIPTION  --domain">
 <meta property="og:locale" content="zh_TW">
-<meta property="article:published_time" content="2022-06-01T15:03:14.000Z">
-<meta property="article:modified_time" content="2022-06-01T16:33:39.418Z">
+<meta property="article:published_time" content="2022-06-04T05:01:25.000Z">
+<meta property="article:modified_time" content="2022-06-04T07:04:55.816Z">
 <meta property="article:author" content="Leo Zheng">
 <meta property="article:tag" content="GCP">
-<meta property="article:tag" content="K8S">
 <meta name="twitter:card" content="summary">
 
 
@@ -107,7 +106,7 @@
     <li>
         <div class="all active" data-rel="全部文章">全部文章
             
-                <small>(58)</small>
+                <small>(60)</small>
             
         </div>
     </li>
@@ -205,7 +204,7 @@
                         <i class="fold iconfont icon-right"></i>
                         
                         Devops
-                        <small>(35)</small>
+                        <small>(37)</small>
                         
                     </div>
                     
@@ -252,7 +251,7 @@
                                         
                                         GCP
                                         
-                                            <small>(8
+                                            <small>(9
                                                 )</small>
                                         
                                     </div>
@@ -276,7 +275,7 @@
                                         
                                         OctopusDeploy
                                         
-                                            <small>(12
+                                            <small>(13
                                                 )</small>
                                         
                                     </div>
@@ -498,8 +497,8 @@
         
     </div>
 </div>
-<input type="hidden" id="yelog_site_posts_number" value="58">
-<input type="hidden" id="yelog_site_word_count" value="29.4k">
+<input type="hidden" id="yelog_site_posts_number" value="60">
+<input type="hidden" id="yelog_site_word_count" value="30.4k">
 <div style="display: none">
     <span id="busuanzi_value_site_uv"></span>
     <span id="busuanzi_value_site_pv"></span>
@@ -660,6 +659,22 @@
     <nav id="title-list-nav">
         
         <a  class="全部文章 Devops GCP "
+           href="/2022/06/04/gcp-google-managed-ssl-certificates/"
+           data-tag="GCP"
+           data-author="" >
+            <span class="post-title" title="GCP 建立 Google 自管的 SSL 憑證">GCP 建立 Google 自管的 SSL 憑證</span>
+            <span class="post-date" title="2022-06-04 13:01:25">2022/06/04</span>
+        </a>
+        
+        <a  class="全部文章 Devops OctopusDeploy "
+           href="/2022/06/03/octopus-deploy-k8s-2/"
+           data-tag="K8S,OctopusDeploy"
+           data-author="" >
+            <span class="post-title" title="Octopus Deploy K8S 專案 [2]">Octopus Deploy K8S 專案 [2]</span>
+            <span class="post-date" title="2022-06-03 23:27:43">2022/06/03</span>
+        </a>
+        
+        <a  class="全部文章 Devops GCP "
            href="/2022/06/01/gcp-init-gke/"
            data-tag="GCP,K8S"
            data-author="" >
@@ -668,10 +683,10 @@
         </a>
         
         <a  class="全部文章 Devops OctopusDeploy "
-           href="/2022/05/29/octopus-deploy-k8s/"
+           href="/2022/05/29/octopus-deploy-k8s-1/"
            data-tag="K8S,OctopusDeploy"
            data-author="" >
-            <span class="post-title" title="Octopus Deploy 設定 Deploy K8S 專案">Octopus Deploy 設定 Deploy K8S 專案</span>
+            <span class="post-title" title="Octopus Deploy K8S 專案 [1]">Octopus Deploy K8S 專案 [1]</span>
             <span class="post-date" title="2022-05-29 23:03:01">2022/05/29</span>
         </a>
         
@@ -1141,9 +1156,9 @@
 </aside>
 <div id="post">
     <div class="pjax">
-        <article id="post-octopus-deploy-k8s" class="article article-type-post" itemscope itemprop="blogPost">
+        <article id="post-octopus-deploy-k8s-1" class="article article-type-post" itemscope itemprop="blogPost">
     
-        <h1 class="article-title">Octopus Deploy 設定 Deploy K8S 專案</h1>
+        <h1 class="article-title">Octopus Deploy K8S 專案 [1]</h1>
     
     <div class="article-meta">
         
@@ -1172,12 +1187,12 @@
     </div>
     <div class="article-meta">
         
-            發布時間 : <time class="date" title='更新時間: 2022-05-30 01:48:58'>2022-05-29 23:03</time>
+            發布時間 : <time class="date" title='更新時間: 2022-06-04 15:04:54'>2022-05-29 23:03</time>
         
     </div>
     <div class="article-meta">
         
-        <span>字數:834</span>
+        <span>字數:854</span>
         
         
         <span id="busuanzi_container_page_pv">
@@ -1207,7 +1222,7 @@
     
     <div class="toc-ref">
     
-        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%89%8D%E8%A8%80"><span class="toc-text">前言</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%BB%BA%E7%AB%8B-Octopus-%E5%B0%88%E6%A1%88"><span class="toc-text">建立 Octopus 專案</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%96%B0%E5%A2%9E-Octopus-Variables"><span class="toc-text">新增 Octopus Variables</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%A8%AD%E5%AE%9A-Runbook-Create-K8S-Namespace-Web"><span class="toc-text">設定 Runbook - Create K8S Namespace Web</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%A8%AD%E5%AE%9A-Runbook-Setup-Kubernetes-Ingress"><span class="toc-text">設定 Runbook - Setup Kubernetes Ingress</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%A8%AD%E5%AE%9A-Project-Process"><span class="toc-text">設定 Project Process</span></a></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%89%8D%E8%A8%80"><span class="toc-text">前言</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%BB%BA%E7%AB%8B-Octopus-%E5%B0%88%E6%A1%88"><span class="toc-text">建立 Octopus 專案</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%96%B0%E5%A2%9E-Octopus-Variables"><span class="toc-text">新增 Octopus Variables</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%A8%AD%E5%AE%9A-Runbook-Create-K8S-Namespace-Web"><span class="toc-text">設定 Runbook - Create K8S Namespace Web</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%A8%AD%E5%AE%9A-Runbook-Setup-Kubernetes-Ingress-Deploy-Bare-Metal-Kubernetes-Ingress"><span class="toc-text">設定 Runbook - Setup Kubernetes Ingress - Deploy Bare Metal Kubernetes Ingress</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%A8%AD%E5%AE%9A-Project-Process-%E6%96%B0%E5%A2%9E-Deploy-To-Bare-Metal-Kubernetes-Cluster"><span class="toc-text">設定 Project Process - 新增 Deploy To Bare Metal Kubernetes Cluster</span></a></li></ol>
     
 <style>
     .left-col .switch-btn,
@@ -1224,12 +1239,12 @@
     <div class="article-entry" itemprop="articleBody">
       
         <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>本篇建立 Octopus K8S 專案、設定 Ingress</p>
-<p>目前只有 develop 的 地端 K8S 機器，先只部署到 develop 做測試<br>qc 預計 部署到 GKE，之後再建立</p>
+<p>部署到 develop 地端 K8S 機器<br>qc 預計部署到 GKE 參考下一篇 <a href="/2022/06/03/octopus-deploy-k8s-2">Octopus Deploy K8S 專案 [2]</a></p>
 <h2 id="建立-Octopus-專案"><a href="#建立-Octopus-專案" class="headerlink" title="建立 Octopus 專案"></a>建立 Octopus 專案</h2><p><img src="https://bingxiangstorage.blob.core.windows.net/blog/octopus-deploy-k8s/2022-05-30-01-22-14.png"><br><img src="https://bingxiangstorage.blob.core.windows.net/blog/octopus-deploy-k8s/2022-05-30-01-22-27.png"></p>
 <p>建立 Project<br><img src="https://bingxiangstorage.blob.core.windows.net/blog/octopus-deploy-k8s/2022-05-30-01-22-45.png"><br><img src="https://bingxiangstorage.blob.core.windows.net/blog/octopus-deploy-k8s/2022-05-30-01-22-56.png"></p>
 <p>新增 develop Channel<br><img src="https://bingxiangstorage.blob.core.windows.net/blog/octopus-deploy-k8s/2022-05-30-01-23-18.png"><br><img src="https://bingxiangstorage.blob.core.windows.net/blog/octopus-deploy-k8s/2022-05-30-01-23-27.png"></p>
 <h2 id="新增-Octopus-Variables"><a href="#新增-Octopus-Variables" class="headerlink" title="新增 Octopus Variables"></a>新增 Octopus Variables</h2><blockquote>
-<p>K8s.Web.Core.HealthCheckPath =  /-/healthz<br>K8s.Web.Host[OctopusProject_Core_Sample] = octopuscoresampledevelop.leozheng0512.com<br>K8s.Web.ImageRegistry        = [GCP ProjectID]/web/#{Octopus.Project.Name | ToLower}<br>K8s.Web.Namespace            = web<br>K8s.Web.ProjectSimpleName    = #{Octopus.Project.Name | ToLower | Replace “.“ “-“ }<br>K8s.Web.WebPort              = 80</p>
+<p>K8s.Web.Core.HealthCheckPath =  /-/healthz<br>K8s.Web.Host[OctopusProject_Core_Sample] = octopuscoresampledevelop.leozheng0512.com (develop環境)<br>K8s.Web.ImageRegistry        = [GCP ProjectID]/web/#{Octopus.Project.Name | ToLower}<br>K8s.Web.Namespace            = web<br>K8s.Web.ProjectSimpleName    = #{Octopus.Project.Name | ToLower | Replace “.“ “-“ }<br>K8s.Web.WebPort              = 80</p>
 </blockquote>
 <h2 id="設定-Runbook-Create-K8S-Namespace-Web"><a href="#設定-Runbook-Create-K8S-Namespace-Web" class="headerlink" title="設定 Runbook - Create K8S Namespace Web"></a>設定 Runbook - Create K8S Namespace Web</h2><blockquote>
 <p>Namespace 不需每次上版都要部署(屬於初始設定)，設定在 Runbooks 要使用再部署即可<br><img src="https://bingxiangstorage.blob.core.windows.net/blog/octopus-deploy-k8s/2022-05-29-23-38-00.png"><br><img src="https://bingxiangstorage.blob.core.windows.net/blog/octopus-deploy-k8s/2022-05-30-00-15-14.png"><br><img src="https://bingxiangstorage.blob.core.windows.net/blog/octopus-deploy-k8s/2022-05-30-00-15-42.png"></p>
@@ -1240,7 +1255,7 @@
 </code></pre>
 <p><img src="https://bingxiangstorage.blob.core.windows.net/blog/octopus-deploy-k8s/2022-05-30-00-28-16.png"></p>
 <p>設定好後 部署至 develop<br><img src="https://bingxiangstorage.blob.core.windows.net/blog/octopus-deploy-k8s/2022-05-30-00-32-02.png"><br><img src="https://bingxiangstorage.blob.core.windows.net/blog/octopus-deploy-k8s/2022-05-30-00-32-20.png"><br><img src="https://bingxiangstorage.blob.core.windows.net/blog/octopus-deploy-k8s/2022-05-30-00-32-49.png"></p>
-<h2 id="設定-Runbook-Setup-Kubernetes-Ingress"><a href="#設定-Runbook-Setup-Kubernetes-Ingress" class="headerlink" title="設定 Runbook - Setup Kubernetes Ingress"></a>設定 Runbook - Setup Kubernetes Ingress</h2><blockquote>
+<h2 id="設定-Runbook-Setup-Kubernetes-Ingress-Deploy-Bare-Metal-Kubernetes-Ingress"><a href="#設定-Runbook-Setup-Kubernetes-Ingress-Deploy-Bare-Metal-Kubernetes-Ingress" class="headerlink" title="設定 Runbook - Setup Kubernetes Ingress - Deploy Bare Metal Kubernetes Ingress"></a>設定 Runbook - Setup Kubernetes Ingress - Deploy Bare Metal Kubernetes Ingress</h2><blockquote>
 <p>Ingress 不需每次上版都要部署(屬於初始設定)，設定在 Runbooks 要使用再部署即可<br><img src="https://bingxiangstorage.blob.core.windows.net/blog/octopus-deploy-k8s/2022-05-29-23-38-00.png"><br><img src="https://bingxiangstorage.blob.core.windows.net/blog/octopus-deploy-k8s/2022-05-29-23-41-10.png"></p>
 </blockquote>
 <p>新增 Step<br><img src="https://bingxiangstorage.blob.core.windows.net/blog/octopus-deploy-k8s/2022-05-29-23-41-47.png"></p>
@@ -1260,6 +1275,7 @@ metadata:
     nginx.ingress.kubernetes.io/rewrite-target: /
     nginx.ingress.kubernetes.io/ssl-redirect: &quot;false&quot;
     nginx.ingress.kubernetes.io/force-ssl-redirect: &quot;false&quot;
+  namespace: &#39;#&#123;K8s.Web.Namespace&#125;&#39;
 spec:
   ingressClassName: nginx
   rules:
@@ -1277,7 +1293,7 @@ spec:
 <p>設定只部署到 develop (目前 qc 還沒建立 GKE)<br><img src="https://bingxiangstorage.blob.core.windows.net/blog/octopus-deploy-k8s/2022-05-29-23-55-43.png"></p>
 <p>測試部署 Ingress 至 develop<br><img src="https://bingxiangstorage.blob.core.windows.net/blog/octopus-deploy-k8s/2022-05-30-00-01-05.png"><br><img src="https://bingxiangstorage.blob.core.windows.net/blog/octopus-deploy-k8s/2022-05-30-00-01-28.png"></p>
 <p>部署成功<br><img src="https://bingxiangstorage.blob.core.windows.net/blog/octopus-deploy-k8s/2022-05-30-00-08-11.png"></p>
-<h2 id="設定-Project-Process"><a href="#設定-Project-Process" class="headerlink" title="設定 Project Process"></a>設定 Project Process</h2><p>設定 Project Process 點擊新增 Step<br><img src="https://bingxiangstorage.blob.core.windows.net/blog/octopus-deploy-k8s/2022-05-29-23-05-53.png"></p>
+<h2 id="設定-Project-Process-新增-Deploy-To-Bare-Metal-Kubernetes-Cluster"><a href="#設定-Project-Process-新增-Deploy-To-Bare-Metal-Kubernetes-Cluster" class="headerlink" title="設定 Project Process - 新增 Deploy To Bare Metal Kubernetes Cluster"></a>設定 Project Process - 新增 Deploy To Bare Metal Kubernetes Cluster</h2><p>設定 Project Process 點擊新增 Step<br><img src="https://bingxiangstorage.blob.core.windows.net/blog/octopus-deploy-k8s/2022-05-29-23-05-53.png"></p>
 <p>選擇 Deploy Kubernetes containers<br><img src="https://bingxiangstorage.blob.core.windows.net/blog/octopus-deploy-k8s/2022-05-29-23-07-55.png"></p>
 <p>設定 StepName、Target roles<br><img src="https://bingxiangstorage.blob.core.windows.net/blog/octopus-deploy-k8s/2022-05-29-23-10-34.png"></p>
 <p>設定 CONFIGURE FEATURES (先只勾選 Service 即可)<br><img src="https://bingxiangstorage.blob.core.windows.net/blog/octopus-deploy-k8s/2022-05-29-23-35-08.png"><br><img src="https://bingxiangstorage.blob.core.windows.net/blog/octopus-deploy-k8s/2022-05-29-23-36-14.png"></p>
