@@ -6,18 +6,26 @@
   <meta name="keywords" content=" Docker , GCP , Garfana ">
   <meta name="description" content="透過 Docker 安裝 Garfana | w4560000.github.io">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-<meta name="description" content="列出目前 listening 的 TCP socketsss -ltn  #輸出 ex: State        Recv-Q        Send-Q                 Local Address:Port                  Peer Address:Port         LISTEN       0             4096">
+<meta name="description" content="前言本文紀錄在 Garfana 新增 Data Sources Google Cloud Monitoring 監控 GCP VM Garfana 官方文件 - Using Google Cloud Monitoring in Grafana GCP服務配置啟用服務 gcloud services enable monitoring.googleapis.com gcloud services e">
 <meta property="og:type" content="article">
-<meta property="og:title" content="常用的 Linux 指令">
-<meta property="og:url" content="http://example.com/2022/06/07/linux-script/index.html">
+<meta property="og:title" content="Garfana 監控 GCP VM">
+<meta property="og:url" content="http://example.com/2022/06/11/garfana-gcp-vm/index.html">
 <meta property="og:site_name" content="w4560000.github.io">
-<meta property="og:description" content="列出目前 listening 的 TCP socketsss -ltn  #輸出 ex: State        Recv-Q        Send-Q                 Local Address:Port                  Peer Address:Port         LISTEN       0             4096">
+<meta property="og:description" content="前言本文紀錄在 Garfana 新增 Data Sources Google Cloud Monitoring 監控 GCP VM Garfana 官方文件 - Using Google Cloud Monitoring in Grafana GCP服務配置啟用服務 gcloud services enable monitoring.googleapis.com gcloud services e">
 <meta property="og:locale" content="zh_TW">
-<meta property="article:published_time" content="2022-06-07T15:30:08.000Z">
-<meta property="article:modified_time" content="2022-06-07T15:38:43.139Z">
+<meta property="og:image" content="https://bingxiangstorage.blob.core.windows.net/blog/garfana-gcp-vm/2022-06-11-23-12-29.png">
+<meta property="og:image" content="https://bingxiangstorage.blob.core.windows.net/blog/garfana-gcp-vm/2022-06-11-23-12-53.png">
+<meta property="og:image" content="https://bingxiangstorage.blob.core.windows.net/blog/garfana-gcp-vm/2022-06-11-23-13-06.png">
+<meta property="og:image" content="https://bingxiangstorage.blob.core.windows.net/blog/garfana-gcp-vm/2022-06-11-23-13-39.png">
+<meta property="og:image" content="https://bingxiangstorage.blob.core.windows.net/blog/garfana-gcp-vm/2022-06-11-23-14-17.png">
+<meta property="og:image" content="https://bingxiangstorage.blob.core.windows.net/blog/garfana-gcp-vm/2022-06-11-23-14-22.png">
+<meta property="article:published_time" content="2022-06-11T15:04:54.000Z">
+<meta property="article:modified_time" content="2022-06-11T16:29:24.293Z">
 <meta property="article:author" content="Leo Zheng">
-<meta property="article:tag" content="Linux">
+<meta property="article:tag" content="GCP">
+<meta property="article:tag" content="Garfana">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://bingxiangstorage.blob.core.windows.net/blog/garfana-gcp-vm/2022-06-11-23-12-29.png">
 
 
 <link rel="icon" href="/img/avatar.jpg">
@@ -106,7 +114,7 @@
     <li>
         <div class="all active" data-rel="全部文章">全部文章
             
-                <small>(64)</small>
+                <small>(65)</small>
             
         </div>
     </li>
@@ -204,7 +212,7 @@
                         <i class="fold iconfont icon-right"></i>
                         
                         Devops
-                        <small>(40)</small>
+                        <small>(41)</small>
                         
                     </div>
                     
@@ -251,7 +259,7 @@
                                         
                                         Garfana
                                         
-                                            <small>(1
+                                            <small>(2
                                                 )</small>
                                         
                                     </div>
@@ -529,8 +537,8 @@
         
     </div>
 </div>
-<input type="hidden" id="yelog_site_posts_number" value="64">
-<input type="hidden" id="yelog_site_word_count" value="32.6k">
+<input type="hidden" id="yelog_site_posts_number" value="65">
+<input type="hidden" id="yelog_site_word_count" value="32.9k">
 <div style="display: none">
     <span id="busuanzi_value_site_uv"></span>
     <span id="busuanzi_value_site_pv"></span>
@@ -697,6 +705,14 @@
 
     
     <nav id="title-list-nav">
+        
+        <a  class="全部文章 Devops Garfana "
+           href="/2022/06/11/garfana-gcp-vm/"
+           data-tag="GCP,Garfana"
+           data-author="" >
+            <span class="post-title" title="Garfana 監控 GCP VM">Garfana 監控 GCP VM</span>
+            <span class="post-date" title="2022-06-11 23:04:54">2022/06/11</span>
+        </a>
         
         <a  class="全部文章 Devops Docker "
            href="/2022/06/11/docker-install/"
@@ -1156,7 +1172,7 @@
         
         <a  class="全部文章 Devops GCP "
            href="/2022/04/02/gcp-cloud-build-deploy-gke/"
-           data-tag="GCP,K8S"
+           data-tag="Docker,GCP,K8S"
            data-author="" >
             <span class="post-title" title="GCP Cloud Build 部署至 K8S中">GCP Cloud Build 部署至 K8S中</span>
             <span class="post-date" title="2022-04-02 22:40:55">2022/04/02</span>
@@ -1164,7 +1180,7 @@
         
         <a  class="全部文章 Devops GCP "
            href="/2022/04/02/gcp-init-cloud-build/"
-           data-tag="GCP"
+           data-tag="Docker,GCP"
            data-author="" >
             <span class="post-title" title="GCP Cloud Build 範例">GCP Cloud Build 範例</span>
             <span class="post-date" title="2022-04-02 22:19:52">2022/04/02</span>
@@ -1261,7 +1277,7 @@
     </div>
     <div class="article-meta">
         
-            發布時間 : <time class="date" title='更新時間: 2022-06-11 17:15:16'>2022-06-11 16:38</time>
+            發布時間 : <time class="date" title='更新時間: 2022-06-12 00:29:07'>2022-06-11 16:38</time>
         
     </div>
     <div class="article-meta">
@@ -1315,7 +1331,7 @@
         <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>Garfana 是一套開源的分析、視覺化工具，提供串接的資料來源也非常豐富<br>且也可以做到即時告警，用來監控系統執行狀況非常方便<br><a target="_blank" rel="noopener" href="https://grafana.com/">Garfana 官網</a></p>
 <p>本文紀錄在 GCP 建立一台ubuntu-1804-lts VM，並透過官網的 DockerImage 運行 Garfana</p>
 <h2 id="建立測試-VM"><a href="#建立測試-VM" class="headerlink" title="建立測試 VM"></a>建立測試 VM</h2><p>建立 一台 ubuntu-1804 機器</p>
-<pre><code class="Shell">gcloud compute instances create monitor-sample \
+<pre><code class="CMD">gcloud compute instances create monitor-sample \
     --async \
     --boot-disk-size 200GB \
     --can-ip-forward \
@@ -1327,10 +1343,10 @@
     --tags monitor-sample
 </code></pre>
 <p>臨時外部IP 提升成永久靜態IP</p>
-<pre><code class="Shell">gcloud compute addresses create monitor-sample-ip --addresses=$ip --region=asia-east1
+<pre><code class="CMD">gcloud compute addresses create monitor-sample-ip --addresses=$ip --region=asia-east1
 </code></pre>
 <p>開啟防火牆 3000 port (grafana 使用)</p>
-<pre><code class="Shell">gcloud compute firewall-rules create monitor-sample-3000 \
+<pre><code class="CMD">gcloud compute firewall-rules create monitor-sample-3000 \
     --direction=INGRESS \
     --priority=1000 \
     --network=default \
@@ -1339,9 +1355,9 @@
     --source-ranges=0.0.0.0/0 \
     --target-tags=monitor-sample
 </code></pre>
-<h2 id="Run-Grafana-Docker-Image"><a href="#Run-Grafana-Docker-Image" class="headerlink" title="Run Grafana Docker Image"></a>Run Grafana Docker Image</h2><p><a target="_blank" rel="noopener" href="https://grafana.com/docs/grafana/latest/installation/docker/#run-grafana-docker-image">官方文件 - Run Grafana Docker image</a></p>
+<h2 id="Run-Grafana-Docker-Image"><a href="#Run-Grafana-Docker-Image" class="headerlink" title="Run Grafana Docker Image"></a>Run Grafana Docker Image</h2><p><a target="_blank" rel="noopener" href="https://grafana.com/docs/grafana/latest/installation/docker/#run-grafana-docker-image">Garfana 官方文件 - Run Grafana Docker image</a></p>
 <h3 id="安裝-Docker"><a href="#安裝-Docker" class="headerlink" title="安裝 Docker"></a>安裝 Docker</h3><p>參考 <a href="/2022/06/11/docker-install">Linux 安裝 Docker、Docker-Compose</a></p>
-<h3 id="Run-Docker-Image"><a href="#Run-Docker-Image" class="headerlink" title="Run Docker Image"></a>Run Docker Image</h3><pre><code class="Shell">docker run -d --name grafana -p 3000:3000 \
+<h3 id="Run-Docker-Image"><a href="#Run-Docker-Image" class="headerlink" title="Run Docker Image"></a>Run Docker Image</h3><pre><code class="CMD">docker run -d --name grafana -p 3000:3000 \
     -v grafana-data:/var/lib/grafana \
     grafana/grafana:8.3.0
 </code></pre>

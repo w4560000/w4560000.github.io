@@ -6,18 +6,26 @@
   <meta name="keywords" content=" .Net , OctopusDeploy ">
   <meta name="description" content="Octopus Deploy 設定多環境變數 | w4560000.github.io">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-<meta name="description" content="列出目前 listening 的 TCP socketsss -ltn  #輸出 ex: State        Recv-Q        Send-Q                 Local Address:Port                  Peer Address:Port         LISTEN       0             4096">
+<meta name="description" content="前言本文紀錄在 Garfana 新增 Data Sources Google Cloud Monitoring 監控 GCP VM Garfana 官方文件 - Using Google Cloud Monitoring in Grafana GCP服務配置啟用服務 gcloud services enable monitoring.googleapis.com gcloud services e">
 <meta property="og:type" content="article">
-<meta property="og:title" content="常用的 Linux 指令">
-<meta property="og:url" content="http://example.com/2022/06/07/linux-script/index.html">
+<meta property="og:title" content="Garfana 監控 GCP VM">
+<meta property="og:url" content="http://example.com/2022/06/11/garfana-gcp-vm/index.html">
 <meta property="og:site_name" content="w4560000.github.io">
-<meta property="og:description" content="列出目前 listening 的 TCP socketsss -ltn  #輸出 ex: State        Recv-Q        Send-Q                 Local Address:Port                  Peer Address:Port         LISTEN       0             4096">
+<meta property="og:description" content="前言本文紀錄在 Garfana 新增 Data Sources Google Cloud Monitoring 監控 GCP VM Garfana 官方文件 - Using Google Cloud Monitoring in Grafana GCP服務配置啟用服務 gcloud services enable monitoring.googleapis.com gcloud services e">
 <meta property="og:locale" content="zh_TW">
-<meta property="article:published_time" content="2022-06-07T15:30:08.000Z">
-<meta property="article:modified_time" content="2022-06-07T15:38:43.139Z">
+<meta property="og:image" content="https://bingxiangstorage.blob.core.windows.net/blog/garfana-gcp-vm/2022-06-11-23-12-29.png">
+<meta property="og:image" content="https://bingxiangstorage.blob.core.windows.net/blog/garfana-gcp-vm/2022-06-11-23-12-53.png">
+<meta property="og:image" content="https://bingxiangstorage.blob.core.windows.net/blog/garfana-gcp-vm/2022-06-11-23-13-06.png">
+<meta property="og:image" content="https://bingxiangstorage.blob.core.windows.net/blog/garfana-gcp-vm/2022-06-11-23-13-39.png">
+<meta property="og:image" content="https://bingxiangstorage.blob.core.windows.net/blog/garfana-gcp-vm/2022-06-11-23-14-17.png">
+<meta property="og:image" content="https://bingxiangstorage.blob.core.windows.net/blog/garfana-gcp-vm/2022-06-11-23-14-22.png">
+<meta property="article:published_time" content="2022-06-11T15:04:54.000Z">
+<meta property="article:modified_time" content="2022-06-11T16:29:24.293Z">
 <meta property="article:author" content="Leo Zheng">
-<meta property="article:tag" content="Linux">
+<meta property="article:tag" content="GCP">
+<meta property="article:tag" content="Garfana">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://bingxiangstorage.blob.core.windows.net/blog/garfana-gcp-vm/2022-06-11-23-12-29.png">
 
 
 <link rel="icon" href="/img/avatar.jpg">
@@ -106,7 +114,7 @@
     <li>
         <div class="all active" data-rel="全部文章">全部文章
             
-                <small>(64)</small>
+                <small>(65)</small>
             
         </div>
     </li>
@@ -204,7 +212,7 @@
                         <i class="fold iconfont icon-right"></i>
                         
                         Devops
-                        <small>(40)</small>
+                        <small>(41)</small>
                         
                     </div>
                     
@@ -251,7 +259,7 @@
                                         
                                         Garfana
                                         
-                                            <small>(1
+                                            <small>(2
                                                 )</small>
                                         
                                     </div>
@@ -529,8 +537,8 @@
         
     </div>
 </div>
-<input type="hidden" id="yelog_site_posts_number" value="64">
-<input type="hidden" id="yelog_site_word_count" value="32.6k">
+<input type="hidden" id="yelog_site_posts_number" value="65">
+<input type="hidden" id="yelog_site_word_count" value="32.9k">
 <div style="display: none">
     <span id="busuanzi_value_site_uv"></span>
     <span id="busuanzi_value_site_pv"></span>
@@ -697,6 +705,14 @@
 
     
     <nav id="title-list-nav">
+        
+        <a  class="全部文章 Devops Garfana "
+           href="/2022/06/11/garfana-gcp-vm/"
+           data-tag="GCP,Garfana"
+           data-author="" >
+            <span class="post-title" title="Garfana 監控 GCP VM">Garfana 監控 GCP VM</span>
+            <span class="post-date" title="2022-06-11 23:04:54">2022/06/11</span>
+        </a>
         
         <a  class="全部文章 Devops Docker "
            href="/2022/06/11/docker-install/"
@@ -1156,7 +1172,7 @@
         
         <a  class="全部文章 Devops GCP "
            href="/2022/04/02/gcp-cloud-build-deploy-gke/"
-           data-tag="GCP,K8S"
+           data-tag="Docker,GCP,K8S"
            data-author="" >
             <span class="post-title" title="GCP Cloud Build 部署至 K8S中">GCP Cloud Build 部署至 K8S中</span>
             <span class="post-date" title="2022-04-02 22:40:55">2022/04/02</span>
@@ -1164,7 +1180,7 @@
         
         <a  class="全部文章 Devops GCP "
            href="/2022/04/02/gcp-init-cloud-build/"
-           data-tag="GCP"
+           data-tag="Docker,GCP"
            data-author="" >
             <span class="post-title" title="GCP Cloud Build 範例">GCP Cloud Build 範例</span>
             <span class="post-date" title="2022-04-02 22:19:52">2022/04/02</span>
@@ -1259,7 +1275,7 @@
     </div>
     <div class="article-meta">
         
-            發布時間 : <time class="date" title='更新時間: 2022-05-25 01:26:53'>2022-05-23 05:10</time>
+            發布時間 : <time class="date" title='更新時間: 2022-06-11 23:28:34'>2022-05-23 05:10</time>
         
     </div>
     <div class="article-meta">
