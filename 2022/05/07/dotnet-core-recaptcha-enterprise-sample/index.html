@@ -6,12 +6,12 @@
   <meta name="keywords" content=" .NetCore , GCP ">
   <meta name="description" content=".Net Core 3.1 reCAPTCHA Enterprise 範例 | w4560000.github.io">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-<meta name="description" content="前言本篇記錄由 Prometheus 蒐集 .Net 6 WebAPI  的 Mertics，並在 Garfana 呈現資料 .Net 6 WebAPI 專案設定.net 6 專案建立 dotnet new sln --output Prometheus_Test dotnet new webapi -f net6.0 -o Prometheus_Test&#x2F;Prometheus_Test dotn">
+<meta name="description" content="前言本篇記錄由 Prometheus 蒐集 .Net 6 WebAPI  的 Mertics，並在 Garfana 呈現資料 .Net 6 WebAPI 專案設定.Net 6 專案建立 dotnet new sln --output Prometheus_Test dotnet new webapi -f net6.0 -o Prometheus_Test&#x2F;Prometheus_Test dotn">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Garfana 透過 Prometheus 監控 .Net 6 應用程式">
 <meta property="og:url" content="http://example.com/2022/06/14/garfana-dotnet-mertrics/index.html">
 <meta property="og:site_name" content="w4560000.github.io">
-<meta property="og:description" content="前言本篇記錄由 Prometheus 蒐集 .Net 6 WebAPI  的 Mertics，並在 Garfana 呈現資料 .Net 6 WebAPI 專案設定.net 6 專案建立 dotnet new sln --output Prometheus_Test dotnet new webapi -f net6.0 -o Prometheus_Test&#x2F;Prometheus_Test dotn">
+<meta property="og:description" content="前言本篇記錄由 Prometheus 蒐集 .Net 6 WebAPI  的 Mertics，並在 Garfana 呈現資料 .Net 6 WebAPI 專案設定.Net 6 專案建立 dotnet new sln --output Prometheus_Test dotnet new webapi -f net6.0 -o Prometheus_Test&#x2F;Prometheus_Test dotn">
 <meta property="og:locale" content="zh_TW">
 <meta property="og:image" content="https://bingxiangstorage.blob.core.windows.net/blog/garfana-dotnet-mertrics/2022-06-14-23-47-58.png">
 <meta property="og:image" content="https://bingxiangstorage.blob.core.windows.net/blog/garfana-dotnet-mertrics/2022-06-18-16-12-00.png">
@@ -20,7 +20,7 @@
 <meta property="og:image" content="https://bingxiangstorage.blob.core.windows.net/blog/garfana-dotnet-mertrics/2022-06-18-17-24-08.png">
 <meta property="og:image" content="https://bingxiangstorage.blob.core.windows.net/blog/garfana-dotnet-mertrics/2022-06-18-17-24-50.png">
 <meta property="article:published_time" content="2022-06-14T15:21:10.000Z">
-<meta property="article:modified_time" content="2022-06-18T09:33:05.296Z">
+<meta property="article:modified_time" content="2022-06-18T09:37:00.638Z">
 <meta property="article:author" content="Leo Zheng">
 <meta property="article:tag" content=".NetCore">
 <meta property="article:tag" content="Garfana">
@@ -1051,7 +1051,7 @@
            href="/2022/04/24/elk-parse-iislog/"
            data-tag="ELK,IIS"
            data-author="" >
-            <span class="post-title" title="Kibana 查看IIS Log">Kibana 查看IIS Log</span>
+            <span class="post-title" title="Kibana 查看 IIS Log">Kibana 查看 IIS Log</span>
             <span class="post-date" title="2022-04-24 15:24:58">2022/04/24</span>
         </a>
         
@@ -1203,7 +1203,7 @@
            href="/2022/04/03/dotnet-remote-debugger/"
            data-tag=".Net,VS Debugger Tool"
            data-author="" >
-            <span class="post-title" title="遠端debug 掛載在IIS的服務站台">遠端debug 掛載在IIS的服務站台</span>
+            <span class="post-title" title="遠端 debug 掛載在 IIS 的服務站台">遠端 debug 掛載在 IIS 的服務站台</span>
             <span class="post-date" title="2022-04-03 22:33:05">2022/04/03</span>
         </a>
         
@@ -1312,12 +1312,12 @@
     </div>
     <div class="article-meta">
         
-            發布時間 : <time class="date" title='更新時間: 2022-05-09 00:34:58'>2022-05-07 23:39</time>
+            發布時間 : <time class="date" title='更新時間: 2022-06-18 18:26:42'>2022-05-07 23:39</time>
         
     </div>
     <div class="article-meta">
         
-        <span>字數:1.3k</span>
+        <span>字數:1.4k</span>
         
         
         <span id="busuanzi_container_page_pv">
@@ -1366,21 +1366,21 @@
         <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>最近公司計畫導入 reCAPTCHA Enterprise，本篇文章 記錄一下實作細節</p>
 <h2 id="設定-reCAPTCHA-Enterprise"><a href="#設定-reCAPTCHA-Enterprise" class="headerlink" title="設定 reCAPTCHA Enterprise"></a>設定 reCAPTCHA Enterprise</h2><ul>
 <li><p>啟用服務</p>
-<pre><code class="Cloud">gcloud services enable recaptchaenterprise.googleapis.com
+<pre><code class="CMD">gcloud services enable recaptchaenterprise.googleapis.com
 </code></pre>
 </li>
-<li><p>建立 service account<br><a target="_blank" rel="noopener" href="https://cloud.google.com/recaptcha-enterprise/docs/set-up-google-cloud?hl=zh-TW#config-svc-gcloud">官方文件</a></p>
+<li><p>建立 service account<br><a target="_blank" rel="noopener" href="https://cloud.google.com/recaptcha-enterprise/docs/set-up-google-cloud?hl=zh-TW#config-svc-gcloud">GCP 官方文件 - Set up reCAPTCHA Enterprise on Google Cloud</a></p>
 </li>
 </ul>
-<pre><code class="Cloud"># 建立 service-accounts
-gcloud iam service-accounts create [Name]
+<pre><code class="CMD"># 建立 service-accounts
+gcloud iam service-accounts create $Name
 
 # 綁定權限
-gcloud projects add-iam-policy-binding [PROJECT_ID] --member=&quot;serviceAccount:[Name]@[PROJECT_ID].iam.gserviceaccount.com&quot; --role=&quot;roles/recaptchaenterprise.agent&quot;
+gcloud projects add-iam-policy-binding $PROJECT_ID --member=&quot;serviceAccount:$Name@$PROJECT_ID.iam.gserviceaccount.com&quot; --role=&quot;roles/recaptchaenterprise.agent&quot;
 
 # 下載.json檔憑證至本地端 
 # 若服務是在GCP上且機器環境的服務帳戶 含有 recaptchaenterprise.assessments.create權限，則可略過 不需憑證
-gcloud iam service-accounts keys create [KEY_PATH] --iam-account=[NAME]@[PROJECT_ID].iam.gserviceaccount.com
+gcloud iam service-accounts keys create $KEY_PATH --iam-account=$NAME@$PROJECT_ID.iam.gserviceaccount.com
 
 ex:
 gcloud iam service-accounts create recaptcha-account
@@ -1388,9 +1388,9 @@ gcloud projects add-iam-policy-binding xxx --member=&quot;serviceAccount:recaptc
 gcloud iam service-accounts keys create D:\Lab\service-account-file.json --iam-account=recaptcha-account@xxx.iam.gserviceaccount.com  
 </code></pre>
 <ul>
-<li>建立 reCAPTCHA Enterprise sitekey<br><a target="_blank" rel="noopener" href="https://cloud.google.com/recaptcha-enterprise/docs/create-key?hl=zh-tw#creating_a_site_key">官方文件</a></li>
+<li>建立 reCAPTCHA Enterprise sitekey<br><a target="_blank" rel="noopener" href="https://cloud.google.com/recaptcha-enterprise/docs/create-key?hl=zh-tw#creating_a_site_key">GCP 官方文件 - Creating a site key</a></li>
 </ul>
-<pre><code class="Cloud">gcloud recaptcha keys create \
+<pre><code class="CMD">gcloud recaptcha keys create \
   --web \
   --display-name=[DISPLAY_NAME]  \
   --integration-type=[INTEGRATION_TYPE] \
@@ -1418,12 +1418,12 @@ dotnet sln reCAPTCHA_Enterprise_Sample/reCAPTCHA_Enterprise_Sample.sln add reCAP
 </code></pre>
 <h2 id="安裝套件"><a href="#安裝套件" class="headerlink" title="安裝套件"></a>安裝套件</h2><pre><code class="CMD">dotnet add package Google.Cloud.RecaptchaEnterprise.V1
 </code></pre>
-<h2 id="程式實作"><a href="#程式實作" class="headerlink" title="程式實作"></a>程式實作</h2><p>呼叫Google API時，有分在GCP的機器環境 跟 地端環境<br>若服務是跑在GCP的機器環境，需確認機器環境的服務帳戶 含有 recaptchaenterprise.assessments.create 權限 則可以直接呼叫 不需憑證<br>若服務是在地端環境 或 非 GCP 機器環境，則需要將憑證下載至機器上，呼叫時在設定憑證路徑</p>
+<h2 id="程式實作"><a href="#程式實作" class="headerlink" title="程式實作"></a>程式實作</h2><p>呼叫 Google API時，有分在 GCP 的機器環境 跟 地端環境<br>若服務是跑在GCP的機器環境，需確認機器環境的服務帳戶 含有 recaptchaenterprise.assessments.create 權限 則可以直接呼叫 不需憑證<br>若服務是在地端環境 或非 GCP 機器環境，則需要將憑證下載至機器上，呼叫時在設定憑證路徑</p>
 <p>程式碼可參考 <a target="_blank" rel="noopener" href="https://github.com/w4560000/reCAPTCHA_Enterprise_Sample">w4560000/reCAPTCHA_Enterprise_Sample</a></p>
 <ul>
-<li>新增 CreateAssessmentSample.cs<br>程式碼 參考 <a target="_blank" rel="noopener" href="https://cloud.google.com/recaptcha-enterprise/docs/create-assessment?hl=zh-tw#c">google文件</a> 做微調</li>
+<li>新增 CreateAssessmentSample.cs<br>程式碼 參考 <a target="_blank" rel="noopener" href="https://cloud.google.com/recaptcha-enterprise/docs/create-assessment?hl=zh-tw#c">GCP 官方文件 - Create an assessment</a> 做微調</li>
 </ul>
-<pre><code class="Charp">using Google.Api.Gax.ResourceNames;
+<pre><code class="CSharp">using Google.Api.Gax.ResourceNames;
 using Google.Cloud.RecaptchaEnterprise.V1;
 
 namespace reCAPTCHA_Enterprise_Sample.Service
@@ -1520,7 +1520,7 @@ namespace reCAPTCHA_Enterprise_Sample.Service
 <ul>
 <li>修改 HomeController.cs</li>
 </ul>
-<pre><code class="Charp">using Microsoft.AspNetCore.Mvc;
+<pre><code class="CSharp">using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using reCAPTCHA_Enterprise_Sample.Models;
 using reCAPTCHA_Enterprise_Sample.Service;
@@ -1638,7 +1638,7 @@ namespace reCAPTCHA_Enterprise_Sample.Controllers
 </li>
 </ul>
 <h2 id="補充"><a href="#補充" class="headerlink" title="補充"></a>補充</h2><p>若網站右下角 有出現 reCAPTCHA的隱私權說明<br><img src="https://bingxiangstorage.blob.core.windows.net/blog/dotnet-core-recaptcha-enterprise-sample/2022-05-09-00-31-13.png"></p>
-<p>可參考 <a target="_blank" rel="noopener" href="https://developers.google.com/recaptcha/docs/faq#id-like-to-hide-the-recaptcha-badge.-what-is-allowed">官網問答</a> 處理方式<br><img src="https://bingxiangstorage.blob.core.windows.net/blog/dotnet-core-recaptcha-enterprise-sample/2022-05-09-00-33-28.png"></p>
+<p>可參考 <a target="_blank" rel="noopener" href="https://developers.google.com/recaptcha/docs/faq#id-like-to-hide-the-recaptcha-badge.-what-is-allowed">recaptcha 官網 faq</a> 處理方式<br><img src="https://bingxiangstorage.blob.core.windows.net/blog/dotnet-core-recaptcha-enterprise-sample/2022-05-09-00-33-28.png"></p>
 
       
        <hr><span style="font-style: italic;color: gray;"> 轉載請註明來源，若有任何錯誤或表達不清楚的地方，歡迎在下方評論區留言，也可以來信至 leozheng0621@gmail.com </span>

@@ -6,12 +6,12 @@
   <meta name="keywords" content=" ELK ">
   <meta name="description" content="Logstash Parse Timestamp | w4560000.github.io">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-<meta name="description" content="前言本篇記錄由 Prometheus 蒐集 .Net 6 WebAPI  的 Mertics，並在 Garfana 呈現資料 .Net 6 WebAPI 專案設定.net 6 專案建立 dotnet new sln --output Prometheus_Test dotnet new webapi -f net6.0 -o Prometheus_Test&#x2F;Prometheus_Test dotn">
+<meta name="description" content="前言本篇記錄由 Prometheus 蒐集 .Net 6 WebAPI  的 Mertics，並在 Garfana 呈現資料 .Net 6 WebAPI 專案設定.Net 6 專案建立 dotnet new sln --output Prometheus_Test dotnet new webapi -f net6.0 -o Prometheus_Test&#x2F;Prometheus_Test dotn">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Garfana 透過 Prometheus 監控 .Net 6 應用程式">
 <meta property="og:url" content="http://example.com/2022/06/14/garfana-dotnet-mertrics/index.html">
 <meta property="og:site_name" content="w4560000.github.io">
-<meta property="og:description" content="前言本篇記錄由 Prometheus 蒐集 .Net 6 WebAPI  的 Mertics，並在 Garfana 呈現資料 .Net 6 WebAPI 專案設定.net 6 專案建立 dotnet new sln --output Prometheus_Test dotnet new webapi -f net6.0 -o Prometheus_Test&#x2F;Prometheus_Test dotn">
+<meta property="og:description" content="前言本篇記錄由 Prometheus 蒐集 .Net 6 WebAPI  的 Mertics，並在 Garfana 呈現資料 .Net 6 WebAPI 專案設定.Net 6 專案建立 dotnet new sln --output Prometheus_Test dotnet new webapi -f net6.0 -o Prometheus_Test&#x2F;Prometheus_Test dotn">
 <meta property="og:locale" content="zh_TW">
 <meta property="og:image" content="https://bingxiangstorage.blob.core.windows.net/blog/garfana-dotnet-mertrics/2022-06-14-23-47-58.png">
 <meta property="og:image" content="https://bingxiangstorage.blob.core.windows.net/blog/garfana-dotnet-mertrics/2022-06-18-16-12-00.png">
@@ -20,7 +20,7 @@
 <meta property="og:image" content="https://bingxiangstorage.blob.core.windows.net/blog/garfana-dotnet-mertrics/2022-06-18-17-24-08.png">
 <meta property="og:image" content="https://bingxiangstorage.blob.core.windows.net/blog/garfana-dotnet-mertrics/2022-06-18-17-24-50.png">
 <meta property="article:published_time" content="2022-06-14T15:21:10.000Z">
-<meta property="article:modified_time" content="2022-06-18T09:33:05.296Z">
+<meta property="article:modified_time" content="2022-06-18T09:37:00.638Z">
 <meta property="article:author" content="Leo Zheng">
 <meta property="article:tag" content=".NetCore">
 <meta property="article:tag" content="Garfana">
@@ -1051,7 +1051,7 @@
            href="/2022/04/24/elk-parse-iislog/"
            data-tag="ELK,IIS"
            data-author="" >
-            <span class="post-title" title="Kibana 查看IIS Log">Kibana 查看IIS Log</span>
+            <span class="post-title" title="Kibana 查看 IIS Log">Kibana 查看 IIS Log</span>
             <span class="post-date" title="2022-04-24 15:24:58">2022/04/24</span>
         </a>
         
@@ -1203,7 +1203,7 @@
            href="/2022/04/03/dotnet-remote-debugger/"
            data-tag=".Net,VS Debugger Tool"
            data-author="" >
-            <span class="post-title" title="遠端debug 掛載在IIS的服務站台">遠端debug 掛載在IIS的服務站台</span>
+            <span class="post-title" title="遠端 debug 掛載在 IIS 的服務站台">遠端 debug 掛載在 IIS 的服務站台</span>
             <span class="post-date" title="2022-04-03 22:33:05">2022/04/03</span>
         </a>
         
@@ -1310,12 +1310,12 @@
     </div>
     <div class="article-meta">
         
-            發布時間 : <time class="date" title='更新時間: 2022-04-24 16:09:59'>2022-04-17 17:10</time>
+            發布時間 : <time class="date" title='更新時間: 2022-06-18 17:59:55'>2022-04-17 17:10</time>
         
     </div>
     <div class="article-meta">
         
-        <span>字數:433</span>
+        <span>字數:436</span>
         
         
         <span id="busuanzi_container_page_pv">
@@ -1361,9 +1361,9 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>繼上一篇<a href="/2022/04/16/elk-sample/">ELK Stack</a> 介紹建置範例後<br>最後發現 Timestamp 與 Log 紀錄 應用程式當下的Log時間 不符<br><img src="https://bingxiangstorage.blob.core.windows.net/blog/elk-parse-timestamp/2022-04-17-17-15-20.png"></p>
-<p>其原因為 Filebeat會偵測檔案異動 而進行轉拋Log資料的動作，但還是會跟程式內Log的時間 有時間差<br>本篇範例 在Logstash 轉拋資料到 Elasticsearch 進行 Timestamp 處理，改取Log紀錄裡的時間，這樣在Kibana搜尋時間時，才能知道Log發生的精準時間</p>
-<h2 id="Logstash-Parse-Timestamp"><a href="#Logstash-Parse-Timestamp" class="headerlink" title="Logstash Parse Timestamp"></a>Logstash Parse Timestamp</h2><p>上一篇<a href="/2022/04/16/elk-sample/">ELK Stack</a> 在 logstash/conf.d 建立了 logstash.conf<br>這次 要在建立另一個.conf用來Parse資料欄位</p>
+        <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>繼上一篇 <a href="/2022/04/16/elk-sample/">ELK Stack</a> 介紹建置範例後<br>最後發現 Timestamp 與 Log 紀錄 應用程式當下的Log時間 不符<br><img src="https://bingxiangstorage.blob.core.windows.net/blog/elk-parse-timestamp/2022-04-17-17-15-20.png"></p>
+<p>其原因為 Filebeat會偵測檔案異動 而進行轉拋 Log 資料的動作，但還是會跟程式內 Log 的時間 有時間差<br>本篇範例在 Logstash 轉拋資料到 Elasticsearch 進行 Timestamp 處理，改取 Log 紀錄裡的時間<br>這樣在 Kibana 搜尋時間時，才能知道 Log 發生的精準時間</p>
+<h2 id="Logstash-Parse-Timestamp"><a href="#Logstash-Parse-Timestamp" class="headerlink" title="Logstash Parse Timestamp"></a>Logstash Parse Timestamp</h2><p>上一篇 <a href="/2022/04/16/elk-sample/">ELK Stack</a> 在 logstash/conf.d 建立了 logstash.conf<br>這次需再建立另一個 .conf檔 用來 Parse 時間欄位</p>
 <p>在 logstash/conf.d 底下 建立 logstash-custom.conf (檔案名稱可自定義)</p>
 <pre><code class="CMD">vi logstash-custom.conf
 </code></pre>
@@ -1389,9 +1389,9 @@
 &#125;
 </code></pre>
 <blockquote>
-<p>logstash 能使用多個 .conf檔是因為 在<a href="(/2022/04/16/elk-sample/)">上一篇</a> docker-compose.yml 中<br>設定logstash 的 command: -f /etc/logstash/conf.d/<br>代表會吃 /etc/logstash/conf.d/ 底下的所有.conf設定，故 logstash-custom.conf 的設定才能生效</p>
+<p>logstash 能使用多個 .conf檔 是因為在 <a href="/2022/04/16/elk-sample/">上一篇</a> docker-compose.yml 中<br>設定logstash 的 command: -f /etc/logstash/conf.d/<br>代表會吃 /etc/logstash/conf.d/ 底下的所有.conf設定，故 logstash-custom.conf 的設定才能生效</p>
 </blockquote>
-<h2 id="Grok-debugger"><a href="#Grok-debugger" class="headerlink" title="Grok debugger"></a>Grok debugger</h2><p>kibana有提供 grok pattern debugger頁面 <a target="_blank" rel="noopener" href="http://yourip:5601/app/kibana#/dev_tools/grokdebugger">http://YourIP:5601/app/kibana#/dev_tools/grokdebugger</a><br>可用來測試 Log 與 grok pattern 格式 是否符合<br><img src="https://bingxiangstorage.blob.core.windows.net/blog/elk-parse-timestamp/2022-04-18-00-00-23.png"></p>
+<h2 id="Grok-debugger"><a href="#Grok-debugger" class="headerlink" title="Grok debugger"></a>Grok debugger</h2><p>kibana有提供 grok pattern debugger 頁面 <a target="_blank" rel="noopener" href="http://yourip:5601/app/kibana#/dev_tools/grokdebugger">http://YourIP:5601/app/kibana#/dev_tools/grokdebugger</a><br>可用來測試 Log 與 grok pattern 格式 是否符合<br><img src="https://bingxiangstorage.blob.core.windows.net/blog/elk-parse-timestamp/2022-04-18-00-00-23.png"></p>
 <h2 id="重啟服務-查看-timestamp-是否有被parse成功"><a href="#重啟服務-查看-timestamp-是否有被parse成功" class="headerlink" title="重啟服務 查看 timestamp 是否有被parse成功"></a>重啟服務 查看 timestamp 是否有被parse成功</h2><p>原始Log檔</p>
 <pre><code class="txt">2022-04-17 17:01:56.338 26 INFO ELK_Test.Controllers.LogTestController   Nlog Test Value: 測試Timestamp 
 </code></pre>

@@ -2,16 +2,16 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <title>遠端debug 掛載在IIS的服務站台 | w4560000.github.io</title>
+  <title>遠端 debug 掛載在 IIS 的服務站台 | w4560000.github.io</title>
   <meta name="keywords" content=" .Net , VS Debugger Tool ">
-  <meta name="description" content="遠端debug 掛載在IIS的服務站台 | w4560000.github.io">
+  <meta name="description" content="遠端 debug 掛載在 IIS 的服務站台 | w4560000.github.io">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-<meta name="description" content="前言本篇記錄由 Prometheus 蒐集 .Net 6 WebAPI  的 Mertics，並在 Garfana 呈現資料 .Net 6 WebAPI 專案設定.net 6 專案建立 dotnet new sln --output Prometheus_Test dotnet new webapi -f net6.0 -o Prometheus_Test&#x2F;Prometheus_Test dotn">
+<meta name="description" content="前言本篇記錄由 Prometheus 蒐集 .Net 6 WebAPI  的 Mertics，並在 Garfana 呈現資料 .Net 6 WebAPI 專案設定.Net 6 專案建立 dotnet new sln --output Prometheus_Test dotnet new webapi -f net6.0 -o Prometheus_Test&#x2F;Prometheus_Test dotn">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Garfana 透過 Prometheus 監控 .Net 6 應用程式">
 <meta property="og:url" content="http://example.com/2022/06/14/garfana-dotnet-mertrics/index.html">
 <meta property="og:site_name" content="w4560000.github.io">
-<meta property="og:description" content="前言本篇記錄由 Prometheus 蒐集 .Net 6 WebAPI  的 Mertics，並在 Garfana 呈現資料 .Net 6 WebAPI 專案設定.net 6 專案建立 dotnet new sln --output Prometheus_Test dotnet new webapi -f net6.0 -o Prometheus_Test&#x2F;Prometheus_Test dotn">
+<meta property="og:description" content="前言本篇記錄由 Prometheus 蒐集 .Net 6 WebAPI  的 Mertics，並在 Garfana 呈現資料 .Net 6 WebAPI 專案設定.Net 6 專案建立 dotnet new sln --output Prometheus_Test dotnet new webapi -f net6.0 -o Prometheus_Test&#x2F;Prometheus_Test dotn">
 <meta property="og:locale" content="zh_TW">
 <meta property="og:image" content="https://bingxiangstorage.blob.core.windows.net/blog/garfana-dotnet-mertrics/2022-06-14-23-47-58.png">
 <meta property="og:image" content="https://bingxiangstorage.blob.core.windows.net/blog/garfana-dotnet-mertrics/2022-06-18-16-12-00.png">
@@ -20,7 +20,7 @@
 <meta property="og:image" content="https://bingxiangstorage.blob.core.windows.net/blog/garfana-dotnet-mertrics/2022-06-18-17-24-08.png">
 <meta property="og:image" content="https://bingxiangstorage.blob.core.windows.net/blog/garfana-dotnet-mertrics/2022-06-18-17-24-50.png">
 <meta property="article:published_time" content="2022-06-14T15:21:10.000Z">
-<meta property="article:modified_time" content="2022-06-18T09:33:05.296Z">
+<meta property="article:modified_time" content="2022-06-18T09:37:00.638Z">
 <meta property="article:author" content="Leo Zheng">
 <meta property="article:tag" content=".NetCore">
 <meta property="article:tag" content="Garfana">
@@ -1051,7 +1051,7 @@
            href="/2022/04/24/elk-parse-iislog/"
            data-tag="ELK,IIS"
            data-author="" >
-            <span class="post-title" title="Kibana 查看IIS Log">Kibana 查看IIS Log</span>
+            <span class="post-title" title="Kibana 查看 IIS Log">Kibana 查看 IIS Log</span>
             <span class="post-date" title="2022-04-24 15:24:58">2022/04/24</span>
         </a>
         
@@ -1203,7 +1203,7 @@
            href="/2022/04/03/dotnet-remote-debugger/"
            data-tag=".Net,VS Debugger Tool"
            data-author="" >
-            <span class="post-title" title="遠端debug 掛載在IIS的服務站台">遠端debug 掛載在IIS的服務站台</span>
+            <span class="post-title" title="遠端 debug 掛載在 IIS 的服務站台">遠端 debug 掛載在 IIS 的服務站台</span>
             <span class="post-date" title="2022-04-03 22:33:05">2022/04/03</span>
         </a>
         
@@ -1283,7 +1283,7 @@
     <div class="pjax">
         <article id="post-dotnet-remote-debugger" class="article article-type-post" itemscope itemprop="blogPost">
     
-        <h1 class="article-title">遠端debug 掛載在IIS的服務站台</h1>
+        <h1 class="article-title">遠端 debug 掛載在 IIS 的服務站台</h1>
     
     <div class="article-meta">
         
@@ -1312,12 +1312,12 @@
     </div>
     <div class="article-meta">
         
-            發布時間 : <time class="date" title='更新時間: 2022-04-25 23:38:23'>2022-04-03 22:33</time>
+            發布時間 : <time class="date" title='更新時間: 2022-06-18 18:18:45'>2022-04-03 22:33</time>
         
     </div>
     <div class="article-meta">
         
-        <span>字數:352</span>
+        <span>字數:346</span>
         
         
         <span id="busuanzi_container_page_pv">
@@ -1364,9 +1364,9 @@
     <div class="article-entry" itemprop="articleBody">
       
         <h2 id="紀錄如何-Debugger-遠端Server流程，以Visual-Studio-2017做範例"><a href="#紀錄如何-Debugger-遠端Server流程，以Visual-Studio-2017做範例" class="headerlink" title="紀錄如何 Debugger 遠端Server流程，以Visual Studio 2017做範例"></a>紀錄如何 Debugger 遠端Server流程，以Visual Studio 2017做範例</h2><blockquote>
-<p>說明:<br>要先確保本地端程式碼與遠端伺服器的程式碼 版本一致<br>建議用來Debugger測試機就好，不適合用在正式機，會造成執行序堵塞</p>
+<p>說明:<br>要先確保本地端程式碼與遠端伺服器的程式碼 版本一致<br>建議用來Debugger測試機就好，不適合用在正式機，debug 會造成執行序堵塞</p>
 </blockquote>
-<h2 id="在遠端伺服器安裝工具並執行"><a href="#在遠端伺服器安裝工具並執行" class="headerlink" title="在遠端伺服器安裝工具並執行"></a>在遠端伺服器安裝工具並執行</h2><p>本地端使用工具 : Visual Studio 2017<br>遠端使用工具:  至微軟visualstudio官網下載相對應版本遠端Debugger工具(<a target="_blank" rel="noopener" href="https://my.visualstudio.com/Downloads?q=remote%20tools%20visual%20studio">https://my.visualstudio.com/Downloads?q=remote%20tools%20visual%20studio</a>)</p>
+<h2 id="在遠端伺服器安裝工具並執行"><a href="#在遠端伺服器安裝工具並執行" class="headerlink" title="在遠端伺服器安裝工具並執行"></a>在遠端伺服器安裝工具並執行</h2><p>本地端使用工具 : Visual Studio 2017<br>遠端使用工具:  至微軟visualstudio官網下載相對應版本遠端 <a target="_blank" rel="noopener" href="https://my.visualstudio.com/Downloads?q=remote%20tools%20visual%20studio">Debugger 工具</a></p>
 <ul>
 <li><p>安裝 剛下載好的 VS_RemoteTools.exe ， 安裝好後 執行 Remote Debugger 程式<br><img src="https://bingxiangstorage.blob.core.windows.net/blog/dotnet-remote-debugger/2022-04-03-22-39-55.png"></p>
 </li>
@@ -1374,7 +1374,7 @@
 </li>
 </ul>
 <h2 id="回到本機-以VS2017-開啟專案"><a href="#回到本機-以VS2017-開啟專案" class="headerlink" title="回到本機 以VS2017 開啟專案"></a>回到本機 以VS2017 開啟專案</h2><ul>
-<li><p>按下 Ctrl + Alt + p 開啟 附加至處理序 功能<br>在連線目標上輸入遠端IP + 剛剛設定好的remote debugger的連線port號<br>會出現要windows authentication驗證<br><img src="https://bingxiangstorage.blob.core.windows.net/blog/dotnet-remote-debugger/2022-04-03-22-42-07.png"></p>
+<li><p>按下 Ctrl + Alt + p 開啟 附加至處理序 功能<br>在連線目標上輸入遠端 IP + 剛剛設定好的 remote debugger 的連線 port 號<br>會出現要 windows authentication 驗證<br><img src="https://bingxiangstorage.blob.core.windows.net/blog/dotnet-remote-debugger/2022-04-03-22-42-07.png"></p>
 </li>
 <li><p>驗證完畢後，即可連線至遠端Server，並找到w3wp.exe 附加要debugger的站台，即可debugger遠端站台<br><img src="https://bingxiangstorage.blob.core.windows.net/blog/dotnet-remote-debugger/2022-04-03-22-42-31.png"></p>
 </li>

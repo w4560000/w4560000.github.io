@@ -6,12 +6,12 @@
   <meta name="keywords" content=" Docker , ELK ">
   <meta name="description" content="ELK Stack | w4560000.github.io">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-<meta name="description" content="前言本篇記錄由 Prometheus 蒐集 .Net 6 WebAPI  的 Mertics，並在 Garfana 呈現資料 .Net 6 WebAPI 專案設定.net 6 專案建立 dotnet new sln --output Prometheus_Test dotnet new webapi -f net6.0 -o Prometheus_Test&#x2F;Prometheus_Test dotn">
+<meta name="description" content="前言本篇記錄由 Prometheus 蒐集 .Net 6 WebAPI  的 Mertics，並在 Garfana 呈現資料 .Net 6 WebAPI 專案設定.Net 6 專案建立 dotnet new sln --output Prometheus_Test dotnet new webapi -f net6.0 -o Prometheus_Test&#x2F;Prometheus_Test dotn">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Garfana 透過 Prometheus 監控 .Net 6 應用程式">
 <meta property="og:url" content="http://example.com/2022/06/14/garfana-dotnet-mertrics/index.html">
 <meta property="og:site_name" content="w4560000.github.io">
-<meta property="og:description" content="前言本篇記錄由 Prometheus 蒐集 .Net 6 WebAPI  的 Mertics，並在 Garfana 呈現資料 .Net 6 WebAPI 專案設定.net 6 專案建立 dotnet new sln --output Prometheus_Test dotnet new webapi -f net6.0 -o Prometheus_Test&#x2F;Prometheus_Test dotn">
+<meta property="og:description" content="前言本篇記錄由 Prometheus 蒐集 .Net 6 WebAPI  的 Mertics，並在 Garfana 呈現資料 .Net 6 WebAPI 專案設定.Net 6 專案建立 dotnet new sln --output Prometheus_Test dotnet new webapi -f net6.0 -o Prometheus_Test&#x2F;Prometheus_Test dotn">
 <meta property="og:locale" content="zh_TW">
 <meta property="og:image" content="https://bingxiangstorage.blob.core.windows.net/blog/garfana-dotnet-mertrics/2022-06-14-23-47-58.png">
 <meta property="og:image" content="https://bingxiangstorage.blob.core.windows.net/blog/garfana-dotnet-mertrics/2022-06-18-16-12-00.png">
@@ -20,7 +20,7 @@
 <meta property="og:image" content="https://bingxiangstorage.blob.core.windows.net/blog/garfana-dotnet-mertrics/2022-06-18-17-24-08.png">
 <meta property="og:image" content="https://bingxiangstorage.blob.core.windows.net/blog/garfana-dotnet-mertrics/2022-06-18-17-24-50.png">
 <meta property="article:published_time" content="2022-06-14T15:21:10.000Z">
-<meta property="article:modified_time" content="2022-06-18T09:33:05.296Z">
+<meta property="article:modified_time" content="2022-06-18T09:37:00.638Z">
 <meta property="article:author" content="Leo Zheng">
 <meta property="article:tag" content=".NetCore">
 <meta property="article:tag" content="Garfana">
@@ -1051,7 +1051,7 @@
            href="/2022/04/24/elk-parse-iislog/"
            data-tag="ELK,IIS"
            data-author="" >
-            <span class="post-title" title="Kibana 查看IIS Log">Kibana 查看IIS Log</span>
+            <span class="post-title" title="Kibana 查看 IIS Log">Kibana 查看 IIS Log</span>
             <span class="post-date" title="2022-04-24 15:24:58">2022/04/24</span>
         </a>
         
@@ -1203,7 +1203,7 @@
            href="/2022/04/03/dotnet-remote-debugger/"
            data-tag=".Net,VS Debugger Tool"
            data-author="" >
-            <span class="post-title" title="遠端debug 掛載在IIS的服務站台">遠端debug 掛載在IIS的服務站台</span>
+            <span class="post-title" title="遠端 debug 掛載在 IIS 的服務站台">遠端 debug 掛載在 IIS 的服務站台</span>
             <span class="post-date" title="2022-04-03 22:33:05">2022/04/03</span>
         </a>
         
@@ -1312,7 +1312,7 @@
     </div>
     <div class="article-meta">
         
-            發布時間 : <time class="date" title='更新時間: 2022-06-11 16:55:22'>2022-04-16 22:29</time>
+            發布時間 : <time class="date" title='更新時間: 2022-06-18 17:57:05'>2022-04-16 22:29</time>
         
     </div>
     <div class="article-meta">
@@ -1347,7 +1347,7 @@
     
     <div class="toc-ref">
     
-        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%BB%9F%E9%AB%94%E8%AA%AA%E6%98%8E"><span class="toc-text">軟體說明</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%A9%9F%E5%99%A8%E7%92%B0%E5%A2%83-amp-%E6%9C%8D%E5%8B%99"><span class="toc-text">機器環境&amp;服務</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AF%84%E4%BE%8B%E8%AA%AA%E6%98%8E"><span class="toc-text">範例說明</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Linux-Server%E7%AB%AF%E5%AE%89%E8%A3%9D%E6%9C%8D%E5%8B%99"><span class="toc-text">Linux Server端安裝服務</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%89%E8%A3%9DDocker"><span class="toc-text">安裝Docker</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%BB%BA%E7%AB%8B-logstash-conf"><span class="toc-text">建立 logstash.conf</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#docker-compose-%E5%BB%BA%E7%AB%8B-redis%E3%80%81logstash%E3%80%81elasticsearch%E3%80%81kibana%E6%9C%8D%E5%8B%99"><span class="toc-text">docker-compose 建立 redis、logstash、elasticsearch、kibana服務</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%B0%87%E6%9C%8D%E5%8B%99%E8%B7%91%E8%B5%B7%E4%BE%86"><span class="toc-text">將服務跑起來</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%A2%BA%E8%AA%8D%E6%9C%8D%E5%8B%99%E6%98%AF%E5%90%A6%E6%AD%A3%E5%B8%B8"><span class="toc-text">確認服務是否正常</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Windows-Client%E7%AB%AF%E5%AE%89%E8%A3%9D%E6%9C%8D%E5%8B%99"><span class="toc-text">Windows Client端安裝服務</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%89%E8%A3%9D-Filebeat"><span class="toc-text">安裝 Filebeat</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%A8%AD%E5%AE%9Afilebeat-yml"><span class="toc-text">設定filebeat.yml</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%95%9F%E5%8B%95Filebeat%E6%9C%8D%E5%8B%99"><span class="toc-text">啟動Filebeat服務</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#kibana-%E5%BB%BA%E7%AB%8B-index-pattern"><span class="toc-text">kibana 建立 index pattern</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%A2%BA%E8%AA%8DKibana-Log%E8%B3%87%E6%96%99"><span class="toc-text">確認Kibana Log資料</span></a></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%BB%9F%E9%AB%94%E8%AA%AA%E6%98%8E"><span class="toc-text">軟體說明</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%A9%9F%E5%99%A8%E7%92%B0%E5%A2%83-amp-%E6%9C%8D%E5%8B%99"><span class="toc-text">機器環境&amp;服務</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AF%84%E4%BE%8B%E8%AA%AA%E6%98%8E"><span class="toc-text">範例說明</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Linux-Server-%E7%AB%AF%E5%AE%89%E8%A3%9D%E6%9C%8D%E5%8B%99"><span class="toc-text">Linux Server 端安裝服務</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%89%E8%A3%9DDocker"><span class="toc-text">安裝Docker</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%BB%BA%E7%AB%8B-logstash-conf"><span class="toc-text">建立 logstash.conf</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#docker-compose-%E5%BB%BA%E7%AB%8B-redis%E3%80%81logstash%E3%80%81elasticsearch%E3%80%81kibana-%E6%9C%8D%E5%8B%99"><span class="toc-text">docker-compose 建立 redis、logstash、elasticsearch、kibana 服務</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%B0%87%E6%9C%8D%E5%8B%99%E8%B7%91%E8%B5%B7%E4%BE%86"><span class="toc-text">將服務跑起來</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%A2%BA%E8%AA%8D%E6%9C%8D%E5%8B%99%E6%98%AF%E5%90%A6%E6%AD%A3%E5%B8%B8"><span class="toc-text">確認服務是否正常</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Windows-Client-%E7%AB%AF%E5%AE%89%E8%A3%9D%E6%9C%8D%E5%8B%99"><span class="toc-text">Windows Client 端安裝服務</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%89%E8%A3%9D-Filebeat"><span class="toc-text">安裝 Filebeat</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%A8%AD%E5%AE%9Afilebeat-yml"><span class="toc-text">設定filebeat.yml</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%95%9F%E5%8B%95Filebeat%E6%9C%8D%E5%8B%99"><span class="toc-text">啟動Filebeat服務</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#kibana-%E5%BB%BA%E7%AB%8B-index-pattern"><span class="toc-text">kibana 建立 index pattern</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%A2%BA%E8%AA%8DKibana-Log%E8%B3%87%E6%96%99"><span class="toc-text">確認Kibana Log資料</span></a></li></ol>
     
 <style>
     .left-col .switch-btn,
@@ -1364,18 +1364,18 @@
     <div class="article-entry" itemprop="articleBody">
       
         <h2 id="軟體說明"><a href="#軟體說明" class="headerlink" title="軟體說明"></a>軟體說明</h2><p>ELK 是由 Elasticsearch、Logstash、Kibana 所組成</p>
-<p>Elasticsearch 是一套開源式的分散式搜尋引擎 <a target="_blank" rel="noopener" href="https://www.elastic.co/elasticsearch/">官網</a></p>
-<p>Logstash 可將蒐集到的Log做進一步處理，Parse成統一格式 <a target="_blank" rel="noopener" href="https://www.elastic.co/logstash/">官網</a></p>
-<p>Kibana 則是可將Elasticsearch的資料 視覺化的呈現在前端 <a target="_blank" rel="noopener" href="https://www.elastic.co/kibana/">官網</a></p>
+<p>Elasticsearch 是一套開源式的分散式搜尋引擎 <a target="_blank" rel="noopener" href="https://www.elastic.co/elasticsearch/">Elasticsearch - 官方文件</a></p>
+<p>Logstash 可將蒐集到的Log做進一步處理，Parse成統一格式 <a target="_blank" rel="noopener" href="https://www.elastic.co/logstash/">Logstash - 官方文件</a></p>
+<p>Kibana 則是可將Elasticsearch的資料 視覺化的呈現在前端 <a target="_blank" rel="noopener" href="https://www.elastic.co/kibana/">Kibana - 官方文件</a></p>
 <p>擴充工具<br>beats 是輕量級的系統監測收集器，可將收集到的 data 進行轉拋</p>
-<p>beat有很多種工具可參考 <a target="_blank" rel="noopener" href="https://www.elastic.co/beats/">相關工具</a></p>
-<p>本文使用到 <a target="_blank" rel="noopener" href="https://www.elastic.co/beats/filebeat">Filebeat</a> 可即時監測Log檔是否異動，進行資料轉拋</p>
+<p>beat有很多種工具可參考 <a target="_blank" rel="noopener" href="https://www.elastic.co/beats/">beats - 官方文件</a></p>
+<p>本文使用到 <a target="_blank" rel="noopener" href="https://www.elastic.co/beats/filebeat">Filebeat - 官方文件</a> 可即時監測Log檔是否異動，進行資料轉拋</p>
 <h2 id="機器環境-amp-服務"><a href="#機器環境-amp-服務" class="headerlink" title="機器環境&amp;服務"></a>機器環境&amp;服務</h2><blockquote>
 <p>環境<br>Linux Server: Ubuntu 18.04.6 LTS<br>服務: Kibana、ElasticSeatch、LogStash、Redis</p>
 <p>Windows Clinet: Win 10<br>服務: Filebeat</p>
 </blockquote>
 <h2 id="範例說明"><a href="#範例說明" class="headerlink" title="範例說明"></a>範例說明</h2><p><img src="https://bingxiangstorage.blob.core.windows.net/blog/elk-sample/2022-04-16-22-52-53.png"><br>透過 Filebeat 監控在 Windows機器上的Log檔 及時拋送Log資料到<br>Linux機器的Redis上，而LogStash 會抓Redis上的資料 進行二次資料Parse處理，再轉拋到ElasticSeatch上，最後在Kibana呈現</p>
-<h2 id="Linux-Server端安裝服務"><a href="#Linux-Server端安裝服務" class="headerlink" title="Linux Server端安裝服務"></a>Linux Server端安裝服務</h2><h3 id="安裝Docker"><a href="#安裝Docker" class="headerlink" title="安裝Docker"></a>安裝Docker</h3><p>參考 <a href="/2022/06/11/docker-install">Linux 安裝 Docker、Docker-Compose</a></p>
+<h2 id="Linux-Server-端安裝服務"><a href="#Linux-Server-端安裝服務" class="headerlink" title="Linux Server 端安裝服務"></a>Linux Server 端安裝服務</h2><h3 id="安裝Docker"><a href="#安裝Docker" class="headerlink" title="安裝Docker"></a>安裝Docker</h3><p>參考 <a href="/2022/06/11/docker-install">Linux 安裝 Docker、Docker-Compose</a></p>
 <h3 id="建立-logstash-conf"><a href="#建立-logstash-conf" class="headerlink" title="建立 logstash.conf"></a>建立 logstash.conf</h3><blockquote>
 <p>目前目錄<br><img src="https://bingxiangstorage.blob.core.windows.net/blog/elk-sample/2022-04-17-17-00-37.png"></p>
 </blockquote>
@@ -1406,7 +1406,7 @@ output &#123;
     &#125;
 &#125;
 </code></pre>
-<h3 id="docker-compose-建立-redis、logstash、elasticsearch、kibana服務"><a href="#docker-compose-建立-redis、logstash、elasticsearch、kibana服務" class="headerlink" title="docker-compose 建立 redis、logstash、elasticsearch、kibana服務"></a>docker-compose 建立 redis、logstash、elasticsearch、kibana服務</h3><pre><code class="CMD">
+<h3 id="docker-compose-建立-redis、logstash、elasticsearch、kibana-服務"><a href="#docker-compose-建立-redis、logstash、elasticsearch、kibana-服務" class="headerlink" title="docker-compose 建立 redis、logstash、elasticsearch、kibana 服務"></a>docker-compose 建立 redis、logstash、elasticsearch、kibana 服務</h3><pre><code class="CMD">
 #返回 logstash 所屬目錄
 cd ../..
 
@@ -1477,10 +1477,10 @@ sudo docker-compose up -d
 <h3 id="確認服務是否正常"><a href="#確認服務是否正常" class="headerlink" title="確認服務是否正常"></a>確認服務是否正常</h3><p>ElasticSearch<br><img src="https://bingxiangstorage.blob.core.windows.net/blog/elk-sample/2022-04-16-23-13-22.png"></p>
 <p>Kibana<br><img src="https://bingxiangstorage.blob.core.windows.net/blog/elk-sample/2022-04-16-23-13-31.png"></p>
 <blockquote>
-<p>至此 Linux Server服務已經建立完成</p>
+<p>至此 Linux Server 服務已經建立完成</p>
 </blockquote>
-<h2 id="Windows-Client端安裝服務"><a href="#Windows-Client端安裝服務" class="headerlink" title="Windows Client端安裝服務"></a>Windows Client端安裝服務</h2><h3 id="安裝-Filebeat"><a href="#安裝-Filebeat" class="headerlink" title="安裝 Filebeat"></a>安裝 Filebeat</h3><p><a target="_blank" rel="noopener" href="https://www.elastic.co/downloads/past-releases/filebeat-7-7-0">filebeat-7-7-0下載連結</a></p>
-<h3 id="設定filebeat-yml"><a href="#設定filebeat-yml" class="headerlink" title="設定filebeat.yml"></a>設定filebeat.yml</h3><p>解壓縮後 開啟資料夾 修改filebeat.yml</p>
+<h2 id="Windows-Client-端安裝服務"><a href="#Windows-Client-端安裝服務" class="headerlink" title="Windows Client 端安裝服務"></a>Windows Client 端安裝服務</h2><h3 id="安裝-Filebeat"><a href="#安裝-Filebeat" class="headerlink" title="安裝 Filebeat"></a>安裝 Filebeat</h3><p><a target="_blank" rel="noopener" href="https://www.elastic.co/downloads/past-releases/filebeat-7-7-0">filebeat-7-7-0下載連結</a></p>
+<h3 id="設定filebeat-yml"><a href="#設定filebeat-yml" class="headerlink" title="設定filebeat.yml"></a>設定filebeat.yml</h3><p>解壓縮後 開啟資料夾 修改 filebeat.yml</p>
 <pre><code class="yml">...略
 - input_type: log
   enabled: true
@@ -1493,7 +1493,7 @@ sudo docker-compose up -d
   multiline.match: after
 ...略
 </code></pre>
-<p>最下面output設定輸出redis</p>
+<p>最下面 output 設定輸出 redis</p>
 <pre><code class="yml">output.redis:
   # Boolean flag to enable or disable the output module.
   enabled: true
@@ -1519,7 +1519,7 @@ sudo docker-compose up -d
 <blockquote>
 <p>當有資料寫進 D:\LogFiles\WebLog\ELK_Test*.log時，filebeat會將資料存入Redis</p>
 </blockquote>
-<h3 id="啟動Filebeat服務"><a href="#啟動Filebeat服務" class="headerlink" title="啟動Filebeat服務"></a>啟動Filebeat服務</h3><p>CD 至 filebeat-7.7.0-windows-x86_64 資料夾<br>以系統管理員 開啟powershell，將filebeat 註冊至windows service</p>
+<h3 id="啟動Filebeat服務"><a href="#啟動Filebeat服務" class="headerlink" title="啟動Filebeat服務"></a>啟動Filebeat服務</h3><p>CD 至 filebeat-7.7.0-windows-x86_64 資料夾<br>以系統管理員 開啟 powershell 將 filebeat 註冊至 windows service</p>
 <pre><code class="CMD">./install-service-filebeat
 </code></pre>
 <p>windows service中 啟動 filebeat<br><img src="https://bingxiangstorage.blob.core.windows.net/blog/elk-sample/2022-04-16-23-54-02.png"></p>
@@ -1531,13 +1531,13 @@ sudo docker-compose up -d
 <p>點擊 Index Patterns =&gt; Create index pattern<br><img src="https://bingxiangstorage.blob.core.windows.net/blog/elk-sample/2022-04-16-23-28-43.png"></p>
 <p>建立 index pattern<br><img src="https://bingxiangstorage.blob.core.windows.net/blog/elk-sample/2022-04-16-23-28-57.png"><br><img src="https://bingxiangstorage.blob.core.windows.net/blog/elk-sample/2022-04-16-23-29-04.png"></p>
 <blockquote>
-<p>需有現有的index 才能建立index pattern<br>dev_weblog-2022.01.07 為logstash 從redis取資料後, 寫入elasticsearch的</p>
+<p>需有現有的 index 才能建立 index pattern<br>dev_weblog-2022.01.07 為 logstash 從 redis 取資料後寫入 elasticsearch 的</p>
 </blockquote>
 <h2 id="確認Kibana-Log資料"><a href="#確認Kibana-Log資料" class="headerlink" title="確認Kibana Log資料"></a>確認Kibana Log資料</h2><p><img src="https://bingxiangstorage.blob.core.windows.net/blog/elk-sample/2022-04-16-23-29-43.png"></p>
 <p>點擊 剛剛建立的 index pattern : dev_weblog*<br><img src="https://bingxiangstorage.blob.core.windows.net/blog/elk-sample/2022-04-16-23-29-54.png"></p>
 <p><img src="https://bingxiangstorage.blob.core.windows.net/blog/elk-sample/2022-04-16-23-30-02.png"></p>
 <blockquote>
-<p>可以發現 message中的 Log時間 跟 ElasticSeatch 的Time不同<br>因為Filebeat轉拋時 會傳轉拋資料當下的時間，跟Log的時間會有落差<br><a href="/2022/04/17/elk-parse-timestamp/">下一篇</a>會說明在Logstash Parse資料時 處理時間差</p>
+<p>可以發現 message 中的 Log 時間跟 ElasticSeatch 的 Time 不同<br>因為 Filebeat 轉拋時會傳轉拋資料當下的時間，跟 Log 的時間會有落差<br>下一篇 <a href="/2022/04/17/elk-parse-timestamp/">Logstash Parse Timestamp</a> 會說明在Logstash Parse資料時 處理時間差</p>
 </blockquote>
 
       

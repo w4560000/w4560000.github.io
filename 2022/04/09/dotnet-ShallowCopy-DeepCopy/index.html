@@ -6,12 +6,12 @@
   <meta name="keywords" content=" .Net ">
   <meta name="description" content=".Net 淺複製與深複製 | w4560000.github.io">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-<meta name="description" content="前言本篇記錄由 Prometheus 蒐集 .Net 6 WebAPI  的 Mertics，並在 Garfana 呈現資料 .Net 6 WebAPI 專案設定.net 6 專案建立 dotnet new sln --output Prometheus_Test dotnet new webapi -f net6.0 -o Prometheus_Test&#x2F;Prometheus_Test dotn">
+<meta name="description" content="前言本篇記錄由 Prometheus 蒐集 .Net 6 WebAPI  的 Mertics，並在 Garfana 呈現資料 .Net 6 WebAPI 專案設定.Net 6 專案建立 dotnet new sln --output Prometheus_Test dotnet new webapi -f net6.0 -o Prometheus_Test&#x2F;Prometheus_Test dotn">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Garfana 透過 Prometheus 監控 .Net 6 應用程式">
 <meta property="og:url" content="http://example.com/2022/06/14/garfana-dotnet-mertrics/index.html">
 <meta property="og:site_name" content="w4560000.github.io">
-<meta property="og:description" content="前言本篇記錄由 Prometheus 蒐集 .Net 6 WebAPI  的 Mertics，並在 Garfana 呈現資料 .Net 6 WebAPI 專案設定.net 6 專案建立 dotnet new sln --output Prometheus_Test dotnet new webapi -f net6.0 -o Prometheus_Test&#x2F;Prometheus_Test dotn">
+<meta property="og:description" content="前言本篇記錄由 Prometheus 蒐集 .Net 6 WebAPI  的 Mertics，並在 Garfana 呈現資料 .Net 6 WebAPI 專案設定.Net 6 專案建立 dotnet new sln --output Prometheus_Test dotnet new webapi -f net6.0 -o Prometheus_Test&#x2F;Prometheus_Test dotn">
 <meta property="og:locale" content="zh_TW">
 <meta property="og:image" content="https://bingxiangstorage.blob.core.windows.net/blog/garfana-dotnet-mertrics/2022-06-14-23-47-58.png">
 <meta property="og:image" content="https://bingxiangstorage.blob.core.windows.net/blog/garfana-dotnet-mertrics/2022-06-18-16-12-00.png">
@@ -20,7 +20,7 @@
 <meta property="og:image" content="https://bingxiangstorage.blob.core.windows.net/blog/garfana-dotnet-mertrics/2022-06-18-17-24-08.png">
 <meta property="og:image" content="https://bingxiangstorage.blob.core.windows.net/blog/garfana-dotnet-mertrics/2022-06-18-17-24-50.png">
 <meta property="article:published_time" content="2022-06-14T15:21:10.000Z">
-<meta property="article:modified_time" content="2022-06-18T09:33:05.296Z">
+<meta property="article:modified_time" content="2022-06-18T09:37:00.638Z">
 <meta property="article:author" content="Leo Zheng">
 <meta property="article:tag" content=".NetCore">
 <meta property="article:tag" content="Garfana">
@@ -1051,7 +1051,7 @@
            href="/2022/04/24/elk-parse-iislog/"
            data-tag="ELK,IIS"
            data-author="" >
-            <span class="post-title" title="Kibana 查看IIS Log">Kibana 查看IIS Log</span>
+            <span class="post-title" title="Kibana 查看 IIS Log">Kibana 查看 IIS Log</span>
             <span class="post-date" title="2022-04-24 15:24:58">2022/04/24</span>
         </a>
         
@@ -1203,7 +1203,7 @@
            href="/2022/04/03/dotnet-remote-debugger/"
            data-tag=".Net,VS Debugger Tool"
            data-author="" >
-            <span class="post-title" title="遠端debug 掛載在IIS的服務站台">遠端debug 掛載在IIS的服務站台</span>
+            <span class="post-title" title="遠端 debug 掛載在 IIS 的服務站台">遠端 debug 掛載在 IIS 的服務站台</span>
             <span class="post-date" title="2022-04-03 22:33:05">2022/04/03</span>
         </a>
         
@@ -1310,12 +1310,12 @@
     </div>
     <div class="article-meta">
         
-            發布時間 : <time class="date" title='更新時間: 2022-04-09 00:32:38'>2022-04-09 00:19</time>
+            發布時間 : <time class="date" title='更新時間: 2022-06-18 18:17:14'>2022-04-09 00:19</time>
         
     </div>
     <div class="article-meta">
         
-        <span>字數:806</span>
+        <span>字數:800</span>
         
         
         <span id="busuanzi_container_page_pv">
@@ -1345,7 +1345,7 @@
     
     <div class="toc-ref">
     
-        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AF%84%E4%BE%8BSample-LinqPad"><span class="toc-text">範例Sample LinqPad</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%A9%97%E8%AD%89"><span class="toc-text">驗證</span></a></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AF%84%E4%BE%8BSample-LinqPad"><span class="toc-text">範例Sample LinqPad</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%A9%97%E8%AD%89"><span class="toc-text">驗證</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%A3%9C%E5%85%85"><span class="toc-text">補充</span></a></li></ol>
     
 <style>
     .left-col .switch-btn,
@@ -1362,9 +1362,10 @@
     <div class="article-entry" itemprop="articleBody">
       
         <blockquote>
-<p>在研究 Prototype Pattern時，碰到淺複製與深複製的差異，在此紀錄一下<br>.Net在做物件複製時，有分為淺複製與深複製<br>淺複製: 若原物件的Property有參考型別時，Reference會共用<br>   若修改淺複製過後物件的參考型別Property，會影響到原物件，因是共用相同Reference<br>深複製: 複製Value後，Reference會重新建立，不與原物件共用</p>
+<p>在研究 Prototype Pattern 時，碰到淺複製與深複製的差異，在此紀錄一下<br>.Net在做物件複製時，有分為淺複製與深複製<br>淺複製:<br>若原物件的Property有參考型別時，Reference會共用<br>若修改淺複製過後物件的參考型別Property，會影響到原物件，因是共用相同Reference</p>
+<p>深複製:<br>複製Value後，Reference會重新建立，不與原物件共用</p>
 </blockquote>
-<p><a target="_blank" rel="noopener" href="https://docs.microsoft.com/zh-tw/dotnet/csharp/language-reference/builtin-types/value-types">實質型別MSDN</a><br><a target="_blank" rel="noopener" href="https://docs.microsoft.com/zh-tw/dotnet/csharp/language-reference/keywords/reference-types">參考型別MSDN</a><br><img src="https://bingxiangstorage.blob.core.windows.net/blog/dotnet-ShallowCopy-DeepCopy/2022-04-09-00-27-06.png"></p>
+<p><a target="_blank" rel="noopener" href="https://docs.microsoft.com/zh-tw/dotnet/csharp/language-reference/builtin-types/value-types">實質型別 - MSDN</a><br><a target="_blank" rel="noopener" href="https://docs.microsoft.com/zh-tw/dotnet/csharp/language-reference/keywords/reference-types">參考型別 - MSDN</a><br><img src="https://bingxiangstorage.blob.core.windows.net/blog/dotnet-ShallowCopy-DeepCopy/2022-04-09-00-27-06.png"></p>
 <h2 id="範例Sample-LinqPad"><a href="#範例Sample-LinqPad" class="headerlink" title="範例Sample LinqPad"></a>範例Sample LinqPad</h2><pre><code class="CSharp">void Main()
 &#123;
     Console.WriteLine(&quot;驗證淺複製:&quot;);
@@ -1463,9 +1464,7 @@ public class DeepCopy
 &#125;
 </code></pre>
 <h2 id="驗證"><a href="#驗證" class="headerlink" title="驗證"></a>驗證</h2><p>複製過後在清空 型別為List<int> phonesCount的參考型別屬性時<br>淺複製的原物件連帶被影響，而深複製則不受影響，因Reference不同<br><img src="https://bingxiangstorage.blob.core.windows.net/blog/dotnet-ShallowCopy-DeepCopy/2022-04-09-00-28-58.png"></p>
-<blockquote>
-<p>PS 深複製不一定要用序列化方式，因為類別還要宣告[Serializable]的屬性比較麻煩<br>其他深複製方式可參考 <a target="_blank" rel="noopener" href="https://dotblogs.com.tw/yc421206/2016/12/14/c_scharp_clone_object">其他大大的文章</a></p>
-</blockquote>
+<h2 id="補充"><a href="#補充" class="headerlink" title="補充"></a>補充</h2><p>深複製不一定要用序列化方式，因為類別還要宣告[Serializable]<br>其他深複製方式可參考 <a target="_blank" rel="noopener" href="https://dotblogs.com.tw/yc421206/2016/12/14/c_scharp_clone_object">其他大大的文章</a></p>
 
       
        <hr><span style="font-style: italic;color: gray;"> 轉載請註明來源，若有任何錯誤或表達不清楚的地方，歡迎在下方評論區留言，也可以來信至 leozheng0621@gmail.com </span>
