@@ -2,9 +2,9 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <title>Octopus Deploy [5] Kubernetes cluster 地端機器設定 Deployment targets | w4560000.github.io</title>
+  <title>Octopus Deploy K8S 專案 [3] - 設定 HorizontalPodAutoscaler | w4560000.github.io</title>
   <meta name="keywords" content=" K8S , OctopusDeploy ">
-  <meta name="description" content="Octopus Deploy [5] Kubernetes cluster 地端機器設定 Deployment targets | w4560000.github.io">
+  <meta name="description" content="Octopus Deploy K8S 專案 [3] - 設定 HorizontalPodAutoscaler | w4560000.github.io">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <meta name="description" content="前言繼上一篇 Octopus Deploy K8S 專案 [2] - GKE已成功部屬到 GKE 後，本篇實作 設定 HorizontalPodAutoscaler 讓 POD 能夠依照設定的 CPU 、 Memory 水位來自動增減 POD 數量 確認目前 K8S Node 資源GKE 介面 可查看 Node 資源  已要求的 CPU &#x3D; 571m，可分配的 CPU &#x3D; 940m已要求的記憶體">
 <meta property="og:type" content="article">
@@ -1286,9 +1286,9 @@
 </aside>
 <div id="post">
     <div class="pjax">
-        <article id="post-octopus-deploy-init-5" class="article article-type-post" itemscope itemprop="blogPost">
+        <article id="post-octopus-deploy-k8s-3" class="article article-type-post" itemscope itemprop="blogPost">
     
-        <h1 class="article-title">Octopus Deploy [5] Kubernetes cluster 地端機器設定 Deployment targets</h1>
+        <h1 class="article-title">Octopus Deploy K8S 專案 [3] - 設定 HorizontalPodAutoscaler</h1>
     
     <div class="article-meta">
         
@@ -1317,12 +1317,12 @@
     </div>
     <div class="article-meta">
         
-            發布時間 : <time class="date" title='更新時間: 2022-06-11 23:34:58'>2022-05-28 14:08</time>
+            發布時間 : <time class="date" title='更新時間: 2022-06-19 23:18:13'>2022-06-19 10:41</time>
         
     </div>
     <div class="article-meta">
         
-        <span>字數:302</span>
+        <span>字數:1.5k</span>
         
         
         <span id="busuanzi_container_page_pv">
@@ -1352,7 +1352,7 @@
     
     <div class="toc-ref">
     
-        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%89%8D%E8%A8%80"><span class="toc-text">前言</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Octopus-Server-%E5%AE%89%E8%A3%9D-Kubectl"><span class="toc-text">Octopus Server 安裝 Kubectl</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Kubernetes-cluster-%E5%BB%BA%E7%AB%8B-Token"><span class="toc-text">Kubernetes cluster 建立 Token</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%A8%AD%E5%AE%9A-Token"><span class="toc-text">設定 Token</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%96%B0%E5%A2%9E-Kubernetes-target"><span class="toc-text">新增 Kubernetes target</span></a></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%89%8D%E8%A8%80"><span class="toc-text">前言</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%A2%BA%E8%AA%8D%E7%9B%AE%E5%89%8D-K8S-Node-%E8%B3%87%E6%BA%90"><span class="toc-text">確認目前 K8S Node 資源</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%AA%BF%E6%95%B4-Deployment-%E8%A8%AD%E5%AE%9A-Resource"><span class="toc-text">調整 Deployment 設定 Resource</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%96%B0%E5%A2%9E-HorizontalPodAutoscaler"><span class="toc-text">新增 HorizontalPodAutoscaler</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%83%A8%E5%B1%AC%E5%BE%8C%E5%86%8D%E6%9F%A5%E7%9C%8B%E4%B8%80%E4%B8%8B%E8%B3%87%E6%BA%90"><span class="toc-text">部屬後再查看一下資源</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%B8%AC%E8%A9%A6-Pod-Autoscaling"><span class="toc-text">測試 Pod Autoscaling</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%B5%90%E8%AB%96"><span class="toc-text">結論</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8F%83%E8%80%83%E6%96%87%E7%AB%A0"><span class="toc-text">參考文章</span></a></li></ol>
     
 <style>
     .left-col .switch-btn,
@@ -1368,76 +1368,237 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>本篇紀錄如何在 Kubernetes cluster 地端機器設定 Deployment targets<br><a target="_blank" rel="noopener" href="https://octopus.com/docs/infrastructure/deployment-targets/linux/tentacle">Octopus 官方文件 - Kubernetes cluster</a></p>
-<h2 id="Octopus-Server-安裝-Kubectl"><a href="#Octopus-Server-安裝-Kubectl" class="headerlink" title="Octopus Server 安裝 Kubectl"></a>Octopus Server 安裝 Kubectl</h2><blockquote>
-<p>Kubernetes cluster 地端機器版本為 1.23.6</p>
+        <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>繼上一篇 <a href="/2022/06/03/octopus-deploy-k8s-2">Octopus Deploy K8S 專案 [2] - GKE</a><br>已成功部屬到 GKE 後，本篇實作 設定 HorizontalPodAutoscaler</p>
+<p>讓 POD 能夠依照設定的 CPU 、 Memory 水位來自動增減 POD 數量</p>
+<h2 id="確認目前-K8S-Node-資源"><a href="#確認目前-K8S-Node-資源" class="headerlink" title="確認目前 K8S Node 資源"></a>確認目前 K8S Node 資源</h2><p>GKE 介面 可查看 Node 資源</p>
+<blockquote>
+<p>已要求的 CPU = 571m，可分配的 CPU = 940m<br>已要求的記憶體 = 581.47MB，可分配的記憶體 = 2.95GB<br><img src="https://bingxiangstorage.blob.core.windows.net/blog/octopus-deploy-k8s-3/2022-06-19-15-12-25.png"></p>
 </blockquote>
-<pre><code class="PowerShell">choco install kubernetes-cli --version 1.23.6
-</code></pre>
-<h2 id="Kubernetes-cluster-建立-Token"><a href="#Kubernetes-cluster-建立-Token" class="headerlink" title="Kubernetes cluster 建立 Token"></a>Kubernetes cluster 建立 Token</h2><p>建立 Octopus 使用的 K8s ServiceAccount、ClusterRoleBinding</p>
-<pre><code class="CMD">cat &lt;&lt;EOF | kubectl create -f -
-&gt; apiVersion: v1
-&gt; kind: ServiceAccount
-&gt; metadata:
-&gt;   name: octopus
-&gt;   namespace: kube-system
-&gt; 
-&gt; ---
-&gt; apiVersion: rbac.authorization.k8s.io/v1
-&gt; kind: ClusterRoleBinding
-&gt; metadata:
-&gt;   name: octopus-admin
-&gt; roleRef:
-&gt;   apiGroup: rbac.authorization.k8s.io
-&gt;   kind: ClusterRole
-&gt;   name: cluster-admin
-&gt; subjects:
-&gt; - kind: ServiceAccount
-&gt;   name: octopus
-&gt;   namespace: kube-system
-&gt; EOF
+<p>或是透過 kubectl cli 查詢</p>
+<pre><code class="CMD">kubectl describe node
 
 # 輸出
-serviceaccount/octopus created
-clusterrolebinding.rbac.authorization.k8s.io/octopus-admin created
+Name:               gke-hello-cluster-web-node-pool-f13540b5-b426
+...略過...
+Allocatable:
+  attachable-volumes-gce-pd:  15
+  cpu:                        940m
+  ephemeral-storage:          47093746742
+  hugepages-1Gi:              0
+  hugepages-2Mi:              0
+  memory:                     2883480Ki
+  pods:                       110
+...略過...
+Non-terminated Pods:          (12 in total)
+  Namespace                   Name                                                        CPU Requests  CPU Limits  Memory Requests  Memory Limits  Age
+  ---------                   ----                                                        ------------  ----------  ---------------  -------------  ---
+  kube-system                 event-exporter-gke-5479fd58c8-wj4hl                         0 (0%)        0 (0%)      0 (0%)           0 (0%)         14d
+  kube-system                 fluentbit-gke-f8vqc                                         100m (10%)    0 (0%)      200Mi (7%)       500Mi (17%)    7m34s
+  kube-system                 gke-metrics-agent-plnvv                                     3m (0%)       0 (0%)      50Mi (1%)        50Mi (1%)      7m34s
+  kube-system                 konnectivity-agent-748d7c6d7-wdjtd                          10m (1%)      0 (0%)      30Mi (1%)        125Mi (4%)     14d
+  kube-system                 konnectivity-agent-autoscaler-7fd5dd4f5-czdgn               10m (1%)      0 (0%)      10M (0%)         0 (0%)         14d
+  kube-system                 kube-dns-56494768b7-28ksr                                   260m (27%)    0 (0%)      110Mi (3%)       210Mi (7%)     14d
+  kube-system                 kube-dns-autoscaler-f4d55555-t4lzn                          20m (2%)      0 (0%)      10Mi (0%)        0 (0%)         14d
+  kube-system                 kube-proxy-gke-hello-cluster-web-node-pool-f13540b5-b426    100m (10%)    0 (0%)      0 (0%)           0 (0%)         7m35s
+  kube-system                 l7-default-backend-69fb9fd9f9-ghjr8                         10m (1%)      0 (0%)      20Mi (0%)        0 (0%)         14d
+  kube-system                 metrics-server-v0.4.5-bbb794dcc-wh4k9                       48m (5%)      143m (15%)  105Mi (3%)       355Mi (12%)    14d
+  kube-system                 pdcsi-node-zr86d                                            10m (1%)      0 (0%)      20Mi (0%)        100Mi (3%)     7m32s
+  web                         octopusproject-core-sample-5cfcb747db-b5p9b                 0 (0%)        0 (0%)      0 (0%)           0 (0%)         14d
+Allocated resources:
+  (Total limits may be over 100 percent, i.e., overcommitted.)
+  Resource                   Requests         Limits
+  --------                   --------         ------
+  cpu                        571m (60%)       143m (15%)
+  memory                     581473920 (19%)  1340Mi (47%)
+  ephemeral-storage          0 (0%)           0 (0%)
+  hugepages-1Gi              0 (0%)           0 (0%)
+  hugepages-2Mi              0 (0%)           0 (0%)
+  attachable-volumes-gce-pd  0                0
+...略過...
 </code></pre>
-<p>查看 token 名稱</p>
-<pre><code class="CMD">kubectl get secret -n kube-system  | grep octopus
+<h2 id="調整-Deployment-設定-Resource"><a href="#調整-Deployment-設定-Resource" class="headerlink" title="調整 Deployment 設定 Resource"></a>調整 Deployment 設定 Resource</h2><p>調整 章魚專案 的 Deployment</p>
+<blockquote>
+<p>Pod requests: memory = 100Mi, cpu = 100m, ephemeralStorage = 1Gi<br>Pod limits: memory = 200Mi, cpu = 200m, ephemeralStorage = 2Gi</p>
+</blockquote>
+<blockquote>
+<p>requests 是每個 Pod 初始建立時，會跟 Node 先請求的資源<br>limits 是每個 Pod 的資源極限值</p>
+</blockquote>
+<pre><code class="yaml"># This YAML exposes the fields defined in the UI. It can be edited directly or have new YAML pasted in.
+# Not all available Kubernetes properties are recognized by the form exposed in the UI, and unrecognized properties are ignored during import.
+# If the required properties are not supported by this step, the &#39;Deploy raw Kubernetes YAML&#39; step can be used to deploy YAML directly to Kubernetes, and supports all properties.
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: &#39;#&#123;K8s.Web.ProjectSimpleName&#125;&#39;
+  labels:
+    app: &#39;#&#123;K8s.Web.ProjectSimpleName&#125;&#39;
+  namespace: &#39;#&#123;K8s.Web.Namespace&#125;&#39;
+spec:
+  selector:
+    matchLabels:
+      octopusexport: OctopusExport
+  replicas: 1
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxUnavailable: 1
+      maxSurge: 1
+  template:
+    metadata:
+      labels:
+        app: &#39;#&#123;K8s.Web.ProjectSimpleName&#125;&#39;
+        octopusexport: OctopusExport
+    spec:
+      containers:
+        - name: web-container
+          image: &#39;#&#123;K8s.Web.ImageRegistry&#125;&#39;
+          ports:
+            - name: http
+              containerPort: &#39;#&#123;K8s.Web.WebPort&#125;&#39;
+              protocol: TCP
+          env:
+            - name: ASPNETCORE_ENVIRONMENT
+              value: &#39;#&#123;Octopus.Environment.Name&#125;&#39;
+          resources:
+            requests:
+              memory: 100Mi
+              cpu: 100m
+              ephemeralStorage: 1Gi
+            limits:
+              memory: 200Mi
+              cpu: 200m
+              ephemeralStorage: 2Gi
+          livenessProbe:
+            httpGet:
+              host: &#39;&#39;
+              path: &#39;#&#123;K8s.Web.Core.HealthCheckPath&#125;&#39;
+              port: &#39;#&#123;K8s.Web.WebPort&#125;&#39;
+              scheme: HTTP
+          readinessProbe:
+            periodSeconds: 15
+            httpGet:
+              host: &#39;&#39;
+              path: &#39;#&#123;K8s.Web.Core.HealthCheckPath&#125;&#39;
+              port: &#39;#&#123;K8s.Web.WebPort&#125;&#39;
+              scheme: HTTP
+      affinity:
+        nodeAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+            nodeSelectorTerms:
+              - matchExpressions:
+                  - key: cloud.google.com/gke-nodepool
+                    operator: In
+                    values:
+                      - web-node-pool
+</code></pre>
+<h2 id="新增-HorizontalPodAutoscaler"><a href="#新增-HorizontalPodAutoscaler" class="headerlink" title="新增 HorizontalPodAutoscaler"></a>新增 HorizontalPodAutoscaler</h2><p>新增 Step<br><img src="https://bingxiangstorage.blob.core.windows.net/blog/octopus-deploy-k8s-3/2022-06-19-16-27-46.png"></p>
+<p>選擇 DEPLOY RAW KUBERNETES YAML<br><img src="https://bingxiangstorage.blob.core.windows.net/blog/octopus-deploy-k8s-3/2022-06-19-16-28-41.png"></p>
+<pre><code class="yaml">apiVersion: autoscaling/v2beta2
+kind: HorizontalPodAutoscaler
+metadata:
+  name: &#39;#&#123;K8s.Web.ProjectSimpleName&#125;-hpa&#39;
+  namespace: &#39;#&#123;K8s.Web.Namespace&#125;&#39;
+spec:
+  scaleTargetRef:
+    apiVersion: apps/v1
+    kind: Deployment
+    name: &#39;#&#123;K8s.Web.ProjectSimpleName&#125;&#39;
+  minReplicas: 1
+  maxReplicas: 4
+  metrics:
+  - type: Resource
+    resource:
+      name: cpu
+      target:
+        type: AverageValue
+        averageValue: 75m
+  - type: Resource
+    resource:
+      name: memory
+      target:
+        type: AverageValue
+        averageValue: 150Mi
+</code></pre>
+<h2 id="部屬後再查看一下資源"><a href="#部屬後再查看一下資源" class="headerlink" title="部屬後再查看一下資源"></a>部屬後再查看一下資源</h2><pre><code>kubectl get hpa -n web
 
 # 輸出
-octopus-token-wn9n7                              kubernetes.io/service-account-token   3      5m9s
-</code></pre>
-<p>查看 token</p>
-<pre><code class="CMD">kubectl describe secret octopus-token-wn9n7 -n kube-system
+NAME                             REFERENCE                               TARGETS                   MINPODS   MAXPODS   REPLICAS   AGE
+octopusproject-core-sample-hpa   Deployment/octopusproject-core-sample   1m/75m, 29675520/150Mi   1         4         1          86s
+
+kubectl top pod -n web
 
 # 輸出
-Name:         octopus-token-wn9n7
-Namespace:    kube-system
-Labels:       &lt;none&gt;
-Annotations:  kubernetes.io/service-account.name: octopus
-              kubernetes.io/service-account.uid: 91ec9b06-5667-4208-b924-6aa921b6077e
+NAME                                          CPU(cores)   MEMORY(bytes)
+octopusproject-core-sample-64c6899cc5-7r4bc   1m           28Mi
+</code></pre>
+<h2 id="測試-Pod-Autoscaling"><a href="#測試-Pod-Autoscaling" class="headerlink" title="測試 Pod Autoscaling"></a>測試 Pod Autoscaling</h2><pre><code class="CMD">curl https://octopuscoresampleqc.leozheng0512.com/Home/GetEnv
 
-Type:  kubernetes.io/service-account-token
+# 輸出
+&quot;qc&quot;
+</code></pre>
+<p>透過壓測工具呼叫該 API 讓 Pod 的 Memory、CPU 增長，藉此觀察是否會 Autoscaling<br>若要使用 JMeter 可參考此篇文章 <a href="/2022/04/23/jmeter-sample/">JMeter壓力測試 範例</a></p>
+<pre><code class="CMD">kubectl get hpa -n web
 
-Data
-====
-ca.crt:     1099 bytes
-namespace:  11 bytes
-token:      &lt;token&gt;
+# 輸出
+NAME                             REFERENCE                               TARGETS                        MINPODS   MAXPODS   REPLICAS   AGE
+octopusproject-core-sample-hpa   Deployment/octopusproject-core-sample   126m/75m, 67816106666m/150Mi   1         4         4          6h5m
+
+kubectl top pod -n web
+
+# 輸出
+NAME                                          CPU(cores)   MEMORY(bytes)
+octopusproject-core-sample-84c96c84fd-58ptz   123m         74Mi
+octopusproject-core-sample-84c96c84fd-f6w75   127m         57Mi
+octopusproject-core-sample-84c96c84fd-sdpmq   129m         67Mi
+
+
+kubectl get pod -n web
+
+# 輸出
+NAME                                          READY   STATUS    RESTARTS   AGE
+octopusproject-core-sample-84c96c84fd-58ptz   1/1     Running   0          6m25s
+octopusproject-core-sample-84c96c84fd-f57jl   0/1     Pending   0          4m43s
+octopusproject-core-sample-84c96c84fd-f6w75   1/1     Running   0          4m43s
+octopusproject-core-sample-84c96c84fd-sdpmq   1/1     Running   0          4m43s
 </code></pre>
 <blockquote>
-<p>先將 token 複製出來 待會到 Octopus Server 設定時會使用到</p>
+<p>此時可發現 hpa 已經觸發到生成第四個 pod ， 但其中一個 Pod 卻是 Pending 狀態</p>
 </blockquote>
-<h2 id="設定-Token"><a href="#設定-Token" class="headerlink" title="設定 Token"></a>設定 Token</h2><p><a target="_blank" rel="noopener" href="https://octopus.com/docs/infrastructure/accounts/tokens">Token account</a><br><img src="https://bingxiangstorage.blob.core.windows.net/blog/octopus-deploy-init-5/2022-05-28-15-16-00.png"></p>
-<p>設定完成後 儲存<br><img src="https://bingxiangstorage.blob.core.windows.net/blog/octopus-deploy-init-5/2022-05-28-15-17-51.png"></p>
-<h2 id="新增-Kubernetes-target"><a href="#新增-Kubernetes-target" class="headerlink" title="新增 Kubernetes target"></a>新增 Kubernetes target</h2><p><img src="https://bingxiangstorage.blob.core.windows.net/blog/octopus-deploy-init-5/2022-05-28-15-00-46.png"></p>
-<p>選擇 Kubernetes Cluster<br><img src="https://bingxiangstorage.blob.core.windows.net/blog/octopus-deploy-init-5/2022-05-28-15-12-42.png"></p>
-<p>設定 Deployment<br><img src="https://bingxiangstorage.blob.core.windows.net/blog/octopus-deploy-init-5/2022-05-28-22-24-53.png"></p>
-<p>設定 Communication</p>
+<p>再進一步查看 Pod 狀況</p>
+<pre><code class="CMD">kubectl describe pod octopusproject-core-sample-84c96c84fd-f57jl -n web
+
+# 輸出
+Name:           octopusproject-core-sample-84c96c84fd-f57jl
+...略過...
+Events:
+  Type     Reason                   Age                     From                     Message
+  ----     ------                   ----                    ----                     -------
+  Normal   LoadBalancerNegNotReady  8m23s                   neg-readiness-reflector  Waiting for pod to become healthy in at least one of the NEG(s): [k8s1-be718682-web-octopusproject-core-sample-80-4f762aac]
+  Normal   NotTriggerScaleUp        3m20s (x31 over 8m21s)  cluster-autoscaler       pod didn&#39;t trigger scale-up:
+  Warning  FailedScheduling         45s (x9 over 8m23s)     default-scheduler        0/1 nodes are available: 1 Insufficient cpu.
+</code></pre>
+<p>可以發現是因 CPU 不足，造成 Pod 無法順利運行<br>此時往前看，在還沒部署時，CPU request 是 571m，可分配是 940m<br>也就是 940m - 571m = 369m，在該 Node 上，我們只剩下 369m 可使用<br>每一個 CPU Request 為 100m，以至於前三個 Pod 都順利建立，而第四個 Pod 才建立失敗<br><img src="https://bingxiangstorage.blob.core.windows.net/blog/octopus-deploy-k8s-3/2022-06-19-22-49-46.png"></p>
 <blockquote>
-<p>Authentication 選擇 Token (剛剛設定的 develop-k8s-token)<br><img src="https://bingxiangstorage.blob.core.windows.net/blog/octopus-deploy-init-5/2022-05-28-15-25-02.png"></p>
+<p>此時可手動調節 Node 資源，或是設定 ClusterAutoscaler 自動調節 Node 資源<br>GKE 的 ClusterAutoscaler 可參考 <a target="_blank" rel="noopener" href="https://cloud.google.com/kubernetes-engine/docs/concepts/cluster-autoscaler">GCP 官方文件 - Cluster autoscaler</a></p>
 </blockquote>
-<p>設定成功後 確認 Deployment Targets Health Check 成功即可<br><img src="https://bingxiangstorage.blob.core.windows.net/blog/octopus-deploy-init-5/2022-05-28-22-26-21.png"></p>
+<p>查看 hpa auto scaling 紀錄<br>可發現當 CPU or Memory 低於水位時，hpa 會每五分鐘檢查，並自動縮減 Pod 數量</p>
+<pre><code class="CMD">kubectl describe hpa octopusproject-core-sample-hpa -n web
+
+# 輸出
+Name:                       octopusproject-core-sample-hpa
+...略過...
+Events:
+  Type     Reason                   Age                  From                       Message
+  ----     ------                   ----                 ----                       -------
+  Normal   SuccessfulRescale        35m                  horizontal-pod-autoscaler  New size: 2; reason: cpu resource above target
+  Normal   SuccessfulRescale        31m                  horizontal-pod-autoscaler  New size: 3; reason: cpu resource above target
+  Warning  FailedGetResourceMetric  23m (x6 over 6h25m)  horizontal-pod-autoscaler  did not receive metrics for any ready pods
+  Normal   SuccessfulRescale        23m (x2 over 28m)    horizontal-pod-autoscaler  New size: 4; reason: cpu resource above target
+  Normal   SuccessfulRescale        7m15s                horizontal-pod-autoscaler  New size: 2; reason: memory resource below target
+  Normal   SuccessfulRescale        2m14s                horizontal-pod-autoscaler  New size: 1; reason: cpu resource below target
+</code></pre>
+<h2 id="結論"><a href="#結論" class="headerlink" title="結論"></a>結論</h2><p>Pod 能自動 auto scaling 也是 K8S 強大的功能之一，能夠自動化的調節服務資源，也節省了維運單位的人力成本<br>只是在使用前，Node 資源 與 Pod 所需資源需要預先計算好，以避免 Node 資源不夠的狀況發生</p>
+<h2 id="參考文章"><a href="#參考文章" class="headerlink" title="參考文章"></a>參考文章</h2><p><a target="_blank" rel="noopener" href="https://ithelp.ithome.com.tw/articles/10197046">zxcvbnius - [Day 25] 實現 Horizontal Pod Autoscaling - HPA</a></p>
 
       
        <hr><span style="font-style: italic;color: gray;"> 轉載請註明來源，若有任何錯誤或表達不清楚的地方，歡迎在下方評論區留言，也可以來信至 leozheng0621@gmail.com </span>

@@ -1,3 +1,6 @@
+http://example.com/2022/06/19/octopus-deploy-k8s-3/
+http://example.com/2022/05/29/octopus-deploy-k8s-1/
+http://example.com/2022/06/03/octopus-deploy-k8s-2/
 http://example.com/2022/04/09/azure-devops-cicd-sample/
 http://example.com/2022/04/13/azure-devops-webhook-teams/
 http://example.com/2022/04/11/certbot-tls-certificate/
@@ -42,8 +45,6 @@ http://example.com/2022/05/11/octopus-deploy-init-1/
 http://example.com/2022/05/18/octopus-deploy-init-4/
 http://example.com/2022/05/17/octopus-deploy-init-3/
 http://example.com/2022/05/28/octopus-deploy-init-5/
-http://example.com/2022/05/29/octopus-deploy-k8s-1/
-http://example.com/2022/06/03/octopus-deploy-k8s-2/
 http://example.com/2022/05/05/sql-server-common-syntax/
 http://example.com/2022/05/23/octopus-deploy-mutiple-env-variable-setting/
 http://example.com/2022/05/17/octopus-deploy-node-bug/
@@ -70,9 +71,9 @@ http://example.com/tags/Azure/
 http://example.com/tags/NetCore/
 http://example.com/tags/Vue/
 http://example.com/tags/Teams/
+http://example.com/tags/Docker/
 http://example.com/tags/Certbot/
 http://example.com/tags/TLS/
-http://example.com/tags/Docker/
 http://example.com/tags/Linux/
 http://example.com/tags/Net/
 http://example.com/tags/GCP/
@@ -81,10 +82,10 @@ http://example.com/tags/NLog/
 http://example.com/tags/DesignPattern/
 http://example.com/tags/VS-Debugger-Tool/
 http://example.com/tags/ELK/
-http://example.com/tags/K8S/
 http://example.com/tags/IIS/
 http://example.com/tags/FileZilla/
 http://example.com/tags/FTPS/
+http://example.com/tags/K8S/
 http://example.com/tags/Garfana/
 http://example.com/tags/Prometheus/
 http://example.com/tags/Git/
@@ -97,11 +98,11 @@ http://example.com/tags/SFTP/
 http://example.com/tags/Windows/
 http://example.com/tags/PowerShell/
 http://example.com/categories/Devops/
-http://example.com/categories/Tool/
-http://example.com/categories/Devops/Docker/
 http://example.com/categories/Devops/Azure/
-http://example.com/categories/Tool/Certbot/
+http://example.com/categories/Devops/Docker/
+http://example.com/categories/Tool/
 http://example.com/categories/Backend/
+http://example.com/categories/Tool/Certbot/
 http://example.com/categories/Devops/ELK/
 http://example.com/categories/Tool/FTPS/
 http://example.com/categories/Devops/Garfana/
@@ -110,9 +111,9 @@ http://example.com/categories/Backend/Net/
 http://example.com/categories/Backend/NetCore/
 http://example.com/categories/Tool/Git/
 http://example.com/categories/Tool/Hexo/
-http://example.com/categories/Backend/DesignPattern/
 http://example.com/categories/Tool/JMeter/
 http://example.com/categories/Devops/K8S/
+http://example.com/categories/Backend/DesignPattern/
 http://example.com/categories/Tool/Linux/
 http://example.com/categories/Tool/Nuget/
 http://example.com/categories/Devops/OctopusDeploy/
