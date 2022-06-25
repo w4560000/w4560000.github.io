@@ -6,24 +6,26 @@
   <meta name="keywords" content=" Docker ">
   <meta name="description" content="紀錄 Docker Run 常用指令 | w4560000.github.io">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-<meta name="description" content="前言繼上一篇 Octopus Deploy K8S 專案 [2] - GKE已成功部屬到 GKE 後，本篇實作 設定 HorizontalPodAutoscaler 讓 POD 能夠依照設定的 CPU 、 Memory 水位來自動增減 POD 數量 確認目前 K8S Node 資源GKE 介面 可查看 Node 資源  已要求的 CPU &#x3D; 571m，可分配的 CPU &#x3D; 940m已要求的記憶體">
+<meta name="description" content="前言本篇記錄 透過 Prometheus 蒐集 node-exporter、kube-state-metrics 建立 node-exporter 服務K8S機器上 建立 node-exporter 服務 cat &lt;&lt;EOF | kubectl create -f - apiVersion: apps&#x2F;v1 kind: DaemonSet metadata:   labels:">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Octopus Deploy K8S 專案 [3] - 設定 HorizontalPodAutoscaler">
-<meta property="og:url" content="http://example.com/2022/06/19/octopus-deploy-k8s-3/index.html">
+<meta property="og:title" content="Prometheus 蒐集 node-exporter、kube-state-metrics">
+<meta property="og:url" content="http://example.com/2022/06/20/prometheus-k8s-metrics/index.html">
 <meta property="og:site_name" content="w4560000.github.io">
-<meta property="og:description" content="前言繼上一篇 Octopus Deploy K8S 專案 [2] - GKE已成功部屬到 GKE 後，本篇實作 設定 HorizontalPodAutoscaler 讓 POD 能夠依照設定的 CPU 、 Memory 水位來自動增減 POD 數量 確認目前 K8S Node 資源GKE 介面 可查看 Node 資源  已要求的 CPU &#x3D; 571m，可分配的 CPU &#x3D; 940m已要求的記憶體">
+<meta property="og:description" content="前言本篇記錄 透過 Prometheus 蒐集 node-exporter、kube-state-metrics 建立 node-exporter 服務K8S機器上 建立 node-exporter 服務 cat &lt;&lt;EOF | kubectl create -f - apiVersion: apps&#x2F;v1 kind: DaemonSet metadata:   labels:">
 <meta property="og:locale" content="zh_TW">
-<meta property="og:image" content="https://bingxiangstorage.blob.core.windows.net/blog/octopus-deploy-k8s-3/2022-06-19-15-12-25.png">
-<meta property="og:image" content="https://bingxiangstorage.blob.core.windows.net/blog/octopus-deploy-k8s-3/2022-06-19-16-27-46.png">
-<meta property="og:image" content="https://bingxiangstorage.blob.core.windows.net/blog/octopus-deploy-k8s-3/2022-06-19-16-28-41.png">
-<meta property="og:image" content="https://bingxiangstorage.blob.core.windows.net/blog/octopus-deploy-k8s-3/2022-06-19-22-49-46.png">
-<meta property="article:published_time" content="2022-06-19T02:41:10.000Z">
-<meta property="article:modified_time" content="2022-06-19T15:18:13.880Z">
+<meta property="og:image" content="https://bingxiangstorage.blob.core.windows.net/blog/prometheus-k8s-metrics/2022-06-25-20-32-45.png">
+<meta property="og:image" content="https://bingxiangstorage.blob.core.windows.net/blog/prometheus-k8s-metrics/2022-06-25-20-34-22.png">
+<meta property="og:image" content="https://bingxiangstorage.blob.core.windows.net/blog/prometheus-k8s-metrics/2022-06-25-20-35-57.png">
+<meta property="og:image" content="https://bingxiangstorage.blob.core.windows.net/blog/prometheus-k8s-metrics/2022-06-25-20-38-40.png">
+<meta property="og:image" content="https://bingxiangstorage.blob.core.windows.net/blog/prometheus-k8s-metrics/2022-06-25-20-40-29.png">
+<meta property="article:published_time" content="2022-06-19T16:14:49.000Z">
+<meta property="article:modified_time" content="2022-06-25T12:45:56.959Z">
 <meta property="article:author" content="Leo Zheng">
 <meta property="article:tag" content="K8S">
-<meta property="article:tag" content="OctopusDeploy">
+<meta property="article:tag" content="Garfana">
+<meta property="article:tag" content="Prometheus">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://bingxiangstorage.blob.core.windows.net/blog/octopus-deploy-k8s-3/2022-06-19-15-12-25.png">
+<meta name="twitter:image" content="https://bingxiangstorage.blob.core.windows.net/blog/prometheus-k8s-metrics/2022-06-25-20-32-45.png">
 
 
 <link rel="icon" href="/img/avatar.jpg">
@@ -112,7 +114,7 @@
     <li>
         <div class="all active" data-rel="全部文章">全部文章
             
-                <small>(68)</small>
+                <small>(69)</small>
             
         </div>
     </li>
@@ -210,7 +212,7 @@
                         <i class="fold iconfont icon-right"></i>
                         
                         Devops
-                        <small>(44)</small>
+                        <small>(45)</small>
                         
                     </div>
                     
@@ -305,7 +307,7 @@
                                         
                                         Prometheus
                                         
-                                            <small>(1
+                                            <small>(2
                                                 )</small>
                                         
                                     </div>
@@ -551,8 +553,8 @@
         
     </div>
 </div>
-<input type="hidden" id="yelog_site_posts_number" value="68">
-<input type="hidden" id="yelog_site_word_count" value="37.3k">
+<input type="hidden" id="yelog_site_posts_number" value="69">
+<input type="hidden" id="yelog_site_word_count" value="37.8k">
 <div style="display: none">
     <span id="busuanzi_value_site_uv"></span>
     <span id="busuanzi_value_site_pv"></span>
@@ -723,6 +725,14 @@
 
     
     <nav id="title-list-nav">
+        
+        <a  class="全部文章 Devops Prometheus "
+           href="/2022/06/20/prometheus-k8s-metrics/"
+           data-tag="K8S,Garfana,Prometheus"
+           data-author="" >
+            <span class="post-title" title="Prometheus 蒐集 node-exporter、kube-state-metrics">Prometheus 蒐集 node-exporter、kube-state-metrics</span>
+            <span class="post-date" title="2022-06-20 00:14:49">2022/06/20</span>
+        </a>
         
         <a  class="全部文章 Devops OctopusDeploy "
            href="/2022/06/19/octopus-deploy-k8s-3/"

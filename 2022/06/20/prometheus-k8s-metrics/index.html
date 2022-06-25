@@ -2,9 +2,9 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <title>w4560000.github.io</title>
-  <meta name="keywords" content="">
-  <meta name="description" content="w4560000.github.io">
+  <title>Prometheus 蒐集 node-exporter、kube-state-metrics | w4560000.github.io</title>
+  <meta name="keywords" content=" K8S , Garfana , Prometheus ">
+  <meta name="description" content="Prometheus 蒐集 node-exporter、kube-state-metrics | w4560000.github.io">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <meta name="description" content="前言本篇記錄 透過 Prometheus 蒐集 node-exporter、kube-state-metrics 建立 node-exporter 服務K8S機器上 建立 node-exporter 服務 cat &lt;&lt;EOF | kubectl create -f - apiVersion: apps&#x2F;v1 kind: DaemonSet metadata:   labels:">
 <meta property="og:type" content="article">
@@ -66,7 +66,7 @@
 
 
 <body>
-<aside class="nav mobile">
+<aside class="nav">
     <div class="nav-left">
         <a href="/"
    class="avatar_target">
@@ -1294,12 +1294,77 @@
         </div>
     </div>
 </aside>
-<div id="post" class="index">
+<div id="post">
     <div class="pjax">
-        <article class="index">
-            <div class="toc-ref">
+        <article id="post-prometheus-k8s-metrics" class="article article-type-post" itemscope itemprop="blogPost">
     
-        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E9%97%9C%E6%96%BC%E6%88%91%E8%88%87%E8%A9%B2%E9%83%A8%E8%90%BD%E6%A0%BC"><span class="toc-text">關於我與該部落格</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%B0%A1%E4%BB%8B"><span class="toc-text">簡介</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%83%A8%E8%90%BD%E6%A0%BC"><span class="toc-text">部落格</span></a></li></ol></li></ol>
+        <h1 class="article-title">Prometheus 蒐集 node-exporter、kube-state-metrics</h1>
+    
+    <div class="article-meta">
+        
+        
+        
+        <span class="book">
+            <i class="iconfont icon-category"></i>
+            
+            
+            <a  data-rel="Devops">Devops</a> > 
+            
+            <a  data-rel="Devops&lt;---&gt;Prometheus">Prometheus</a>
+            
+        </span>
+        
+        
+        <span class="tag">
+            <i class="iconfont icon-tag"></i>
+            
+            <a class="color4">K8S</a>
+            
+            <a class="color3">Garfana</a>
+            
+            <a class="color1">Prometheus</a>
+            
+        </span>
+        
+    </div>
+    <div class="article-meta">
+        
+            發布時間 : <time class="date" title='更新時間: 2022-06-25 20:45:56'>2022-06-20 00:14</time>
+        
+    </div>
+    <div class="article-meta">
+        
+        <span>字數:517</span>
+        
+        
+        <span id="busuanzi_container_page_pv">
+            觀看數 :<span id="busuanzi_value_page_pv">
+                <span class="count-comment">
+                    <span class="spinner">
+                      <div class="cube1"></div>
+                      <div class="cube2"></div>
+                    </span>
+                </span>
+            </span>
+        </span>
+        
+        
+        <span class="top-comment" title="跳转至评论区">
+            <a href="#comments">
+                評論:<span class="count-comment">
+                    <span class="spinner">
+                      <div class="cube1"></div>
+                      <div class="cube2"></div>
+                    </span>
+                </span>
+            </a>
+        </span>
+        
+    </div>
+    
+    <div class="toc-ref">
+    
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%89%8D%E8%A8%80"><span class="toc-text">前言</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%BB%BA%E7%AB%8B-node-exporter-%E6%9C%8D%E5%8B%99"><span class="toc-text">建立 node-exporter 服務</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%BB%BA%E7%AB%8B-kube-state-metrics-%E6%9C%8D%E5%8B%99"><span class="toc-text">建立 kube-state-metrics 服務</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%AA%BF%E6%95%B4-prometheus-yml"><span class="toc-text">調整 prometheus.yml</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8C%AF%E5%85%A5-Garfana-Dashboard"><span class="toc-text">匯入 Garfana Dashboard</span></a></li></ol>
     
 <style>
     .left-col .switch-btn,
@@ -1312,16 +1377,157 @@
     }
 </style>
 </div>
-            <h1 id="關於我與該部落格"><a href="#關於我與該部落格" class="headerlink" title="關於我與該部落格"></a>關於我與該部落格</h1><h2 id="簡介"><a href="#簡介" class="headerlink" title="簡介"></a>簡介</h2><p>我是一名 .Net 開發工程師</p>
-<p>此部落格為軟體開發的學習筆記</p>
-<p>若文章內容有誤，歡迎留言指正，或來信告知 <a href="mailto:&#108;&#101;&#x6f;&#x7a;&#x68;&#101;&#x6e;&#103;&#48;&#54;&#x32;&#x31;&#x40;&#x67;&#109;&#97;&#105;&#x6c;&#x2e;&#x63;&#x6f;&#x6d;">&#108;&#101;&#x6f;&#x7a;&#x68;&#101;&#x6e;&#103;&#48;&#54;&#x32;&#x31;&#x40;&#x67;&#109;&#97;&#105;&#x6c;&#x2e;&#x63;&#x6f;&#x6d;</a>，謝謝</p>
-<h2 id="部落格"><a href="#部落格" class="headerlink" title="部落格"></a>部落格</h2><p>共發布：<code class="article_number"></code>篇文章， 共<code class="site_word_count"></code>字。</p>
-<p>部落格總訪問人數：<code class="site_uv"></code> 人次， 訪問量：<code class="site_pv"></code>次</p>
-<p>此部落格通過 <a target="_blank" rel="noopener" href="https://hexo.io/">Hexo</a> 建立，部屬在 <a target="_blank" rel="noopener" href="https://pages.github.com/">GitHub Pages</a>上，主題為 <a target="_blank" rel="noopener" href="https://github.com/yelog/hexo-theme-3-hexo">3-hexo</a></p>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>本篇記錄 透過 Prometheus 蒐集 node-exporter、kube-state-metrics</p>
+<h2 id="建立-node-exporter-服務"><a href="#建立-node-exporter-服務" class="headerlink" title="建立 node-exporter 服務"></a>建立 node-exporter 服務</h2><p>K8S機器上 建立 node-exporter 服務</p>
+<pre><code class="CMD">cat &lt;&lt;EOF | kubectl create -f -
+apiVersion: apps/v1
+kind: DaemonSet
+metadata:
+  labels:
+    name: node-exporter
+  name: node-exporter
+  namespace: monitor
+spec:
+  # replicas: 1
+  # revisionHistoryLimit: 1
+  selector:
+    matchLabels:
+      name: node-exporter
+  template:
+    metadata:
+      annotations:
+        prometheus.io/path: /metrics
+        prometheus.io/port: &quot;9100&quot;
+        prometheus.io/scrape: &quot;true&quot;
+      labels:
+        name: node-exporter
+    spec:
+      hostNetwork: true
+      hostPID: true
+      containers:
+      - image: prom/node-exporter:v1.0.1
+        name: node-exporter
+        imagePullPolicy: IfNotPresent
+        ports:
+        - containerPort: 9100
+        resources:
+          requests:
+            cpu: 50m
+            memory: 50Mi
+          limits: 
+            cpu: 50m
+            memory: 50Mi
+---
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    name: node-exporter
+  name: node-exporter
+  namespace: monitor
+  # annotations:
+  #   prometheus.io/scrape: &#39;true&#39;
+spec:
+  ports:
+    - port: 9100
+      targetPort: 9100
+      nodePort: 30010
+      protocol: TCP
+  type: NodePort    
+  selector:
+    name: node-exporter
+EOF
+</code></pre>
+<p>開通 防火牆 Port 30010</p>
+<pre><code class="CMD">gcloud compute firewall-rules create test-node-port \
+    --allow tcp:30010 \
+    --source-ranges &quot;35.194.154.x&quot; \
+    --target-tags=web-node-pool
+</code></pre>
+<h2 id="建立-kube-state-metrics-服務"><a href="#建立-kube-state-metrics-服務" class="headerlink" title="建立 kube-state-metrics 服務"></a>建立 kube-state-metrics 服務</h2><p>kube-state-metrics 版本參考 kube-state-metrics github <a target="_blank" rel="noopener" href="https://github.com/kubernetes/kube-state-metrics">kubernetes/kube-state-metrics</a><br>本篇使用 release-2.2 版本</p>
+<pre><code class="CMD">git clone https://github.com/kubernetes/kube-state-metrics.git
+git checkout release-2.2
+</code></pre>
+<p>調整一下 service.yaml 從 ClusterIP 改成 NodePort</p>
+<pre><code class="CMD">vi .\kube-state-metrics\examples\standard\service.yaml
+</code></pre>
+<p>service.yaml</p>
+<pre><code class="yaml=">apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app.kubernetes.io/name: kube-state-metrics
+    app.kubernetes.io/version: 2.2.4
+  name: kube-state-metrics
+  namespace: kube-system
+spec:
+  type: NodePort
+  ports:
+  - name: http-metrics
+    port: 8080
+    targetPort: http-metrics
+    nodePort: 30080
+  - name: telemetry
+    port: 8081
+    targetPort: telemetry
+    nodePort: 30081
+  selector:
+    app.kubernetes.io/name: kube-state-metrics
+</code></pre>
+<p>部署 kube-state-metrics</p>
+<pre><code class="CMD">kubectl create -f .\kube-state-metrics\examples\standard\
+</code></pre>
+<p>開通 防火牆 Port 30080-30081</p>
+<pre><code class="CMD">gcloud compute firewall-rules create kube-state-metrics-port \
+    --allow tcp:30080-30081 \
+    --source-ranges &quot;35.194.154.x&quot;
+    --target-tags=web-node-pool
+</code></pre>
+<h2 id="調整-prometheus-yml"><a href="#調整-prometheus-yml" class="headerlink" title="調整 prometheus.yml"></a>調整 prometheus.yml</h2><pre><code>...略
+  # The job name is added as a label `job=&lt;job_name&gt;` to any timeseries scraped from this config.
+  - job_name: &quot;k8s&quot;
+    
+    # metrics_path defaults to &#39;/metrics&#39;
+    # scheme defaults to &#39;http&#39;.
 
-        </article>
-        
-        
+    static_configs:
+      - targets: [&quot;104.199.202.68:30010&quot;]
+  - job_name: &quot;k8s-http-metrics&quot;
+
+    # metrics_path defaults to &#39;/metrics&#39;
+    # scheme defaults to &#39;http&#39;.
+
+    static_configs:
+      - targets: [&quot;104.199.202.68:30080&quot;]
+  - job_name: &quot;k8s-telemetry&quot;
+
+    # metrics_path defaults to &#39;/metrics&#39;
+    # scheme defaults to &#39;http&#39;.
+
+    static_configs:
+      - targets: [&quot;104.199.202.68:30081&quot;]
+</code></pre>
+<p>熱更新 prometheus</p>
+<pre><code class="CMD">curl -X POST http://127.0.0.1:9090/-/reload
+</code></pre>
+<p>查看一下 prometheus targets 確認是否有抓到 metrics<br><img src="https://bingxiangstorage.blob.core.windows.net/blog/prometheus-k8s-metrics/2022-06-25-20-32-45.png"></p>
+<h2 id="匯入-Garfana-Dashboard"><a href="#匯入-Garfana-Dashboard" class="headerlink" title="匯入 Garfana Dashboard"></a>匯入 Garfana Dashboard</h2><p><a target="_blank" rel="noopener" href="https://grafana.com/grafana/dashboards/1860">node exporter - Garfana Dashboard</a><br><img src="https://bingxiangstorage.blob.core.windows.net/blog/prometheus-k8s-metrics/2022-06-25-20-34-22.png"></p>
+<p><a target="_blank" rel="noopener" href="https://grafana.com/grafana/dashboards/13332">kube-state-metrics-v2 - Garfana Dashboard</a><br><img src="https://bingxiangstorage.blob.core.windows.net/blog/prometheus-k8s-metrics/2022-06-25-20-35-57.png"></p>
+<p><a target="_blank" rel="noopener" href="https://grafana.com/grafana/dashboards/14518">Kubernetes Cluster Overall Dashboard - Garfana Dashboard</a><br><img src="https://bingxiangstorage.blob.core.windows.net/blog/prometheus-k8s-metrics/2022-06-25-20-38-40.png"></p>
+<p><a target="_blank" rel="noopener" href="https://grafana.com/grafana/dashboards/13105">1 K8S for Prometheus Dashboard 20211010 - Garfana Dashboard</a><br><a target="_blank" rel="noopener" href="https://github.com/starsliao/Prometheus/tree/master/kubernetes">starsliao/Prometheus</a><br><img src="https://bingxiangstorage.blob.core.windows.net/blog/prometheus-k8s-metrics/2022-06-25-20-40-29.png"></p>
+
+      
+       <hr><span style="font-style: italic;color: gray;"> 轉載請註明來源，若有任何錯誤或表達不清楚的地方，歡迎在下方評論區留言，也可以來信至 leozheng0621@gmail.com </span>
+    </div>
+</article>
+
+
+
+
+
     <div id="comments"></div>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css">
 
@@ -1343,6 +1549,13 @@
 </script>
 
 
+
+
+    
+
+
+
+
     </div>
     <div class="copyright">
         <p class="footer-entry">
@@ -1351,11 +1564,11 @@
 <p class="footer-entry">Built with <a href="https://hexo.io/" target="_blank">Hexo</a> and <a href="https://github.com/yelog/hexo-theme-3-hexo" target="_blank">3-hexo</a> theme</p>
 
     </div>
-</div>
-<div class="full-toc">
-    <button class="full" data-title="切換全屏 快捷鍵 s"><span class="min "></span></button>
+    <div class="full-toc">
+        <button class="full" data-title="切換全屏 快捷鍵 s"><span class="min "></span></button>
 <a class="" id="rocket" ></a>
 
+    </div>
 </div>
 
 </body>
