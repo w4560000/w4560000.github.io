@@ -1,0 +1,2437 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Redis Cluster | w4560000.github.io</title>
+  <meta name="keywords" content=" Redis , GCP ">
+  <meta name="description" content="Redis Cluster | w4560000.github.io">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="description" content="開發環境 Windows 10 (pro 22H2)  本文範例流程 透過 OpenSSL 工具依序建立 跟憑證、中繼憑證、終端憑證 將憑證轉為 .pfx檔、匯入Windows中，於 IIS 測試使用 docker compose 建立範例 Nginx ，使用自建憑證測試使用  自建憑證跟憑證建立 建立跟憑證設定檔 root-ssl.conf  [req] prompt &#x3D; no default_">
+<meta property="og:type" content="article">
+<meta property="og:title" content="建立自簽三層CA憑證">
+<meta property="og:url" content="http://example.com/2024/07/25/self-signed-certificate/index.html">
+<meta property="og:site_name" content="w4560000.github.io">
+<meta property="og:description" content="開發環境 Windows 10 (pro 22H2)  本文範例流程 透過 OpenSSL 工具依序建立 跟憑證、中繼憑證、終端憑證 將憑證轉為 .pfx檔、匯入Windows中，於 IIS 測試使用 docker compose 建立範例 Nginx ，使用自建憑證測試使用  自建憑證跟憑證建立 建立跟憑證設定檔 root-ssl.conf  [req] prompt &#x3D; no default_">
+<meta property="og:locale" content="zh_TW">
+<meta property="og:image" content="https://bingxiangstorage.blob.core.windows.net/blog/self-signed-certificate/2024-07-25-11-20-41.png">
+<meta property="og:image" content="https://bingxiangstorage.blob.core.windows.net/blog/self-signed-certificate/2024-07-25-11-21-55.png">
+<meta property="og:image" content="https://bingxiangstorage.blob.core.windows.net/blog/self-signed-certificate/2024-07-25-11-27-08.png">
+<meta property="og:image" content="https://bingxiangstorage.blob.core.windows.net/blog/self-signed-certificate/2024-07-25-11-34-13.png">
+<meta property="article:published_time" content="2024-07-25T11:37:05.000Z">
+<meta property="article:modified_time" content="2024-07-25T03:42:15.924Z">
+<meta property="article:author" content="Leo Zheng">
+<meta property="article:tag" content="Cert">
+<meta property="article:tag" content="OpenSSL">
+<meta property="article:tag" content="TLS">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://bingxiangstorage.blob.core.windows.net/blog/self-signed-certificate/2024-07-25-11-20-41.png">
+
+
+<link rel="icon" href="/img/avatar.jpg">
+
+<link href="/css/style.css?v=1.1.0" rel="stylesheet">
+
+<link href="/css/hl_theme/github.css?v=1.1.0" rel="stylesheet">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@latest/build/styles/vs2015.min.css">
+<link href="//cdn.jsdelivr.net/npm/animate.css@4.1.0/animate.min.css" rel="stylesheet">
+
+<script src="//cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js"></script>
+<script src="/js/titleTip.js?v=1.1.0" ></script>
+
+<script src="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@latest/build/highlight.min.js"></script>
+<script>
+    hljs.initHighlightingOnLoad();
+</script>
+
+<script src="//cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.js"></script>
+
+
+
+<script src="//cdn.jsdelivr.net/npm/jquery.cookie@1.4.1/jquery.cookie.min.js" ></script>
+
+<script src="/js/iconfont.js?v=1.1.0" ></script>
+
+<meta name="generator" content="Hexo 6.0.0"></head>
+<div style="display: none">
+  <input class="theme_disqus_on" value="false">
+  <input class="theme_preload_comment" value="">
+  <input class="theme_blog_path" value="">
+  <input id="theme_shortcut" value="true" />
+  <input id="theme_highlight_on" value="true" />
+  <input id="theme_code_copy" value="true" />
+</div>
+
+
+
+<body>
+<aside class="nav">
+    <div class="nav-left">
+        <a href="/"
+   class="avatar_target">
+    <img class="avatar"
+         src="/img/avatar.jpg"/>
+</a>
+<div class="author">
+    <span>Leo Zheng</span>
+</div>
+
+<div class="icon">
+    
+        
+            <a title="github"
+               href="https://github.com/w4560000"
+               target="_blank">
+                
+                    <svg class="iconfont-svg" aria-hidden="true">
+                        <use xlink:href="#icon-github"></use>
+                    </svg>
+                
+            </a>
+        
+    
+        
+            <a title="email"
+               href="mailto:leozheng0621@gmail.com"
+               target="_blank">
+                
+                    <svg class="iconfont-svg" aria-hidden="true">
+                        <use xlink:href="#icon-email"></use>
+                    </svg>
+                
+            </a>
+        
+    
+</div>
+
+
+
+    <a class="more-menus">更多菜单</a>
+
+
+<ul>
+    <li>
+        <div class="all active" data-rel="全部文章">全部文章
+            
+                <small>(99)</small>
+            
+        </div>
+    </li>
+    
+        
+            
+                <li>
+                    <div data-rel="Backend">
+                        <i class="fold iconfont icon-right"></i>
+                        
+                        Backend
+                        <small>(12)</small>
+                        
+                    </div>
+                    
+                        <ul class="sub hide">
+                            
+                                <li>
+                                    <div data-rel="Backend<--->.Net">
+                                        
+                                        .Net
+                                        
+                                            <small>(2
+                                                )</small>
+                                        
+                                    </div>
+                                    
+                                </li>
+                            
+                                <li>
+                                    <div data-rel="Backend<--->.NetCore">
+                                        
+                                        .NetCore
+                                        
+                                            <small>(9
+                                                )</small>
+                                        
+                                    </div>
+                                    
+                                </li>
+                            
+                                <li>
+                                    <div data-rel="Backend<--->DesignPattern">
+                                        
+                                        DesignPattern
+                                        
+                                            <small>(1
+                                                )</small>
+                                        
+                                    </div>
+                                    
+                                </li>
+                            
+                        </ul>
+                    
+                </li>
+            
+        
+    
+        
+            
+                <li>
+                    <div data-rel="Database">
+                        <i class="fold iconfont icon-right"></i>
+                        
+                        Database
+                        <small>(6)</small>
+                        
+                    </div>
+                    
+                        <ul class="sub hide">
+                            
+                                <li>
+                                    <div data-rel="Database<--->SQLServer">
+                                        
+                                        SQLServer
+                                        
+                                            <small>(6
+                                                )</small>
+                                        
+                                    </div>
+                                    
+                                </li>
+                            
+                        </ul>
+                    
+                </li>
+            
+        
+    
+        
+            
+                <li>
+                    <div data-rel="Queue">
+                        <i class="fold iconfont icon-right"></i>
+                        
+                        Queue
+                        <small>(2)</small>
+                        
+                    </div>
+                    
+                        <ul class="sub hide">
+                            
+                                <li>
+                                    <div data-rel="Queue<--->Pub/Sub">
+                                        
+                                        Pub/Sub
+                                        
+                                            <small>(2
+                                                )</small>
+                                        
+                                    </div>
+                                    
+                                </li>
+                            
+                        </ul>
+                    
+                </li>
+            
+        
+    
+        
+            
+                <li>
+                    <div data-rel="NoSQL">
+                        <i class="fold iconfont icon-right"></i>
+                        
+                        NoSQL
+                        <small>(6)</small>
+                        
+                    </div>
+                    
+                        <ul class="sub hide">
+                            
+                                <li>
+                                    <div data-rel="NoSQL<--->Redis">
+                                        
+                                        Redis
+                                        
+                                            <small>(6
+                                                )</small>
+                                        
+                                    </div>
+                                    
+                                </li>
+                            
+                        </ul>
+                    
+                </li>
+            
+        
+    
+        
+            
+                <li>
+                    <div data-rel="Devops">
+                        <i class="fold iconfont icon-right"></i>
+                        
+                        Devops
+                        <small>(54)</small>
+                        
+                    </div>
+                    
+                        <ul class="sub hide">
+                            
+                                <li>
+                                    <div data-rel="Devops<--->Azure">
+                                        
+                                        Azure
+                                        
+                                            <small>(4
+                                                )</small>
+                                        
+                                    </div>
+                                    
+                                </li>
+                            
+                                <li>
+                                    <div data-rel="Devops<--->Docker">
+                                        
+                                        Docker
+                                        
+                                            <small>(5
+                                                )</small>
+                                        
+                                    </div>
+                                    
+                                </li>
+                            
+                                <li>
+                                    <div data-rel="Devops<--->ELK">
+                                        
+                                        ELK
+                                        
+                                            <small>(5
+                                                )</small>
+                                        
+                                    </div>
+                                    
+                                </li>
+                            
+                                <li>
+                                    <div data-rel="Devops<--->Garfana">
+                                        
+                                        Garfana
+                                        
+                                            <small>(3
+                                                )</small>
+                                        
+                                    </div>
+                                    
+                                </li>
+                            
+                                <li>
+                                    <div data-rel="Devops<--->GCP">
+                                        
+                                        GCP
+                                        
+                                            <small>(9
+                                                )</small>
+                                        
+                                    </div>
+                                    
+                                </li>
+                            
+                                <li>
+                                    <div data-rel="Devops<--->K8S">
+                                        
+                                        K8S
+                                        
+                                            <small>(5
+                                                )</small>
+                                        
+                                    </div>
+                                    
+                                </li>
+                            
+                                <li>
+                                    <div data-rel="Devops<--->OctopusDeploy">
+                                        
+                                        OctopusDeploy
+                                        
+                                            <small>(14
+                                                )</small>
+                                        
+                                    </div>
+                                    
+                                </li>
+                            
+                                <li>
+                                    <div data-rel="Devops<--->Prometheus">
+                                        
+                                        Prometheus
+                                        
+                                            <small>(7
+                                                )</small>
+                                        
+                                    </div>
+                                    
+                                </li>
+                            
+                                <li>
+                                    <div data-rel="Devops<--->Telegraf">
+                                        
+                                        Telegraf
+                                        
+                                            <small>(2
+                                                )</small>
+                                        
+                                    </div>
+                                    
+                                </li>
+                            
+                        </ul>
+                    
+                </li>
+            
+        
+    
+        
+            
+        
+    
+        
+            
+                <li>
+                    <div data-rel="Tool">
+                        <i class="fold iconfont icon-right"></i>
+                        
+                        Tool
+                        <small>(16)</small>
+                        
+                    </div>
+                    
+                        <ul class="sub hide">
+                            
+                                <li>
+                                    <div data-rel="Tool<--->Git">
+                                        
+                                        Git
+                                        
+                                            <small>(2
+                                                )</small>
+                                        
+                                    </div>
+                                    
+                                </li>
+                            
+                                <li>
+                                    <div data-rel="Tool<--->Cert">
+                                        
+                                        Cert
+                                        
+                                            <small>(2
+                                                )</small>
+                                        
+                                    </div>
+                                    
+                                </li>
+                            
+                                <li>
+                                    <div data-rel="Tool<--->FTPS">
+                                        
+                                        FTPS
+                                        
+                                            <small>(1
+                                                )</small>
+                                        
+                                    </div>
+                                    
+                                </li>
+                            
+                                <li>
+                                    <div data-rel="Tool<--->Hexo">
+                                        
+                                        Hexo
+                                        
+                                            <small>(4
+                                                )</small>
+                                        
+                                    </div>
+                                    
+                                </li>
+                            
+                                <li>
+                                    <div data-rel="Tool<--->JMeter">
+                                        
+                                        JMeter
+                                        
+                                            <small>(1
+                                                )</small>
+                                        
+                                    </div>
+                                    
+                                </li>
+                            
+                                <li>
+                                    <div data-rel="Tool<--->K6">
+                                        
+                                        K6
+                                        
+                                            <small>(1
+                                                )</small>
+                                        
+                                    </div>
+                                    
+                                </li>
+                            
+                                <li>
+                                    <div data-rel="Tool<--->Linux">
+                                        
+                                        Linux
+                                        
+                                            <small>(1
+                                                )</small>
+                                        
+                                    </div>
+                                    
+                                </li>
+                            
+                                <li>
+                                    <div data-rel="Tool<--->Nuget">
+                                        
+                                        Nuget
+                                        
+                                            <small>(1
+                                                )</small>
+                                        
+                                    </div>
+                                    
+                                </li>
+                            
+                                <li>
+                                    <div data-rel="Tool<--->PowerShell">
+                                        
+                                        PowerShell
+                                        
+                                            <small>(2
+                                                )</small>
+                                        
+                                    </div>
+                                    
+                                </li>
+                            
+                                <li>
+                                    <div data-rel="Tool<--->SFTP">
+                                        
+                                        SFTP
+                                        
+                                            <small>(1
+                                                )</small>
+                                        
+                                    </div>
+                                    
+                                </li>
+                            
+                        </ul>
+                    
+                </li>
+            
+        
+    
+        
+            
+                <li>
+                    <div data-rel="Dev">
+                        <i class="fold iconfont icon-right"></i>
+                        
+                        Dev
+                        <small>(3)</small>
+                        
+                    </div>
+                    
+                        <ul class="sub hide">
+                            
+                                <li>
+                                    <div data-rel="Dev<--->IAP">
+                                        
+                                        IAP
+                                        
+                                            <small>(3
+                                                )</small>
+                                        
+                                    </div>
+                                    
+                                </li>
+                            
+                        </ul>
+                    
+                </li>
+            
+        
+    
+        
+            
+        
+    
+        
+            
+        
+    
+        
+            
+        
+    
+        
+            
+        
+    
+        
+            
+        
+    
+        
+            
+        
+    
+        
+            
+        
+    
+        
+            
+        
+    
+        
+            
+        
+    
+        
+            
+        
+    
+        
+            
+        
+    
+        
+            
+        
+    
+        
+            
+        
+    
+        
+            
+        
+    
+        
+            
+        
+    
+        
+            
+        
+    
+        
+            
+        
+    
+        
+            
+        
+    
+        
+            
+        
+    
+        
+            
+        
+    
+        
+            
+        
+    
+        
+            
+        
+    
+        
+            
+        
+    
+        
+            
+        
+    
+        
+            
+        
+    
+</ul>
+<div class="left-bottom">
+    <div class="menus">
+        
+            
+            
+            
+                <a class="dynamic-menu "
+                   target="_blank"
+                        
+                   href="https://github.com/w4560000">github</a>
+        
+    </div>
+    <div>
+        
+            <a class="about  site_url"
+               
+               href="/index">關於</a>
+        
+        
+    </div>
+</div>
+<input type="hidden" id="yelog_site_posts_number" value="99">
+<input type="hidden" id="yelog_site_word_count" value="75k">
+<div style="display: none">
+    <span id="busuanzi_value_site_uv"></span>
+    <span id="busuanzi_value_site_pv"></span>
+</div>
+
+    </div>
+    <div class="nav-right">
+        <div class="friends-area">
+    <div class="friends-title">
+        友情鏈接
+        <i class="iconfont icon-left"></i>
+    </div>
+    <div class="friends-content">
+        <ul>
+            
+            <li><a target="_blank" href="http://yelog.org/">叶落阁</a></li>
+            
+        </ul>
+    </div>
+</div>
+        <div class="title-list">
+    <div class="right-top">
+        <div id="default-panel">
+            <i class="iconfont icon-search" data-title="搜索 快捷鍵 i"></i>
+            <div class="right-title">全部文章</div>
+            <i class="iconfont icon-file-tree" data-title="切換到大綱視圖 快捷鍵 w"></i>
+        </div>
+        <div id="search-panel">
+            <i class="iconfont icon-left" data-title="返回"></i>
+            <input id="local-search-input" autocomplete="off"/>
+            <label class="border-line" for="input"></label>
+            <i class="iconfont icon-case-sensitive" data-title="大小寫敏感"></i>
+            <i class="iconfont icon-tag" data-title="標籤"></i>
+        </div>
+        <div id="outline-panel" style="display: none">
+            <div class="right-title">大綱</div>
+            <i class="iconfont icon-list" data-title="切换到文章列表"></i>
+        </div>
+    </div>
+
+    <div class="tags-list">
+    <input id="tag-search" />
+    <div class="tag-wrapper">
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>.Net</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>.NetCore</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>AppleStore</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>Azure</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>C#</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>Cert</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>Certbot</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>DesignPattern</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>Docker</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>Elastic APM</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>ELK</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>FileZilla</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>FTPS</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>Garfana</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>GCP</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>Git</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>GitHub Actions</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>GooglePLay</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>Hexo</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>HUAWEI</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>IAP</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>IIS</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>JMeter</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>K6</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>K8S</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>Linux</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>MultiThread</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>NLog</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>Nuget</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>OctopusDeploy</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>OpenSSL</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>PowerShell</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>Prometheus</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>Queue</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>Redis</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>SFTP</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>SQLServer</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>Teams</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>Telegraf</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>Telegram</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>TLS</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>VS Debugger Tool</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>Vue</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>Windows</a>
+            </li>
+        
+    </div>
+
+</div>
+
+    
+    <nav id="title-list-nav">
+        
+        <a  class="全部文章 Tool Cert "
+           href="/2024/07/25/self-signed-certificate/"
+           data-tag="Cert,OpenSSL,TLS"
+           data-author="" >
+            <span class="post-title" title="建立自簽三層CA憑證">建立自簽三層CA憑證</span>
+            <span class="post-date" title="2024-07-25 11:37:05">2024/07/25</span>
+        </a>
+        
+        <a  class="全部文章 Devops K8S "
+           href="/2024/05/04/k8s-import-image/"
+           data-tag="Docker,K8S"
+           data-author="" >
+            <span class="post-title" title="K8S kubeadm 使用 local build image (不撈取遠端鏡像儲存庫)">K8S kubeadm 使用 local build image (不撈取遠端鏡像儲存庫)</span>
+            <span class="post-date" title="2024-05-04 23:10:05">2024/05/04</span>
+        </a>
+        
+        <a  class="全部文章 Devops Prometheus "
+           href="/2023/11/28/prometheus-learn-4/"
+           data-tag="Prometheus"
+           data-author="" >
+            <span class="post-title" title="Prometheus 學習筆記-4">Prometheus 學習筆記-4</span>
+            <span class="post-date" title="2023-11-28 17:42:00">2023/11/28</span>
+        </a>
+        
+        <a  class="全部文章 Backend .NetCore "
+           href="/2023/11/28/dotnet-core-telegram-notify/"
+           data-tag=".NetCore,Telegram"
+           data-author="" >
+            <span class="post-title" title=".Net Core 推送訊息至 Telegram Channel">.Net Core 推送訊息至 Telegram Channel</span>
+            <span class="post-date" title="2023-11-28 15:12:11">2023/11/28</span>
+        </a>
+        
+        <a  class="全部文章 Devops Prometheus "
+           href="/2023/11/22/prometheus-learn-3/"
+           data-tag="Prometheus"
+           data-author="" >
+            <span class="post-title" title="Prometheus 學習筆記-3">Prometheus 學習筆記-3</span>
+            <span class="post-date" title="2023-11-22 10:13:00">2023/11/22</span>
+        </a>
+        
+        <a  class="全部文章 Devops Prometheus "
+           href="/2023/11/21/prometheus-learn-2/"
+           data-tag=".NetCore,Prometheus"
+           data-author="" >
+            <span class="post-title" title="Prometheus 學習筆記-2">Prometheus 學習筆記-2</span>
+            <span class="post-date" title="2023-11-21 15:25:00">2023/11/21</span>
+        </a>
+        
+        <a  class="全部文章 Devops Prometheus "
+           href="/2023/11/07/prometheus-learn-1/"
+           data-tag="Prometheus"
+           data-author="" >
+            <span class="post-title" title="Prometheus 學習筆記-1">Prometheus 學習筆記-1</span>
+            <span class="post-date" title="2023-11-07 15:31:30">2023/11/07</span>
+        </a>
+        
+        <a  class="全部文章 Devops Telegraf "
+           href="/2023/10/31/telegraf-learn-2/"
+           data-tag="Telegraf"
+           data-author="" >
+            <span class="post-title" title="Telegraf 學習筆記-2">Telegraf 學習筆記-2</span>
+            <span class="post-date" title="2023-10-31 16:39:30">2023/10/31</span>
+        </a>
+        
+        <a  class="全部文章 Devops Telegraf "
+           href="/2023/10/31/telegraf-learn-1/"
+           data-tag="Telegraf"
+           data-author="" >
+            <span class="post-title" title="Telegraf 學習筆記-1">Telegraf 學習筆記-1</span>
+            <span class="post-date" title="2023-10-31 14:12:30">2023/10/31</span>
+        </a>
+        
+        <a  class="全部文章 Devops Prometheus "
+           href="/2023/10/14/windows-exporter-install/"
+           data-tag="Prometheus,Windows"
+           data-author="" >
+            <span class="post-title" title="Windows Exporter 安裝">Windows Exporter 安裝</span>
+            <span class="post-date" title="2023-10-14 16:29:18">2023/10/14</span>
+        </a>
+        
+        <a  class="全部文章 Tool K6 "
+           href="/2023/09/10/k6-test/"
+           data-tag="K6"
+           data-author="" >
+            <span class="post-title" title="K6 壓測">K6 壓測</span>
+            <span class="post-date" title="2023-09-10 16:03:31">2023/09/10</span>
+        </a>
+        
+        <a  class="全部文章 Backend .NetCore "
+           href="/2023/08/19/dotnet-core-rediscluster-failover/"
+           data-tag=".NetCore,Redis"
+           data-author="" >
+            <span class="post-title" title=".Net Core 連線 Redis Cluster 測試故障轉移">.Net Core 連線 Redis Cluster 測試故障轉移</span>
+            <span class="post-date" title="2023-08-19 18:58:31">2023/08/19</span>
+        </a>
+        
+        <a  class="全部文章 Backend .NetCore "
+           href="/2023/08/13/dotnet-core-connect-redis-test/"
+           data-tag=".NetCore,Redis"
+           data-author="" >
+            <span class="post-title" title=".Net Core 測試 StackExchange.Redis 連線 Redis">.Net Core 測試 StackExchange.Redis 連線 Redis</span>
+            <span class="post-date" title="2023-08-13 23:00:00">2023/08/13</span>
+        </a>
+        
+        <a  class="全部文章 NoSQL Redis "
+           href="/2023/07/02/redis-cluster/"
+           data-tag="Redis,GCP"
+           data-author="" >
+            <span class="post-title" title="Redis Cluster">Redis Cluster</span>
+            <span class="post-date" title="2023-07-02 21:10:16">2023/07/02</span>
+        </a>
+        
+        <a  class="全部文章 Backend .NetCore "
+           href="/2023/06/27/dotnet-core-redissentinel-failover/"
+           data-tag=".NetCore,Redis"
+           data-author="" >
+            <span class="post-title" title=".Net Core 連線 Redis Master/Slave 配合 Sentinel 測試故障轉移">.Net Core 連線 Redis Master/Slave 配合 Sentinel 測試故障轉移</span>
+            <span class="post-date" title="2023-06-27 14:15:07">2023/06/27</span>
+        </a>
+        
+        <a  class="全部文章 NoSQL Redis "
+           href="/2023/06/20/redis-master-slave-sentinel/"
+           data-tag="Redis,GCP"
+           data-author="" >
+            <span class="post-title" title="Redis Master-Slave Sentinel (哨兵模式)">Redis Master-Slave Sentinel (哨兵模式)</span>
+            <span class="post-date" title="2023-06-20 09:21:15">2023/06/20</span>
+        </a>
+        
+        <a  class="全部文章 NoSQL Redis "
+           href="/2023/06/19/redis-master-slave/"
+           data-tag="Redis,GCP"
+           data-author="" >
+            <span class="post-title" title="Redis Master-Slave">Redis Master-Slave</span>
+            <span class="post-date" title="2023-06-19 13:29:07">2023/06/19</span>
+        </a>
+        
+        <a  class="全部文章 NoSQL Redis "
+           href="/2023/06/19/redis-rdb-aof-backup/"
+           data-tag="Redis"
+           data-author="" >
+            <span class="post-title" title="Redis RDB、AOF 混合備份測試">Redis RDB、AOF 混合備份測試</span>
+            <span class="post-date" title="2023-06-19 11:05:07">2023/06/19</span>
+        </a>
+        
+        <a  class="全部文章 NoSQL Redis "
+           href="/2023/06/16/redis-aof-backup/"
+           data-tag="Redis"
+           data-author="" >
+            <span class="post-title" title="Redis AOF 備份測試">Redis AOF 備份測試</span>
+            <span class="post-date" title="2023-06-16 16:33:07">2023/06/16</span>
+        </a>
+        
+        <a  class="全部文章 NoSQL Redis "
+           href="/2023/06/16/redis-rdb-backup/"
+           data-tag="Redis"
+           data-author="" >
+            <span class="post-title" title="Redis RDB 備份測試">Redis RDB 備份測試</span>
+            <span class="post-date" title="2023-06-16 09:29:07">2023/06/16</span>
+        </a>
+        
+        <a  class="全部文章 Database SQLServer "
+           href="/2023/06/07/sql-server-row-lock-test/"
+           data-tag="SQLServer"
+           data-author="" >
+            <span class="post-title" title="SQL Server Transcation Row Lock Test">SQL Server Transcation Row Lock Test</span>
+            <span class="post-date" title="2023-06-07 13:41:13">2023/06/07</span>
+        </a>
+        
+        <a  class="全部文章 Database SQLServer "
+           href="/2023/06/02/sql-server-isolation-level-test/"
+           data-tag="SQLServer"
+           data-author="" >
+            <span class="post-title" title="SQL Server Tnscation Isolation Level Test">SQL Server Tnscation Isolation Level Test</span>
+            <span class="post-date" title="2023-06-02 18:59:13">2023/06/02</span>
+        </a>
+        
+        <a  class="全部文章 Queue Pub/Sub "
+           href="/2023/05/20/gcp-pubsub-subscription-push-auth/"
+           data-tag=".NetCore,GCP,Queue"
+           data-author="" >
+            <span class="post-title" title="GCP Pub/Sub 訂閱者以 Push 方式接收訊息並驗證JWT">GCP Pub/Sub 訂閱者以 Push 方式接收訊息並驗證JWT</span>
+            <span class="post-date" title="2023-05-20 18:00:00">2023/05/20</span>
+        </a>
+        
+        <a  class="全部文章 Queue Pub/Sub "
+           href="/2023/05/08/gcp-pubsub-with-dotnet-6/"
+           data-tag=".NetCore,GCP,Queue"
+           data-author="" >
+            <span class="post-title" title="GCP Pub/Sub With .Net 6">GCP Pub/Sub With .Net 6</span>
+            <span class="post-date" title="2023-05-08 00:41:32">2023/05/08</span>
+        </a>
+        
+        <a  class="全部文章 Devops ELK "
+           href="/2023/04/15/elk-apm-opentelemetry/"
+           data-tag=".NetCore,Docker,ELK,Elastic APM"
+           data-author="" >
+            <span class="post-title" title=".Net Core 透過 Elastic APM 來即時監控服務">.Net Core 透過 Elastic APM 來即時監控服務</span>
+            <span class="post-date" title="2023-04-15 20:31:00">2023/04/15</span>
+        </a>
+        
+        <a  class="全部文章 Dev IAP "
+           href="/2023/04/03/HUAWEI-IAP-Subscribe/"
+           data-tag="IAP,.Net,HUAWEI"
+           data-author="" >
+            <span class="post-title" title="HUAWEI In-App Purchase 訂閱制後端流程">HUAWEI In-App Purchase 訂閱制後端流程</span>
+            <span class="post-date" title="2023-04-03 16:25:30">2023/04/03</span>
+        </a>
+        
+        <a  class="全部文章 Dev IAP "
+           href="/2023/04/01/AppleStore-IAP-Subscribe/"
+           data-tag="AppleStore,IAP"
+           data-author="" >
+            <span class="post-title" title="AppleStore In-App Purchase 訂閱制後端流程">AppleStore In-App Purchase 訂閱制後端流程</span>
+            <span class="post-date" title="2023-04-01 15:12:30">2023/04/01</span>
+        </a>
+        
+        <a  class="全部文章 Dev IAP "
+           href="/2023/04/01/GooglePlay-IAP-Subscribe/"
+           data-tag="IAP,GooglePLay,.Net"
+           data-author="" >
+            <span class="post-title" title="GooglePlay In-App Purchase 訂閱制後端流程">GooglePlay In-App Purchase 訂閱制後端流程</span>
+            <span class="post-date" title="2023-04-01 15:12:30">2023/04/01</span>
+        </a>
+        
+        <a  class="全部文章 Tool Hexo "
+           href="/2023/03/12/hexo-github-action/"
+           data-tag="Hexo,GitHub Actions"
+           data-author="" >
+            <span class="post-title" title="Hexo 透過 GitHub Actions 自動佈署 Blog">Hexo 透過 GitHub Actions 自動佈署 Blog</span>
+            <span class="post-date" title="2023-03-12 12:21:12">2023/03/12</span>
+        </a>
+        
+        <a  class="全部文章 Tool Git "
+           href="/2022/10/30/git-delete-remote-branch/"
+           data-tag="Windows,Git,PowerShell"
+           data-author="" >
+            <span class="post-title" title="Git 批次刪除某段時間前的遠端分支">Git 批次刪除某段時間前的遠端分支</span>
+            <span class="post-date" title="2022-10-30 18:45:00">2022/10/30</span>
+        </a>
+        
+        <a  class="全部文章 Devops Prometheus "
+           href="/2022/06/20/prometheus-k8s-metrics/"
+           data-tag="K8S,Garfana,Prometheus"
+           data-author="" >
+            <span class="post-title" title="Prometheus 蒐集 node-exporter、kube-state-metrics">Prometheus 蒐集 node-exporter、kube-state-metrics</span>
+            <span class="post-date" title="2022-06-20 00:14:49">2022/06/20</span>
+        </a>
+        
+        <a  class="全部文章 Devops OctopusDeploy "
+           href="/2022/06/19/octopus-deploy-k8s-3/"
+           data-tag="K8S,OctopusDeploy"
+           data-author="" >
+            <span class="post-title" title="Octopus Deploy K8S 專案 [3] - 設定 HorizontalPodAutoscaler">Octopus Deploy K8S 專案 [3] - 設定 HorizontalPodAutoscaler</span>
+            <span class="post-date" title="2022-06-19 10:41:10">2022/06/19</span>
+        </a>
+        
+        <a  class="全部文章 Devops Garfana "
+           href="/2022/06/14/garfana-dotnet-mertrics/"
+           data-tag=".NetCore,Garfana,Prometheus"
+           data-author="" >
+            <span class="post-title" title="Garfana 透過 Prometheus 監控 .Net 6 應用程式">Garfana 透過 Prometheus 監控 .Net 6 應用程式</span>
+            <span class="post-date" title="2022-06-14 23:21:10">2022/06/14</span>
+        </a>
+        
+        <a  class="全部文章 Devops Prometheus "
+           href="/2022/06/14/prometheus-init/"
+           data-tag="Prometheus"
+           data-author="" >
+            <span class="post-title" title="透過 Docker Compose 建立 Prometheus、Node-Exporter">透過 Docker Compose 建立 Prometheus、Node-Exporter</span>
+            <span class="post-date" title="2022-06-14 22:41:27">2022/06/14</span>
+        </a>
+        
+        <a  class="全部文章 Devops Garfana "
+           href="/2022/06/11/garfana-gcp-vm/"
+           data-tag="GCP,Garfana"
+           data-author="" >
+            <span class="post-title" title="Garfana 監控 GCP VM">Garfana 監控 GCP VM</span>
+            <span class="post-date" title="2022-06-11 23:04:54">2022/06/11</span>
+        </a>
+        
+        <a  class="全部文章 Devops Docker "
+           href="/2022/06/11/docker-install/"
+           data-tag="Docker,Linux"
+           data-author="" >
+            <span class="post-title" title="Linux 安裝 Docker、Docker-Compose">Linux 安裝 Docker、Docker-Compose</span>
+            <span class="post-date" title="2022-06-11 16:50:52">2022/06/11</span>
+        </a>
+        
+        <a  class="全部文章 Devops Garfana "
+           href="/2022/06/11/garfana-init/"
+           data-tag="Docker,GCP,Garfana"
+           data-author="" >
+            <span class="post-title" title="透過 Docker 建立 Garfana">透過 Docker 建立 Garfana</span>
+            <span class="post-date" title="2022-06-11 16:38:31">2022/06/11</span>
+        </a>
+        
+        <a  class="全部文章 Tool Linux "
+           href="/2022/06/07/linux-script/"
+           data-tag="Linux"
+           data-author="" >
+            <span class="post-title" title="常用的 Linux 指令">常用的 Linux 指令</span>
+            <span class="post-date" title="2022-06-07 23:30:08">2022/06/07</span>
+        </a>
+        
+        <a  class="全部文章 Devops ELK "
+           href="/2022/06/04/elk-k8s-filebeat/"
+           data-tag=".NetCore,ELK,K8S"
+           data-author="" >
+            <span class="post-title" title="透過 Filebeat 轉拋 K8S Pod Console Log">透過 Filebeat 轉拋 K8S Pod Console Log</span>
+            <span class="post-date" title="2022-06-04 15:07:06">2022/06/04</span>
+        </a>
+        
+        <a  class="全部文章 Devops GCP "
+           href="/2022/06/04/gcp-google-managed-ssl-certificates/"
+           data-tag="GCP"
+           data-author="" >
+            <span class="post-title" title="GCP 建立 Google 自管的 SSL 憑證">GCP 建立 Google 自管的 SSL 憑證</span>
+            <span class="post-date" title="2022-06-04 13:01:25">2022/06/04</span>
+        </a>
+        
+        <a  class="全部文章 Devops OctopusDeploy "
+           href="/2022/06/03/octopus-deploy-k8s-2/"
+           data-tag="K8S,OctopusDeploy"
+           data-author="" >
+            <span class="post-title" title="Octopus Deploy K8S 專案 [2] - GKE">Octopus Deploy K8S 專案 [2] - GKE</span>
+            <span class="post-date" title="2022-06-03 23:27:43">2022/06/03</span>
+        </a>
+        
+        <a  class="全部文章 Devops GCP "
+           href="/2022/06/01/gcp-init-gke/"
+           data-tag="GCP,K8S"
+           data-author="" >
+            <span class="post-title" title="GCP Kubernetes Engine 建置">GCP Kubernetes Engine 建置</span>
+            <span class="post-date" title="2022-06-01 23:03:14">2022/06/01</span>
+        </a>
+        
+        <a  class="全部文章 Devops OctopusDeploy "
+           href="/2022/05/29/octopus-deploy-k8s-1/"
+           data-tag="K8S,OctopusDeploy"
+           data-author="" >
+            <span class="post-title" title="Octopus Deploy K8S 專案 [1] - 地端 K8S">Octopus Deploy K8S 專案 [1] - 地端 K8S</span>
+            <span class="post-date" title="2022-05-29 23:03:01">2022/05/29</span>
+        </a>
+        
+        <a  class="全部文章 Devops OctopusDeploy "
+           href="/2022/05/28/octopus-deploy-dotnet-core3-1-to-k8s/"
+           data-tag="Azure,.NetCore,K8S,OctopusDeploy"
+           data-author="" >
+            <span class="post-title" title=".Net Core 3.1 MVC CD/CD 到 K8S 實作">.Net Core 3.1 MVC CD/CD 到 K8S 實作</span>
+            <span class="post-date" title="2022-05-28 17:44:47">2022/05/28</span>
+        </a>
+        
+        <a  class="全部文章 Devops OctopusDeploy "
+           href="/2022/05/28/octopus-deploy-init-5/"
+           data-tag="K8S,OctopusDeploy"
+           data-author="" >
+            <span class="post-title" title="Octopus Deploy [5] Kubernetes cluster 地端機器設定 Deployment targets">Octopus Deploy [5] Kubernetes cluster 地端機器設定 Deployment targets</span>
+            <span class="post-date" title="2022-05-28 14:08:55">2022/05/28</span>
+        </a>
+        
+        <a  class="全部文章 Devops OctopusDeploy "
+           href="/2022/05/24/octopus-deploy-bind-iis-ssl/"
+           data-tag="IIS,OctopusDeploy"
+           data-author="" >
+            <span class="post-title" title="Octopus Deploy 設定 IIS 綁定 HTTPS 憑證">Octopus Deploy 設定 IIS 綁定 HTTPS 憑證</span>
+            <span class="post-date" title="2022-05-24 23:29:59">2022/05/24</span>
+        </a>
+        
+        <a  class="全部文章 Devops OctopusDeploy "
+           href="/2022/05/23/octopus-deploy-mutiple-env-variable/"
+           data-tag=".Net,OctopusDeploy"
+           data-author="" >
+            <span class="post-title" title="Octopus Deploy 設定多環境變數">Octopus Deploy 設定多環境變數</span>
+            <span class="post-date" title="2022-05-23 05:10:55">2022/05/23</span>
+        </a>
+        
+        <a  class="全部文章 Tool PowerShell "
+           href="/2022/05/22/windows-setup-iis-script/"
+           data-tag="Windows,PowerShell"
+           data-author="" >
+            <span class="post-title" title="PowerShell 安裝 IIS">PowerShell 安裝 IIS</span>
+            <span class="post-date" title="2022-05-22 01:35:49">2022/05/22</span>
+        </a>
+        
+        <a  class="全部文章 Devops OctopusDeploy "
+           href="/2022/05/21/octopus-deploy-deployment-dotnet/"
+           data-tag=".Net,OctopusDeploy"
+           data-author="" >
+            <span class="post-title" title="Octopus Deploy 設定 .Net MVC 專案佈署流程">Octopus Deploy 設定 .Net MVC 專案佈署流程</span>
+            <span class="post-date" title="2022-05-21 04:04:55">2022/05/21</span>
+        </a>
+        
+        <a  class="全部文章 Devops OctopusDeploy "
+           href="/2022/05/19/octopus-deploy-dotnet-mvc/"
+           data-tag=".Net,Azure,OctopusDeploy"
+           data-author="" >
+            <span class="post-title" title="ASP.NET MVC CI/CD 實作">ASP.NET MVC CI/CD 實作</span>
+            <span class="post-date" title="2022-05-19 22:30:04">2022/05/19</span>
+        </a>
+        
+        <a  class="全部文章 Devops OctopusDeploy "
+           href="/2022/05/18/octopus-deploy-init-4/"
+           data-tag="OctopusDeploy"
+           data-author="" >
+            <span class="post-title" title="Octopus Deploy [4] Windows 機器 安裝 Octopus Tentacle">Octopus Deploy [4] Windows 機器 安裝 Octopus Tentacle</span>
+            <span class="post-date" title="2022-05-18 23:53:25">2022/05/18</span>
+        </a>
+        
+        <a  class="全部文章 Devops OctopusDeploy "
+           href="/2022/05/17/octopus-deploy-init-3/"
+           data-tag="OctopusDeploy"
+           data-author="" >
+            <span class="post-title" title="Octopus Deploy [3] Octopus Server 基礎設定">Octopus Deploy [3] Octopus Server 基礎設定</span>
+            <span class="post-date" title="2022-05-17 20:30:12">2022/05/17</span>
+        </a>
+        
+        <a  class="全部文章 Devops OctopusDeploy "
+           href="/2022/05/17/octopus-deploy-node-bug/"
+           data-tag="OctopusDeploy"
+           data-author="" >
+            <span class="post-title" title="設定 Octopus Server 時 ServerNode 建立失敗">設定 Octopus Server 時 ServerNode 建立失敗</span>
+            <span class="post-date" title="2022-05-17 19:50:27">2022/05/17</span>
+        </a>
+        
+        <a  class="全部文章 Devops OctopusDeploy "
+           href="/2022/05/15/octopus-deploy-init-2/"
+           data-tag="OctopusDeploy"
+           data-author="" >
+            <span class="post-title" title="Octopus Deploy [2] 設定 Octopus Server">Octopus Deploy [2] 設定 Octopus Server</span>
+            <span class="post-date" title="2022-05-15 12:58:50">2022/05/15</span>
+        </a>
+        
+        <a  class="全部文章 Tool PowerShell "
+           href="/2022/05/14/windows-setup-script/"
+           data-tag="Windows,PowerShell"
+           data-author="" >
+            <span class="post-title" title="常用的 PowerShell 腳本">常用的 PowerShell 腳本</span>
+            <span class="post-date" title="2022-05-14 19:29:07">2022/05/14</span>
+        </a>
+        
+        <a  class="全部文章 Tool Nuget "
+           href="/2022/05/13/nuget-server-init/"
+           data-tag=".Net,Nuget"
+           data-author="" >
+            <span class="post-title" title="自建 Nuget Server">自建 Nuget Server</span>
+            <span class="post-date" title="2022-05-13 23:14:44">2022/05/13</span>
+        </a>
+        
+        <a  class="全部文章 Database SQLServer "
+           href="/2022/05/12/sql-server-index-test/"
+           data-tag="SQLServer"
+           data-author="" >
+            <span class="post-title" title="SQL Server Index 測試">SQL Server Index 測試</span>
+            <span class="post-date" title="2022-05-12 00:07:13">2022/05/12</span>
+        </a>
+        
+        <a  class="全部文章 Devops OctopusDeploy "
+           href="/2022/05/11/octopus-deploy-init-1/"
+           data-tag="OctopusDeploy"
+           data-author="" >
+            <span class="post-title" title="Octopus Deploy [1] 安裝 Octopus Server">Octopus Deploy [1] 安裝 Octopus Server</span>
+            <span class="post-date" title="2022-05-11 23:57:11">2022/05/11</span>
+        </a>
+        
+        <a  class="全部文章 Backend .NetCore "
+           href="/2022/05/07/dotnet-core-recaptcha-enterprise/"
+           data-tag=".NetCore,GCP"
+           data-author="" >
+            <span class="post-title" title=".Net Core 3.1 reCAPTCHA Enterprise">.Net Core 3.1 reCAPTCHA Enterprise</span>
+            <span class="post-date" title="2022-05-07 23:39:32">2022/05/07</span>
+        </a>
+        
+        <a  class="全部文章 Devops GCP "
+           href="/2022/05/06/gcp-init-loadbalancer/"
+           data-tag="GCP"
+           data-author="" >
+            <span class="post-title" title="建立 GCP Load balancer">建立 GCP Load balancer</span>
+            <span class="post-date" title="2022-05-06 23:53:04">2022/05/06</span>
+        </a>
+        
+        <a  class="全部文章 Devops K8S "
+           href="/2022/05/05/k8s-ingress-nginx/"
+           data-tag="K8S"
+           data-author="" >
+            <span class="post-title" title="地端 K8S 安裝 ingress-nginx">地端 K8S 安裝 ingress-nginx</span>
+            <span class="post-date" title="2022-05-05 22:57:32">2022/05/05</span>
+        </a>
+        
+        <a  class="全部文章 Database SQLServer "
+           href="/2022/05/05/sql-server-common-syntax/"
+           data-tag="SQLServer"
+           data-author="" >
+            <span class="post-title" title="個人常用 SQL Server 語法">個人常用 SQL Server 語法</span>
+            <span class="post-date" title="2022-05-05 22:50:16">2022/05/05</span>
+        </a>
+        
+        <a  class="全部文章 Database SQLServer "
+           href="/2022/05/04/sql-server-agent-job/"
+           data-tag="SQLServer"
+           data-author="" >
+            <span class="post-title" title="新增 SQL Server Agent Job">新增 SQL Server Agent Job</span>
+            <span class="post-date" title="2022-05-04 21:56:02">2022/05/04</span>
+        </a>
+        
+        <a  class="全部文章 Database SQLServer "
+           href="/2022/05/04/sql-server-common-script/"
+           data-tag="SQLServer"
+           data-author="" >
+            <span class="post-title" title="個人常用 SQL Server 腳本">個人常用 SQL Server 腳本</span>
+            <span class="post-date" title="2022-05-04 02:03:53">2022/05/04</span>
+        </a>
+        
+        <a  class="全部文章 Devops GCP "
+           href="/2022/05/02/gcp-push-gcr/"
+           data-tag="GCP"
+           data-author="" >
+            <span class="post-title" title="Push &amp; Pull DockerImage from Google Container Registry">Push &amp; Pull DockerImage from Google Container Registry</span>
+            <span class="post-date" title="2022-05-02 03:47:34">2022/05/02</span>
+        </a>
+        
+        <a  class="全部文章 Devops K8S "
+           href="/2022/05/02/k8s-metallb-init/"
+           data-tag="K8S"
+           data-author="" >
+            <span class="post-title" title="地端 K8S 設定 MetalLB">地端 K8S 設定 MetalLB</span>
+            <span class="post-date" title="2022-05-02 03:33:42">2022/05/02</span>
+        </a>
+        
+        <a  class="全部文章 Backend .NetCore "
+           href="/2022/05/01/dotnet-core-docker-sample/"
+           data-tag=".NetCore,Docker"
+           data-author="" >
+            <span class="post-title" title=".Net Core 3.1 Docker 範例">.Net Core 3.1 Docker 範例</span>
+            <span class="post-date" title="2022-05-01 17:11:40">2022/05/01</span>
+        </a>
+        
+        <a  class="全部文章 Backend .NetCore "
+           href="/2022/04/30/dotnet-core-nlog-mail/"
+           data-tag=".NetCore,NLog"
+           data-author="" >
+            <span class="post-title" title=".Net Core 3.1 設定 NLog 寄信流程">.Net Core 3.1 設定 NLog 寄信流程</span>
+            <span class="post-date" title="2022-04-30 23:20:11">2022/04/30</span>
+        </a>
+        
+        <a  class="全部文章 Tool FTPS "
+           href="/2022/04/29/filezilla-ftps-init/"
+           data-tag="FileZilla,FTPS"
+           data-author="" >
+            <span class="post-title" title="Windows Server 2012 R2 FileZilla Server FTPS 服務架設">Windows Server 2012 R2 FileZilla Server FTPS 服務架設</span>
+            <span class="post-date" title="2022-04-29 00:13:02">2022/04/29</span>
+        </a>
+        
+        <a  class="全部文章 Devops K8S "
+           href="/2022/04/28/k8s-dashboard-init/"
+           data-tag="K8S"
+           data-author="" >
+            <span class="post-title" title="建立 K8S Dashboard v2.5.1">建立 K8S Dashboard v2.5.1</span>
+            <span class="post-date" title="2022-04-28 22:52:30">2022/04/28</span>
+        </a>
+        
+        <a  class="全部文章 Devops K8S "
+           href="/2022/04/25/k8s-cluster-kubeadm-init/"
+           data-tag="GCP,K8S"
+           data-author="" >
+            <span class="post-title" title="以 kubeadm 架設 K8S Cluster">以 kubeadm 架設 K8S Cluster</span>
+            <span class="post-date" title="2022-04-25 23:36:27">2022/04/25</span>
+        </a>
+        
+        <a  class="全部文章 Tool SFTP "
+           href="/2022/04/25/sftp-windows-init/"
+           data-tag="SFTP"
+           data-author="" >
+            <span class="post-title" title="Windows Server 2012 R2 SFTP 服務架設">Windows Server 2012 R2 SFTP 服務架設</span>
+            <span class="post-date" title="2022-04-25 23:28:18">2022/04/25</span>
+        </a>
+        
+        <a  class="全部文章 Devops ELK "
+           href="/2022/04/24/elk-parse-iislog/"
+           data-tag="ELK,IIS"
+           data-author="" >
+            <span class="post-title" title="Kibana 查看 IIS Log">Kibana 查看 IIS Log</span>
+            <span class="post-date" title="2022-04-24 15:24:58">2022/04/24</span>
+        </a>
+        
+        <a  class="全部文章 Tool JMeter "
+           href="/2022/04/23/jmeter-sample/"
+           data-tag="JMeter"
+           data-author="" >
+            <span class="post-title" title="JMeter壓力測試 範例">JMeter壓力測試 範例</span>
+            <span class="post-date" title="2022-04-23 21:51:24">2022/04/23</span>
+        </a>
+        
+        <a  class="全部文章 Backend .NetCore "
+           href="/2022/04/19/dotnet-core-deploy-gce/"
+           data-tag=".NetCore,GCP"
+           data-author="" >
+            <span class="post-title" title="Visual Studio Deploy .Net Core 3.1 專案 至 GCP Compute Engine">Visual Studio Deploy .Net Core 3.1 專案 至 GCP Compute Engine</span>
+            <span class="post-date" title="2022-04-19 00:04:26">2022/04/19</span>
+        </a>
+        
+        <a  class="全部文章 Devops GCP "
+           href="/2022/04/18/gcp-vm-set-firewall/"
+           data-tag="GCP"
+           data-author="" >
+            <span class="post-title" title="GCP VM 開啟防火牆">GCP VM 開啟防火牆</span>
+            <span class="post-date" title="2022-04-18 23:17:08">2022/04/18</span>
+        </a>
+        
+        <a  class="全部文章 Devops ELK "
+           href="/2022/04/17/elk-parse-timestamp/"
+           data-tag="ELK"
+           data-author="" >
+            <span class="post-title" title="Logstash Parse Timestamp">Logstash Parse Timestamp</span>
+            <span class="post-date" title="2022-04-17 17:10:54">2022/04/17</span>
+        </a>
+        
+        <a  class="全部文章 Devops ELK "
+           href="/2022/04/16/elk-sample/"
+           data-tag="Docker,ELK"
+           data-author="" >
+            <span class="post-title" title="ELK Stack">ELK Stack</span>
+            <span class="post-date" title="2022-04-16 22:29:52">2022/04/16</span>
+        </a>
+        
+        <a  class="全部文章 Devops Azure "
+           href="/2022/04/13/azure-devops-webhook-teams/"
+           data-tag="Azure,Teams"
+           data-author="" >
+            <span class="post-title" title="Azure Devops Pipeline Webhook 通知 Teams 頻道">Azure Devops Pipeline Webhook 通知 Teams 頻道</span>
+            <span class="post-date" title="2022-04-13 22:50:05">2022/04/13</span>
+        </a>
+        
+        <a  class="全部文章 Devops GCP "
+           href="/2022/04/12/gcp-init-cloud-domains-dns/"
+           data-tag="GCP"
+           data-author="" >
+            <span class="post-title" title="GCP Cloud Domains 註冊網域 &amp; GCP Cloud DNS建立對應IP">GCP Cloud Domains 註冊網域 &amp; GCP Cloud DNS建立對應IP</span>
+            <span class="post-date" title="2022-04-12 23:52:45">2022/04/12</span>
+        </a>
+        
+        <a  class="全部文章 Tool Cert "
+           href="/2022/04/11/certbot-tls-certificate/"
+           data-tag="Cert,Certbot,OpenSSL,TLS"
+           data-author="" >
+            <span class="post-title" title="Certbot 建立 TLS憑證 並匯入IIS">Certbot 建立 TLS憑證 並匯入IIS</span>
+            <span class="post-date" title="2022-04-11 23:08:05">2022/04/11</span>
+        </a>
+        
+        <a  class="全部文章 Devops Azure "
+           href="/2022/04/09/azure-devops-cicd-sample/"
+           data-tag="Azure,.NetCore,Vue"
+           data-author="" >
+            <span class="post-title" title="Azure Devops 設定 .NetCore 和 Vue CI/CD Deploy 至 Azure App Service">Azure Devops 設定 .NetCore 和 Vue CI/CD Deploy 至 Azure App Service</span>
+            <span class="post-date" title="2022-04-09 23:38:50">2022/04/09</span>
+        </a>
+        
+        <a  class="全部文章 Devops Azure "
+           href="/2022/04/09/azure-devops-service-connections/"
+           data-tag="Azure"
+           data-author="" >
+            <span class="post-title" title="Azure Devops 設定 Service Connections">Azure Devops 設定 Service Connections</span>
+            <span class="post-date" title="2022-04-09 23:01:16">2022/04/09</span>
+        </a>
+        
+        <a  class="全部文章 Backend .Net "
+           href="/2022/04/09/dotnet-ShallowCopy-DeepCopy/"
+           data-tag=".Net"
+           data-author="" >
+            <span class="post-title" title=".Net 淺複製與深複製">.Net 淺複製與深複製</span>
+            <span class="post-date" title="2022-04-09 00:19:21">2022/04/09</span>
+        </a>
+        
+        <a  class="全部文章 Backend DesignPattern "
+           href="/2022/04/08/dotnet-designPattern-protoType/"
+           data-tag="DesignPattern,C#"
+           data-author="" >
+            <span class="post-title" title="設計模式-原型模式 (Prototype Pattern)">設計模式-原型模式 (Prototype Pattern)</span>
+            <span class="post-date" title="2022-04-08 23:42:58">2022/04/08</span>
+        </a>
+        
+        <a  class="全部文章 Backend .NetCore "
+           href="/2022/04/07/dotnet-core-CancellationTokenSource/"
+           data-tag=".NetCore,MultiThread"
+           data-author="" >
+            <span class="post-title" title=".Net Core CancellationTokenSource的應用">.Net Core CancellationTokenSource的應用</span>
+            <span class="post-date" title="2022-04-07 23:25:31">2022/04/07</span>
+        </a>
+        
+        <a  class="全部文章 Devops Docker "
+           href="/2022/04/06/docker-image-sample/"
+           data-tag="Docker"
+           data-author="" >
+            <span class="post-title" title="紀錄 Docker Image 常用指令">紀錄 Docker Image 常用指令</span>
+            <span class="post-date" title="2022-04-06 22:23:54">2022/04/06</span>
+        </a>
+        
+        <a  class="全部文章 Devops Docker "
+           href="/2022/04/06/docker-container-run-sample/"
+           data-tag="Docker"
+           data-author="" >
+            <span class="post-title" title="紀錄 Docker Run 常用指令">紀錄 Docker Run 常用指令</span>
+            <span class="post-date" title="2022-04-06 22:20:45">2022/04/06</span>
+        </a>
+        
+        <a  class="全部文章 Devops Docker "
+           href="/2022/04/06/docker-container-sample/"
+           data-tag="Docker"
+           data-author="" >
+            <span class="post-title" title="紀錄 Docker Container 常用指令">紀錄 Docker Container 常用指令</span>
+            <span class="post-date" title="2022-04-06 22:04:54">2022/04/06</span>
+        </a>
+        
+        <a  class="全部文章 Devops Docker "
+           href="/2022/04/06/docker-dockerfile-sample/"
+           data-tag="Docker"
+           data-author="" >
+            <span class="post-title" title="紀錄 Dockerfile 寫法">紀錄 Dockerfile 寫法</span>
+            <span class="post-date" title="2022-04-06 21:43:49">2022/04/06</span>
+        </a>
+        
+        <a  class="全部文章 Devops Azure "
+           href="/2022/04/03/azure-push-acr/"
+           data-tag="Azure,Docker"
+           data-author="" >
+            <span class="post-title" title="上傳Docker Image 至 Azure Container Registry">上傳Docker Image 至 Azure Container Registry</span>
+            <span class="post-date" title="2022-04-03 22:51:38">2022/04/03</span>
+        </a>
+        
+        <a  class="全部文章 Backend .Net "
+           href="/2022/04/03/dotnet-remote-debugger/"
+           data-tag=".Net,VS Debugger Tool"
+           data-author="" >
+            <span class="post-title" title="遠端 debug 掛載在 IIS 的服務站台">遠端 debug 掛載在 IIS 的服務站台</span>
+            <span class="post-date" title="2022-04-03 22:33:05">2022/04/03</span>
+        </a>
+        
+        <a  class="全部文章 Devops GCP "
+           href="/2022/04/02/gcp-cloud-build-deploy-gke/"
+           data-tag="Docker,GCP,K8S"
+           data-author="" >
+            <span class="post-title" title="GCP Cloud Build 部署至 K8S中">GCP Cloud Build 部署至 K8S中</span>
+            <span class="post-date" title="2022-04-02 22:40:55">2022/04/02</span>
+        </a>
+        
+        <a  class="全部文章 Devops GCP "
+           href="/2022/04/02/gcp-init-cloud-build/"
+           data-tag="Docker,GCP"
+           data-author="" >
+            <span class="post-title" title="GCP Cloud Build 範例">GCP Cloud Build 範例</span>
+            <span class="post-date" title="2022-04-02 22:19:52">2022/04/02</span>
+        </a>
+        
+        <a  class="全部文章 Devops GCP "
+           href="/2022/04/02/gcp-init-cloud-source-repositories/"
+           data-tag="GCP"
+           data-author="" >
+            <span class="post-title" title="上傳專案 至 GCP 的 Cloud Source Repositories">上傳專案 至 GCP 的 Cloud Source Repositories</span>
+            <span class="post-date" title="2022-04-02 21:35:08">2022/04/02</span>
+        </a>
+        
+        <a  class="全部文章 Tool Hexo "
+           href="/2022/03/05/hexo-uploadImg-AzureStorage/"
+           data-tag="Hexo"
+           data-author="" >
+            <span class="post-title" title="Hexo-插入圖片[2] (以 VS Code 編輯 Markdown)">Hexo-插入圖片[2] (以 VS Code 編輯 Markdown)</span>
+            <span class="post-date" title="2022-03-05 14:43:46">2022/03/05</span>
+        </a>
+        
+        <a  class="全部文章 Tool Git "
+           href="/2022/02/17/git-modify-author/"
+           data-tag="Git"
+           data-author="" >
+            <span class="post-title" title="Git 修改Message &amp; Author &amp; Email &amp; Committer">Git 修改Message &amp; Author &amp; Email &amp; Committer</span>
+            <span class="post-date" title="2022-02-17 16:29:00">2022/02/17</span>
+        </a>
+        
+        <a  class="全部文章 Tool Hexo "
+           href="/2022/02/02/hexo-uploadImg/"
+           data-tag="Hexo"
+           data-author="" >
+            <span class="post-title" title="Hexo-插入圖片[1] (以 VS Code 編輯 Markdown)">Hexo-插入圖片[1] (以 VS Code 編輯 Markdown)</span>
+            <span class="post-date" title="2022-02-02 17:03:12">2022/02/02</span>
+        </a>
+        
+        <a  class="全部文章 Tool Hexo "
+           href="/2022/02/01/hexo-init/"
+           data-tag="Hexo"
+           data-author="" >
+            <span class="post-title" title="Windows環境 以Hexo + Github Page 搭建部落格">Windows環境 以Hexo + Github Page 搭建部落格</span>
+            <span class="post-date" title="2022-02-01 19:08:10">2022/02/01</span>
+        </a>
+        
+        <div id="no-item-tips">
+
+        </div>
+    </nav>
+    <div id="outline-list">
+    </div>
+</div>
+
+    </div>
+    <div class="hide-list">
+        <div class="semicircle" data-title="切換全屏 快捷鍵 s">
+            <div class="brackets first"><</div>
+            <div class="brackets">&gt;</div>
+        </div>
+    </div>
+</aside>
+<div id="post">
+    <div class="pjax">
+        <article id="post-redis-cluster" class="article article-type-post" itemscope itemprop="blogPost">
+    
+        <h1 class="article-title">Redis Cluster</h1>
+    
+    <div class="article-meta">
+        
+        
+        
+        <span class="book">
+            <i class="iconfont icon-category"></i>
+            
+            
+            <a  data-rel="NoSQL">NoSQL</a> > 
+            
+            <a  data-rel="NoSQL&lt;---&gt;Redis">Redis</a>
+            
+        </span>
+        
+        
+        <span class="tag">
+            <i class="iconfont icon-tag"></i>
+            
+            <a class="color1">Redis</a>
+            
+            <a class="color4">GCP</a>
+            
+        </span>
+        
+    </div>
+    <div class="article-meta">
+        
+            發布時間 : <time class="date" title='更新時間: 2024-07-25 03:42:15'>2023-07-02 21:10</time>
+        
+    </div>
+    <div class="article-meta">
+        
+        <span>字數:2.8k</span>
+        
+        
+        <span id="busuanzi_container_page_pv">
+            觀看數 :<span id="busuanzi_value_page_pv">
+                <span class="count-comment">
+                    <span class="spinner">
+                      <div class="cube1"></div>
+                      <div class="cube2"></div>
+                    </span>
+                </span>
+            </span>
+        </span>
+        
+        
+        <span class="top-comment" title="跳转至评论区">
+            <a href="#comments">
+                評論:<span class="count-comment">
+                    <span class="spinner">
+                      <div class="cube1"></div>
+                      <div class="cube2"></div>
+                    </span>
+                </span>
+            </a>
+        </span>
+        
+    </div>
+    
+    <div class="toc-ref">
+    
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%89%8D%E8%A8%80"><span class="toc-text">前言</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%92%B0%E5%A2%83"><span class="toc-text">環境</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%A8%AD%E5%AE%9A-VM"><span class="toc-text">設定 VM</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%BB%BA%E7%AB%8B-6-%E5%8F%B0-Redis-%E6%A9%9F%E5%99%A8"><span class="toc-text">建立 6 台 Redis 機器</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%89%E8%A3%9D-Docker"><span class="toc-text">安裝 Docker</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%BB%BA%E7%BD%AE-Redis-Cluster"><span class="toc-text">建置 Redis Cluster</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%96%B0%E5%A2%9E-redisTemplate-conf"><span class="toc-text">新增 redisTemplate.conf</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%96%B0%E5%A2%9E-redis-conf"><span class="toc-text">新增 redis.conf</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%BB%BA%E7%BD%AE-Redis-cluster"><span class="toc-text">建置 Redis cluster</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Redis-Clsuter-%E6%96%B0%E5%A2%9E%E6%9F%A5%E8%A9%A2-Key-%E5%82%99%E8%A8%BB"><span class="toc-text">Redis Clsuter 新增查詢 Key 備註</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%A8%AD%E5%AE%9A%E6%B8%AC%E8%A9%A6%E8%B3%87%E6%96%99"><span class="toc-text">設定測試資料</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%B8%AE%E5%AE%B9-Redis-Cluster-Node"><span class="toc-text">縮容 Redis Cluster Node</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%B0%87-m3-%E7%9A%84-Slot-%E9%87%8D%E6%96%B0%E5%88%86%E9%85%8D%E7%B5%A6-m1%E3%80%81m2"><span class="toc-text">將 m3 的 Slot 重新分配給 m1、m2</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%B0%87-m3%E3%80%81s3-%E7%A7%BB%E5%87%BA-Redis-Cluster"><span class="toc-text">將 m3、s3 移出 Redis Cluster</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%93%B4%E5%85%85-Redis-Cluster-Node"><span class="toc-text">擴充 Redis Cluster Node</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%B0%87-m3%E3%80%81s3-%E5%8A%A0%E5%85%A5-Redis-Cluster"><span class="toc-text">將 m3、s3 加入 Redis Cluster</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#m1%E3%80%81m2%E3%80%81m3-%E9%87%8D%E6%96%B0%E5%88%86%E9%85%8D-SLOT"><span class="toc-text">m1、m2、m3 重新分配 SLOT</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8F%83%E8%80%83%E6%96%87%E4%BB%B6"><span class="toc-text">參考文件</span></a></li></ol>
+    
+<style>
+    .left-col .switch-btn,
+    .left-col .switch-area {
+        display: none;
+    }
+    .toc-level-3 i,
+    .toc-level-3 ol {
+        display: none !important;
+    }
+</style>
+</div>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>Redis Cluster 與 Redis Master-Slave 架構的差異</p>
+<p>Redis Master-Slave<br>每個 Node 是包含所有資料，Slave 只是分擔讀取功能、failover 可快速替換 Master 的功能<br>而 Master 仍承受巨量寫入的壓力，且需要另建 Sentinel 來操作 failover</p>
+<p>Redis Cluster<br>自帶 Sentinel 無需額外建立，且透過 Sharding 來將資料分散寫入到各個 Cluster Node 中，分散壓力<br>本篇透過建立 6 台 Redis 服務，組成 3 個 Master、3 個 Slave 架構的 Redis Cluster<br>並測試 faileover、節點縮容、節點擴充的流程</p>
+<h2 id="環境"><a href="#環境" class="headerlink" title="環境"></a>環境</h2><p>Linux VM = ubuntu-2004-lts<br>Redis Docker映像檔 = redis:6.0.0</p>
+<p>VPC、Firewall 建置參考<a target="_blank" rel="noopener" href="https://w4560000.github.io/2023/06/19/redis-master-slave#%E8%A8%AD%E5%AE%9A-VPC-amp-Firewall">w4560000 - Redis Master-Slave 設定 VPC &amp; Firewall</a></p>
+<table>
+<thead>
+<tr>
+<th>機器</th>
+<th>IP</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>redis-1</td>
+<td>10.140.0.11</td>
+</tr>
+<tr>
+<td>redis-2</td>
+<td>10.140.0.12</td>
+</tr>
+<tr>
+<td>redis-3</td>
+<td>10.140.0.13</td>
+</tr>
+<tr>
+<td>redis-4</td>
+<td>10.140.0.14</td>
+</tr>
+<tr>
+<td>redis-5</td>
+<td>10.140.0.15</td>
+</tr>
+<tr>
+<td>redis-6</td>
+<td>10.140.0.16</td>
+</tr>
+</tbody></table>
+<h2 id="設定-VM"><a href="#設定-VM" class="headerlink" title="設定 VM"></a>設定 VM</h2><h3 id="建立-6-台-Redis-機器"><a href="#建立-6-台-Redis-機器" class="headerlink" title="建立 6 台 Redis 機器"></a>建立 6 台 Redis 機器</h3><pre><code class="CMD">for i in 1 2 3 4 5 6; do
+  gcloud compute instances create redis-$&#123;i&#125; \
+    --async \
+    --boot-disk-size 100GB \
+    --can-ip-forward \
+    --image-family ubuntu-2004-lts \
+    --image-project ubuntu-os-cloud \
+    --machine-type e2-standard-2 \
+    --private-network-ip 10.240.0.1$&#123;i&#125; \
+    --scopes compute-rw,storage-ro,service-management,service-control,logging-write,monitoring \
+    --subnet redis-vpc-subnet \
+    --zone asia-east1-a \
+    --tags redis-vpc
+done
+</code></pre>
+<h3 id="安裝-Docker"><a href="#安裝-Docker" class="headerlink" title="安裝 Docker"></a>安裝 Docker</h3><p>參考 <a target="_blank" rel="noopener" href="https://w4560000.github.io/2022/06/11/docker-install/">w4560000 - Linux 安裝 Docker、Docker-Compose</a></p>
+<p>6 台 VM 都先設定好 volumn 資料夾</p>
+<pre><code>mkdir redis &amp;&amp; mkdir redisdata
+</code></pre>
+<h2 id="建置-Redis-Cluster"><a href="#建置-Redis-Cluster" class="headerlink" title="建置 Redis Cluster"></a>建置 Redis Cluster</h2><h3 id="新增-redisTemplate-conf"><a href="#新增-redisTemplate-conf" class="headerlink" title="新增 redisTemplate.conf"></a>新增 redisTemplate.conf</h3><ul>
+<li><p>cluster-enabled &lt;yes/no&gt;</p>
+<blockquote>
+<p>是否啟動 redis cluster<br>ex: cluster-enabled yes</p>
+</blockquote>
+</li>
+<li><p>cluster-config-file <filename></p>
+<blockquote>
+<p>redis cluster 設定檔名，紀錄狀態設定 (使用者無法編輯)<br>ex: cluster-config-file nodes.conf</p>
+</blockquote>
+</li>
+<li><p>cluster-node-timeout <mileseconds></p>
+<blockquote>
+<p>當 master 在該時間內，沒有回應其他 node 則會執行 failover，將它的 slave 升為新的 master<br>ex: cluster-node-timeout 15000</p>
+</blockquote>
+</li>
+<li><p>cluster-replica-validity-factor <seconds></p>
+<blockquote>
+<p>若設為 0，則無論 slave 與 master 斷開連線多長時間，slave 都會嘗試在 failover 時嘗試成為 master<br>若設 大於 0，則可斷開連線時間 = cluster-replica-validity-factor * cluster-node-timeout (秒)<br>若該 slave 超過可斷開連線時間，failover 發生時，則不會被推派為 master<br>若 cluster-replica-validity-factor = 10、cluster-node-timeout = 5000 毫秒 = 5 秒<br>則可斷開連線時間 = 50 秒，slave 超過 50 秒沒有與 master 連線，則喪失成為 master 的機會<br>ex: cluster-replica-validity-factor 10</p>
+</blockquote>
+</li>
+<li><p>cluster-announce-ip <ip></p>
+<blockquote>
+<p>當前 cluster-node 的 IP<br>ex: cluster-announce-ip 10.140.0.11</p>
+</blockquote>
+</li>
+<li><p>cluster-announce-port <port></p>
+<blockquote>
+<p>當前 cluster-node 的 Port<br>ex: cluster-announce-port 6379</p>
+</blockquote>
+</li>
+<li><p>cluster-announce-bus-port <port></p>
+<blockquote>
+<p>當前 cluster-node 用來與其他 cluster-node 同步資訊、檢測故障的 Port<br>ex: cluster-announce-bus-port 16379</p>
+</blockquote>
+</li>
+<li><p>repl-ping-replica-period <seconds></p>
+<blockquote>
+<p>master 每隔幾秒會 ping slave，確認是否活著<br>ex: repl-ping-replica-period 10 (預設)</p>
+</blockquote>
+</li>
+<li><p>repl-timeout、repl-ping-replica-period 說明參考 <a target="_blank" rel="noopener" href="https://w4560000.github.io/2023/06/19/redis-master-slave/">w4560000 - Redis Master-Slave</a></p>
+<blockquote>
+<p>在 cluster，repl-timeout 觸發時不會發生 failover，而是由 cluster-node-timeout 在控制 failover</p>
+</blockquote>
+</li>
+</ul>
+<p>redis-1 ~ redis-6<br>路徑 ~/redis/redisTemplate.conf</p>
+<pre><code>bind 0.0.0.0
+protected-mode no
+dir ./
+
+# Cluster
+cluster-enabled yes
+cluster-config-file nodes.conf
+cluster-node-timeout 15000
+cluster-replica-validity-factor 10
+cluster-announce-ip $&#123;IP&#125;
+cluster-announce-port 6379
+cluster-announce-bus-port 16379
+
+# AOF
+appendonly yes
+appendfilename &quot;appendonly.aof&quot;
+appendfsync everysec
+
+# AOF rewrite
+no-appendfsync-on-rewrite no
+auto-aof-rewrite-percentage 0
+auto-aof-rewrite-min-size 1mb
+aof-load-truncated no
+aof-use-rdb-preamble yes
+
+# REPLICATION
+repl-ping-replica-period 10
+repl-timeout 60
+</code></pre>
+<h3 id="新增-redis-conf"><a href="#新增-redis-conf" class="headerlink" title="新增 redis.conf"></a>新增 redis.conf</h3><p>redis-1 ~ redis-6<br>路徑 ~/redis/redis.conf</p>
+<pre><code class="CMD">IP=$(hostname -i) envsubst &lt; ./redis/redisTemplate.conf &gt; ./redis/redis.conf
+</code></pre>
+<h3 id="建置-Redis-cluster"><a href="#建置-Redis-cluster" class="headerlink" title="建置 Redis cluster"></a>建置 Redis cluster</h3><p>啟動 Redis 服務<br>redis-1 ~ redis-6</p>
+<pre><code class="CMD">docker run --name redis \
+-p 6379:6379 \
+-p 16379:16379 \
+-v /home/leozheng0629/redis:/usr/local/etc/redis \
+-v /home/leozheng0629/redisdata:/data \
+-d redis:6.0.0 \
+redis-server /usr/local/etc/redis/redis.conf
+</code></pre>
+<p>建立 Cluster</p>
+<pre><code class="CMD">docker exec -it redis redis-cli --cluster create 10.240.0.11:6379 10.240.0.12:6379 10.240.0.13:6379 10.240.0.14:6379 10.240.0.15:6379 10.240.0.16:6379 --cluster-replicas 1
+
+# 輸出
+&gt;&gt;&gt; Performing hash slots allocation on 6 nodes...
+Master[0] -&gt; Slots 0 - 5460
+Master[1] -&gt; Slots 5461 - 10922
+Master[2] -&gt; Slots 10923 - 16383
+Adding replica 10.240.0.15:6379 to 10.240.0.11:6379
+Adding replica 10.240.0.16:6379 to 10.240.0.12:6379
+Adding replica 10.240.0.14:6379 to 10.240.0.13:6379
+M: aefdddbe65c8105c47b545bab901578c7a92f2f9 10.240.0.11:6379
+   slots:[0-5460] (5461 slots) master
+M: 23808824f980269c05af462dbc3b82b5ab63995d 10.240.0.12:6379
+   slots:[5461-10922] (5462 slots) master
+M: bae34725dfd1fb24f4ea6c9464a5d2c7e56db445 10.240.0.13:6379
+   slots:[10923-16383] (5461 slots) master
+S: d3b65dce1ca8befabd8c929b7481970ac892e6ac 10.240.0.14:6379
+   replicates bae34725dfd1fb24f4ea6c9464a5d2c7e56db445
+S: b46f42b32e50918480923dcee3f13201f2b5fde4 10.240.0.15:6379
+   replicates aefdddbe65c8105c47b545bab901578c7a92f2f9
+S: 4436d2bf76ec3bc754acc7df8284e8fd87dd0f08 10.240.0.16:6379
+   replicates 23808824f980269c05af462dbc3b82b5ab63995d
+Can I set the above configuration? (type &#39;yes&#39; to accept): yes
+&gt;&gt;&gt; Nodes configuration updated
+&gt;&gt;&gt; Assign a different config epoch to each node
+&gt;&gt;&gt; Sending CLUSTER MEET messages to join the cluster
+Waiting for the cluster to join
+.....
+&gt;&gt;&gt; Performing Cluster Check (using node 10.240.0.11:6379)
+M: aefdddbe65c8105c47b545bab901578c7a92f2f9 10.240.0.11:6379
+   slots:[0-5460] (5461 slots) master
+   1 additional replica(s)
+M: bae34725dfd1fb24f4ea6c9464a5d2c7e56db445 10.240.0.13:6379
+   slots:[10923-16383] (5461 slots) master
+   1 additional replica(s)
+M: 23808824f980269c05af462dbc3b82b5ab63995d 10.240.0.12:6379
+   slots:[5461-10922] (5462 slots) master
+   1 additional replica(s)
+S: d3b65dce1ca8befabd8c929b7481970ac892e6ac 10.240.0.14:6379
+   slots: (0 slots) slave
+   replicates bae34725dfd1fb24f4ea6c9464a5d2c7e56db445
+S: b46f42b32e50918480923dcee3f13201f2b5fde4 10.240.0.15:6379
+   slots: (0 slots) slave
+   replicates aefdddbe65c8105c47b545bab901578c7a92f2f9
+S: 4436d2bf76ec3bc754acc7df8284e8fd87dd0f08 10.240.0.16:6379
+   slots: (0 slots) slave
+   replicates 23808824f980269c05af462dbc3b82b5ab63995d
+[OK] All nodes agree about slots configuration.
+&gt;&gt;&gt; Check for open slots...
+&gt;&gt;&gt; Check slots coverage...
+[OK] All 16384 slots covered.
+</code></pre>
+<blockquote>
+<p>備註 Port 除了 6379 外，cluster-announce-bus-port 設定的 16379 也要開通<br>cluster-announce-bus-port 是 cluster 之間用來做故障檢測、failover、設定更新的 Port<br>若 16379 沒開通，cluster create 時會一直卡在 Waiting for the cluster to join，無法順利建置</p>
+</blockquote>
+<p>建置好後確認一下 cluster 狀態</p>
+<pre><code class="CMD">docker exec -it redis redis-cli cluster nodes
+
+# 輸出
+bae34725dfd1fb24f4ea6c9464a5d2c7e56db445 10.240.0.13:6379@16379 master - 0 1688031261897 3 connected 10923-16383
+23808824f980269c05af462dbc3b82b5ab63995d 10.240.0.12:6379@16379 master - 0 1688031258000 2 connected 5461-10922
+d3b65dce1ca8befabd8c929b7481970ac892e6ac 10.240.0.14:6379@16379 slave bae34725dfd1fb24f4ea6c9464a5d2c7e56db445 0 1688031260000 4 connected
+b46f42b32e50918480923dcee3f13201f2b5fde4 10.240.0.15:6379@16379 slave aefdddbe65c8105c47b545bab901578c7a92f2f9 0 1688031259890 5 connected
+aefdddbe65c8105c47b545bab901578c7a92f2f9 10.240.0.11:6379@16379 myself,master - 0 1688031260000 1 connected 0-5460
+4436d2bf76ec3bc754acc7df8284e8fd87dd0f08 10.240.0.16:6379@16379 slave 23808824f980269c05af462dbc3b82b5ab63995d 0 1688031260894 6 connected
+
+docker exec -it redis redis-cli cluster info
+
+# 輸出
+cluster_state:ok
+cluster_slots_assigned:16384
+cluster_slots_ok:16384
+cluster_slots_pfail:0
+cluster_slots_fail:0
+cluster_known_nodes:6
+cluster_size:3
+cluster_current_epoch:6
+cluster_my_epoch:1
+cluster_stats_messages_ping_sent:603
+cluster_stats_messages_pong_sent:652
+cluster_stats_messages_sent:1255
+cluster_stats_messages_ping_received:647
+cluster_stats_messages_pong_received:603
+cluster_stats_messages_meet_received:5
+cluster_stats_messages_received:1255
+</code></pre>
+<h3 id="Redis-Clsuter-新增查詢-Key-備註"><a href="#Redis-Clsuter-新增查詢-Key-備註" class="headerlink" title="Redis Clsuter 新增查詢 Key 備註"></a>Redis Clsuter 新增查詢 Key 備註</h3><p>當 cluster 建立好後，要查詢或操作時，要透過 cluster 模式進入 (redis-cli -c)</p>
+<pre><code class="CMD">docker exec -it redis redis-cli -c Set Key1 &quot;1&quot;
+
+# 輸出
+OK
+
+# 若沒透過 cluster 模式 則會無法操作，因 Redis cluster 是透過計算 Key 的 Hash 值來判斷要存到哪個 redis node 中
+# 若沒加上 -c，則只能查該台 redis 資料
+docker exec -it redis redis-cli Get Key1
+
+# 輸出
+(error) MOVED 15360 10.240.0.13:6379
+</code></pre>
+<h2 id="設定測試資料"><a href="#設定測試資料" class="headerlink" title="設定測試資料"></a>設定測試資料</h2><p>先計算出 Key 的 Slot</p>
+<pre><code class="CMD">docker exec -it redis redis-cli cluster keyslot Key1
+
+# 輸出
+(integer) 5291
+
+docker exec -it redis redis-cli cluster keyslot Key2
+
+# 輸出
+(integer) 9416
+
+docker exec -it redis redis-cli cluster keyslot Key3
+
+# 輸出
+(integer) 13545
+</code></pre>
+<p>確認Key可以分散到各個Node後，再來設定Key</p>
+<pre><code class="CMD">docker exec -it redis redis-cli -c Set Key1 &quot;1&quot;
+docker exec -it redis redis-cli -c Set Key2 &quot;2&quot;
+docker exec -it redis redis-cli -c Set Key3 &quot;3&quot;
+</code></pre>
+<p>設定後再次確認Key分布在三個Node上</p>
+<pre><code class="CMD">docker exec -it redis redis-cli --cluster check 10.240.0.11:6379
+
+# 輸出
+10.240.0.11:6379 (aefdddbe...) -&gt; 1 keys | 5461 slots | 1 slaves.
+10.240.0.13:6379 (bae34725...) -&gt; 1 keys | 5461 slots | 1 slaves.
+10.240.0.12:6379 (23808824...) -&gt; 1 keys | 5462 slots | 1 slaves.
+[OK] 3 keys in 3 masters.
+...
+</code></pre>
+<p>目前 Reids Cluster 配置</p>
+<table>
+<thead>
+<tr>
+<th>master</th>
+<th>slave</th>
+<th>slot</th>
+<th>Keys</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>10.240.0.11 (m1)</td>
+<td>10.240.0.15 (s1)</td>
+<td>0-5460 (共有5461)</td>
+<td>Key1</td>
+</tr>
+<tr>
+<td>10.240.0.12 (m2)</td>
+<td>10.240.0.16 (s2)</td>
+<td>5461-10922 (共有5462)</td>
+<td>Key2</td>
+</tr>
+<tr>
+<td>10.240.0.13 (m3)</td>
+<td>10.240.0.14 (s3)</td>
+<td>10923-16383 (共有5461)</td>
+<td>Key3</td>
+</tr>
+</tbody></table>
+<blockquote>
+<p>查看 Cluster slot<br>docker exec -it redis redis-cli -c CLUSTER SLOTS</p>
+</blockquote>
+<h2 id="縮容-Redis-Cluster-Node"><a href="#縮容-Redis-Cluster-Node" class="headerlink" title="縮容 Redis Cluster Node"></a>縮容 Redis Cluster Node</h2><p>目標: 將 m3、s3 移出 Redis Cluster</p>
+<h3 id="將-m3-的-Slot-重新分配給-m1、m2"><a href="#將-m3-的-Slot-重新分配給-m1、m2" class="headerlink" title="將 m3 的 Slot 重新分配給 m1、m2"></a>將 m3 的 Slot 重新分配給 m1、m2</h3><p>原本 m3 有 5461 個 Slot，先全部分配給 m1，再透過 redis-cli rebalance 自動平均 SLOT (這樣就不用自行計算要分配多少 SLOT 給各個 Node)</p>
+<pre><code class="CMD"># redis-cli --cluster reshard &lt;host&gt;:&lt;port&gt; --cluster-from &lt;node-id&gt; --cluster-to &lt;node-id&gt; --cluster-slots &lt;number of slots&gt; --cluster-yes
+# redis-cli --cluster reshard &lt;要移除的Redis IP&gt;:&lt;要移除的Redis Port&gt; --cluster-from &lt;要移除的Redis ID&gt; --cluster-to &lt;要遷移的Redis IP&gt; --cluster-slots &lt;Slot數量&gt; --cluster-yes
+
+# 分給 m1
+docker exec -it redis redis-cli --cluster reshard 10.240.0.13:6379 --cluster-from bae34725dfd1fb24f4ea6c9464a5d2c7e56db445 --cluster-to aefdddbe65c8105c47b545bab901578c7a92f2f9 --cluster-slots 5461 --cluster-yes
+
+# 重新分配 SLOT
+docker exec -it redis redis-cli --cluster rebalance 10.240.0.11:6379
+</code></pre>
+<p>分配好後再次確認目前SLOT</p>
+<pre><code class="CMD">docker exec -it redis redis-cli --cluster check 10.240.0.11:6379
+
+# 輸出
+10.240.0.11:6379 (aefdddbe...) -&gt; 2 keys | 8192 slots | 1 slaves.
+10.240.0.13:6379 (bae34725...) -&gt; 0 keys | 0 slots | 1 slaves.
+10.240.0.12:6379 (23808824...) -&gt; 1 keys | 8192 slots | 1 slaves.
+...
+</code></pre>
+<blockquote>
+<p>m3 的 SLOT 已被分配給 m1、m2</p>
+</blockquote>
+<h3 id="將-m3、s3-移出-Redis-Cluster"><a href="#將-m3、s3-移出-Redis-Cluster" class="headerlink" title="將 m3、s3 移出 Redis Cluster"></a>將 m3、s3 移出 Redis Cluster</h3><pre><code class="CMD"># redis-cli --cluster del-node &lt;host&gt;:&lt;port&gt; &lt;node-id&gt;
+# redis-cli --cluster del-node &lt;要移除的Redis IP&gt;:&lt;要移除的Redis Port&gt; &lt;要移除的Redis ID&gt;
+
+# 移除 m3
+docker exec -it redis redis-cli --cluster del-node 10.240.0.13:6379 bae34725dfd1fb24f4ea6c9464a5d2c7e56db445
+
+# 移除 s3
+docker exec -it redis redis-cli --cluster del-node 10.240.0.14:6379 d3b65dce1ca8befabd8c929b7481970ac892e6ac
+</code></pre>
+<p>移除後確認 Cluster Node</p>
+<pre><code class="CMD">docker exec -it redis redis-cli cluster nodes
+
+# 輸出
+aefdddbe65c8105c47b545bab901578c7a92f2f9 10.240.0.11:6379@16379 myself,master - 0 1690628923000 13 connected 2730-5460 10923-16383
+b46f42b32e50918480923dcee3f13201f2b5fde4 10.240.0.15:6379@16379 slave 23808824f980269c05af462dbc3b82b5ab63995d 0 1690628921296 14 connected
+23808824f980269c05af462dbc3b82b5ab63995d 10.240.0.12:6379@16379 master - 0 1690628924309 14 connected 0-2729 5461-10922
+4436d2bf76ec3bc754acc7df8284e8fd87dd0f08 10.240.0.16:6379@16379 slave aefdddbe65c8105c47b545bab901578c7a92f2f9 0 1690628923304 13 connected
+</code></pre>
+<blockquote>
+<p>移除 m3、s3 後剩下 m1、s1、m2、s2，而原本在 m3 的 Key3 也被轉移給 m1 了</p>
+</blockquote>
+<h2 id="擴充-Redis-Cluster-Node"><a href="#擴充-Redis-Cluster-Node" class="headerlink" title="擴充 Redis Cluster Node"></a>擴充 Redis Cluster Node</h2><p>目標: 將 m3、s3 重新加入 Redis Cluster</p>
+<h3 id="將-m3、s3-加入-Redis-Cluster"><a href="#將-m3、s3-加入-Redis-Cluster" class="headerlink" title="將 m3、s3 加入 Redis Cluster"></a>將 m3、s3 加入 Redis Cluster</h3><pre><code class="CMD"># redis-cli --cluster add-node &lt;new-host&gt;:&lt;new-port&gt; &lt;old-host&gt;:&lt;old-host&gt;
+# redis-cli --cluster add-node &lt;要加入的Redis IP&gt;:&lt;要加入的Redis Port&gt; &lt;已存在的Redis IP&gt;:&lt;已存在的Reids Port&gt;
+
+# 將 m3 加入 Redis Cluster
+docker exec -it redis redis-cli --cluster add-node 10.240.0.13:6379 10.240.0.11:6379
+
+# 將 s3 加入 Redis Cluster，並且為 m3 的 Slave
+docker exec -it redis redis-cli --cluster add-node 10.240.0.14:6379 10.240.0.11:6379 --cluster-slave --cluster-master-id bae34725dfd1fb24f4ea6c9464a5d2c7e56db445
+</code></pre>
+<p>確認目前 Cluster 配置</p>
+<pre><code class="CMD">docker exec -it redis redis-cli --cluster check 10.240.0.11:6379
+
+# 輸出
+10.240.0.11:6379 (aefdddbe...) -&gt; 2 keys | 8192 slots | 1 slaves.
+10.240.0.13:6379 (bae34725...) -&gt; 0 keys | 0 slots | 1 slaves.
+10.240.0.12:6379 (23808824...) -&gt; 1 keys | 8192 slots | 1 slaves.
+...
+</code></pre>
+<blockquote>
+<p>確認 m3、s3 已被加回 Cluster</p>
+</blockquote>
+<h3 id="m1、m2、m3-重新分配-SLOT"><a href="#m1、m2、m3-重新分配-SLOT" class="headerlink" title="m1、m2、m3 重新分配 SLOT"></a>m1、m2、m3 重新分配 SLOT</h3><pre><code class="CMD"># 將目前 cluster Node 的 SLOT，分配給 m3
+docker exec -it redis redis-cli --cluster reshard 10.240.0.11:6379 --cluster-from all --cluster-to bae34725dfd1fb24f4ea6c9464a5d2c7e56db445 --cluster-slots 5461 --cluster-yes
+</code></pre>
+<p>分配完後確認目前 Cluster 配置</p>
+<pre><code class="CMD">docker exec -it redis redis-cli --cluster check 10.240.0.11:6379
+
+# 輸出
+10.240.0.11:6379 (aefdddbe...) -&gt; 1 keys | 5461 slots | 1 slaves.
+10.240.0.13:6379 (bae34725...) -&gt; 1 keys | 5462 slots | 1 slaves.
+10.240.0.12:6379 (23808824...) -&gt; 1 keys | 5461 slots | 1 slaves.
+...
+</code></pre>
+<p>重新分配過後的 SLOT 分布</p>
+<pre><code class="CMD">docker exec -it redis redis-cli --cluster node
+
+# 輸出
+aefdddbe65c8105c47b545bab901578c7a92f2f9 10.240.0.11:6379@16379 myself,master - 0 1690631611000 26 connected 10923-16383
+b46f42b32e50918480923dcee3f13201f2b5fde4 10.240.0.15:6379@16379 slave 23808824f980269c05af462dbc3b82b5ab63995d 0 1690631611006 27 connected
+bae34725dfd1fb24f4ea6c9464a5d2c7e56db445 10.240.0.13:6379@16379 master - 0 1690631612010 28 connected 0-2729 2731-3640 5461-7281
+23808824f980269c05af462dbc3b82b5ab63995d 10.240.0.12:6379@16379 master - 0 1690631610004 27 connected 2730 3641-5460 7282-10922
+d3b65dce1ca8befabd8c929b7481970ac892e6ac 10.240.0.14:6379@16379 slave aefdddbe65c8105c47b545bab901578c7a92f2f9 0 1690631614019 26 connected
+4436d2bf76ec3bc754acc7df8284e8fd87dd0f08 10.240.0.16:6379@16379 slave bae34725dfd1fb24f4ea6c9464a5d2c7e56db445 0 1690631613015 28 connected
+</code></pre>
+<h2 id="參考文件"><a href="#參考文件" class="headerlink" title="參考文件"></a>參考文件</h2><p><a target="_blank" rel="noopener" href="https://hackmd.io/@tienyulin/redis-master-slave-replication-sentinel-cluster#%E5%8F%A2%E9%9B%86%E6%A8%A1%E5%BC%8F">HackMD tienyulin - Redis (六) - 主從複製、哨兵與叢集模式#叢集模式</a><br><a target="_blank" rel="noopener" href="https://blog.csdn.net/newbie_907486852/article/details/81608736">CSDN 大话JAVA的那些事 - 二、redis.conf文件详解</a><br><a target="_blank" rel="noopener" href="https://isdaniel.github.io/redis-cluster-introduce-01/">石頭的coding之路 - Redis Cluster 介紹</a><br><a target="_blank" rel="noopener" href="https://www.tpisoftware.com/tpu/articleDetails/2236">TPIU - Docker + Redis Cluster 實戰</a><br><a target="_blank" rel="noopener" href="http://blog.itpub.net/29254281/viewspace-2106724/">ITpub博客 壹頁書 - Redis主从复制网络闪断处理</a><br><a target="_blank" rel="noopener" href="https://www.cnblogs.com/aquester/p/10229433.html">博客園 一见 - redis的repl-ping-slave-period和repl-ping-replica-period</a><br><a target="_blank" rel="noopener" href="https://www.cnblogs.com/aquester/p/10229415.html">博客園 一见 - Redis集群的主从切换研究</a><br><a target="_blank" rel="noopener" href="https://redis.io/docs/management/scaling/">Redis 官方文件 - Scaling with Redis Cluster</a><br><a target="_blank" rel="noopener" href="https://www.baeldung.com/redis-sentinel-vs-clustering">Baeldung - Redis Sentinel vs Clustering</a><br><a target="_blank" rel="noopener" href="https://mp.weixin.qq.com/s?__biz=MzU5NDk0MTc2OA==&mid=2247484168&idx=1&sn=f1dbaf1ce17350025c18e575b2e8a365&chksm=fe78c12fc90f4839ae4a96a452eb14749ff8fa7f81b4740005a76e1f74fcc375ac55b69099c6&scene=178&cur_album_id=1570495409356128256#rd">微信公眾號 SH的全栈笔记 - 深度图解Redis Cluster原理</a></p>
+
+      
+       <hr><span style="font-style: italic;color: gray;"> 轉載請註明來源，若有任何錯誤或表達不清楚的地方，歡迎在下方評論區留言，也可以來信至 leozheng0621@gmail.com </span>
+       <br/><span style="font-style: italic;color: gray;"> 如果文章對您有幫助，歡迎斗內(donate)，請我喝杯咖啡 </span>
+    </div>
+</article>
+
+
+<p>
+    <a  class="dashang" onclick="dashangToggle()">斗內💰</a>
+</p>
+
+
+
+
+    <div id="comments"></div>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css">
+
+<script type="text/javascript">
+    $.getScript('/js/gitalk.js', function () {
+        var gitalk = new Gitalk({
+            clientID: '02e3857b9d3fbc94dd66',
+            clientSecret: '015085da6a86e62ce78228e4952d79e468d46185',
+            repo: 'w4560000.github.io',
+            owner: 'w4560000',
+            admin: ['w4560000'],
+            id: decodeURI(location.pathname),
+            distractionFreeMode: 'true',
+            language: 'zh-TW',
+            perPage: parseInt('10',10)
+        })
+        gitalk.render('comments')
+    })
+</script>
+
+
+
+
+    
+
+
+
+
+    </div>
+    <div class="copyright">
+        <p class="footer-entry">
+    ©2022-2022 LeoZheng
+</p>
+<p class="footer-entry">Built with <a href="https://hexo.io/" target="_blank">Hexo</a> and <a href="https://github.com/yelog/hexo-theme-3-hexo" target="_blank">3-hexo</a> theme</p>
+
+    </div>
+    <div class="full-toc">
+        <button class="full" data-title="切換全屏 快捷鍵 s"><span class="min "></span></button>
+<a class="" id="rocket" ></a>
+
+    </div>
+</div>
+
+<div class="hide_box" onclick="dashangToggle()"></div>
+<div class="shang_box">
+    <a class="shang_close"  onclick="dashangToggle()">×</a>
+    <div class="shang_tit">
+        <p>歡迎斗內</p>
+    </div>
+    <div class="shang_payimg">
+        <div class="pay_img">
+            <img src="/img/luckypay.png" class="luckypay" title="斗內松鼠">
+            <img src="/img/jkospay.png" class="jkospay" title="斗內松鼠">
+        </div>
+    </div>
+    <div class="shang_payselect">
+        <span><label><input type="radio" name="pay" checked value="luckypay">LuckyPay</label></span>
+        <span><label><input type="radio" name="pay" value="jkospay">街口支付</label></span>
+    </div>
+</div>
+
+
+</body>
+<script src="/js/jquery.pjax.js?v=1.1.0" ></script>
+
+<script src="/js/script.js?v=1.1.0" ></script>
+<script>
+    var img_resize = 'default';
+    function initArticle() {
+        /*渲染对应的表格样式*/
+        
+            $("#post .pjax table").addClass("green_title");
+        
+
+        /*渲染打赏样式*/
+        
+        $("input[name=pay]").on("click", function () {
+            if($("input[name=pay]:checked").val()=="jkospay"){
+                $(".shang_box .shang_payimg .pay_img").addClass("jkospay_img");
+            } else {
+                $(".shang_box .shang_payimg .pay_img").removeClass("jkospay_img");
+            }
+        })
+        
+
+        /*高亮代码块行号*/
+        
+
+        /*访问数量*/
+        
+        $.getScript("//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js");
+        
+
+        /*代码高亮，行号对齐*/
+        $('.pre-numbering').css('line-height',$('.has-numbering').css('line-height'));
+
+        
+        
+    }
+
+    /*打赏页面隐藏与展示*/
+    
+    function dashangToggle() {
+        $(".shang_box").fadeToggle();
+        $(".hide_box").fadeToggle();
+    }
+    
+
+</script>
+
+<!--加入行号的高亮代码块样式-->
+
+<!--自定义样式设置-->
+<style>
+    
+    
+    .nav {
+        width: 622px;
+    }
+    .nav.fullscreen {
+        margin-left: -622px;
+    }
+    .nav-left {
+        width: 200px;
+    }
+    
+    
+    @media screen and (max-width: 1468px) {
+        .nav {
+            width: 532px;
+        }
+        .nav.fullscreen {
+            margin-left: -532px;
+        }
+        .nav-left {
+            width: 140px;
+        }
+    }
+    
+    
+    @media screen and (max-width: 1024px) {
+        .nav {
+            width: 532px;
+            margin-left: -532px
+        }
+        .nav.fullscreen {
+            margin-left: 0;
+        }
+    }
+    
+    @media screen and (max-width: 426px) {
+        .nav {
+            width: 100%;
+        }
+        .nav-left {
+            width: 100%;
+        }
+    }
+    
+    
+    .nav-right .title-list nav a .post-title, .nav-right .title-list #local-search-result a .post-title {
+        color: #383636;
+    }
+    
+    
+    .nav-right .title-list nav a .post-date, .nav-right .title-list #local-search-result a .post-date {
+        color: #5e5e5f;
+    }
+    
+    
+    .nav-right nav a.hover, #local-search-result a.hover{
+        background-color: #e2e0e0;
+    }
+    
+    
+
+    /*列表样式*/
+    
+
+    /* 背景图样式 */
+    
+    
+
+
+    /*引用块样式*/
+    
+
+    /*文章列表背景图*/
+    
+
+    
+</style>
+
+
+
+
+
+
+<div class="mobile-menus-out" >
+
+</div>
+<div class="mobile-menus">
+    
+    
+    
+    
+    <a class="dynamic-menu " target="_blank"  href="https://github.com/w4560000">github</a>
+    
+</div>
+
+
+</html>
